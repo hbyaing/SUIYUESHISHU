@@ -29,7 +29,7 @@ public final class TooltipVisualQa {
   if(ticks==120)mc.setScreen(new YulePreview(false));
   if(ticks==180)mc.setScreen(new YulePreview(true));
   if(ticks==200)net.minecraft.client.Screenshot.grab(mc.gameDirectory,"yule-expanded.png",mc.getMainRenderTarget(),m->{});
-  if(ticks==220){try{if(Math.abs(DollTooltip.sway(0)-DollTooltip.sway(2.8))>1e-9)throw new AssertionError("cycle discontinuity");if(Math.abs(YuleItemTooltip.raisedAlpha(0)-YuleItemTooltip.raisedAlpha(4.4))>1e-6)throw new AssertionError("pose cycle discontinuity");Files.writeString(Path.of("tooltip-qa-results.txt"),"PASS Chengran + Yule production tooltip compact/expanded, continuous sway and pose cycle\n");}catch(Exception x){throw new RuntimeException(x);}mc.stop();}
+  if(ticks==220){try{if(ModernUiCompat.textEngine()!=Files.exists(Path.of("expect-modernui")))throw new AssertionError("Unexpected font engine");if(Math.abs(DollTooltip.sway(0)-DollTooltip.sway(2.8))>1e-9)throw new AssertionError("cycle discontinuity");if(Math.abs(YuleItemTooltip.raisedAlpha(0)-YuleItemTooltip.raisedAlpha(4.4))>1e-6)throw new AssertionError("pose cycle discontinuity");Files.writeString(Path.of("tooltip-qa-results.txt"),"PASS Chengran + Yule compact/expanded, Shift pin and pagination, fish pose cycle; modernui="+ModernUiCompat.textEngine()+"\n");}catch(Exception x){throw new RuntimeException(x);}mc.stop();}
  }
  private static final class Preview extends net.minecraft.client.gui.screens.Screen {
   private final boolean expanded;Preview(boolean expanded){super(net.minecraft.network.chat.Component.literal("Tooltip acceptance preview"));this.expanded=expanded;}

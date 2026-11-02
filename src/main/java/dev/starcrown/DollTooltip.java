@@ -21,7 +21,7 @@ import net.minecraftforge.fml.common.Mod;
 public final class DollTooltip {
  private static final ResourceLocation PORTRAIT=new ResourceLocation(StarcrownDoll.ID,"textures/gui/chengran_portrait.png");
  private static final long EPOCH=System.nanoTime();
- private static final int[] STARS={0xbceaff,0xd6caff,0xf4d0ff,0xfff0fa},NEON={0x64ffff,0x87b0ff,0xff71df,0xcc91ff},GOD={0xffe18b,0xfffaf0,0xff969c};
+ private static final int[] STARS={0x78dcff,0xb59aff,0xff91d7,0x91c9ff},NEON={0x64ffff,0x87b0ff,0xff71df,0xcc91ff},GOD={0xffe18b,0xfffaf0,0xff969c};
  public static final String[] KEYS={"skill1","skill1.effect","skill1.protect","skill2","skill2.travel","skill2.build","skill2.immune","skill2.benefits","skill3","skill3.effect","skill4","skill4.effect","skill4.authority","skill5","skill5.effect","skill5.domain","skill6","skill6.effect","skill7","skill7.effect","skill7.verdict","anchor","controls","wear","music","place"};
  private record Line(FormattedCharSequence text,int palette){}
  @SubscribeEvent public static void render(RenderTooltipEvent.Pre event){
@@ -42,13 +42,21 @@ public final class DollTooltip {
   add(lines,tr("divinity"),false,2,maxWidth);
   add(lines,tr("lore"),expanded,1,maxWidth);
   int headerLines=lines.size();
-  if(expanded)for(String key:KEYS){add(lines,tr(key),true,0,maxWidth);if(key.matches("skill[1-7]\\..*|anchor|controls|wear|music|place"))lines.add(new Line(FormattedCharSequence.EMPTY,0));}
+  if(expanded)for(int i=0;i<KEYS.length;){
+   String key=KEYS[i++];boolean heading=key.matches("skill[1-7]");
+   add(lines,tr(key),heading,heading?1:0,maxWidth);
+   if(heading){
+    StringBuilder paragraph=new StringBuilder();
+    while(i<KEYS.length&&KEYS[i].startsWith(key+".")){if(paragraph.length()>0)paragraph.append(' ');paragraph.append(tr(KEYS[i++]));}
+    if(paragraph.length()>0)add(lines,paragraph.toString(),false,0,maxWidth);
+   }
+  }
   else add(lines,tr("shift"),false,0,maxWidth);
   return new TooltipLayouts.Layout<>(List.copyOf(lines),headerLines);
   });
   var reading=TooltipReading.select(layout.lines(),layout.header(),screenH,"chengran",expanded);var lines=reading.lines();
   int textW=1;for(Line line:lines)textW=Math.max(textW,font.width(line.text));
-  int rowHeight=expanded?13:11;
+  int rowHeight=TooltipReading.ROW_HEIGHT;
   int panelW=textW+14,panelH=lines.size()*rowHeight+12+(expanded?15:0);
   float scale=1;
   float w=panelW*scale,h=panelH*scale;
@@ -83,7 +91,7 @@ public final class DollTooltip {
  private static String tr(String key){return Component.translatable("tooltip.starcrowndoll."+key).getString();}
  private static double fract(double v){return v-Math.floor(v);}
  private static void add(List<Line> lines,String text,boolean bold,int palette,int width){
-  var c=Component.literal(text).withStyle(Style.EMPTY.withBold(false));
+  var c=Component.literal(text).withStyle(Style.EMPTY.withBold(bold));
   for(var row:Minecraft.getInstance().font.split(c,width))lines.add(new Line(row,palette));
  }
  private static void portrait(GuiGraphics g,float x,float y,float w,float h,float rotation,float alpha){
@@ -100,9 +108,10 @@ public final class DollTooltip {
   }
  }
  static void gradientLine(GuiGraphics g,FormattedCharSequence line,int x,int y,int palette,double time,float scale,float originX,float originY){
-  var font=Minecraft.getInstance().font;int total=Math.max(1,font.width(line));int[] colors=palette==3?YuleItemTooltip.COLORS:palette==2?GOD:palette==1?NEON:STARS;
+  var font=Minecraft.getInstance().font;int total=Math.max(1,font.width(line));int[] colors=palette==3?YuleItemTooltip.TEXT_COLORS:palette==2?GOD:palette==1?NEON:STARS;
   // Horizontal one-pixel slices give glyphs a real diagonal gradient, including their vertical strokes.
   double dx=total*.65,dy=dx+8,denominator=dx*dx+dy*dy;
+  if(ModernUiCompat.draw(g,line,x,y,(gx,gy)->sample(colors,(float)((gx*dx+(gy+8)*dy)/denominator-time*.36))))return;
   var glyphs=TooltipLayouts.glyphs(line);
   for(int row=0;row<10;row++){
    int top=(int)Math.floor(originY+(y+row)*scale),bottom=(int)Math.ceil(originY+(y+row+1)*scale);

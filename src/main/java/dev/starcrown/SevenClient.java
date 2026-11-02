@@ -22,7 +22,7 @@ public final class SevenClient {
  private static final class Panel extends Screen {
   int page,slot,effectPage,px,py,pw,ph,body,step;String search="";net.minecraft.client.gui.components.EditBox searchBox;
   Panel(){super(Component.literal("成然玩偶 · 至高神性"));if(Minecraft.getInstance().getConnection()!=null)SevenNetwork.CHANNEL.sendToServer(new SevenNetwork.Action(16,0));}
-  void refresh(){rebuildWidgets();}
+  void refresh(){boolean focused=searchBox!=null&&getFocused()==searchBox;rebuildWidgets();if(focused&&page==3)setFocused(searchBox);}
   @Override public boolean isPauseScreen(){return false;}
   @Override public void onClose(){SevenAppearance.save();super.onClose();}
   void action(int id,int value){if(Minecraft.getInstance().getConnection()!=null)SevenNetwork.CHANNEL.sendToServer(new SevenNetwork.Action(id,value));}
@@ -42,7 +42,8 @@ public final class SevenClient {
    }else if(page==1){button(0,0,"准星安全瞬移  ↗",()->{action(4,0);onClose();});button(1,0,"返回传送前位置  ↶",()->{action(7,0);onClose();});button(0,1,"返回死亡地点",()->{action(8,0);onClose();});button(1,1,"锚点槽位  0"+(slot+1),()->{slot=(slot+1)%8;rebuildWidgets();});button(0,2,"记录神性锚点",()->action(5,slot));button(1,2,"返回神性锚点  ↗",()->{action(6,slot);onClose();});}
    else if(page==2){button(0,0,"预览战场修复范围",()->{action(10,0);onClose();});button(1,0,"恢复记录中的战场",()->{action(9,0);onClose();});toggle(0,1,"玩家庇护",state.players(),()->action(11,0));button(1,1,"准星目标：加入 / 移出友方",()->{action(12,0);onClose();});button(0,2,"准星敌人：旧伤重现",()->{action(13,0);onClose();});button(1,2,"领取没收的玩偶",()->action(17,0));}
    else if(page==3){
-    searchBox=new net.minecraft.client.gui.components.EditBox(font,px+17,body,pw-34,19,Component.literal("搜索药水"));searchBox.setMaxLength(128);searchBox.setValue(search);searchBox.setHint(Component.literal("搜索名称或模组 ID"));searchBox.setTextColor(0xe8d9ff);searchBox.setResponder(text->{search=text;effectPage=0;rebuildWidgets();setFocused(searchBox);});addRenderableWidget(searchBox);
+    if(searchBox==null){searchBox=new net.minecraft.client.gui.components.EditBox(font,px+17,body,pw-34,19,Component.literal("搜索药水"));searchBox.setMaxLength(128);searchBox.setValue(search);searchBox.setHint(Component.literal("搜索名称或模组 ID"));searchBox.setTextColor(0xe8d9ff);searchBox.setResponder(text->{search=text;effectPage=0;refresh();setFocused(searchBox);});}
+    searchBox.setX(px+17);searchBox.setY(body);searchBox.setWidth(pw-34);addRenderableWidget(searchBox);
     var effects=net.minecraftforge.registries.ForgeRegistries.MOB_EFFECTS.getValues().stream().sorted(java.util.Comparator.comparing(e->net.minecraftforge.registries.ForgeRegistries.MOB_EFFECTS.getKey(e).toString())).filter(e->e.getDisplayName().getString().toLowerCase(java.util.Locale.ROOT).contains(search.toLowerCase(java.util.Locale.ROOT))||net.minecraftforge.registries.ForgeRegistries.MOB_EFFECTS.getKey(e).toString().contains(search.toLowerCase(java.util.Locale.ROOT))).toList();
     int rows=Math.max(1,(ph-210)/28),per=rows*2,pages=Math.max(1,(effects.size()+per-1)/per);effectPage=Math.max(0,Math.min(effectPage,pages-1));int w=(pw-40)/2;
     for(int i=effectPage*per;i<Math.min(effects.size(),(effectPage+1)*per);i++){var effect=effects.get(i);var id=net.minecraftforge.registries.ForgeRegistries.MOB_EFFECTS.getKey(effect);boolean enabled=!disabledEffects.contains(id.toString());int index=i-effectPage*per;var button=add(px+16+(index%2)*(w+8),body+27+(index/2)*28,w,24,(enabled?"● ":"○ ")+effect.getDisplayName().getString(),()->{if(Minecraft.getInstance().getConnection()!=null)SevenNetwork.CHANNEL.sendToServer(new SevenNetwork.EffectAction(id,!enabled));},()->enabled);button.setTooltip(net.minecraft.client.gui.components.Tooltip.create(Component.literal(id+"\n关闭后移除并阻止再次获得；开启恢复原有规则。")));}

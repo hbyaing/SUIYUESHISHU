@@ -3,7 +3,7 @@ loaderVersion="[47,)"
 license="All Rights Reserved"
 [[mods]]
 modId="starcrowndoll"
-version="1.20.16"
+version="1.20.20"
 displayName="以神戴冠"
 description="坐姿皮肤玩偶、金色星冕与动态双星轨。"
 [[dependencies.starcrowndoll]]

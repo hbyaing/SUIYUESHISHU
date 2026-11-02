@@ -1,5 +1,5 @@
 plugins { id 'java'; id 'net.minecraftforge.gradle' version '[6.0,6.2)' }
-version='1.20.16'
+version='1.20.20'
 group='dev.starcrown'
 base { archivesName='YiShenDaiGuan-1.20.1' }
 java.toolchain.languageVersion=JavaLanguageVersion.of(17)

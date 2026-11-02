@@ -37,20 +37,20 @@ public class DollRenderer implements BlockEntityRenderer<StarcrownDoll.DollEntit
   pose.pushPose();pose.translate(.5,0,.5);
   pose.mulPose(Axis.YP.rotationDegrees(180-state.getValue(net.minecraft.world.level.block.HorizontalDirectionalBlock.FACING).toYRot()));pose.translate(-.5,0,-.5);
   part("body",state,pose,buffers,light,overlay);
-  pose.pushPose();DollAnimation.headMotion(pose,ticks,.5,9./16,10./16);
-  part(frame==0?"head":frame==1?"head_half":"head_closed",state,pose,buffers,light,overlay);pose.popPose();
   boolean holdingFish=state.is(StarcrownDoll.YULE_DOLL.get());
+  pose.pushPose();if(holdingFish){pose.translate(.5,9./16,10./16);pose.mulPose(Axis.YP.rotationDegrees((float)(Math.sin(ticks*.03)*1.4324)));pose.mulPose(Axis.XP.rotationDegrees(-6));pose.mulPose(Axis.ZP.rotationDegrees(-7));pose.translate(-.5,-9./16,-10./16);}else DollAnimation.headMotion(pose,ticks,.5,9./16,10./16);
+  part(frame==0?"head":frame==1?"head_half":"head_closed",state,pose,buffers,light,overlay);pose.popPose();
   pose.pushPose();
   if(holdingFish){pose.translate(0,Math.sin(ticks*.09)*.004,0);pose.translate(.5,9./16,10./16);pose.mulPose(Axis.XP.rotationDegrees(35*raised));pose.translate(-.5,-9./16,-10./16);}
   for(boolean right:new boolean[]{true,false}){
    pose.pushPose();double x=right?5./16:11./16;
-   pose.translate(x,9./16,10./16);
-   if(holdingFish){pose.mulPose(Axis.ZP.rotationDegrees(right?15:-15));pose.mulPose(Axis.XP.rotationDegrees(right?47:63));}
+   pose.translate(x+(holdingFish?(right?.04:-.07):0),9./16-(holdingFish?.025:0),10./16-(holdingFish?.025:0));
+   if(holdingFish){pose.mulPose(Axis.ZP.rotationDegrees(right?28:-28));pose.mulPose(Axis.XP.rotationDegrees(50));}
    else pose.mulPose(Axis.ZP.rotationDegrees((right?-135:135)*raised));
    pose.translate(-x,-9./16,-10./16);
    part(right?"right_arm":"left_arm",state,pose,buffers,light,overlay);pose.popPose();
   }
-  if(holdingFish){pose.pushPose();pose.translate(.5,6.65/16,3.9/16);pose.mulPose(Axis.ZP.rotationDegrees(-8));pose.mulPose(Axis.YP.rotationDegrees(180));pose.scale(.68f,.68f,.68f);mc.getItemRenderer().renderStatic(new net.minecraft.world.item.ItemStack(StarcrownDoll.FISHING_GOD_FISH.get()),net.minecraft.world.item.ItemDisplayContext.NONE,light,overlay,pose,buffers,mc.level,0);pose.popPose();}
+  if(holdingFish){pose.pushPose();pose.translate(.5,7.35/16,3.9/16);pose.mulPose(Axis.YP.rotationDegrees(15));pose.mulPose(Axis.ZP.rotationDegrees(73));pose.mulPose(Axis.YP.rotationDegrees(180));pose.scale(.72f,.72f,.72f);mc.getItemRenderer().renderStatic(new net.minecraft.world.item.ItemStack(StarcrownDoll.FISHING_GOD_FISH.get()),net.minecraft.world.item.ItemDisplayContext.NONE,light,overlay,pose,buffers,mc.level,0);pose.popPose();}
   pose.popPose();
   pose.popPose();
  }

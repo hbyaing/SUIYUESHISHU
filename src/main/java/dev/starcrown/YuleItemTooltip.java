@@ -19,7 +19,9 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid=StarcrownDoll.ID,value=Dist.CLIENT)
 public final class YuleItemTooltip {
  static final int[] COLORS={0xffc4de,0xffdeaa,0xffffff,0xffd1e5,0xeac387,0xffffff};
+ static final int[] TEXT_COLORS={0xff90c9,0xffd078,0xc6a5ff,0xffa3cb,0xf4cc86};
  private static final ResourceLocation ART=new ResourceLocation(StarcrownDoll.ID,"textures/gui/yule_poses.png");
+ private static final ResourceLocation FISH=new ResourceLocation(StarcrownDoll.ID,"textures/item/fishing_god_fish.png");
  private static final long EPOCH=System.nanoTime();
  @SubscribeEvent public static void render(RenderTooltipEvent.Pre event){
   if(!event.getItemStack().is(StarcrownDoll.YULE_ITEM.get()))return;
@@ -36,16 +38,17 @@ public final class YuleItemTooltip {
   List<FormattedCharSequence> rows=new ArrayList<>();
   rows.addAll(font.split(name.copy().withStyle(s->s.withBold(false)),width));
   rows.addAll(font.split(Component.translatable("tooltip.starcrowndoll.yule.divinity"),width));
+  rows.addAll(font.split(Component.translatable("tooltip.starcrowndoll.yule.lore"),width));
   int headerLines=rows.size();
   if(expanded){
    List<Component> descriptions=new ArrayList<>();DollClient.yuleTooltip(descriptions,true);
-   for(var c:descriptions){rows.addAll(font.split(Component.literal(c.getString()),width));rows.add(FormattedCharSequence.EMPTY);}
+   for(var c:descriptions){rows.addAll(font.split(c,width));}
   }
   rows.addAll(font.split(Component.translatable("tooltip.starcrowndoll.shift"),width));
   return new TooltipLayouts.Layout<>(List.copyOf(rows),headerLines);
   });
   var reading=TooltipReading.select(layout.lines(),layout.header(),sh,"yule",expanded);var lines=reading.lines();
-  int rowHeight=expanded?13:11;
+  int rowHeight=TooltipReading.ROW_HEIGHT;
   int w=width+16,h=16+lines.size()*rowHeight+(expanded?15:0);
   float scale=1;
   float x=Math.max(8,Math.min(sw-w*scale-8,mx+12));
@@ -66,7 +69,7 @@ public final class YuleItemTooltip {
    frame(g,w,h,t);
    int ly=7;
    for(int i=0;i<lines.size();i++){
-    if(expanded)TooltipReading.text(g,lines.get(i),8,ly,COLORS,t);
+    if(expanded)TooltipReading.text(g,lines.get(i),8,ly,TEXT_COLORS,t);
     else DollTooltip.gradientLine(g,lines.get(i),8,ly,3,t*(.5/.36),scale,x,y);
     ly+=rowHeight;
    }
@@ -79,12 +82,44 @@ public final class YuleItemTooltip {
   g.pose().mulPose(Axis.ZP.rotationDegrees((float)((1-Math.cos(t*Math.PI*2/3))*1.5)));
   blit(g,-w/2,-h*.85f,w,h,0,alpha*(1-mix));blit(g,-w/2,-h*.85f,w,h,1,alpha*mix);g.pose().popPose();
  }
- private static void blit(GuiGraphics g,float x,float y,float w,float h,int pose,float alpha){
-  if(alpha<=0)return;
-  g.pose().pushPose();g.pose().translate(x,y,0);g.pose().scale(w/768,h/1024,1);
-  RenderSystem.enableBlend();RenderSystem.defaultBlendFunc();g.setColor(1,1,1,alpha);
-  g.blit(ART,0,0,pose*768,0,768,1024,1536,1024);g.flush();g.setColor(1,1,1,1);g.pose().popPose();
- }
+    private static void blit(GuiGraphics g, float x, float y, float w, float h, int pose, float alpha) {
+        if (alpha <= 0.0f) {
+            return;
+        }
+        g.pose().pushPose();
+        g.pose().translate(x, y, 0.0f);
+        g.pose().scale(w / 768.0f, h / 1024.0f, 1.0f);
+        RenderSystem.enableBlend();
+        RenderSystem.defaultBlendFunc();
+        g.setColor(1.0f, 1.0f, 1.0f, alpha);
+        g.blit(ART, 0, 0, (float)(pose * 768), 0.0f, 768, 1024, 1536, 1024);
+        g.pose().pushPose();
+        g.pose().translate((pose == 0 ? 0.6 : 0.5) * 768.0, (pose == 0 ? 0.46 : 0.16) * 1024.0, 0.0);
+        g.pose().mulPose(Axis.ZP.rotationDegrees(pose == 0 ? 53.0f : 45.0f));
+        float fishWidth = (pose == 0 ? 0.58f : 0.56f) * 768.0f;
+        g.pose().scale(fishWidth / 1280.0f, fishWidth / 1280.0f, 1.0f);
+        g.blit(FISH, -640, -640, 0.0f, 0.0f, 1280, 1280, 1280, 1280);
+        g.pose().popPose();
+        if (pose == 0) {
+            YuleItemTooltip.hand(g, pose, 0.37f, 0.49f, 0.53f, 0.61f);
+            YuleItemTooltip.hand(g, pose, 0.69f, 0.49f, 0.84f, 0.61f);
+        } else {
+            YuleItemTooltip.hand(g, pose, 0.17f, 0.18f, 0.33f, 0.3f);
+            YuleItemTooltip.hand(g, pose, 0.6f, 0.17f, 0.76f, 0.29f);
+        }
+        g.flush();
+        g.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+        g.pose().popPose();
+    }
+
+    private static void hand(GuiGraphics g, int pose, float left, float top, float right, float bottom) {
+        int x = Math.round(left * 768.0f);
+        int y = Math.round(top * 1024.0f);
+        int w = Math.round(right * 768.0f) - x;
+        int h = Math.round(bottom * 1024.0f) - y;
+        g.blit(ART, x, y, (float)(pose * 768 + x), (float)y, w, h, 1536, 1024);
+    }
+
  private static void frame(GuiGraphics g,int w,int h,double t){
   g.drawManaged(()->{
   // Full-width horizontal strips own all four corners; vertical strips meet them exactly.

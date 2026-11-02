@@ -16,6 +16,7 @@ import net.minecraftforge.fml.common.Mod;
 /** Reading pagination never scales long descriptions down to fit the screen. */
 @Mod.EventBusSubscriber(modid=StarcrownDoll.ID,value=Dist.CLIENT)
 public final class TooltipReading {
+ public static final int ROW_HEIGHT=11;
  private static String owner="";
  private static Screen screen;
  private static long seen;
@@ -43,7 +44,7 @@ public final class TooltipReading {
   if(!owner.equals(id)||screen!=current||(!locked&&now-seen>300_000_000L)||!expanded)page=0;
   owner=id;screen=current;seen=now;
   if(!expanded){pages=1;return new Reading<>(lines,0,1);}
-  int capacity=Math.max(1,(screenH-44)/13-header);
+  int capacity=Math.max(1,(screenH-44)/ROW_HEIGHT-header);
   int body=lines.size()-header;
   pages=Math.max(1,(body+capacity-1)/capacity);page=Math.max(0,Math.min(page,pages-1));
   List<T> result=new ArrayList<>(lines.subList(0,header));
@@ -69,13 +70,18 @@ public final class TooltipReading {
  }
  @SubscribeEvent public static void released(ScreenEvent.KeyReleased.Post event){if(event.getKeyCode()==340||event.getKeyCode()==344)shiftHeld=false;}
  public static Component footer(Reading<?> reading){return Component.translatable("tooltip.starcrowndoll.reading",reading.page()+1,reading.pages());}
+ private static final java.util.Map<int[],int[]> READING_COLORS=new java.util.IdentityHashMap<>();
+ public static int readingColor(int[] palette,float x,float y,double time){
+  var vivid=READING_COLORS.computeIfAbsent(palette,colors->{int[] result=new int[colors.length];for(int i=0;i<colors.length;i++){int c=colors[i],r=(c>>16)&255,g=(c>>8)&255,b=c&255,max=Math.max(r,Math.max(g,b));r=Math.max(80,255-(max-r)*3);g=Math.max(80,255-(max-g)*3);b=Math.max(80,255-(max-b)*3);result[i]=(r<<16)|(g<<8)|b;}return result;});
+  return DollTooltip.sample(vivid,(float)((x+y*.8)/180.-time/2.));
+ }
  public static void text(GuiGraphics g,FormattedCharSequence line,int x,int y,int[] palette,double time){
+  if(ModernUiCompat.draw(g,line,x,y,(gx,gy)->readingColor(palette,gx+x,gy+y,time)))return;
   var glyphs=TooltipLayouts.glyphs(line);
   FormattedCharSequence colored=sink->{for(var glyph:glyphs){
-   int color=DollTooltip.sample(palette,(float)(glyph.x()/260.-time*.5));
-   // Pastel highlights stay bright across every part of the gradient, without an outline.
-   int r=(((color>>16)&255)+255*2)/3,green=(((color>>8)&255)+255*2)/3,b=((color&255)+255*2)/3;
-   if(!sink.accept(glyph.index(),glyph.style().withBold(false).withColor((r<<16)|(green<<8)|b),glyph.code()))return false;
+   int color=readingColor(palette,glyph.x()+x,y+4,time);
+   // Preserve palette saturation and semantic heading weight in one cached glyph pass.
+   if(!sink.accept(glyph.index(),glyph.style().withColor(color),glyph.code()))return false;
   }return true;};
   g.drawString(Minecraft.getInstance().font,colored,x,y,0xffffff,false);
  }
