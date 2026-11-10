@@ -1,6 +1,13 @@
 {
   "replace": false,
   "values": [
-    {"id": "starcrowndoll:as_written", "required": false}
+    {
+      "id": "starcrowndoll:as_written",
+      "required": false
+    },
+    {
+      "id": "#starcrowndoll:as_written_accessories",
+      "required": false
+    }
   ]
 }

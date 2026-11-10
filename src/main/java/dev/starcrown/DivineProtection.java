@@ -12,7 +12,7 @@ import net.minecraft.commands.Commands;
 public final class DivineProtection {
  private static final ThreadLocal<Boolean> REPAIRING=ThreadLocal.withInitial(()->false);
  // Life protection is independent of game mode. Movement/AI perks still use DivineWill.wearing.
- public static boolean active(Entity e){if(!(e instanceof ServerPlayer p)||p.getInventory()==null)return false;if(p.getItemBySlot(EquipmentSlot.HEAD).is(StarcrownDoll.ITEM.get())){DivineAnchor.observe(p);return true;}return DivineAnchor.locked(p)||DivineAnchor.recoverMissing(p);}
+ public static boolean active(Entity e){if(!(e instanceof ServerPlayer p)||p.getInventory()==null)return false;if(DivinityInventory.equipped(p).is(StarcrownDoll.ITEM.get())){DivineAnchor.observe(p);return true;}return DivineAnchor.locked(p)||DivineAnchor.recoverMissing(p);}
  public static float displayHealth(LivingEntity p){return DivineCombat.maximum(p);}
  /** Native damage boundary: keep retaliation/authority semantics even before Forge events run. */
  public static boolean blockDamage(LivingEntity victim,net.minecraft.world.damagesource.DamageSource source,float amount,String path){

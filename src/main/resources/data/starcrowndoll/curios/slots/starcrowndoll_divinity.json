@@ -1,0 +1,11 @@
+{
+  "size": 1,
+  "operation": "SET",
+  "order": 5,
+  "icon": "starcrowndoll:slot/empty_divinity_slot",
+  "add_cosmetic": false,
+  "use_native_gui": true,
+  "validators": [
+    "starcrowndoll:divinity"
+  ]
+}

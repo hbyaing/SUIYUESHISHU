@@ -1,0 +1,4 @@
+PASS reinstall keeps deliberately cleared slots empty; stale native Curios snapshot does not duplicate items
+PASS native Curios owns slots; standalone inventory extension disabled
+PASS real inventory UI: white-mold divinity slot and two book slots, no extra screen
+ALL_PASS

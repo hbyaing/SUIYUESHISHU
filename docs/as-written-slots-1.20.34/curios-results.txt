@@ -1,0 +1,4 @@
+PASS server: two visible empty slots, no cosmetic slots, ordinary items rejected, NBT roundtrip
+PASS client sync and real Curios menu: two dedicated slots
+PASS supplied-book outline icon atlas and Chinese slot name
+ALL_PASS

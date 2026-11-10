@@ -1,0 +1,8 @@
+PASS native Curios owns slots; standalone inventory extension disabled
+PASS real inventory UI: white-mold divinity slot and two book slots, no extra screen
+PASS network clicks equip divinity and reject a second doll in helmet slot without consuming it
+PASS all five dolls recognized; all 25 pairs rejected in both equip directions on active backend
+PASS native menu normally removes supreme divinity and releases anchor; ordinary helmet preserved
+PASS ordinary diamond helmet coexists; same head-top doll renderer
+PASS native shift unequip removes ability and returns original doll
+ALL_PASS

@@ -1,4 +1,7 @@
 {
+  "container.starcrowndoll.as_written": "如我所书",
+  "key.starcrowndoll.as_written": "打开背包与神格饰品槽",
+  "container.starcrowndoll.as_written.slot": "如我所书 · 槽位 %s",
   "curios.identifier.starcrowndoll_as_written": "如我所书",
   "block.starcrowndoll.self_doll": "自我玩偶",
   "item.starcrowndoll.self_doll.named": "%s玩偶",
@@ -94,5 +97,9 @@
   "tooltip.starcrowndoll.yule.diligence.name": "勤勉",
   "tooltip.starcrowndoll.yule.diligence": "：移动、跳跃或挥臂劳作时，获得急迫 X 和速度 III，可瞬间挖掘方块，包括黑曜石与基岩。每累计移动 1 格，或成功挖掘、放置 1 个方块，获得 1000 点经验，永久增加 0.1 点生命上限和 0.01 点幸运。幸运也会提升仁爱馈赠的数量或品质。",
   "item.starcrowndoll.fishing_god_fish": "摸鱼神的鱼",
-  "tooltip.starcrowndoll.reading": "第 %s/%s 页 · 滚轮翻页 · 再按 Shift 关闭"
+  "tooltip.starcrowndoll.reading": "第 %s/%s 页 · 滚轮翻页 · 再按 Shift 关闭",
+  "curios.identifier.starcrowndoll_divinity": "神格",
+  "ui.starcrowndoll.hide_slots": "收起神格与饰品槽",
+  "ui.starcrowndoll.show_slots": "展开神格与饰品槽",
+  "message.starcrowndoll.divinity_conflict": "只能装备一个神性，请先取下另一个玩偶。"
 }

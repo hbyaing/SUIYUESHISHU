@@ -25,7 +25,7 @@ import net.minecraftforge.fml.common.Mod;
 public final class YuleHumility {
 
  private static final String SIZE_STATE="starcrowndoll_humility_size";
- public static boolean active(Entity entity){return entity instanceof Player p&&p.getInventory()!=null&&p.getItemBySlot(EquipmentSlot.HEAD).is(StarcrownDoll.YULE_ITEM.get());}
+ public static boolean active(Entity entity){return entity instanceof Player p&&p.getInventory()!=null&&DivinityInventory.equipped(p).is(StarcrownDoll.YULE_ITEM.get());}
  public static boolean quietSource(Entity entity){return active(entity)||(entity instanceof Projectile projectile&&active(projectile.getOwner()))||(entity!=null&&active(entity.getControllingPassenger()));}
  public static float capped(float amount){return Float.isFinite(amount)?Math.min(1,Math.max(0,amount)):1;}
  public static float damage(LivingEntity victim,DamageSource source,float amount){return active(victim)?capped(amount):amount;}

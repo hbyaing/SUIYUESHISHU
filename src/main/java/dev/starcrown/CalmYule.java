@@ -36,7 +36,7 @@ public final class CalmYule {
 
     public static boolean active(Entity entity) {
         return entity instanceof Player player && player.getInventory() != null && !player.isSpectator()
-                && player.getItemBySlot(EquipmentSlot.HEAD).is(StarcrownDoll.CALM_ITEM.get());
+                && DivinityInventory.equipped(player).is(StarcrownDoll.CALM_ITEM.get());
     }
 
     static CompoundTag settings(Player player) {

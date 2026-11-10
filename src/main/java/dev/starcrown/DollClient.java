@@ -47,7 +47,8 @@ public class DollClient {
  static class HeadLayer extends RenderLayer<AbstractClientPlayer,PlayerModel<AbstractClientPlayer>> {
   HeadLayer(net.minecraft.client.renderer.entity.RenderLayerParent<AbstractClientPlayer,PlayerModel<AbstractClientPlayer>> p){super(p);}
   public void render(PoseStack p,MultiBufferSource b,int light,AbstractClientPlayer player,float a,float c,float partial,float age,float yaw,float pitch){
-   var stack=player.getItemBySlot(EquipmentSlot.HEAD);
+   var stack=DivinityInventory.equipped(player);
+   if(stack==DivinityInventory.stack(player)&&!CuriosEquipment.visible(player))return;
    if(!StarcrownDoll.isDoll(stack)||(player.isInvisible()&&!DivineWill.wearing(player)))return;
    p.pushPose();getParentModel().getHead().translateAndRotate(p);p.translate(0,-.51,0);p.mulPose(Axis.ZP.rotationDegrees(180));p.scale(.52f,.52f,.52f);
    int overlay=net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY;
@@ -86,7 +87,7 @@ public class DollClient {
   }
 
   @SubscribeEvent public static void tick(TickEvent.PlayerTickEvent e){
-   var p=e.player;if(e.phase!=TickEvent.Phase.END||!p.level().isClientSide||p.tickCount%4!=0||!StarcrownDoll.isChengran(p.getItemBySlot(EquipmentSlot.HEAD)))return;
+   var p=e.player;if(e.phase!=TickEvent.Phase.END||!p.level().isClientSide||p.tickCount%4!=0||!StarcrownDoll.isChengran(DivinityInventory.equipped(p)))return;
    // Spawn in world space; particles no longer follow the wearer after emission.
    StarcrownDoll.emit(p.level(),p.getX(),p.getY()+p.getBbHeight()+.64,p.getZ(),.23);
   }

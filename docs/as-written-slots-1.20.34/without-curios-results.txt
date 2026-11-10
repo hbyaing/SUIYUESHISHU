@@ -1,0 +1,2 @@
+PASS base mod loads without optional Curios
+ALL_PASS

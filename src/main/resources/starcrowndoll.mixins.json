@@ -46,7 +46,8 @@
     "CharityItem",
     "CharityStackMigration",
     "ForgeDefenseGuard",
-    "EntitySectionGuard"
+    "EntitySectionGuard",
+    "InventoryEquipment"
   ],
   "injectors": {
     "defaultRequire": 0
@@ -54,6 +55,10 @@
   "client": [
     "HumilityPlayerRenderer",
     "DivineSkinRenderer",
-    "DivineHands"
+    "DivineHands",
+    "EquipmentSlotPosition",
+    "CreativeEquipmentSlot",
+    "InventorySidebar",
+    "CreativeEquipment"
   ]
 }

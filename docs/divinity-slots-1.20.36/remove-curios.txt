@@ -1,0 +1,5 @@
+PASS reloaded/migrated divinity NBT, book quantities and independent ordinary helmet; no duplicated doll
+PASS vanilla inventory has original 46 + three side slots
+PASS real inventory UI: white-mold divinity slot and two book slots, no extra screen
+PASS deliberately cleared standalone fixture for stale Curios snapshot reinstall test
+ALL_PASS

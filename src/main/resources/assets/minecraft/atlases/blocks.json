@@ -1,0 +1,12 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:single",
+      "resource": "starcrowndoll:slot/empty_as_written_slot"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "starcrowndoll:slot/empty_divinity_slot"
+    }
+  ]
+}

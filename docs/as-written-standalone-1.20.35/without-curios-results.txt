@@ -1,0 +1,6 @@
+PASS independent capability: exactly two slots; ordinary items rejected
+PASS book sprite atlas and inventory button
+PASS J key sends packet and opens real two-slot menu with client sync
+PASS real click packets equip/unequip, preserve NBT, one per slot, conserve items
+PASS backpack book button opens same stored equipment
+ALL_PASS

@@ -51,17 +51,17 @@ public class StarcrownDoll {
  public static final RegistryObject<BlockEntityType<DollEntity>> TYPE=TYPES.register("doll",()->BlockEntityType.Builder.of(DollEntity::new,DOLL.get(),TWILIGHT_DOLL.get(),YULE_DOLL.get(),CALM_DOLL.get(),SELF_DOLL.get()).build(null));
  static final DeferredRegister<net.minecraft.core.particles.ParticleType<?>> PARTICLES=DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES,ID);
  public static final RegistryObject<net.minecraft.core.particles.SimpleParticleType> STAR=PARTICLES.register("star",()->new net.minecraft.core.particles.SimpleParticleType(false));
- public StarcrownDoll(){SevenNetwork.init();IEventBus bus=FMLJavaModLoadingContext.get().getModEventBus();TABS.register(bus);SOUNDS.register(bus);PARTICLES.register(bus);BLOCKS.register(bus);ITEMS.register(bus);TYPES.register(bus);DivineEffects.EFFECTS.register(bus);}
+ public StarcrownDoll(){SevenNetwork.init();IEventBus bus=FMLJavaModLoadingContext.get().getModEventBus();AsWrittenInventory.init(bus);DivinityInventory.init(bus);TABS.register(bus);SOUNDS.register(bus);PARTICLES.register(bus);BLOCKS.register(bus);ITEMS.register(bus);TYPES.register(bus);DivineEffects.EFFECTS.register(bus);}
  public static class WearableDoll extends BlockItem {
   @Override public void appendHoverText(ItemStack stack,Level level,java.util.List<net.minecraft.network.chat.Component> lines,TooltipFlag flag){super.appendHoverText(stack,level,lines,flag);if(stack.is(SELF_ITEM.get()))return;String theme=stack.is(CALM_ITEM.get())?"calm.":stack.is(YULE_ITEM.get())?"yule.":stack.is(TWILIGHT_ITEM.get())?"twilight.":"";lines.add(net.minecraft.network.chat.Component.translatable("tooltip.starcrowndoll."+theme+"divinity").withStyle(net.minecraft.ChatFormatting.LIGHT_PURPLE));if(!isYule(stack))lines.add(net.minecraft.network.chat.Component.translatable("tooltip.starcrowndoll.lore").withStyle(net.minecraft.ChatFormatting.WHITE));}
   @Override public void initializeClient(java.util.function.Consumer<net.minecraftforge.client.extensions.common.IClientItemExtensions> c){c.accept(new net.minecraftforge.client.extensions.common.IClientItemExtensions(){public net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer getCustomRenderer(){return DollItemRenderer.instance();}});}
   WearableDoll(){this(DOLL.get());}
   WearableDoll(Block block){super(block,new Item.Properties().stacksTo(1));}
   @Override public net.minecraft.world.entity.EquipmentSlot getEquipmentSlot(ItemStack s){return net.minecraft.world.entity.EquipmentSlot.HEAD;}
-  @Override public boolean canEquip(ItemStack s,net.minecraft.world.entity.EquipmentSlot slot,net.minecraft.world.entity.Entity e){return slot==net.minecraft.world.entity.EquipmentSlot.HEAD;}
+  @Override public boolean canEquip(ItemStack s,net.minecraft.world.entity.EquipmentSlot slot,net.minecraft.world.entity.Entity e){return slot==net.minecraft.world.entity.EquipmentSlot.HEAD&&(!(e instanceof Player player)||DivinityInventory.canEquipHead(player,s));}
   @Override public net.minecraft.world.InteractionResultHolder<ItemStack> use(Level l,net.minecraft.world.entity.player.Player p,net.minecraft.world.InteractionHand hand){
    ItemStack held=p.getItemInHand(hand);var slot=net.minecraft.world.entity.EquipmentSlot.HEAD;
-   if(!p.getItemBySlot(slot).isEmpty())return net.minecraft.world.InteractionResultHolder.fail(held);
+   if(!p.getItemBySlot(slot).isEmpty()||!DivinityInventory.canEquipHead(p,held))return net.minecraft.world.InteractionResultHolder.fail(held);
    p.setItemSlot(slot,held.copy());held.shrink(1);return net.minecraft.world.InteractionResultHolder.sidedSuccess(held,l.isClientSide);
   }
  }

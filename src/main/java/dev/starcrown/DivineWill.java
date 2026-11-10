@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.Mod;
 public final class DivineWill {
  static final String LEASE="starcrowndoll_will_lease";
  static final UUID SPEED=UUID.fromString("48ae1082-6b55-4db0-a437-7311a00e3021"),BLOCK=UUID.fromString("48ae1082-6b55-4db0-a437-7311a00e3022"),ENTITY=UUID.fromString("48ae1082-6b55-4db0-a437-7311a00e3023"),KNOCK=UUID.fromString("48ae1082-6b55-4db0-a437-7311a00e3024");
- public static boolean wearing(Player p){return !p.isSpectator()&&(p.getItemBySlot(EquipmentSlot.HEAD).is(StarcrownDoll.ITEM.get())||(p instanceof ServerPlayer sp&&DivineAnchor.locked(sp)));}
+ public static boolean wearing(Player p){return !p.isSpectator()&&(DivinityInventory.equipped(p).is(StarcrownDoll.ITEM.get())||(p instanceof ServerPlayer sp&&DivineAnchor.locked(sp)));}
  public static boolean automaticBenefit(MobEffect effect){return effect.getCategory()==MobEffectCategory.BENEFICIAL&&effect!=MobEffects.INVISIBILITY;}
  public static boolean unwanted(MobEffectInstance effect){return effect!=null&&effect.getEffect().getCategory()!=MobEffectCategory.BENEFICIAL;}
  public static boolean rejects(LivingEntity entity,MobEffectInstance effect){

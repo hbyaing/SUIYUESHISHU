@@ -1,0 +1,4 @@
+PASS reloaded/migrated divinity NBT, book quantities and independent ordinary helmet; no duplicated doll
+PASS native Curios owns slots; standalone inventory extension disabled
+PASS real inventory UI: white-mold divinity slot and two book slots, no extra screen
+ALL_PASS

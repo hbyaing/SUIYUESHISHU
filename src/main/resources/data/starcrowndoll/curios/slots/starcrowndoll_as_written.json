@@ -1,5 +1,11 @@
 {
   "size": 2,
-  "icon": "curios:slot/empty_curio_slot",
-  "validators": ["curios:tag"]
+  "operation": "SET",
+  "order": 6,
+  "icon": "starcrowndoll:slot/empty_as_written_slot",
+  "add_cosmetic": false,
+  "use_native_gui": true,
+  "validators": [
+    "curios:tag"
+  ]
 }

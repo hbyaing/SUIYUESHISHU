@@ -1,4 +1,9 @@
 {
-  "entities": ["minecraft:player"],
-  "slots": ["starcrowndoll_as_written"]
+  "entities": [
+    "minecraft:player"
+  ],
+  "slots": [
+    "starcrowndoll_divinity",
+    "starcrowndoll_as_written"
+  ]
 }

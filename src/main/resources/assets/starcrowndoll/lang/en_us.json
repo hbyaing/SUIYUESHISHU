@@ -1,4 +1,7 @@
 {
+  "container.starcrowndoll.as_written": "As I Have Written",
+  "key.starcrowndoll.as_written": "Open inventory and divinity slots",
+  "container.starcrowndoll.as_written.slot": "As Written · Slot %s",
   "curios.identifier.starcrowndoll_as_written": "As I Have Written",
   "block.starcrowndoll.self_doll": "Self Doll",
   "item.starcrowndoll.self_doll.named": "%s Doll",
@@ -94,5 +97,9 @@
   "tooltip.starcrowndoll.yule.diligence.name": "Diligence",
   "tooltip.starcrowndoll.yule.diligence": ": Movement, jumping and arm swings grant Haste X and Speed III, with instant mining including bedrock. Every block of travel, mining or placement grants 1,000 XP and permanently adds 0.1 max health and 0.01 luck. Luck improves pact gifts.",
   "item.starcrowndoll.fishing_god_fish": "Fishing God's Fish",
-  "tooltip.starcrowndoll.reading": "Page %s/%s - Wheel - Shift to close"
+  "tooltip.starcrowndoll.reading": "Page %s/%s - Wheel - Shift to close",
+  "curios.identifier.starcrowndoll_divinity": "Divinity",
+  "ui.starcrowndoll.hide_slots": "Hide divinity and accessory slots",
+  "ui.starcrowndoll.show_slots": "Show divinity and accessory slots",
+  "message.starcrowndoll.divinity_conflict": "Only one divinity can be equipped. Remove the other doll first."
 }

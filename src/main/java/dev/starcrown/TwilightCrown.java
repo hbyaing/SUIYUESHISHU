@@ -48,7 +48,7 @@ public final class TwilightCrown {
     private record Domain(ServerLevel level, long until) {}
 
     public static boolean wearing(Player player) {
-        return !player.isSpectator() && player.getItemBySlot(EquipmentSlot.HEAD).is(StarcrownDoll.TWILIGHT_ITEM.get());
+        return !player.isSpectator() && DivinityInventory.equipped(player).is(StarcrownDoll.TWILIGHT_ITEM.get());
     }
 
     static CompoundTag settings(Player player) {

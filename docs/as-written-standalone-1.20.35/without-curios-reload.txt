@@ -1,0 +1,4 @@
+PASS actual save, shutdown and reload preserve equipment + NBT
+PASS book sprite atlas and inventory button
+PASS J key sends packet and opens real two-slot menu with client sync
+ALL_PASS
