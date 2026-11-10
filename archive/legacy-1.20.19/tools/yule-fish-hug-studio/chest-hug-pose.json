@@ -1,0 +1,7 @@
+{
+ "schema":"yule-fish-hug/1","previewOnly":true,"name":"参考图 · 双手贴胸环抱",
+ "size":0.72,"height":7.2,"depth":5.3,"tilt":-8,"upper":50,"inward":28,"asym":0,"yaw":20,"right":true,
+ "texture":"assets/fish.png","fishArtRotationZ":45,
+ "headRotationX":-6,"headRotationZ":-7,
+ "leftShoulderOffset":[-0.07,-0.025,-0.025],"rightShoulderOffset":[0.04,-0.025,-0.025]
+}

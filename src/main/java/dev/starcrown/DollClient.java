@@ -18,21 +18,28 @@ import com.mojang.math.Axis;
 @Mod.EventBusSubscriber(modid=StarcrownDoll.ID,bus=Mod.EventBusSubscriber.Bus.MOD,value=Dist.CLIENT)
 public class DollClient {
  public static void yuleTooltip(java.util.List<net.minecraft.network.chat.Component> lines,boolean expanded){
-  if(expanded){
-   lines.add(net.minecraft.network.chat.Component.translatable("tooltip.starcrowndoll.yule.virtues").withStyle(net.minecraft.ChatFormatting.GOLD));
-   var description=net.minecraft.network.chat.Component.translatable("tooltip.starcrowndoll.yule.humility").withStyle(net.minecraft.ChatFormatting.GRAY);
-   lines.add(net.minecraft.network.chat.Component.translatable("tooltip.starcrowndoll.yule.humility.name").withStyle(net.minecraft.ChatFormatting.BOLD).append(description.withStyle(net.minecraft.network.chat.Style.EMPTY.withColor(net.minecraft.ChatFormatting.GRAY).withBold(false))));
-   lines.add(net.minecraft.network.chat.Component.translatable("tooltip.starcrowndoll.yule.tolerance.name").withStyle(net.minecraft.ChatFormatting.BOLD).append(net.minecraft.network.chat.Component.translatable("tooltip.starcrowndoll.yule.tolerance").withStyle(net.minecraft.network.chat.Style.EMPTY.withColor(net.minecraft.ChatFormatting.GRAY).withBold(false))));
-   lines.add(net.minecraft.network.chat.Component.translatable("tooltip.starcrowndoll.yule.generosity.name").withStyle(net.minecraft.ChatFormatting.BOLD).append(net.minecraft.network.chat.Component.translatable("tooltip.starcrowndoll.yule.generosity").withStyle(net.minecraft.network.chat.Style.EMPTY.withColor(net.minecraft.ChatFormatting.GRAY).withBold(false))));
-   lines.add(net.minecraft.network.chat.Component.translatable("tooltip.starcrowndoll.yule.chastity.name").withStyle(net.minecraft.ChatFormatting.BOLD).append(net.minecraft.network.chat.Component.translatable("tooltip.starcrowndoll.yule.chastity").withStyle(net.minecraft.network.chat.Style.EMPTY.withColor(net.minecraft.ChatFormatting.GRAY).withBold(false))));
-   lines.add(net.minecraft.network.chat.Component.translatable("tooltip.starcrowndoll.yule.temperance.name").withStyle(net.minecraft.ChatFormatting.BOLD).append(net.minecraft.network.chat.Component.translatable("tooltip.starcrowndoll.yule.temperance").withStyle(net.minecraft.network.chat.Style.EMPTY.withColor(net.minecraft.ChatFormatting.GRAY).withBold(false))));
-   lines.add(net.minecraft.network.chat.Component.translatable("tooltip.starcrowndoll.yule.charity.name").withStyle(net.minecraft.ChatFormatting.BOLD).append(net.minecraft.network.chat.Component.translatable("tooltip.starcrowndoll.yule.charity").withStyle(net.minecraft.network.chat.Style.EMPTY.withColor(net.minecraft.ChatFormatting.GRAY).withBold(false))));
-   lines.add(net.minecraft.network.chat.Component.translatable("tooltip.starcrowndoll.yule.diligence.name").withStyle(net.minecraft.ChatFormatting.BOLD).append(net.minecraft.network.chat.Component.translatable("tooltip.starcrowndoll.yule.diligence").withStyle(net.minecraft.network.chat.Style.EMPTY.withColor(net.minecraft.ChatFormatting.GRAY).withBold(false))));
-   for(String key:new String[]{"yule.animation","wear","music","yule.feast","place"})lines.add(net.minecraft.network.chat.Component.translatable("tooltip.starcrowndoll."+key).withStyle(net.minecraft.ChatFormatting.GRAY));
-  }
-  else lines.add(net.minecraft.network.chat.Component.translatable("tooltip.starcrowndoll.shift").withStyle(net.minecraft.network.chat.Style.EMPTY.withColor(0x999999)));
+  yuleTooltip(lines,expanded,false);
  }
- @SubscribeEvent public static void musicSetup(net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent e){e.enqueueWork(()->StarcrownDoll.musicListener=DollMusic::toggle);}
+ public static void yuleTooltip(java.util.List<net.minecraft.network.chat.Component> lines,boolean expanded,boolean calm){
+  var base="tooltip.starcrowndoll.";
+  if(expanded){
+   lines.add(net.minecraft.network.chat.Component.translatable(base+"yule.virtues").withStyle(net.minecraft.ChatFormatting.GOLD));
+   for(String virtue:new String[]{"humility","tolerance","generosity","chastity","temperance","charity","diligence"}){
+    var description=net.minecraft.network.chat.Component.translatable(base+(calm?"calm.":"yule.")+virtue)
+      .withStyle(net.minecraft.network.chat.Style.EMPTY.withColor(net.minecraft.ChatFormatting.GRAY).withBold(false));
+    lines.add(net.minecraft.network.chat.Component.translatable(base+"yule."+virtue+".name")
+      .withStyle(net.minecraft.ChatFormatting.BOLD).append(description));
+   }
+   for(String key:calm?new String[]{"yule.animation","wear","calm.feast","yule.controls","place"}:
+        new String[]{"yule.animation","wear","music","yule.feast","yule.controls","place"}){
+    lines.add(net.minecraft.network.chat.Component.translatable(base+key).withStyle(net.minecraft.ChatFormatting.GRAY));
+   }
+  }else lines.add(net.minecraft.network.chat.Component.translatable(base+"shift").withStyle(net.minecraft.network.chat.Style.EMPTY.withColor(0x999999)));
+ }
+ @SubscribeEvent public static void clientSetup(net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent e){e.enqueueWork(()->{
+  StarcrownDoll.musicListener=DollMusic::toggle;
+  StarcrownDoll.selfDollName=SelfDollTooltip::playerName;
+ });}
  @SubscribeEvent public static void particles(RegisterParticleProvidersEvent e){e.registerSpriteSet(StarcrownDoll.STAR.get(),Provider::new);}
  @SubscribeEvent public static void layers(EntityRenderersEvent.AddLayers e){for(String skin:e.getSkins()){
   var renderer=e.getSkin(skin);if(renderer instanceof net.minecraft.client.renderer.entity.player.PlayerRenderer pr)pr.addLayer(new HeadLayer(pr));
@@ -40,10 +47,18 @@ public class DollClient {
  static class HeadLayer extends RenderLayer<AbstractClientPlayer,PlayerModel<AbstractClientPlayer>> {
   HeadLayer(net.minecraft.client.renderer.entity.RenderLayerParent<AbstractClientPlayer,PlayerModel<AbstractClientPlayer>> p){super(p);}
   public void render(PoseStack p,MultiBufferSource b,int light,AbstractClientPlayer player,float a,float c,float partial,float age,float yaw,float pitch){
-   if(!StarcrownDoll.isDoll(player.getItemBySlot(EquipmentSlot.HEAD))||(player.isInvisible()&&!DivineWill.wearing(player)))return;
+   var stack=player.getItemBySlot(EquipmentSlot.HEAD);
+   if(!StarcrownDoll.isDoll(stack)||(player.isInvisible()&&!DivineWill.wearing(player)))return;
    p.pushPose();getParentModel().getHead().translateAndRotate(p);p.translate(0,-.51,0);p.mulPose(Axis.ZP.rotationDegrees(180));p.scale(.52f,.52f,.52f);
-   p.pushPose();p.translate(-.5,0,-.5);DollRenderer.renderBody(StarcrownDoll.dollState(player.getItemBySlot(EquipmentSlot.HEAD)),p,b,light,net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY,DollAnimation.jumpAmount(player,partial));p.popPose();
-   DollRenderer.renderEffects((player.level().getGameTime()+partial)/20.,p,b,player.getItemBySlot(EquipmentSlot.HEAD).is(StarcrownDoll.ITEM.get()));p.popPose();
+   int overlay=net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY;
+   p.pushPose();p.translate(-.5,0,-.5);
+   if(stack.is(StarcrownDoll.SELF_ITEM.get())){
+    SelfDollRenderer.renderForPlayer(player,p,b,light,overlay,DollAnimation.jumpAmount(player,partial));
+    p.popPose();p.popPose();
+    return;
+   }
+   DollRenderer.renderBody(StarcrownDoll.dollState(stack),p,b,light,overlay,DollAnimation.jumpAmount(player,partial));p.popPose();
+   DollRenderer.renderEffects((player.level().getGameTime()+partial)/20.,p,b,StarcrownDoll.isChengran(stack));p.popPose();
   }
  }
  static class Star extends TextureSheetParticle {
@@ -56,21 +71,22 @@ public class DollClient {
  record Provider(SpriteSet sprites) implements ParticleProvider<SimpleParticleType>{public Particle createParticle(SimpleParticleType type,ClientLevel l,double x,double y,double z,double dx,double dy,double dz){return new Star(l,x,y,z,dx,dy,dz,sprites);}}
  @Mod.EventBusSubscriber(modid=StarcrownDoll.ID,value=Dist.CLIENT)
  public static class WorldEvents {
-  @SubscribeEvent public static void yuleTooltipWidth(RenderTooltipEvent.GatherComponents event){if(event.getItemStack().is(StarcrownDoll.YULE_ITEM.get()))event.setMaxWidth(Math.min(340,event.getScreenWidth()-24));}
+  @SubscribeEvent public static void yuleTooltipWidth(RenderTooltipEvent.GatherComponents event){if(StarcrownDoll.isYule(event.getItemStack()))event.setMaxWidth(Math.min(340,event.getScreenWidth()-24));}
   @SubscribeEvent public static void humilitySizes(TickEvent.ClientTickEvent event){if(event.phase==TickEvent.Phase.END&&Minecraft.getInstance().level!=null)for(var player:Minecraft.getInstance().level.players())YuleHumility.updateSize(player);}
   @SubscribeEvent public static void tooltip(net.minecraftforge.event.entity.player.ItemTooltipEvent e){
-   if(!StarcrownDoll.isDoll(e.getItemStack()))return;
-   if(e.getItemStack().is(StarcrownDoll.YULE_ITEM.get())){
-    yuleTooltip(e.getToolTip(),net.minecraft.client.gui.screens.Screen.hasShiftDown());
+   if(!StarcrownDoll.isDoll(e.getItemStack())||e.getItemStack().is(StarcrownDoll.SELF_ITEM.get()))return;
+   if(StarcrownDoll.isYule(e.getItemStack())){
+    yuleTooltip(e.getToolTip(),net.minecraft.client.gui.screens.Screen.hasShiftDown(),e.getItemStack().is(StarcrownDoll.CALM_ITEM.get()));
     return;
    }
    if(net.minecraft.client.gui.screens.Screen.hasShiftDown()){
-    for(String key:DollTooltip.KEYS)e.getToolTip().add(net.minecraft.network.chat.Component.translatable("tooltip.starcrowndoll."+key).withStyle(net.minecraft.ChatFormatting.GRAY));
+    boolean twilight=e.getItemStack().is(StarcrownDoll.TWILIGHT_ITEM.get());
+    for(String key:DollTooltip.keys(twilight))e.getToolTip().add(net.minecraft.network.chat.Component.translatable(DollTooltip.translation(key,twilight)).withStyle(net.minecraft.ChatFormatting.GRAY));
    }else e.getToolTip().add(net.minecraft.network.chat.Component.translatable("tooltip.starcrowndoll.shift").withStyle(net.minecraft.network.chat.Style.EMPTY.withColor(0x999999)));
   }
 
   @SubscribeEvent public static void tick(TickEvent.PlayerTickEvent e){
-   var p=e.player;if(e.phase!=TickEvent.Phase.END||!p.level().isClientSide||p.tickCount%4!=0||!p.getItemBySlot(EquipmentSlot.HEAD).is(StarcrownDoll.ITEM.get()))return;
+   var p=e.player;if(e.phase!=TickEvent.Phase.END||!p.level().isClientSide||p.tickCount%4!=0||!StarcrownDoll.isChengran(p.getItemBySlot(EquipmentSlot.HEAD)))return;
    // Spawn in world space; particles no longer follow the wearer after emission.
    StarcrownDoll.emit(p.level(),p.getX(),p.getY()+p.getBbHeight()+.64,p.getZ(),.23);
   }

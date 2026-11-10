@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid=StarcrownDoll.ID,bus=Mod.EventBusSubscriber.Bus.MOD,value=Dist.CLIENT)
@@ -14,32 +15,49 @@ public class DollRenderer implements BlockEntityRenderer<StarcrownDoll.DollEntit
  static final ResourceLocation TEX=new ResourceLocation(StarcrownDoll.ID,"textures/block/white.png");
  public DollRenderer(BlockEntityRendererProvider.Context c){}
  @SubscribeEvent public static void setup(EntityRenderersEvent.RegisterRenderers e){e.registerBlockEntityRenderer(StarcrownDoll.TYPE.get(),DollRenderer::new);}
- @SubscribeEvent public static void blinkModels(net.minecraftforge.client.event.ModelEvent.RegisterAdditional e){
+ @SubscribeEvent public static void blinkModels(ModelEvent.RegisterAdditional e){
   for(String prefix:new String[]{"doll","yule"})for(String part:new String[]{"body","right_arm","left_arm","head","head_half","head_closed"})e.register(new ResourceLocation(StarcrownDoll.ID,"block/"+prefix+"_part_"+part));
+  e.register(new ResourceLocation(StarcrownDoll.ID,"block/doll_part_head_detail"));
   e.register(new ResourceLocation(StarcrownDoll.ID,"block/doll_blink_half"));
   e.register(new ResourceLocation(StarcrownDoll.ID,"block/doll_blink_closed"));
  }
+ @SubscribeEvent public static void bakeSelfModels(ModelEvent.BakingCompleted e){SelfDollRenderer.bakeModels(e.getModels());}
  public static int blinkFrame(double ticks){
   double phase=((ticks%96)+96)%96;
   if(phase<1.5||phase>=4.5&&phase<6)return 1;
   return phase<4.5?2:0;
  }
  public void render(StarcrownDoll.DollEntity be,float partial,PoseStack p,MultiBufferSource buffers,int light,int overlay){
+ if(be.getBlockState().is(StarcrownDoll.SELF_DOLL.get())){
+  SelfDollRenderer.renderPlaced(be,p,buffers,light,overlay);
+  return;
+ }
  double t=(be.getLevel().getGameTime()+partial)/20.;p.pushPose();p.translate(.5,0,.5);
  if(be.isPlaying())DanceVisuals.animate(p,be.getLevel().getGameTime()+partial);
  p.pushPose();p.translate(-.5,0,-.5);renderBody(be.getBlockState(),p,buffers,light,overlay);p.popPose();
- p.mulPose(Axis.YP.rotationDegrees(180-be.getBlockState().getValue(net.minecraft.world.level.block.HorizontalDirectionalBlock.FACING).toYRot()));renderEffects(t,p,buffers,!be.getBlockState().is(StarcrownDoll.YULE_DOLL.get()));p.popPose();}
+ p.mulPose(Axis.YP.rotationDegrees(180-be.getBlockState().getValue(net.minecraft.world.level.block.HorizontalDirectionalBlock.FACING).toYRot()));renderEffects(t,p,buffers,!StarcrownDoll.isYule(be.getBlockState()));p.popPose();}
  public static void renderBody(net.minecraft.world.level.block.state.BlockState state,PoseStack pose,MultiBufferSource buffers,int light,int overlay){renderBody(state,pose,buffers,light,overlay,0);}
  public static void renderBody(net.minecraft.world.level.block.state.BlockState state,PoseStack pose,MultiBufferSource buffers,int light,int overlay,float raised){
+  renderBody(state,pose,buffers,light,overlay,raised,null);
+ }
+ static void renderBody(net.minecraft.world.level.block.state.BlockState state,PoseStack pose,MultiBufferSource buffers,int light,int overlay,float raised,SelfDollRenderer.Skin skin){
+  renderBody(state,pose,buffers,light,overlay,raised,skin,false);
+ }
+ static void renderInventoryBody(net.minecraft.world.level.block.state.BlockState state,PoseStack pose,MultiBufferSource buffers,int light,int overlay){
+  renderBody(state,pose,buffers,light,overlay,0,null,true);
+ }
+ private static void renderBody(net.minecraft.world.level.block.state.BlockState state,PoseStack pose,MultiBufferSource buffers,int light,int overlay,float raised,SelfDollRenderer.Skin skin,boolean inventory){
   var mc=net.minecraft.client.Minecraft.getInstance();
   double ticks=mc.level==null?net.minecraft.Util.getMillis()/50.0:mc.level.getGameTime()+mc.getFrameTime();
-  int frame=blinkFrame(ticks);
+  int frame=skin==null?blinkFrame(ticks):0;
   pose.pushPose();pose.translate(.5,0,.5);
   pose.mulPose(Axis.YP.rotationDegrees(180-state.getValue(net.minecraft.world.level.block.HorizontalDirectionalBlock.FACING).toYRot()));pose.translate(-.5,0,-.5);
-  part("body",state,pose,buffers,light,overlay);
-  boolean holdingFish=state.is(StarcrownDoll.YULE_DOLL.get());
+  part("body",state,pose,buffers,light,overlay,skin);
+  boolean holdingFish=StarcrownDoll.isYule(state);
   pose.pushPose();if(holdingFish){pose.translate(.5,9./16,10./16);pose.mulPose(Axis.YP.rotationDegrees((float)(Math.sin(ticks*.03)*1.4324)));pose.mulPose(Axis.XP.rotationDegrees(-6));pose.mulPose(Axis.ZP.rotationDegrees(-7));pose.translate(-.5,-9./16,-10./16);}else DollAnimation.headMotion(pose,ticks,.5,9./16,10./16);
-  part(frame==0?"head":frame==1?"head_half":"head_closed",state,pose,buffers,light,overlay);pose.popPose();
+  part(frame==0?"head":frame==1?"head_half":"head_closed",state,pose,buffers,light,overlay,skin);
+  if(skin==null&&!holdingFish)part("head_detail",state,pose,buffers,light,overlay,null);
+  pose.popPose();
   pose.pushPose();
   if(holdingFish){pose.translate(0,Math.sin(ticks*.09)*.004,0);pose.translate(.5,9./16,10./16);pose.mulPose(Axis.XP.rotationDegrees(35*raised));pose.translate(-.5,-9./16,-10./16);}
   for(boolean right:new boolean[]{true,false}){
@@ -48,14 +66,15 @@ public class DollRenderer implements BlockEntityRenderer<StarcrownDoll.DollEntit
    if(holdingFish){pose.mulPose(Axis.ZP.rotationDegrees(right?28:-28));pose.mulPose(Axis.XP.rotationDegrees(50));}
    else pose.mulPose(Axis.ZP.rotationDegrees((right?-135:135)*raised));
    pose.translate(-x,-9./16,-10./16);
-   part(right?"right_arm":"left_arm",state,pose,buffers,light,overlay);pose.popPose();
+   part(right?"right_arm":"left_arm",state,pose,buffers,light,overlay,skin);pose.popPose();
   }
-  if(holdingFish){pose.pushPose();pose.translate(.5,7.35/16,3.9/16);pose.mulPose(Axis.YP.rotationDegrees(15));pose.mulPose(Axis.ZP.rotationDegrees(73));pose.mulPose(Axis.YP.rotationDegrees(180));pose.scale(.72f,.72f,.72f);mc.getItemRenderer().renderStatic(new net.minecraft.world.item.ItemStack(StarcrownDoll.FISHING_GOD_FISH.get()),net.minecraft.world.item.ItemDisplayContext.NONE,light,overlay,pose,buffers,mc.level,0);pose.popPose();}
+  if(holdingFish){pose.pushPose();YuleFishVisual.render(pose,buffers,light,overlay,inventory);pose.popPose();}
   pose.popPose();
   pose.popPose();
  }
- private static void part(String name,net.minecraft.world.level.block.state.BlockState state,PoseStack pose,MultiBufferSource buffers,int light,int overlay){
-  var mc=net.minecraft.client.Minecraft.getInstance();boolean yule=state.is(StarcrownDoll.YULE_DOLL.get());var model=mc.getModelManager().getModel(new ResourceLocation(StarcrownDoll.ID,"block/"+(yule?"yule":"doll")+"_part_"+name));
+ private static void part(String name,net.minecraft.world.level.block.state.BlockState state,PoseStack pose,MultiBufferSource buffers,int light,int overlay,SelfDollRenderer.Skin skin){
+  if(skin!=null){SelfDollRenderer.renderPart(name,skin,pose,buffers,light,overlay);return;}
+  var mc=net.minecraft.client.Minecraft.getInstance();boolean yule=StarcrownDoll.isYule(state);var model=mc.getModelManager().getModel(new ResourceLocation(StarcrownDoll.ID,"block/"+(yule?"yule":"doll")+"_part_"+name));
   mc.getBlockRenderer().getModelRenderer().renderModel(pose.last(),buffers.getBuffer(yule?RenderType.translucent():RenderType.cutout()),state,model,1,1,1,light,overlay);
  }
  public static void renderEffects(double t,PoseStack p,MultiBufferSource buffers){renderEffects(t,p,buffers,true);}

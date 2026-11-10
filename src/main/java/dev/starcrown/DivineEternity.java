@@ -11,7 +11,7 @@ public final class DivineEternity {
   if(!(mob.level() instanceof ServerLevel level)||!mob.isAlive())return false;
   if(DollDance.controlled(mob))return true;
   for(var p:level.players())if(DivineWill.wearing(p)&&p.distanceToSqr(mob)<=144&&!DivineSeven.ally(p,mob))return true;
-  return false;
+  return TwilightCrown.sealed(mob,level);
  }
  public static void stop(Mob mob){
   mob.goalSelector.getAvailableGoals().forEach(g->{if(g.isRunning())g.stop();});

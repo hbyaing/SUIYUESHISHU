@@ -1,0 +1,1794 @@
+{
+  "provenance": "annotations extracted from supplied 0.7.10 jar with CFR 0.152; analysis data, not source instructions",
+  "classes_analyzed": 58,
+  "annotation_count": 286,
+  "archive_java_sources": [
+    "driver-java/com/luoee/arcanevortex/Content/ModRenderType.java",
+    "driver-java/com/luoee/arcanevortex/Content/ModShaders.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/AngelWings.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/ApocalypseDragonWings.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/AureateImpact.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/AureateWings.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/CelestialImpact.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/CelestialWings.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/DemonWings.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/DuchessImpact.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/DuchessWings.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/EternalImpact.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/EternalWings.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/HeyiWings.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/InkImpact.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/InkWings.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/LegendImpact.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/LegendWard.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/LegendWings.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/MyriadImpact.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/MyriadWings.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/OrigamiWings.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/PrimordialImpact.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/PrimordialWings.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/SeraphWings.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/WingFlightPose.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/WingImpactCore.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/XenoCascade.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/XenoImpact.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/XenoWings.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/AngelWingRenderHook.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/AureateWingRenderHook.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/CelestialWingRenderHook.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/CustomWingRenderHook.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/DemonWingRenderHook.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/DragonFlightClient.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/DragonWingBodyPose.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/DragonWingClient.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/DragonWingRenderHook.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/DragonWingRenderTypes.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/DuchessWingRenderHook.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/EternalDiveFx.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/EternalImpactClient.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/EternalParticles.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/EternalWingRenderHook.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/EternalWorldFx.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/InkWingRenderHook.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/InkWorldFx.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/LegendClient.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/LegendDraw.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/LegendParticles.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/LegendRenderTypes.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/LegendWingRenderHook.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/LegendWorldFx.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/LumaAlphaTexture.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/MyriadLook.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/MyriadWingRenderHook.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/MyriadWorldFx.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/NovaDive.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/NovaDraw.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/NovaGround.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/NovaImpactClient.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/NovaParticles.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/NovaRenderTypes.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/NovaWorldFx.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/PaperWingRenderHook.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/PrimordialImpactClient.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/PrimordialImpactFx.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/PrimordialWingRenderHook.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/SeraphWingRenderHook.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/SeraphWingRenderTypes.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/WingDraw.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/WingFlightCamera.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/WingFxParticles.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/WingParticles.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/WingRenderTypes.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/WingSpace.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/XenoWingRenderHook.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/XenoWorldFx.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Aureate/AureateAtlas.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Aureate/AureateAura.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Aureate/AureateCraterPass.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Aureate/AureateDraw.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Aureate/AureateFx.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Aureate/AureateImpactFx.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Aureate/AureateMobius.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Aureate/AureateParticles.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Aureate/AureateStaff.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Aureate/AureateWingGeom.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Aureate/AureateWingSet.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Aureate/AureateWorldFx.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Celestial/CelAtlas.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Celestial/CelColor.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Celestial/CelDraw.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Celestial/CelFeatherBuilder.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Celestial/CelGems.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Celestial/CelGeom.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Celestial/CelMesh.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Celestial/CelParticles.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Celestial/CelestialAura.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Celestial/CelestialCraterPass.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Celestial/CelestialNameFx.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Celestial/CelestialStepCrystals.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Celestial/CelestialWingSet.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Celestial/CelestialWorldFx.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Core/AngelWingSet.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Core/DragonFlightModel.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Core/EternalFx.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Core/EternalSpikeFx.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Core/EternalWingSet.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Core/FeatherAtlas.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Core/FeatherMeshBuilder.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Core/FxMeshBuilder.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Core/LegendAtlas.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Core/LegendFx.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Core/LegendWingSet.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Core/NovaAtlas.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Core/NovaGeom.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Core/PaperMeshBuilder.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Core/PrimordialAtlas.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Core/PrimordialFx.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Core/PrimordialWingSet.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Core/SeraphWingSet.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Core/WMath.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Core/WingAnimator.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Core/WingInputs.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Core/WingKeyPoses.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Core/WingMesh.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Core/WingMeshBuilder.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Core/WingPose.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Core/WingRig.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Def/DefinedChoreography.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Def/Json.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Def/NovaParams.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Def/WingDefaults.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Def/WingDefinition.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Def/WingDefinitions.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Duchess/DuchessAsh.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Duchess/DuchessAtlas.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Duchess/DuchessAura.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Duchess/DuchessBloodRiver.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Duchess/DuchessDraw.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Duchess/DuchessFx.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Duchess/DuchessParticles.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Duchess/DuchessVeil.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Duchess/DuchessWingSet.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Client/Duchess/DuchessWorldFx.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Network/DuchessAshPacket.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Network/EternalImpactFxPacket.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Network/EternalImpactPacket.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Network/LegendImpactFxPacket.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Network/LegendImpactPacket.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Network/LegendWardSyncPacket.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Network/NovaImpactFxPacket.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Network/NovaImpactPacket.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Network/PrimordialImpactFxPacket.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Network/PrimordialImpactPacket.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Network/WingFlightPosePacket.java",
+    "driver-java/com/luoee/arcanevortex/Content/Accessory/DragonWing/Network/WingFlightPoseSyncPacket.java",
+    "driver-java/com/luoee/arcanevortex/Content/Font/TextFxShaders.java",
+    "driver-java/com/luoee/arcanevortex/Content/Font3D/Font3D.java",
+    "driver-java/com/luoee/arcanevortex/Content/Font3D/Font3DBloom.java",
+    "driver-java/com/luoee/arcanevortex/Content/Font3D/Font3DBuilder.java",
+    "driver-java/com/luoee/arcanevortex/Content/Font3D/Font3DFill.java",
+    "driver-java/com/luoee/arcanevortex/Content/Font3D/Font3DLayouts.java",
+    "driver-java/com/luoee/arcanevortex/Content/Font3D/Font3DLook.java",
+    "driver-java/com/luoee/arcanevortex/Content/Font3D/Font3DNetwork.java",
+    "driver-java/com/luoee/arcanevortex/Content/Font3D/Font3DSpec.java",
+    "driver-java/com/luoee/arcanevortex/Content/Font3D/Font3DStyle.java",
+    "driver-java/com/luoee/arcanevortex/Content/Font3D/Client/Font3DActive.java",
+    "driver-java/com/luoee/arcanevortex/Content/Font3D/Client/Font3DBloomBridge.java",
+    "driver-java/com/luoee/arcanevortex/Content/Font3D/Client/Font3DClient.java",
+    "driver-java/com/luoee/arcanevortex/Content/Font3D/Client/Font3DDepth.java",
+    "driver-java/com/luoee/arcanevortex/Content/Font3D/Client/Font3DFillEval.java",
+    "driver-java/com/luoee/arcanevortex/Content/Font3D/Client/Font3DGlState.java",
+    "driver-java/com/luoee/arcanevortex/Content/Font3D/Client/Font3DGlyphCache.java",
+    "driver-java/com/luoee/arcanevortex/Content/Font3D/Client/Font3DGlyphForge.java",
+    "driver-java/com/luoee/arcanevortex/Content/Font3D/Client/Font3DGlyphs.java",
+    "driver-java/com/luoee/arcanevortex/Content/Font3D/Client/Font3DRenderer.java",
+    "driver-java/com/luoee/arcanevortex/Content/Font3D/Client/Font3DShaders.java",
+    "driver-java/com/luoee/arcanevortex/Content/Font3D/Client/Font3DUiTarget.java",
+    "driver-java/com/luoee/arcanevortex/Content/Item/ModArmorItem.java",
+    "driver-java/com/luoee/arcanevortex/Content/Item/Sword/ZSWJ/Client/ZSWJRes.java",
+    "driver-java/com/luoee/arcanevortex/Content/Item/VanSh/VanShArmor/VanShArmorItem.java",
+    "driver-java/com/luoee/arcanevortex/Content/Particle/UI/BaseGuiParticle.java",
+    "driver-java/com/luoee/arcanevortex/Content/Particle/UI/GuiParticle.java",
+    "driver-java/com/luoee/arcanevortex/Content/Particle/UI/GuiParticleManager.java",
+    "driver-java/com/luoee/arcanevortex/Content/Particle/UI/Particles/MysticParticle.java",
+    "driver-java/com/luoee/arcanevortex/Content/Particle/UI/Particles/SparkParticle.java",
+    "driver-java/com/luoee/arcanevortex/Content/Particle/World/BloomParticleRenderType.java",
+    "driver-java/com/luoee/arcanevortex/Content/Particle/World/FragmentParticle/FragmentParticle.java",
+    "driver-java/com/luoee/arcanevortex/Content/Particle/World/FragmentParticle/FragmentParticleRenderTypes.java",
+    "driver-java/com/luoee/arcanevortex/Content/Particle/World/GlowParticle/GlowParticle.java",
+    "driver-java/com/luoee/arcanevortex/Content/Particle/World/GlowParticle/GlowParticleRenderTypes.java",
+    "driver-java/com/luoee/arcanevortex/Content/Particle/World/HeartParticle/HeartParticle.java",
+    "driver-java/com/luoee/arcanevortex/Content/Particle/World/HeartParticle/HeartParticleRenderTypes.java",
+    "driver-java/com/luoee/arcanevortex/Content/Particle/World/NumberParticle/NumberParticle.java",
+    "driver-java/com/luoee/arcanevortex/Content/Particle/World/NumberParticle/NumberParticleRenderTypes.java",
+    "driver-java/com/luoee/arcanevortex/Content/Particle/World/OverlordParticle/OverlordParticle.java",
+    "driver-java/com/luoee/arcanevortex/Content/Particle/World/OverlordParticle/OverlordParticleRenderTypes.java",
+    "driver-java/com/luoee/arcanevortex/Content/Particle/World/SmokeParticle/SmokeParticle.java",
+    "driver-java/com/luoee/arcanevortex/Content/Particle/World/SmokeParticle/SmokeParticleRenderTypes.java",
+    "driver-java/com/luoee/arcanevortex/Content/Particle/World/SparksParticle/SparksParticle.java",
+    "driver-java/com/luoee/arcanevortex/Content/Particle/World/SparksParticle/SparksParticleRenderTypes.java",
+    "driver-java/com/luoee/arcanevortex/Content/Particle/World/StarlinkParticle/StarlinkParticle.java",
+    "driver-java/com/luoee/arcanevortex/Content/Particle/World/StarlinkParticle/StarlinkParticleRenderTypes.java",
+    "driver-java/com/luoee/arcanevortex/Content/Particle/World/WarpParticle/WarpParticle.java",
+    "driver-java/com/luoee/arcanevortex/Content/Particle/World/WarpParticle/WarpParticleRenderTypes.java",
+    "driver-java/com/luoee/arcanevortex/Content/PhysicsBlackHole/BlackHoleCommonConfig.java",
+    "driver-java/com/luoee/arcanevortex/Content/PhysicsBlackHole/BlackHolePhysics.java",
+    "driver-java/com/luoee/arcanevortex/Content/PhysicsBlackHole/PhysicsBlackHole.java",
+    "driver-java/com/luoee/arcanevortex/Content/PhysicsBlackHole/PhysicsBlackHoleCommand.java",
+    "driver-java/com/luoee/arcanevortex/Content/PhysicsBlackHole/PhysicsBlackHoleData.java",
+    "driver-java/com/luoee/arcanevortex/Content/PhysicsBlackHole/PhysicsBlackHoleEvents.java",
+    "driver-java/com/luoee/arcanevortex/Content/PhysicsBlackHole/PhysicsBlackHoleManager.java",
+    "driver-java/com/luoee/arcanevortex/Content/PhysicsBlackHole/PhysicsBlackHoleNetwork.java",
+    "driver-java/com/luoee/arcanevortex/Content/PhysicsBlackHole/Client/BlackHoleAudio.java",
+    "driver-java/com/luoee/arcanevortex/Content/PhysicsBlackHole/Client/BlackHoleCaptions.java",
+    "driver-java/com/luoee/arcanevortex/Content/PhysicsBlackHole/Client/BlackHoleClientConfig.java",
+    "driver-java/com/luoee/arcanevortex/Content/PhysicsBlackHole/Client/BlackHoleFont.java",
+    "driver-java/com/luoee/arcanevortex/Content/PhysicsBlackHole/Client/BlackHoleGl.java",
+    "driver-java/com/luoee/arcanevortex/Content/PhysicsBlackHole/Client/BlackHoleGlState.java",
+    "driver-java/com/luoee/arcanevortex/Content/PhysicsBlackHole/Client/BlackHoleHud.java",
+    "driver-java/com/luoee/arcanevortex/Content/PhysicsBlackHole/Client/BlackHoleParticles.java",
+    "driver-java/com/luoee/arcanevortex/Content/PhysicsBlackHole/Client/BlackHoleRenderer.java",
+    "driver-java/com/luoee/arcanevortex/Content/PhysicsBlackHole/Client/BlackHoleShaders.java",
+    "driver-java/com/luoee/arcanevortex/Content/PhysicsBlackHole/Client/BlackHoleSounds.java",
+    "driver-java/com/luoee/arcanevortex/Content/PhysicsBlackHole/Client/BlackHoleText.java",
+    "driver-java/com/luoee/arcanevortex/Content/PhysicsBlackHole/Client/BlackHoleWorldCapture.java",
+    "driver-java/com/luoee/arcanevortex/Content/PhysicsBlackHole/Client/InteriorLandmarks.java",
+    "driver-java/com/luoee/arcanevortex/Content/PhysicsBlackHole/Client/MengerSponge.java",
+    "driver-java/com/luoee/arcanevortex/Content/PhysicsBlackHole/Client/PhysicsBlackHoleClient.java",
+    "driver-java/com/luoee/arcanevortex/Content/PhysicsBlackHole/Client/ReversedPortal.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/ApocalypseBackHaloRenderLayer.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/ApocalypseHaloRenderLayer.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/ArmorRenderLayer.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/CameraDirector.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/DeferredLevelStage.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/DepthBufferManager.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/FPSDisplay.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/FabulousDepthFix.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/FxBlend.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/GlStateMirror.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/HeadPose.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/LowResTarget.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/ModEntityRenderer.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/ModelPoseSnapshot.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/NoiseTextureGenerator.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/PlayerModelSpace.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/PlayerRenderBounds.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/PlayerRenderHandler.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/PlayerRenderHook.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/PlayerRenderHooks.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/RainbowLightningRender.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/RenderEntityLayer.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/RenderEventRegistry.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/RenderFence.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/RenderHelper.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/RenderPlayerLayer.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/RenderStateSnapshot.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/SceneColorCopy.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/SceneDepthCopy.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/ShadowProxy.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/VoidArmorRenderLayer.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/VoidRingRenderLayer.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/VolumeGeom.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/VolumeSphere.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/VolumetricEffect.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/WorldRenderer.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/CosmicRender/CosmicBakeModel.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/CosmicRender/CosmicClient.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/CosmicRender/CosmicForceBinder.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/CosmicRender/CosmicModelLoader.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/CosmicRender/CosmicResourceGuard.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/CosmicRender/CosmicShaders.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/CosmicRender/GlowEdgeShell.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/CosmicRender/GlowHelper.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/CosmicRender/PerspectiveModelState.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/CosmicRender/TileAnimation.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/CTM/CTMAutoModels.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/CTM/CTMBakedModel.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/CTM/CTMConnection.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/CTM/CTMGrid.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/CTM/CTMGroups.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/CTM/CTMLayout.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/CTM/CTMMode.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/CTM/CTMModelLoader.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/CTM/CTMQuadBuilder.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/CTM/CTMQuadTransform.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/CTM/CTMShapes.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/CTM/CTMSheet.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/CTM/CTMWrappedModel.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/CTM/NetCraftClient.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/Effect/LightningEffect.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/Effect/PrismOrbEffect.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/Effect/TornadoEffect.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/Effect/Apocalypse/AopVFX1/ApoVFX1GlowRenderType.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/Effect/Apocalypse/AopVFX1/ApoVFX1Render.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/Effect/Apocalypse/AopVFX1/ApoVFX1RenderType.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/Effect/Apocalypse/ApoVFX2/ApoVFX2Exit.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/Effect/Apocalypse/ApoVFX2/ApoVFX2MrtTarget.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/Effect/Apocalypse/ApoVFX2/ApoVFX2Render.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/Effect/Apocalypse/ApoVFX2/ApoVFX2RenderType.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/Effect/Apocalypse/ApoVFX2/ApoVFX2ScreenPass.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/Effect/Apocalypse/ApoVFX2/ScreenDepthCapture.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/Effect/CubeLaw/CueLawVFX1Render.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/Light/PointLightEffect.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/Light/PointShadowRenderer.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/Light/ShadowCasterBatch.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/Light/ShadowCubeAtlas.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/Light/ShadowMeshCache.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/LightSource/VoxelLightVolume.java",
+    "driver-java/com/luoee/arcanevortex/Content/Render/LightSource/WorldLightSourceRenderer.java",
+    "driver-java/com/luoee/arcanevortex/Content/TexGen/TexGenClientEvents.java",
+    "driver-java/com/luoee/arcanevortex/Content/TexGen/Core/Baker.java",
+    "driver-java/com/luoee/arcanevortex/Content/TexGen/Core/Evaluator.java",
+    "driver-java/com/luoee/arcanevortex/Content/TexGen/Core/ImageBank.java",
+    "driver-java/com/luoee/arcanevortex/Content/TexGen/Core/NoiseCore.java",
+    "driver-java/com/luoee/arcanevortex/Content/TexGen/Core/NoiseLayer.java",
+    "driver-java/com/luoee/arcanevortex/Content/TexGen/Core/Ramp.java",
+    "driver-java/com/luoee/arcanevortex/Content/TexGen/Core/SpecCodec.java",
+    "driver-java/com/luoee/arcanevortex/Content/TexGen/Core/TexEnums.java",
+    "driver-java/com/luoee/arcanevortex/Content/TexGen/Core/TexGenSpec.java",
+    "driver-java/com/luoee/arcanevortex/Content/TexGen/Runtime/LiveTexture.java",
+    "driver-java/com/luoee/arcanevortex/Content/TexGen/Runtime/NoiseTextures.java",
+    "driver-java/com/luoee/arcanevortex/Content/TexGen/Runtime/Volume3D.java",
+    "driver-java/com/luoee/arcanevortex/Content/TexGen/UI/Anim.java",
+    "driver-java/com/luoee/arcanevortex/Content/TexGen/UI/Preview.java",
+    "driver-java/com/luoee/arcanevortex/Content/TexGen/UI/TexGenScreen.java",
+    "driver-java/com/luoee/arcanevortex/Content/TexGen/UI/Theme.java",
+    "driver-java/com/luoee/arcanevortex/Content/TexGen/UI/Ui.java",
+    "driver-java/com/luoee/arcanevortex/Content/TexGen/UI/UndoStack.java",
+    "driver-java/com/luoee/arcanevortex/Content/TexGen/UI/Widgets.java",
+    "driver-java/com/luoee/arcanevortex/Content/UI/LiquidGlass/O.java",
+    "driver-java/com/luoee/arcanevortex/Content/UI/LiquidGlass/O0.java",
+    "driver-java/com/luoee/arcanevortex/Content/UI/LiquidGlass/OO.java",
+    "driver-java/com/luoee/arcanevortex/Content/UI/LiquidGlass/OOO.java",
+    "driver-java/com/luoee/arcanevortex/Content/UI/LiquidGlass/Oo~dup4.java",
+    "driver-java/com/luoee/arcanevortex/Content/UI/LiquidGlass/o0~dup2.java",
+    "driver-java/com/luoee/arcanevortex/Content/UI/LiquidGlass/oO~dup2.java",
+    "driver-java/com/luoee/arcanevortex/Content/UI/LiquidGlass/oo~dup3.java",
+    "driver-java/com/luoee/arcanevortex/Content/UI/LiquidGlass/o~dup2.java",
+    "driver-java/com/luoee/arcanevortex/Content/UI/LiquidGlass/Test/OO0.java",
+    "driver-java/com/luoee/arcanevortex/Content/UI/LiquidGlass/Test/OOo.java",
+    "driver-java/com/luoee/arcanevortex/Content/UI/LiquidGlass/Test/oOO~dup3.java",
+    "driver-java/com/luoee/arcanevortex/Content/UI/LiquidGlass/Test/oOo~dup2.java",
+    "driver-java/com/luoee/arcanevortex/TimeStop/Client/TimeStopAtlas.java",
+    "driver-java/com/luoee/arcanevortex/TimeStop/Client/TimeStopBatches.java",
+    "driver-java/com/luoee/arcanevortex/TimeStop/Client/TimeStopClient.java",
+    "driver-java/com/luoee/arcanevortex/TimeStop/Client/TimeStopClientHooks.java",
+    "driver-java/com/luoee/arcanevortex/TimeStop/Client/TimeStopEffects.java",
+    "driver-java/com/luoee/arcanevortex/TimeStop/Client/TimeStopMask.java",
+    "driver-java/com/luoee/arcanevortex/TimeStop/Client/TimeStopRender.java",
+    "driver-java/com/luoee/arcanevortex/TimeStop/Client/TimeStopShaders.java",
+    "driver-java/com/luoee/arcanevortex/TimeStop/Client/TimeStopToolClient.java"
+  ],
+  "annotations": [
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryClientHooks.java",
+      "line": 50,
+      "declaration": "@NativeMixin(target=Screen.class, method=\"renderWithTooltip\", desc=\"(Lnet/minecraft/client/gui/GuiGraphics;IIF)V\", mode=Mode.HEAD)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryClientHooks.java",
+      "line": 55,
+      "declaration": "@MixinInject(target=Screen.class, method=\"renderWithTooltip\", desc=\"(Lnet/minecraft/client/gui/GuiGraphics;IIF)V\", at=@At(value=\"TAIL\"))"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryClientHooks.java",
+      "line": 60,
+      "declaration": "@MixinInject(target=AbstractContainerScreen.class, method=\"render\", desc=\"(Lnet/minecraft/client/gui/GuiGraphics;IIF)V\", at=@At(value=\"INVOKE\", target=\"Lnet/minecraft/client/gui/screens/inventory/AbstractContainerScreen;renderLabels(Lnet/minecraft/client/gui/GuiGraphics;II)V\", shift=At.Shift.AFTER))"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryClientHooks.java",
+      "line": 65,
+      "declaration": "@NativeMixin(target=ForgeHooksClient.class, method=\"onScreenMouseClickedPre\", remap=false)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryClientHooks.java",
+      "line": 70,
+      "declaration": "@NativeMixin(target=ForgeHooksClient.class, method=\"onScreenMouseReleasedPre\", remap=false)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryClientHooks.java",
+      "line": 75,
+      "declaration": "@NativeMixin(target=ForgeHooksClient.class, method=\"onScreenMouseDragPre\", remap=false)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryClientHooks.java",
+      "line": 80,
+      "declaration": "@NativeMixin(target=ForgeHooksClient.class, method=\"onScreenMouseScrollPre\", remap=false)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryClientHooks.java",
+      "line": 85,
+      "declaration": "@NativeMixin(target=ForgeHooksClient.class, method=\"onScreenKeyPressedPre\", remap=false)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryClientHooks.java",
+      "line": 90,
+      "declaration": "@NativeMixin(target=AbstractContainerScreen.class, method=\"renderFloatingItem\", desc=\"(Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/world/item/ItemStack;IILjava/lang/String;)V\", mode=Mode.HEAD)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryClientHooks.java",
+      "line": 95,
+      "declaration": "@NativeMixin(target=AbstractContainerScreen.class, method=\"isHovering\", desc=\"(Lnet/minecraft/world/inventory/Slot;DD)Z\", mode=Mode.HEAD)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryClientHooks.java",
+      "line": 100,
+      "declaration": "@NativeMixin(target=GameRenderer.class, method=\"render\", desc=\"(FJZ)V\", mode=Mode.HEAD)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryClientHooks.java",
+      "line": 105,
+      "declaration": "@NativeMixin(target=Minecraft.class, method=\"clearLevel\", desc=\"(Lnet/minecraft/client/gui/screens/Screen;)V\", mode=Mode.HEAD)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryClientHooks.java",
+      "line": 110,
+      "declaration": "@MixinInject(target=PlayerRenderer.class, method=\"render\", desc=\"(Lnet/minecraft/client/player/AbstractClientPlayer;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V\", at=@At(value=\"TAIL\"))"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryClientHooks.java",
+      "line": 115,
+      "declaration": "@MixinInject(target=Gui.class, method=\"render\", desc=\"(Lnet/minecraft/client/gui/GuiGraphics;F)V\", at=@At(value=\"TAIL\"), subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryCombatHooks.java",
+      "line": 51,
+      "declaration": "@NativeMixin(target=Player.class, method=\"hurt\", desc=\"(Lnet/minecraft/world/damagesource/DamageSource;F)Z\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryCombatHooks.java",
+      "line": 56,
+      "declaration": "@WrapOperation(targets={LivingEntity.class, Player.class}, method=\"actuallyHurt\", desc=\"(Lnet/minecraft/world/damagesource/DamageSource;F)V\", at=@At(value=\"INVOKE\", target=\"Lnet/minecraftforge/common/ForgeHooks;onLivingHurt(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/damagesource/DamageSource;F)F\", remap=false), noRecursion=false)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryCombatHooks.java",
+      "line": 64,
+      "declaration": "@WrapOperation(targets={LivingEntity.class, Player.class}, method=\"actuallyHurt\", desc=\"(Lnet/minecraft/world/damagesource/DamageSource;F)V\", at=@At(value=\"INVOKE\", target=\"Lnet/minecraftforge/common/ForgeHooks;onLivingDamage(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/damagesource/DamageSource;F)F\", remap=false), noRecursion=false)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryCombatHooks.java",
+      "line": 71,
+      "declaration": "@WrapOperation(targets={LivingEntity.class, Player.class, ServerPlayer.class}, method=\"die\", desc=\"(Lnet/minecraft/world/damagesource/DamageSource;)V\", at=@At(value=\"INVOKE\", target=\"Lnet/minecraftforge/common/ForgeHooks;onLivingDeath(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/damagesource/DamageSource;)Z\", remap=false), noRecursion=false)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryCombatHooks.java",
+      "line": 84,
+      "declaration": "@WrapOperation(target=Player.class, method=\"attack\", desc=\"(Lnet/minecraft/world/entity/Entity;)V\", at=@At(value=\"INVOKE\", target=\"Lnet/minecraftforge/common/ForgeHooks;getCriticalHit(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/Entity;ZF)Lnet/minecraftforge/event/entity/player/CriticalHitEvent;\", remap=false))"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryCombatHooks.java",
+      "line": 105,
+      "declaration": "@MixinInject(target=LivingEntity.class, method=\"jumpFromGround\", desc=\"()V\", at=@At(value=\"TAIL\"))"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryCombatHooks.java",
+      "line": 110,
+      "declaration": "@NativeMixin(target=Player.class, method=\"causeFallDamage\", desc=\"(FFLnet/minecraft/world/damagesource/DamageSource;)Z\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryCombatHooks.java",
+      "line": 115,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"knockback\", desc=\"(DDD)V\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryCombatHooks.java",
+      "line": 120,
+      "declaration": "@ModifyReturn(target=Player.class, method=\"getDigSpeed\", remap=false)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryCombatHooks.java",
+      "line": 126,
+      "declaration": "@ModifyReturn(target=ItemStack.class, method=\"getTooltipLines\", desc=\"(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/TooltipFlag;)Ljava/util/List;\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryHooks.java",
+      "line": 26,
+      "declaration": "@NativeMixin(target=Player.class, method=\"attack\", desc=\"(Lnet/minecraft/world/entity/Entity;)V\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryHooks.java",
+      "line": 31,
+      "declaration": "@MixinInject(target=Player.class, method=\"tick\", desc=\"()V\", at=@At(value=\"TAIL\"), priority=1100)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryHooks.java",
+      "line": 36,
+      "declaration": "@NativeMixin(target=AccessoryManager.class, method=\"fireEquip\", mode=Mode.RETURN, remap=false)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryLifecycleHooks.java",
+      "line": 46,
+      "declaration": "@NativeMixin(target=Player.class, method=\"tick\", desc=\"()V\", mode=Mode.HEAD)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryLifecycleHooks.java",
+      "line": 51,
+      "declaration": "@MixinInject(target=Player.class, method=\"tick\", desc=\"()V\", at=@At(value=\"TAIL\"))"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryLifecycleHooks.java",
+      "line": 56,
+      "declaration": "@NativeMixin(target=Player.class, method=\"addAdditionalSaveData\", desc=\"(Lnet/minecraft/nbt/CompoundTag;)V\", mode=Mode.HEAD)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryLifecycleHooks.java",
+      "line": 61,
+      "declaration": "@NativeMixin(target=Player.class, method=\"readAdditionalSaveData\", desc=\"(Lnet/minecraft/nbt/CompoundTag;)V\", mode=Mode.HEAD)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryLifecycleHooks.java",
+      "line": 66,
+      "declaration": "@MixinInject(target=ServerPlayer.class, method=\"restoreFrom\", desc=\"(Lnet/minecraft/server/level/ServerPlayer;Z)V\", at=@At(value=\"TAIL\"))"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryLifecycleHooks.java",
+      "line": 71,
+      "declaration": "@MixinInject(target=PlayerList.class, method=\"placeNewPlayer\", desc=\"(Lnet/minecraft/network/Connection;Lnet/minecraft/server/level/ServerPlayer;)V\", at=@At(value=\"TAIL\"))"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryLifecycleHooks.java",
+      "line": 77,
+      "declaration": "@ModifyReturn(target=PlayerList.class, method=\"respawn\", desc=\"(Lnet/minecraft/server/level/ServerPlayer;Z)Lnet/minecraft/server/level/ServerPlayer;\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryLifecycleHooks.java",
+      "line": 85,
+      "declaration": "@NativeMixin(target=ServerPlayer.class, method=\"changeDimension\", mode=Mode.RETURN)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryLifecycleHooks.java",
+      "line": 90,
+      "declaration": "@NativeMixin(target=ServerPlayer.class, method=\"teleportTo\", desc=\"(Lnet/minecraft/server/level/ServerLevel;DDDFF)V\", mode=Mode.RETURN)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryLifecycleHooks.java",
+      "line": 95,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"startSeenByPlayer\", desc=\"(Lnet/minecraft/server/level/ServerPlayer;)V\", mode=Mode.HEAD)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryLifecycleHooks.java",
+      "line": 100,
+      "declaration": "@NativeMixin(target=Player.class, method=\"dropEquipment\", desc=\"()V\", mode=Mode.HEAD)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryLifecycleHooks.java",
+      "line": 105,
+      "declaration": "@MixinInject(target=Commands.class, method=\"<init>\", at=@At(value=\"TAIL\"), remap=false)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryLifecycleHooks.java",
+      "line": 110,
+      "declaration": "@ModifyReturn(target=ReloadableServerResources.class, method=\"listeners\", desc=\"()Ljava/util/List;\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryLifecycleHooks.java",
+      "line": 115,
+      "declaration": "@MixinInject(target=PlayerList.class, method=\"reloadResources\", desc=\"()V\", at=@At(value=\"TAIL\"))"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/AccessoryLifecycleHooks.java",
+      "line": 120,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"onAddedToWorld\", desc=\"()V\", mode=Mode.HEAD, remap=false)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/DragonFlightHooks.java",
+      "line": 23,
+      "declaration": "@NativeMixin(target=Player.class, method=\"travel\", desc=\"(Lnet/minecraft/world/phys/Vec3;)V\", mode=Mode.HEAD)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Accessory/DragonFlightHooks.java",
+      "line": 31,
+      "declaration": "@NativeMixin(target=Player.class, method=\"updatePlayerPose\", desc=\"()V\", mode=Mode.HEAD)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/EntityDeath.java",
+      "line": 106,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"isInvulnerable\", methodType=Type.BOOLEAN, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/EntityDeath.java",
+      "line": 114,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"isInvulnerableTo\", methodType=Type.BOOLEAN, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/EntityDeath.java",
+      "line": 122,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"getRemovalReason\", subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/EntityDeath.java",
+      "line": 130,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"getPose\", subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/EntityDeath.java",
+      "line": 138,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"isRemoved\", methodType=Type.BOOLEAN, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/EntityDeath.java",
+      "line": 146,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"isAddedToWorld\", methodType=Type.BOOLEAN, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/EntityDeath.java",
+      "line": 154,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"isAlive\", methodType=Type.BOOLEAN, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/EntityDeath.java",
+      "line": 162,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"isDeadOrDying\", methodType=Type.BOOLEAN, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/EntityDeath.java",
+      "line": 170,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"isImmobile\", methodType=Type.BOOLEAN, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/EntityDeath.java",
+      "line": 178,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"isOnFire\", methodType=Type.BOOLEAN, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/EntityDeath.java",
+      "line": 186,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"isCurrentlyGlowing\", methodType=Type.BOOLEAN, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/EntityDeath.java",
+      "line": 194,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"isAlwaysTicking\", methodType=Type.BOOLEAN, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/EntityDeath.java",
+      "line": 202,
+      "declaration": "@NativeMixin(target=Mob.class, method=\"isNoAi\", methodType=Type.BOOLEAN, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/EntityDeath.java",
+      "line": 210,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"isAttackable\", methodType=Type.BOOLEAN, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/EntityDeath.java",
+      "line": 218,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"isFreezing\", methodType=Type.BOOLEAN, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/EntityDeath.java",
+      "line": 226,
+      "declaration": "@ModifyExpressionValue(owner=LivingEntity.class, field=\"deathTime\", type=int.class, classIncludes={\"*\"}, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/EntityDeath.java",
+      "line": 231,
+      "declaration": "@NativeMixin(target=Player.class, methodIncludes={\"$attack\"}, ignoreCase=false, desc=\"(Lnet/minecraft/world/entity/Entity;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfo;)V\", methodType=Type.VOID, instanceOnly=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/EntityDeath.java",
+      "line": 236,
+      "declaration": "@NativeMixin(target=ItemStack.class, method=\"onEntitySwing\", desc=\"(Lnet/minecraft/world/entity/LivingEntity;)Z\", methodType=Type.BOOLEAN)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/EntityDeathRender.java",
+      "line": 108,
+      "declaration": "@WrapOperation(target=EntityRenderDispatcher.class, method=\"render\", at=@At(value=\"INVOKE\", target=\"Lnet/minecraft/client/renderer/entity/EntityRenderer;render(Lnet/minecraft/world/entity/Entity;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V\"), subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/EntityDeathRender.java",
+      "line": 178,
+      "declaration": "@ModifyExpressionValue(target=LivingEntityRenderer.class, subclass=true, method=\"setupRotations\", desc=\"(Lnet/minecraft/world/entity/LivingEntity;Lcom/mojang/blaze3d/vertex/PoseStack;FFF)V\", owner=LivingEntity.class, field=\"deathTime\", type=int.class)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/EntityDeathRender.java",
+      "line": 188,
+      "declaration": "@ModifyExpressionValue(target=LivingEntityRenderer.class, subclass=true, method=\"getOverlayCoords\", desc=\"(Lnet/minecraft/world/entity/LivingEntity;F)I\", owner=LivingEntity.class, field=\"deathTime\", type=int.class)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/EntityDeathRender.java",
+      "line": 197,
+      "declaration": "@NativeMixin(target=LivingEntityRenderer.class, method=\"getOverlayCoords\", desc=\"(Lnet/minecraft/world/entity/LivingEntity;F)I\", methodType=Type.INT, priority=1100)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/ForceDie.java",
+      "line": 49,
+      "declaration": "@NativeMixin(target=ServerLevel.class, method=\"tick\", desc=\"(Ljava/util/function/BooleanSupplier;)V\", methodType=Type.VOID)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/ForceDie.java",
+      "line": 151,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"remove\", desc=\"(Lnet/minecraft/world/entity/Entity$RemovalReason;)V\", methodType=Type.VOID, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/ForceDie.java",
+      "line": 156,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"setRemoved\", desc=\"(Lnet/minecraft/world/entity/Entity$RemovalReason;)V\", methodType=Type.VOID, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/ForceDie.java",
+      "line": 161,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"discard\", desc=\"()V\", methodType=Type.VOID, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/ForceDie.java",
+      "line": 166,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"kill\", desc=\"()V\", methodType=Type.VOID, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/ForceDie.java",
+      "line": 171,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"onRemovedFromWorld\", desc=\"()V\", methodType=Type.VOID, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/ForceDie.java",
+      "line": 176,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"setLevelCallback\", desc=\"(Lnet/minecraft/world/level/entity/EntityInLevelCallback;)V\", methodType=Type.VOID, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/ForceDie.java",
+      "line": 181,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"tickDeath\", desc=\"()V\", methodType=Type.VOID, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/ForceDie.java",
+      "line": 186,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"revive\", desc=\"()V\", methodType=Type.VOID, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/ForceDie.java",
+      "line": 191,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"unsetRemoved\", desc=\"()V\", methodType=Type.VOID, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/ForceDie.java",
+      "line": 196,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"handleEntityEvent\", desc=\"(B)V\", methodType=Type.VOID, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/ForceDie.java",
+      "line": 214,
+      "declaration": "@NativeMixin(methodIncludes={\"handler$\"}, ignoreCase=false, methodType=Type.VOID, classIncludes={\"net/minecraft/world/entity/Entity\", \"net/minecraft/world/entity/LivingEntity\", \"net/minecraft/world/entity/ai/Brain\", \"net/minecraft/world/level/Level\", \"net/minecraft/world/level/entity/\", \"net/minecraft/server/level/ServerLevel\", \"net/minecraft/server/level/ServerChunkCache\", \"net/minecraft/server/level/ChunkMap\", \"net/minecraft/server/level/ServerEntity\", \"net/minecraft/util/ClassInstanceMultiMap\", \"net/minecraft/network/Connection\", \"net/minecraft/client/multiplayer/ClientLevel\", \"net/minecraft/client/multiplayer/ClientPacketListener\", \"net/minecraftforge/event/ForgeEventFactory\"})"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/ForceDie.java",
+      "line": 236,
+      "declaration": "@NativeMixin(targets={Map.class, Collection.class}, method=\"remove\", desc=\"(Ljava/lang/Object;)Ljava/lang/Object;\", subclass=true, classExcludes={\"net/minecraft/\", \"net/minecraftforge/\", \"com/mojang/\", \"it/unimi/dsi/\", \"com/google/\", \"org/apache/\", \"com/luoee/\", \"org/jctools/\", \"com/github/benmanes/\"})"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/ForceDie.java",
+      "line": 241,
+      "declaration": "@NativeMixin(targets={Map.class, Collection.class}, method=\"remove\", desc=\"(I)Ljava/lang/Object;\", subclass=true, classExcludes={\"net/minecraft/\", \"net/minecraftforge/\", \"com/mojang/\", \"it/unimi/dsi/\", \"com/google/\", \"org/apache/\", \"com/luoee/\", \"org/jctools/\", \"com/github/benmanes/\"})"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/ForceDie.java",
+      "line": 246,
+      "declaration": "@NativeMixin(targets={Map.class, Collection.class}, method=\"remove\", desc=\"(J)Ljava/lang/Object;\", subclass=true, classExcludes={\"net/minecraft/\", \"net/minecraftforge/\", \"com/mojang/\", \"it/unimi/dsi/\", \"com/google/\", \"org/apache/\", \"com/luoee/\", \"org/jctools/\", \"com/github/benmanes/\"})"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/ForceDie.java",
+      "line": 251,
+      "declaration": "@NativeMixin(targets={Map.class, Collection.class}, method=\"remove\", desc=\"(Ljava/lang/Object;)Z\", subclass=true, classExcludes={\"net/minecraft/\", \"net/minecraftforge/\", \"com/mojang/\", \"it/unimi/dsi/\", \"com/google/\", \"org/apache/\", \"com/luoee/\", \"org/jctools/\", \"com/github/benmanes/\"})"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/ForceDie.java",
+      "line": 256,
+      "declaration": "@NativeMixin(targets={Map.class, Collection.class}, method=\"remove\", desc=\"(Ljava/lang/Object;Ljava/lang/Object;)Z\", subclass=true, classExcludes={\"net/minecraft/\", \"net/minecraftforge/\", \"com/mojang/\", \"it/unimi/dsi/\", \"com/google/\", \"org/apache/\", \"com/luoee/\", \"org/jctools/\", \"com/github/benmanes/\"})"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/ForceDie.java",
+      "line": 261,
+      "declaration": "@NativeMixin(targets={Map.class, Collection.class}, method=\"remove\", desc=\"(ILjava/lang/Object;)Z\", subclass=true, classExcludes={\"net/minecraft/\", \"net/minecraftforge/\", \"com/mojang/\", \"it/unimi/dsi/\", \"com/google/\", \"org/apache/\", \"com/luoee/\", \"org/jctools/\", \"com/github/benmanes/\"})"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/ForceDie.java",
+      "line": 266,
+      "declaration": "@NativeMixin(targets={Map.class, Collection.class}, method=\"remove\", desc=\"(JLjava/lang/Object;)Z\", subclass=true, classExcludes={\"net/minecraft/\", \"net/minecraftforge/\", \"com/mojang/\", \"it/unimi/dsi/\", \"com/google/\", \"org/apache/\", \"com/luoee/\", \"org/jctools/\", \"com/github/benmanes/\"})"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/ForceDie.java",
+      "line": 271,
+      "declaration": "@NativeMixin(targets={Map.class, Collection.class}, methods={\"remove\", \"rem\"}, desc=\"(I)Z\", subclass=true, classExcludes={\"net/minecraft/\", \"net/minecraftforge/\", \"com/mojang/\", \"it/unimi/dsi/\", \"com/google/\", \"org/apache/\", \"com/luoee/\", \"org/jctools/\", \"com/github/benmanes/\"})"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/ForceDie.java",
+      "line": 276,
+      "declaration": "@NativeMixin(targets={Map.class, Collection.class}, methods={\"remove\", \"rem\"}, desc=\"(J)Z\", subclass=true, classExcludes={\"net/minecraft/\", \"net/minecraftforge/\", \"com/mojang/\", \"it/unimi/dsi/\", \"com/google/\", \"org/apache/\", \"com/luoee/\", \"org/jctools/\", \"com/github/benmanes/\"})"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/ForceDieClient.java",
+      "line": 32,
+      "declaration": "@NativeMixin(target=ClientLevel.class, method=\"tick\", desc=\"(Ljava/util/function/BooleanSupplier;)V\", methodType=Type.VOID)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/HealthMixin.java",
+      "line": 22,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"getHealth\", methodType=Type.FLOAT, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/HealthMixin.java",
+      "line": 33,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"getMaxHealth\", methodType=Type.FLOAT, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/HealthMixin.java",
+      "line": 44,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"setHealth\", methodType=Type.VOID, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/VanillaCombat.java",
+      "line": 36,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"hurt\", desc=\"(Lnet/minecraft/world/damagesource/DamageSource;F)Z\", methodType=Type.BOOLEAN, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/VanillaCombat.java",
+      "line": 85,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"setDeltaMovement\", desc=\"(Lnet/minecraft/world/phys/Vec3;)V\", methodType=Type.VOID, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/VanillaCombat.java",
+      "line": 90,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"addDeltaMovement\", desc=\"(Lnet/minecraft/world/phys/Vec3;)V\", methodType=Type.VOID, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/VanillaCombat.java",
+      "line": 95,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"push\", desc=\"(DDD)V\", methodType=Type.VOID, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/VanillaCombat.java",
+      "line": 100,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"setPose\", desc=\"(Lnet/minecraft/world/entity/Pose;)V\", methodType=Type.VOID, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/VanillaCombat.java",
+      "line": 105,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"dropAllDeathLoot\", desc=\"(Lnet/minecraft/world/damagesource/DamageSource;)V\", methodType=Type.VOID, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/VanillaCombat.java",
+      "line": 110,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"dropFromLootTable\", desc=\"(Lnet/minecraft/world/damagesource/DamageSource;Z)V\", methodType=Type.VOID, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/VanillaCombat.java",
+      "line": 115,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"spawnAtLocation\", desc=\"(Lnet/minecraft/world/item/ItemStack;F)Lnet/minecraft/world/entity/item/ItemEntity;\", subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Entity/VanillaCombat.java",
+      "line": 125,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"die\", desc=\"(Lnet/minecraft/world/damagesource/DamageSource;)V\", methodType=Type.VOID, subclass=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/PlayerListMixin.java",
+      "line": 26,
+      "declaration": "@NativeMixin(target=PlayerList.class, method=\"respawn\", mode=Mode.HEAD)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/PlayerListMixin.java",
+      "line": 35,
+      "declaration": "@MixinInject(target=PlayerList.class, method=\"respawn\", at=@At(value=\"TAIL\"))"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectAttributeMixin.java",
+      "line": 20,
+      "declaration": "@ModifyReturn(target=LivingEntity.class, method=\"getAttribute\", desc=\"(Lnet/minecraft/world/entity/ai/attributes/Attribute;)Lnet/minecraft/world/entity/ai/attributes/AttributeInstance;\", priority=10)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectAttributeMixin.java",
+      "line": 26,
+      "declaration": "@NativeMixin(target=AttributeInstance.class, method=\"setBaseValue\", desc=\"(D)V\", methodType=Type.VOID, priority=10)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectClientMixin.java",
+      "line": 23,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.client.Minecraft\", method=\"runTick\", mode=Mode.HEAD, priority=10)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectClientMixin.java",
+      "line": 28,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.client.renderer.GameRenderer\", method=\"render\", mode=Mode.HEAD, priority=10)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectClientMixin.java",
+      "line": 33,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.client.renderer.LevelRenderer\", method=\"renderLevel\", mode=Mode.HEAD, priority=10)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectClientMixin.java",
+      "line": 38,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.client.renderer.entity.EntityRenderDispatcher\", method=\"render\", mode=Mode.HEAD, priority=10)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectClientMixin.java",
+      "line": 43,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.client.gui.Gui\", method=\"render\", mode=Mode.HEAD, priority=10)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectClientMixin.java",
+      "line": 48,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.client.renderer.entity.EntityRenderDispatcher\", method=\"render\", mode=Mode.HEAD, priority=5)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectClientMixin.java",
+      "line": 58,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.client.multiplayer.ClientPacketListener\", methodIncludes={\"handleSetEntityData\", \"handleUpdateAttributes\"}, mode=Mode.RETURN, priority=5)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectClientMixin.java",
+      "line": 63,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.client.multiplayer.ClientPacketListener\", method=\"handleSetHealth\", methodType=Type.VOID)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectClientMixin.java",
+      "line": 68,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.client.multiplayer.ClientPacketListener\", methodIncludes={\"handlePlayerCombatKill\", \"handleCombatKill\", \"handleDeathScreen\"}, methodType=Type.VOID, priority=10)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectClientMixin.java",
+      "line": 73,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.client.gui.screens.DeathScreen\", methodIncludes={\"render\", \"init\"}, methodType=Type.VOID, priority=10)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectClientMixin.java",
+      "line": 78,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.client.renderer.GameRenderer\", method=\"bobHurt\", methodType=Type.VOID)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectClientMixin.java",
+      "line": 83,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.client.renderer.entity.LivingEntityRenderer\", method=\"getWhiteOverlayProgress\", methodType=Type.FLOAT)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectClientMixin.java",
+      "line": 91,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.client.renderer.entity.LivingEntityRenderer\", method=\"getOverlayCoords\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectClientMixin.java",
+      "line": 99,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.client.renderer.entity.LivingEntityRenderer\", method=\"getFlipDegrees\", methodType=Type.FLOAT)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectClientMixin.java",
+      "line": 107,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.world.entity.LivingEntity\", method=\"animateHurt\", methodType=Type.VOID)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectClientMixin.java",
+      "line": 120,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.world.entity.LivingEntity\", method=\"handleEntityEvent\", methodType=Type.VOID)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectCooldownMixin.java",
+      "line": 18,
+      "declaration": "@ModifyReturn(target=Player.class, method=\"getCooldowns\", desc=\"()Lnet/minecraft/world/item/ItemCooldowns;\", priority=10)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectCooldownMixin.java",
+      "line": 24,
+      "declaration": "@NativeMixin(target=ItemCooldowns.class, method=\"isOnCooldown\", desc=\"(Lnet/minecraft/world/item/Item;)Z\", priority=10)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectCooldownMixin.java",
+      "line": 29,
+      "declaration": "@NativeMixin(target=ItemCooldowns.class, method=\"getCooldownPercent\", desc=\"(Lnet/minecraft/world/item/Item;F)F\", methodType=Type.FLOAT, priority=10)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectCooldownMixin.java",
+      "line": 34,
+      "declaration": "@NativeMixin(target=ItemCooldowns.class, method=\"addCooldown\", desc=\"(Lnet/minecraft/world/item/Item;I)V\", methodType=Type.VOID, priority=10)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectCooldownMixin.java",
+      "line": 39,
+      "declaration": "@NativeMixin(methodIncludes={\"onCooldownStarted\", \"onCooldownEnded\"}, classIncludes={\"net/minecraft/\"}, methodType=Type.VOID, priority=10)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDamageMixin.java",
+      "line": 91,
+      "declaration": "@NativeMixin(target=ServerPlayer.class, method=\"hurt\", desc=\"(Lnet/minecraft/world/damagesource/DamageSource;F)Z\", priority=50)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDamageMixin.java",
+      "line": 96,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"hurt\", desc=\"(Lnet/minecraft/world/damagesource/DamageSource;F)Z\", priority=60)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDamageMixin.java",
+      "line": 101,
+      "declaration": "@NativeMixin(target=Player.class, method=\"hurt\", desc=\"(Lnet/minecraft/world/damagesource/DamageSource;F)Z\", priority=70)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDamageMixin.java",
+      "line": 106,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"hurt\", desc=\"(Lnet/minecraft/world/damagesource/DamageSource;F)Z\", priority=80)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDamageMixin.java",
+      "line": 111,
+      "declaration": "@NativeMixin(targets={LivingEntity.class, Player.class}, method=\"actuallyHurt\", desc=\"(Lnet/minecraft/world/damagesource/DamageSource;F)V\", methodType=Type.VOID, priority=50)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDamageMixin.java",
+      "line": 123,
+      "declaration": "@NativeMixin(methodIncludes={\"actuallyHurt\", \"damageEntity\", \"hurtEntity\", \"dealDamage\", \"applyDamage\", \"forceHurt\"}, classIncludes={\"*\"}, ignoreCase=true, limit=256)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDamageMixin.java",
+      "line": 131,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"hurtCurrentlyUsedShield\", desc=\"(F)V\", methodType=Type.VOID)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDamageMixin.java",
+      "line": 136,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"hurtArmor\", desc=\"(Lnet/minecraft/world/damagesource/DamageSource;F)V\", methodType=Type.VOID)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDamageMixin.java",
+      "line": 141,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"causeFallDamage\", desc=\"(FFLnet/minecraft/world/damagesource/DamageSource;)Z\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDamageMixin.java",
+      "line": 150,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"isInvulnerableTo\", desc=\"(Lnet/minecraft/world/damagesource/DamageSource;)Z\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDamageMixin.java",
+      "line": 161,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"fireImmune\", desc=\"()Z\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDeathMixin.java",
+      "line": 22,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"kill\", desc=\"()V\", methodType=Type.VOID, priority=50)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDeathMixin.java",
+      "line": 34,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"kill\", desc=\"()V\", methodType=Type.VOID, priority=50)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDeathMixin.java",
+      "line": 42,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"die\", desc=\"(Lnet/minecraft/world/damagesource/DamageSource;)V\", methodType=Type.VOID, priority=50)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDeathMixin.java",
+      "line": 54,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.server.level.ServerPlayer\", method=\"die\", desc=\"(Lnet/minecraft/world/damagesource/DamageSource;)V\", methodType=Type.VOID, priority=40)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDeathMixin.java",
+      "line": 66,
+      "declaration": "@NativeMixin(target=Player.class, method=\"die\", desc=\"(Lnet/minecraft/world/damagesource/DamageSource;)V\", methodType=Type.VOID, priority=45)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDeathMixin.java",
+      "line": 74,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"tickDeath\", desc=\"()V\", methodType=Type.VOID)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDeathMixin.java",
+      "line": 87,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"isDeadOrDying\", desc=\"()Z\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDeathMixin.java",
+      "line": 98,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"isAlive\", desc=\"()Z\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDeathMixin.java",
+      "line": 109,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"checkTotemDeathProtection\", desc=\"(Lnet/minecraft/world/damagesource/DamageSource;)Z\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDeathMixin.java",
+      "line": 120,
+      "declaration": "@NativeMixin(methodIncludes={\"tickDeath\", \"killEntity\", \"playEntityDeathSound\", \"asynchronousRemove\", \"dropLoot\"}, classIncludes={\"com/luoee/arcanevortex/\"})"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 28,
+      "declaration": "@NativeMixin(target=ServerGamePacketListenerImpl.class, method=\"handleContainerClick\", mode=Mode.HEAD, priority=10)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 33,
+      "declaration": "@NativeMixin(target=ServerGamePacketListenerImpl.class, method=\"handlePlayerAction\", mode=Mode.HEAD, priority=10)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 38,
+      "declaration": "@NativeMixin(target=ServerGamePacketListenerImpl.class, methods={\"handleUseItem\", \"handleUseItemOn\"}, mode=Mode.HEAD, priority=10)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 43,
+      "declaration": "@NativeMixin(target=ServerGamePacketListenerImpl.class, method=\"handleInteract\", mode=Mode.HEAD, priority=10)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 48,
+      "declaration": "@NativeMixin(target=ServerGamePacketListenerImpl.class, method=\"handleSetCreativeModeSlot\", mode=Mode.HEAD, priority=10)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 53,
+      "declaration": "@NativeMixin(target=ServerGamePacketListenerImpl.class, method=\"handlePickItem\", mode=Mode.HEAD, priority=10)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 58,
+      "declaration": "@NativeMixin(target=ServerGamePacketListenerImpl.class, method=\"handleContainerButtonClick\", mode=Mode.HEAD, priority=10)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 63,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"completeUsingItem\", desc=\"()V\", mode=Mode.HEAD, methodType=Type.VOID, priority=10)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 71,
+      "declaration": "@NativeMixin(target=ItemStack.class, method=\"hurtAndBreak\", mode=Mode.HEAD, priority=10)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 79,
+      "declaration": "@NativeMixin(target=Inventory.class, method=\"swapPaint\", mode=Mode.HEAD, priority=10)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 84,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.world.inventory.AbstractContainerMenu\", methodIncludes={\"clicked\", \"doClick\", \"quickMoveStack\"}, mode=Mode.HEAD, priority=10)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 89,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.client.player.LocalPlayer\", method=\"drop\", desc=\"(Z)Z\", mode=Mode.HEAD, priority=5)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 94,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.client.multiplayer.MultiPlayerGameMode\", methodIncludes={\"useItem\", \"useItemOn\", \"attack\", \"destroyBlock\", \"continueDestroyBlock\"}, mode=Mode.HEAD, priority=5)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 99,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.client.multiplayer.MultiPlayerGameMode\", methodIncludes={\"handleInventoryMouseClick\", \"handleCreativeModeItemAdd\", \"handleCreativeModeItemDrop\", \"handlePickItem\"}, mode=Mode.HEAD, priority=5)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 104,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.client.multiplayer.ClientPacketListener\", methodIncludes={\"handleContainerSetSlot\", \"handleContainerContent\", \"handleSetCarriedItem\"}, mode=Mode.RETURN, priority=5)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 109,
+      "declaration": "@NativeMixin(target=Inventory.class, method=\"clearContent\", desc=\"()V\", methodType=Type.VOID, priority=20)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 114,
+      "declaration": "@NativeMixin(target=Inventory.class, method=\"dropAll\", desc=\"()V\", methodType=Type.VOID, priority=20)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 119,
+      "declaration": "@NativeMixin(target=Inventory.class, method=\"clearOrCountMatchingItems\", priority=20)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 127,
+      "declaration": "@NativeMixin(target=Inventory.class, method=\"removeItem\", desc=\"(II)Lnet/minecraft/world/item/ItemStack;\", priority=20)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 135,
+      "declaration": "@NativeMixin(target=Inventory.class, method=\"removeItemNoUpdate\", desc=\"(I)Lnet/minecraft/world/item/ItemStack;\", priority=20)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 143,
+      "declaration": "@NativeMixin(target=Inventory.class, method=\"setItem\", desc=\"(ILnet/minecraft/world/item/ItemStack;)V\", methodType=Type.VOID, priority=20)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 155,
+      "declaration": "@NativeMixin(target=Player.class, method=\"drop\", desc=\"(Lnet/minecraft/world/item/ItemStack;ZZ)Lnet/minecraft/world/entity/item/ItemEntity;\", priority=20)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 160,
+      "declaration": "@NativeMixin(target=Player.class, method=\"drop\", desc=\"(Z)Z\", priority=20)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 168,
+      "declaration": "@NativeMixin(target=Player.class, method=\"destroyVanishingCursedItems\", desc=\"()V\", methodType=Type.VOID, priority=20)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 173,
+      "declaration": "@NativeMixin(targets={LivingEntity.class, Player.class}, methodIncludes={\"dropEquipment\", \"dropCustomDeathLoot\", \"dropAllDeathLoot\"}, methodType=Type.VOID, priority=20)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 182,
+      "declaration": "@NativeMixin(target=Player.class, method=\"setItemSlot\", desc=\"(Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V\", methodType=Type.VOID, priority=20)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 190,
+      "declaration": "@NativeMixin(methodIncludes={\"clearinventory\", \"disarm\", \"stripinventory\", \"removeallitems\", \"emptyinventory\", \"wipeinventory\", \"dropinventory\", \"clearitems\", \"removeequipment\", \"takeallitems\"}, classIncludes={\"*\"}, ignoreCase=true, limit=256)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectDisarmMixin.java",
+      "line": 198,
+      "declaration": "@NativeMixin(methodIncludes={\"setAllBooleanFields\", \"removePig2\"}, classIncludes={\"com/luoee/arcanevortex/\"})"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectHealthMixin.java",
+      "line": 23,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"setHealth\", desc=\"(F)V\", methodType=Type.VOID, priority=100)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectHealthMixin.java",
+      "line": 44,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"getAttributeValue\", desc=\"(Lnet/minecraft/world/entity/ai/attributes/Attribute;)D\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectHealthMixin.java",
+      "line": 58,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"setAbsorptionAmount\", desc=\"(F)V\", methodType=Type.VOID)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectHealthMixin.java",
+      "line": 69,
+      "declaration": "@NativeMixin(methodIncludes={\"entityDataModify\", \"traversalModify\", \"forceModify\", \"tagModify\", \"forceSetHealth\"}, classIncludes={\"com/luoee/arcanevortex/\"})"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectHealthMixin.java",
+      "line": 77,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.client.player.LocalPlayer\", method=\"hurtTo\", desc=\"(F)V\", methodType=Type.VOID)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectHealthMixin.java",
+      "line": 85,
+      "declaration": "@NativeMixin(methodIncludes={\"sethealth\", \"setdead\", \"setdeath\", \"setlife\", \"damagehealth\"}, classIncludes={\"*\"}, ignoreCase=true, methodType=Type.VOID, limit=512)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectLifecycleMixin.java",
+      "line": 23,
+      "declaration": "@NativeMixin(target=Player.class, method=\"tick\", desc=\"()V\", mode=Mode.HEAD, priority=20)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectLifecycleMixin.java",
+      "line": 51,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.server.players.PlayerList\", method=\"placeNewPlayer\", mode=Mode.HEAD, methodType=Type.VOID)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectLifecycleMixin.java",
+      "line": 58,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.server.players.PlayerList\", method=\"respawn\", mode=Mode.HEAD)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectLifecycleMixin.java",
+      "line": 67,
+      "declaration": "@NativeMixin(target=Player.class, method=\"onAddedToWorld\", desc=\"()V\", mode=Mode.HEAD, methodType=Type.VOID)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectMovementMixin.java",
+      "line": 32,
+      "declaration": "@NativeMixin(targets={LivingEntity.class, Player.class}, method=\"isImmobile\", desc=\"()Z\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectMovementMixin.java",
+      "line": 43,
+      "declaration": "@NativeMixin(target=Player.class, method=\"setForcedPose\", desc=\"(Lnet/minecraft/world/entity/Pose;)V\", methodType=Type.VOID)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectMovementMixin.java",
+      "line": 54,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"setSpeed\", desc=\"(F)V\", methodType=Type.VOID)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectMovementMixin.java",
+      "line": 65,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"setNoGravity\", desc=\"(Z)V\", methodType=Type.VOID)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectMovementMixin.java",
+      "line": 76,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"knockback\", desc=\"(DDD)V\", methodType=Type.VOID)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectMovementMixin.java",
+      "line": 84,
+      "declaration": "@NativeMixin(targets={LivingEntity.class, Player.class, Entity.class}, methods={\"travel\", \"aiStep\", \"move\", \"rideTick\", \"handleRelativeFrictionAndCalculateMovement\", \"jumpFromGround\", \"updateFluidHeightAndDoFluidPushing\", \"lerpMotion\", \"lerpTo\", \"moveRelative\", \"makeStuckInBlock\", \"onAboveBubbleCol\", \"onInsideBubbleColumn\", \"checkFallDamage\", \"positionRider\", \"reapplyPosition\", \"refreshDimensions\", \"load\", \"restoreFrom\", \"recreateFromPacket\", \"onAddedToWorld\", \"changeDimension\", \"teleportTo\", \"teleportToWithTicket\", \"dismountTo\", \"moveTowardsClosestSpace\"}, mode=Mode.HEAD, priority=5)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectMovementMixin.java",
+      "line": 89,
+      "declaration": "@NativeMixin(targets={LivingEntity.class, Player.class, Entity.class}, methods={\"travel\", \"aiStep\", \"move\", \"rideTick\", \"handleRelativeFrictionAndCalculateMovement\", \"jumpFromGround\", \"updateFluidHeightAndDoFluidPushing\", \"lerpMotion\", \"lerpTo\", \"moveRelative\", \"makeStuckInBlock\", \"onAboveBubbleCol\", \"onInsideBubbleColumn\", \"checkFallDamage\", \"positionRider\", \"reapplyPosition\", \"refreshDimensions\", \"load\", \"restoreFrom\", \"recreateFromPacket\", \"onAddedToWorld\", \"changeDimension\", \"teleportTo\", \"teleportToWithTicket\", \"dismountTo\", \"moveTowardsClosestSpace\"}, mode=Mode.RETURN, priority=5)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectMovementMixin.java",
+      "line": 94,
+      "declaration": "@NativeMixin(target=ServerGamePacketListenerImpl.class, methods={\"handleMovePlayer\", \"handleMoveVehicle\", \"handleAcceptTeleportPacket\", \"teleport\"}, mode=Mode.HEAD, priority=5)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectMovementMixin.java",
+      "line": 99,
+      "declaration": "@NativeMixin(target=ServerGamePacketListenerImpl.class, methods={\"handleMovePlayer\", \"handleMoveVehicle\", \"handleAcceptTeleportPacket\", \"teleport\"}, mode=Mode.RETURN, priority=5)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectMovementMixin.java",
+      "line": 104,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.server.players.PlayerList\", methods={\"placeNewPlayer\", \"respawn\"}, mode=Mode.HEAD, priority=5)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectMovementMixin.java",
+      "line": 109,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.server.players.PlayerList\", methods={\"placeNewPlayer\", \"respawn\"}, mode=Mode.RETURN, priority=5)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectMovementMixin.java",
+      "line": 114,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.client.player.LocalPlayer\", methods={\"aiStep\", \"tick\", \"sendPosition\", \"move\"}, mode=Mode.HEAD, priority=5)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectMovementMixin.java",
+      "line": 119,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.client.player.LocalPlayer\", methods={\"aiStep\", \"tick\", \"sendPosition\", \"move\"}, mode=Mode.RETURN, priority=5)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectMovementMixin.java",
+      "line": 124,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.client.multiplayer.ClientPacketListener\", methods={\"handleMovePlayer\", \"handleRespawn\", \"handleLogin\", \"handleTeleportEntity\", \"handleMoveEntity\"}, mode=Mode.HEAD, priority=5)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectMovementMixin.java",
+      "line": 129,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.client.multiplayer.ClientPacketListener\", methods={\"handleMovePlayer\", \"handleRespawn\", \"handleLogin\", \"handleTeleportEntity\", \"handleMoveEntity\"}, mode=Mode.RETURN, priority=5)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectMovementMixin.java",
+      "line": 134,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"setDeltaMovement\", desc=\"(Lnet/minecraft/world/phys/Vec3;)V\", methodType=Type.VOID, priority=20)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectMovementMixin.java",
+      "line": 139,
+      "declaration": "@ModifyReturn(target=Entity.class, method=\"getDeltaMovement\", desc=\"()Lnet/minecraft/world/phys/Vec3;\", priority=20)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectMovementMixin.java",
+      "line": 144,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"push\", desc=\"(DDD)V\", methodType=Type.VOID, priority=20)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectMovementMixin.java",
+      "line": 152,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"setPosRaw\", desc=\"(DDD)V\", methodType=Type.VOID, priority=20)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectMovementMixin.java",
+      "line": 157,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"addEffect\", desc=\"(Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)Z\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectMovementMixin.java",
+      "line": 171,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"canBeAffected\", desc=\"(Lnet/minecraft/world/effect/MobEffectInstance;)Z\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectMovementMixin.java",
+      "line": 185,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"setRemainingFireTicks\", desc=\"(I)V\", methodType=Type.VOID)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectMovementMixin.java",
+      "line": 196,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"setTicksFrozen\", desc=\"(I)V\", methodType=Type.VOID)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectMovementMixin.java",
+      "line": 207,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"setAirSupply\", desc=\"(I)V\", methodType=Type.VOID)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectParticleMixin.java",
+      "line": 18,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.client.particle.ParticleEngine\", method=\"render\", mode=Mode.HEAD, priority=5)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectParticleMixin.java",
+      "line": 23,
+      "declaration": "@NativeMixin(methodIncludes={\"render\"}, desc=\"(Lcom/mojang/blaze3d/vertex/VertexConsumer;Lnet/minecraft/client/Camera;F)V\", methodType=Type.VOID, classIncludes={\"*\"}, limit=512, priority=5)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectRemovalMixin.java",
+      "line": 32,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"setRemoved\", desc=\"(Lnet/minecraft/world/entity/Entity$RemovalReason;)V\", methodType=Type.VOID, priority=50)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectRemovalMixin.java",
+      "line": 40,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"remove\", desc=\"(Lnet/minecraft/world/entity/Entity$RemovalReason;)V\", methodType=Type.VOID, priority=50)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectRemovalMixin.java",
+      "line": 48,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"discard\", desc=\"()V\", methodType=Type.VOID, priority=50)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectRemovalMixin.java",
+      "line": 56,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"onRemovedFromWorld\", desc=\"()V\", methodType=Type.VOID)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectRemovalMixin.java",
+      "line": 64,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"stopRiding\", desc=\"()V\", methodType=Type.VOID)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectRemovalMixin.java",
+      "line": 72,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"isRemoved\", desc=\"()Z\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectRemovalMixin.java",
+      "line": 86,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"canUpdate\", desc=\"(Z)V\", methodType=Type.VOID)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectRemovalMixin.java",
+      "line": 97,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"canUpdate\", desc=\"()Z\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectRemovalMixin.java",
+      "line": 108,
+      "declaration": "@NativeMixin(target=Entity.class, method=\"changeDimension\", desc=\"(Lnet/minecraft/server/level/ServerLevel;)Lnet/minecraft/world/entity/Entity;\", mode=Mode.HEAD)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectRemovalMixin.java",
+      "line": 116,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.server.players.PlayerList\", method=\"remove\", mode=Mode.HEAD)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectRemovalMixin.java",
+      "line": 127,
+      "declaration": "@NativeMixin(target=Entity.class, methodIncludes={\"onBelowWorld\", \"outOfWorld\", \"checkOutOfWorld\", \"checkBelowWorld\"}, methodType=Type.VOID)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectRemovalMixin.java",
+      "line": 139,
+      "declaration": "@NativeMixin(methodIncludes={\"killentity\", \"removeentity\", \"destroyentity\", \"despawn\", \"deleteentity\", \"forceremove\", \"eraseentity\"}, classIncludes={\"*\"}, limit=512)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectUseMixin.java",
+      "line": 25,
+      "declaration": "@NativeMixin(target=ServerGamePacketListenerImpl.class, methods={\"handlePlayerAction\", \"handleUseItem\", \"handleUseItemOn\", \"handleInteract\", \"handleSetCarriedItem\", \"handleContainerClick\", \"handleContainerClose\"}, mode=Mode.HEAD, priority=5)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectUseMixin.java",
+      "line": 30,
+      "declaration": "@NativeMixin(target=ServerGamePacketListenerImpl.class, methods={\"handlePlayerAction\", \"handleUseItem\", \"handleUseItemOn\", \"handleInteract\", \"handleSetCarriedItem\", \"handleContainerClick\", \"handleContainerClose\"}, mode=Mode.RETURN, priority=5)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectUseMixin.java",
+      "line": 35,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.client.multiplayer.MultiPlayerGameMode\", methods={\"releaseUsingItem\", \"useItem\", \"useItemOn\", \"attack\"}, mode=Mode.HEAD, priority=5)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectUseMixin.java",
+      "line": 40,
+      "declaration": "@NativeMixin(targetName=\"net.minecraft.client.multiplayer.MultiPlayerGameMode\", methods={\"releaseUsingItem\", \"useItem\", \"useItemOn\", \"attack\"}, mode=Mode.RETURN, priority=5)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectUseMixin.java",
+      "line": 45,
+      "declaration": "@NativeMixin(target=LivingEntity.class, methods={\"updatingUsingItem\", \"completeUsingItem\", \"startUsingItem\"}, mode=Mode.HEAD, priority=5)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectUseMixin.java",
+      "line": 50,
+      "declaration": "@NativeMixin(target=LivingEntity.class, methods={\"updatingUsingItem\", \"completeUsingItem\", \"startUsingItem\"}, mode=Mode.RETURN, priority=5)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectUseMixin.java",
+      "line": 73,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"stopUsingItem\", desc=\"()V\", methodType=Type.VOID, priority=20)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectUseMixin.java",
+      "line": 78,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"releaseUsingItem\", desc=\"()V\", methodType=Type.VOID, priority=20)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectUseMixin.java",
+      "line": 83,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"setLivingEntityFlag\", desc=\"(IZ)V\", methodType=Type.VOID, priority=20)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectUseMixin.java",
+      "line": 91,
+      "declaration": "@NativeMixin(target=LivingEntity.class, methodIncludes={\"updateUsingItem\"}, methodType=Type.VOID, priority=20)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectUseMixin.java",
+      "line": 96,
+      "declaration": "@NativeMixin(target=LivingEntity.class, method=\"handleEntityEvent\", desc=\"(B)V\", methodType=Type.VOID, priority=15)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Protection/ProtectUseMixin.java",
+      "line": 104,
+      "declaration": "@NativeMixin(target=LivingEntity.class, methodIncludes={\"hurtCurrentlyUsedShield\", \"disableShield\", \"stopUsingShield\"}, methodType=Type.VOID, priority=20)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Render/AnimationRendererMixin.java",
+      "line": 38,
+      "declaration": "@MixinInject(target=ItemInHandRenderer.class, method=\"renderArmWithItem\", cancellable=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Render/BufferUploaderBloomMixin.java",
+      "line": 15,
+      "declaration": "@MixinInject(target=VertexBuffer.class, method=\"draw\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Render/BufferUploaderBloomMixin.java",
+      "line": 22,
+      "declaration": "@MixinInject(target=VertexBuffer.class, method=\"drawWithShader\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Render/CosmicRenderHooks.java",
+      "line": 27,
+      "declaration": "@NativeMixin(target=Screen.class, method=\"renderWithTooltip\", mode=Mode.HEAD)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Render/CosmicRenderHooks.java",
+      "line": 32,
+      "declaration": "@MixinInject(target=Screen.class, method=\"renderWithTooltip\", at=@At(value=\"TAIL\"))"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Render/CosmicRenderHooks.java",
+      "line": 37,
+      "declaration": "@MixinInject(target=ModelManager.class, method=\"apply\", at=@At(value=\"TAIL\"))"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Render/CosmicRenderHooks.java",
+      "line": 45,
+      "declaration": "@NativeMixin(target=TextureManager.class, method=\"tick\", mode=Mode.HEAD)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Render/DragonWingModelHooks.java",
+      "line": 31,
+      "declaration": "@MixinInject(target=PlayerRenderer.class, method=\"setupRotations\", desc=\"(Lnet/minecraft/client/player/AbstractClientPlayer;Lcom/mojang/blaze3d/vertex/PoseStack;FFF)V\", at=@At(value=\"RETURN\"))"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Render/DragonWingModelHooks.java",
+      "line": 36,
+      "declaration": "@MixinInject(target=PlayerRenderer.class, method=\"getTextureLocation\", desc=\"(Lnet/minecraft/client/player/AbstractClientPlayer;)Lnet/minecraft/resources/ResourceLocation;\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Render/DragonWingModelHooks.java",
+      "line": 42,
+      "declaration": "@MixinInject(target=PlayerModel.class, method=\"setupAnim\", desc=\"(Lnet/minecraft/world/entity/LivingEntity;FFFFF)V\", at=@At(value=\"RETURN\"))"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Render/GuiGraphicsMixin.java",
+      "line": 42,
+      "declaration": "@MixinInject(target=AbstractContainerScreen.class, method=\"renderTooltip\", desc=\"(Lnet/minecraft/client/gui/GuiGraphics;II)V\", cancellable=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Render/GuiGraphicsMixin.java",
+      "line": 66,
+      "declaration": "@MixinInject(target=GuiGraphics.class, method=\"renderTooltip\", cancellable=true, remap=false)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Render/GuiGraphicsMixin.java",
+      "line": 78,
+      "declaration": "@MixinInject(target=GuiGraphics.class, method=\"renderTooltipInternal\", desc=\"(Lnet/minecraft/client/gui/Font;Ljava/util/List;IILnet/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipPositioner;)V\", cancellable=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Render/ItemInHandLayerMixin.java",
+      "line": 29,
+      "declaration": "@MixinInject(target=ItemInHandLayer.class, method=\"renderArmWithItem\", cancellable=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Render/ItemInHandRendererMixin.java",
+      "line": 42,
+      "declaration": "@MixinInject(target=ItemInHandRenderer.class, method=\"renderArmWithItem\", cancellable=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Render/MainRenderMixin.java",
+      "line": 65,
+      "declaration": "@MixinInject(target=ItemRenderer.class, method=\"render\", cancellable=true)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Render/MainRenderMixin.java",
+      "line": 88,
+      "declaration": "@MixinInject(target=EntityRenderDispatcher.class, method=\"render\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Render/MainRenderMixin.java",
+      "line": 93,
+      "declaration": "@MixinInject(target=GameRenderer.class, method=\"renderLevel\", at=@At(value=\"INVOKE\", target=\"Lnet/minecraft/client/renderer/LevelRenderer;renderLevel(Lcom/mojang/blaze3d/vertex/PoseStack;FJZLnet/minecraft/client/Camera;Lnet/minecraft/client/renderer/GameRenderer;Lnet/minecraft/client/renderer/LightTexture;Lorg/joml/Matrix4f;)V\", shift=At.Shift.BEFORE))"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Render/MainRenderMixin.java",
+      "line": 106,
+      "declaration": "@MixinInject(target=GameRenderer.class, method=\"renderLevel\", at=@At(value=\"INVOKE\", target=\"Lnet/minecraft/client/renderer/LevelRenderer;renderLevel(Lcom/mojang/blaze3d/vertex/PoseStack;FJZLnet/minecraft/client/Camera;Lnet/minecraft/client/renderer/GameRenderer;Lnet/minecraft/client/renderer/LightTexture;Lorg/joml/Matrix4f;)V\", shift=At.Shift.AFTER))"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Render/MainRenderMixin.java",
+      "line": 169,
+      "declaration": "@MixinInject(target=PostChain.class, method=\"process\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Render/MainRenderMixin.java",
+      "line": 174,
+      "declaration": "@MixinInject(target=GameRenderer.class, method=\"renderLevel\", at=@At(value=\"TAIL\"))"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Render/MainRenderMixin.java",
+      "line": 180,
+      "declaration": "@MixinInject(target=GameRenderer.class, method=\"render\", at=@At(value=\"INVOKE\", target=\"Lnet/minecraft/client/gui/Gui;render(Lnet/minecraft/client/gui/GuiGraphics;F)V\", shift=At.Shift.AFTER))"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Render/MainRenderMixin.java",
+      "line": 187,
+      "declaration": "@MixinInject(target=GameRenderer.class, method=\"render\", at=@At(value=\"TAIL\"))"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Render/MainRenderMixin.java",
+      "line": 194,
+      "declaration": "@MixinInject(method=\"renderLevel\", at=@At(value=\"RETURN\"))"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Render/PlayerCullingHooks.java",
+      "line": 23,
+      "declaration": "@ModifyReturn(target=EntityRenderer.class, method=\"shouldRender\", desc=\"(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/client/renderer/culling/Frustum;DDD)Z\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/Render/PlayerModelMixin.java",
+      "line": 22,
+      "declaration": "@MixinInject(target=PlayerModel.class, method=\"setupAnim\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/TextFxHooks.java",
+      "line": 116,
+      "declaration": "@WrapOperation(target=AnvilMenu.class, method=\"validateName\", at=@At(value=\"INVOKE\", target=\"Ljava/lang/String;length()I\"))"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/TextFxHooks.java",
+      "line": 132,
+      "declaration": "@NativeMixin(method=\"render\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/TextFxHooks.java",
+      "line": 140,
+      "declaration": "@NativeMixin(method=\"renderSignText\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/TextFxHooks.java",
+      "line": 148,
+      "declaration": "@NativeMixin(method=\"renderContents\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/TextFxHooks.java",
+      "line": 156,
+      "declaration": "@NativeMixin(method=\"reflowDisplayLines\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/TextFxHooks.java",
+      "line": 161,
+      "declaration": "@NativeMixin(method=\"seekCursorToPoint\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/TextFxHooks.java",
+      "line": 169,
+      "declaration": "@NativeMixin(method=\"renderWidget\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/TextFxHooks.java",
+      "line": 174,
+      "declaration": "@NativeMixin(method=\"onClick\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/TextFxHooks.java",
+      "line": 179,
+      "declaration": "@NativeMixin(method=\"scrollTo\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/TextFxHooks.java",
+      "line": 184,
+      "declaration": "@NativeMixin(method=\"setHighlightPos\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/TextFxHooks.java",
+      "line": 189,
+      "declaration": "@WrapOperation(target=EditBox.class, method=\"insertText\", at=@At(value=\"INVOKE\", target=\"Ljava/lang/String;length()I\"))"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/TextFxHooks.java",
+      "line": 194,
+      "declaration": "@WrapOperation(target=EditBox.class, method=\"setValue\", at=@At(value=\"INVOKE\", target=\"Ljava/lang/String;length()I\"))"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/TextFxHooks.java",
+      "line": 214,
+      "declaration": "@NativeMixin(method=\"visit\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/TextFxHooks.java",
+      "line": 228,
+      "declaration": "@NativeMixin(method=\"iterateFormatted\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/TextFxHooks.java",
+      "line": 248,
+      "declaration": "@NativeMixin(method=\"drawInBatch\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/TextFxHooks.java",
+      "line": 260,
+      "declaration": "@NativeMixin(method=\"drawInBatch\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/TextFxHooks.java",
+      "line": 272,
+      "declaration": "@NativeMixin(method=\"drawInBatch\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/TextFxHooks.java",
+      "line": 283,
+      "declaration": "@NativeMixin(method=\"drawInBatch\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/TextFxHooks.java",
+      "line": 295,
+      "declaration": "@NativeMixin(method=\"drawInBatch8xOutline\")"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/TextFxHooks.java",
+      "line": 309,
+      "declaration": "@WrapOperation(target=GuiGraphics.class, method=\"drawString\", at=@At(value=\"INVOKE\", target=\"Lnet/minecraft/client/gui/Font;drawInBatch(Ljava/lang/String;FFIZLorg/joml/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/gui/Font$DisplayMode;IIZ)I\"))"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/TextFxHooks.java",
+      "line": 322,
+      "declaration": "@WrapOperation(target=GuiGraphics.class, method=\"drawString\", at=@At(value=\"INVOKE\", target=\"Lnet/minecraft/client/gui/Font;drawInBatch(Lnet/minecraft/util/FormattedCharSequence;FFIZLorg/joml/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/gui/Font$DisplayMode;II)I\"))"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/TimeSystemMixin.java",
+      "line": 28,
+      "declaration": "@MixinInject(target=MinecraftServer.class, method=\"tickServer\", at=@At(value=\"TAIL\"))"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/TimeSystemMixin.java",
+      "line": 37,
+      "declaration": "@MixinInject(target=Minecraft.class, method=\"tick\", at=@At(value=\"TAIL\"))"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/TimeSystemMixin.java",
+      "line": 44,
+      "declaration": "@NativeMixin(target=GameRenderer.class, method=\"render\", mode=Mode.HEAD)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/TimeSystemMixin.java",
+      "line": 51,
+      "declaration": "@NativeMixin(target=Minecraft.class, method=\"setLevel\", mode=Mode.HEAD)"
+    },
+    {
+      "file": "com/luoee/arcanevortex/Mixin/TimeSystemMixin.java",
+      "line": 56,
+      "declaration": "@NativeMixin(target=MinecraftServer.class, method=\"createLevels\", mode=Mode.HEAD)"
+    }
+  ]
+}

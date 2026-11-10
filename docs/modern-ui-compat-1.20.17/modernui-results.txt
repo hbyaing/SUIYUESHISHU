@@ -1,0 +1,1 @@
+PASS Modern UI text engine active; both tooltip modes and Shift pagination; panel render; same EditBox preserves middle insertion/cursor; GUI scale 2 -> 3 -> 2 and cache reload; animated full-line shaped gradient layout cache 17 -> 17 across 180 frames

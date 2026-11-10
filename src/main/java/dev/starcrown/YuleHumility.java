@@ -24,15 +24,13 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid=StarcrownDoll.ID)
 public final class YuleHumility {
 
- public static final TagKey<Item> ALLOWED=TagKey.create(Registries.ITEM,new ResourceLocation(StarcrownDoll.ID,"humility_allowed_equipment"));
- public static final TagKey<Item> FORBIDDEN=TagKey.create(Registries.ITEM,new ResourceLocation(StarcrownDoll.ID,"humility_forbidden_equipment"));
  private static final String SIZE_STATE="starcrowndoll_humility_size";
  public static boolean active(Entity entity){return entity instanceof Player p&&p.getInventory()!=null&&p.getItemBySlot(EquipmentSlot.HEAD).is(StarcrownDoll.YULE_ITEM.get());}
  public static boolean quietSource(Entity entity){return active(entity)||(entity instanceof Projectile projectile&&active(projectile.getOwner()))||(entity!=null&&active(entity.getControllingPassenger()));}
  public static float capped(float amount){return Float.isFinite(amount)?Math.min(1,Math.max(0,amount)):1;}
- public static float damage(LivingEntity victim,DamageSource source,float amount){return active(victim)||active(source.getEntity())?capped(amount):amount;}
+ public static float damage(LivingEntity victim,DamageSource source,float amount){return active(victim)?capped(amount):amount;}
  public static float healthWrite(LivingEntity entity,float next){
-  if(!active(entity)||YuleCharity.costWrite(entity))return next;
+  if(!active(entity))return next;
   float current=entity.getHealth();if(!Float.isFinite(current)||current<=0)return Float.isFinite(next)?next:0;
   return Float.isFinite(next)?Math.max(next,Math.max(0,current-1)):Math.max(0,current-1);
  }
@@ -42,37 +40,6 @@ public final class YuleHumility {
   p.setHealth(Math.max(0,p.getHealth()-1));
   if(p.getHealth()<=0)p.die(p.damageSources().genericKill());
   return true;
- }
- public static boolean forbidden(ItemStack stack){
-  if(stack.isEmpty()||StarcrownDoll.isDoll(stack))return false;
-  if(stack.is(FORBIDDEN))return true;if(stack.is(ALLOWED))return false;
-  var item=stack.getItem();
-  if(item instanceof ArmorItem armor){var material=armor.getMaterial();return material!=ArmorMaterials.LEATHER&&material!=ArmorMaterials.CHAIN&&material!=ArmorMaterials.IRON&&material!=ArmorMaterials.GOLD&&material!=ArmorMaterials.TURTLE;}
-  if(item instanceof TieredItem tool){
-   var tier=tool.getTier();var order=TierSortingRegistry.getSortedTiers();int iron=order.indexOf(Tiers.IRON),actual=order.indexOf(tier);
-   if(iron>=0&&actual>=0)return actual>iron;
-   return tier!=Tiers.WOOD&&tier!=Tiers.STONE&&tier!=Tiers.IRON&&tier!=Tiers.GOLD;
-  }
-  if(item instanceof TridentItem)return true;
-  // Untiered vanilla bows/crossbows have no material grade. Unknown attribute-based weapons require an explicit tag.
-  var id=net.minecraftforge.registries.ForgeRegistries.ITEMS.getKey(item);
-  return id!=null&&!id.getNamespace().equals("minecraft")&&!stack.getAttributeModifiers(EquipmentSlot.MAINHAND).get(Attributes.ATTACK_DAMAGE).isEmpty();
- }
- public static void enforceEquipment(ServerPlayer player){
-  if(!active(player))return;
-  for(var slot:EquipmentSlot.values()){
-   var stack=player.getItemBySlot(slot);if(!forbidden(stack))continue;
-   var returned=stack.copy();player.setItemSlot(slot,ItemStack.EMPTY);
-   // Inventory.add would put the item straight back into an empty selected hotbar slot.
-   for(int offset=0;offset<36&&!returned.isEmpty();offset++){
-    int index=(offset+9)%36;if(index==player.getInventory().selected||YuleGenerosity.locked(player,index))continue;
-    var stored=player.getInventory().getItem(index);
-    if(stored.isEmpty()){int count=Math.min(returned.getCount(),returned.getMaxStackSize());player.getInventory().setItem(index,returned.split(count));}
-    else if(ItemStack.isSameItemSameTags(stored,returned)){int count=Math.min(returned.getCount(),stored.getMaxStackSize()-stored.getCount());if(count>0){stored.grow(count);returned.shrink(count);}}
-   }
-   if(!returned.isEmpty())player.drop(returned,false);
-   player.inventoryMenu.broadcastChanges();
-  }
  }
  private static boolean concealedMemory(Object value){
   if(value instanceof Entity entity)return active(entity);
@@ -96,15 +63,11 @@ public final class YuleHumility {
  @SubscribeEvent(priority=EventPriority.LOWEST) public static void hurt(LivingHurtEvent event){event.setAmount(damage(event.getEntity(),event.getSource(),event.getAmount()));}
  @SubscribeEvent(priority=EventPriority.LOWEST) public static void damage(LivingDamageEvent event){event.setAmount(damage(event.getEntity(),event.getSource(),event.getAmount()));}
  @SubscribeEvent(priority=EventPriority.LOWEST) public static void target(LivingChangeTargetEvent event){if(active(event.getNewTarget()))event.setNewTarget(null);}
- @SubscribeEvent(priority=EventPriority.HIGHEST) public static void attack(AttackEntityEvent event){if(active(event.getEntity())&&forbidden(event.getEntity().getMainHandItem()))event.setCanceled(true);}
- @SubscribeEvent(priority=EventPriority.HIGHEST) public static void use(PlayerInteractEvent.RightClickItem event){if(active(event.getEntity())&&forbidden(event.getItemStack()))event.setCanceled(true);}
- @SubscribeEvent public static void equipment(LivingEquipmentChangeEvent event){if(event.getEntity() instanceof ServerPlayer p)enforceEquipment(p);}
  public static void updateSize(Player player){
   var data=player.getPersistentData();
   if(data.getBoolean(SIZE_STATE)){data.remove(SIZE_STATE);player.refreshDimensions();}
  }
  @SubscribeEvent public static void tick(TickEvent.PlayerTickEvent event){
   if(event.phase!=TickEvent.Phase.START)return;var player=event.player;updateSize(player);
-  if(player instanceof ServerPlayer p){enforceEquipment(p);if(active(p))DivineCombat.cleanArcane(p);}
  }
 }

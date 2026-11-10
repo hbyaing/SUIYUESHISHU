@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [" N ", "RHD", "   "],
+  "key": {
+    "N": {"item": "minecraft:nether_star"},
+    "R": {"item": "minecraft:echo_shard"},
+    "H": {"item": "minecraft:dragon_head"},
+    "D": {"item": "minecraft:netherite_ingot"}
+  },
+  "result": {"item": "starcrowndoll:twilight_doll"}
+}

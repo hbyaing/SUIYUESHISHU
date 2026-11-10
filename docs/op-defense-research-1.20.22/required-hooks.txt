@@ -1,0 +1,1 @@
+PASS: 100 required hooks match declared method descriptors in C:\Users\Lenovo\Documents\Codex\2026-10-23\https-github-com-hbyaing-yishendaiguan-https\work\gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.20.1-47.4.0_mapped_official_1.20.1\forge-1.20.1-47.4.0_mapped_official_1.20.1.jar

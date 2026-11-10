@@ -7,5 +7,5 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 @Mixin(ItemEntity.class)
 public abstract class GenerosityGift {
  @Inject(method={"isMergable()Z","m_32070_()Z"},at=@At("HEAD"),cancellable=true,remap=false,require=1)
- private void uniqueGift(CallbackInfoReturnable<Boolean> ci){if(dev.starcrown.YuleCharity.deathLoot((ItemEntity)(Object)this)||((ItemEntity)(Object)this).getPersistentData().hasUUID(YuleGenerosity.DONOR))ci.setReturnValue(false);}
+ private void uniqueGift(CallbackInfoReturnable<Boolean> ci){var data=((ItemEntity)(Object)this).getPersistentData();if(data.hasUUID(YuleGenerosity.DONOR)||data.hasUUID(YuleGenerosity.CALM_DONOR))ci.setReturnValue(false);}
 }

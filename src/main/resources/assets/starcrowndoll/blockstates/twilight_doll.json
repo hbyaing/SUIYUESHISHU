@@ -1,0 +1,1 @@
+{"variants":{"facing=north":{"model":"starcrowndoll:block/doll"},"facing=east":{"model":"starcrowndoll:block/doll","y":90},"facing=south":{"model":"starcrowndoll:block/doll","y":180},"facing=west":{"model":"starcrowndoll:block/doll","y":270}}}

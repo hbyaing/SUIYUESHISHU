@@ -6,7 +6,7 @@ tasks.named('qaJar').configure { finalizedBy 'reobfQaJar' }
 
 minecraft.runs {
  gameTestServer {
-  workingDirectory project.file('../work/humility-gametest')
+  workingDirectory project.file(project.findProperty('qaGameDir') ?: '../work/humility-gametest')
   property 'forge.enabledGameTestNamespaces', 'starcrownqa'
   args '--mixin', 'starcrowndoll.mixins.json'
   mods {

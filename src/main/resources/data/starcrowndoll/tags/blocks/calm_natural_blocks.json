@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#forge:ores",
+      "required": false
+    },
+    "minecraft:netherrack",
+    "minecraft:end_stone",
+    "minecraft:calcite",
+    "minecraft:tuff",
+    "minecraft:dripstone_block",
+    "minecraft:clay",
+    "minecraft:mud"
+  ]
+}

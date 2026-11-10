@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>以神戴冠 · 玩偶白模工作台</title>
+  <style>:root {
+  color-scheme: dark;
+  --ink: #edf0fa;
+  --muted: #aab4cf;
+  --surface: #171d2f;
+  --stroke: #363e58;
+  --accent: #cabbff;
+  font: 15px/1.55 'Microsoft YaHei UI', system-ui, sans-serif;
+  color: var(--ink);
+  background: #0c1120 radial-gradient(ellipse at 8% 0%, #252044, transparent 44%) no-repeat;
+}
+* { box-sizing: border-box; }
+body { margin: 0 auto; width: min(1120px, calc(100% - 48px)); }
+.hero { padding: 36px 0 23px; }
+.eyebrow { color: var(--accent); font-size: 12px; letter-spacing: .16em; }
+.eyebrow span { display: inline-block; width: 8px; height: 8px; background: #bba5ff; transform: rotate(45deg); margin-right: 8px; }
+h1 { margin: 7px 0 3px; font-size: clamp(29px, 5vw, 44px); line-height: 1.25; letter-spacing: .035em; }
+h2 { font-size: 17px; margin: 0 0 13px; }
+p { margin: 0; }
+.hero p, footer { color: var(--muted); }
+main { display: grid; grid-template-columns: 1.58fr 1fr; gap: 16px; align-items: stretch; }
+.card { background: var(--surface); border: 1px solid var(--stroke); border-radius: 16px; overflow: hidden; min-width: 0; }
+.options, .atlas-card, .report { padding: 18px 20px; }
+.preview { display: flex; flex-direction: column; }
+.stage-title, .stage-controls { display: flex; justify-content: space-between; gap: 10px; align-items: center; padding: 10px 14px; }
+.stage-title { font-weight: 700; }
+#source-name { overflow-wrap: anywhere; }
+#source-tag { white-space: nowrap; color: var(--accent); font-size: 12px; font-weight: 400; }
+.stage { position: relative; min-height: 350px; flex: 1; overflow: hidden; background: radial-gradient(ellipse at 50% 43%, #39405d, #1e263d 60%, #131a2e); }
+.stage::before { content: ''; position: absolute; inset: 0; background: radial-gradient(#cad2ff29 1px, transparent 1px); background-size: 23px 23px; }
+.plinth { position: absolute; left: 19%; right: 19%; bottom: 12%; height: 13%; border-radius: 50%; border: 1px solid #747ea6; box-shadow: 0 6px 0 #21283e, 0 9px 16px #101629; background: radial-gradient(ellipse, #34415e 28%, #4a5372); }
+#scene { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; cursor: grab; }
+#scene:active { cursor: grabbing; }
+#graphics-error { position: relative; margin: 15px; }
+.views, .samples, .checks, .downloads { display: flex; flex-wrap: wrap; gap: 7px; }
+small, .hint { color: var(--muted); font-size: 12px; }
+.hint { margin: 8px 0 0; }
+button, select { font: inherit; font-size: 13px; color: var(--ink); border: 1px solid var(--stroke); background: #20283e; border-radius: 7px; min-height: 33px; padding: 4px 9px; }
+button { cursor: pointer; }
+button:hover, select:hover { border-color: var(--accent); }
+button[aria-pressed='true'] { background: #403760; border-color: #a68fe6; color: #f3eaff; }
+button:focus-visible, select:focus-visible, #drop-zone:focus-within { outline: 2px solid #d6c7ff; outline-offset: 2px; }
+#drop-zone { display: grid; justify-items: start; gap: 5px; padding: 10px 12px; border: 1px dashed #8d7bc3; border-radius: 10px; background: #282443; cursor: pointer; color: #e9dcff; }
+#drop-zone.over { background: #46376a; }
+#skin-file { max-width: 100%; color: var(--muted); font: inherit; font-size: 12px; }
+#skin-file::file-selector-button { border: 0; border-radius: 4px; padding: 3px 6px; margin-right: 6px; color: #201833; background: #d6c7ff; cursor: pointer; }
+.samples, .field, .checks, .downloads { margin-top: 11px; }
+.field, .inspection-title { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.checks label, .inspection-title label { font-size: 13px; white-space: nowrap; }
+input[type='checkbox'] { accent-color: #b9a2ff; vertical-align: -2px; }
+.downloads button { background: #33304b; }
+#file-error { color: #ffb9ad; margin-top: 8px; font-size: 13px; }
+.inspection-title h2 { margin-bottom: 0; }
+.atlas-wrap { margin-top: 13px; width: min(100%, 242px); aspect-ratio: 1; border: 1px solid #68708c; background: conic-gradient(#555d77 25%, #3f4862 0 50%, #555d77 0 75%, #3f4862 0) 0 0 / 16px 16px; }
+#atlas { display: block; width: 100%; height: 100%; image-rendering: pixelated; }
+#layer-summary { color: var(--accent); font-size: 12px; font-weight: 400; margin-left: 4px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { padding: 6px 5px; text-align: left; border-bottom: 1px solid var(--stroke); }
+th { color: #c7d0eb; font-weight: 600; }
+td:first-child { white-space: nowrap; }
+.warning { color: #ffd3a0; }
+.empty { color: var(--muted); }
+footer { padding: 17px 0 25px; font-size: 12px; }
+@media (max-width: 760px) { body { width: calc(100% - 26px); } main { grid-template-columns: 1fr; } .stage { min-height: 300px; } }
+@media (max-width: 460px) { .stage-controls small { display: none; } .stage-controls { padding-inline: 9px; } .views { gap: 4px; } }
+</style>
+</head>
+<body>
+  <header class="hero">
+    <div class="eyebrow"><span></span> 以神戴冠 / 模型工坊</div>
+    <h1>玩偶白模工作台</h1>
+    <p>沿用成然的坐姿。导入原始皮肤，即可逐面核对贴图和衣物外层。</p>
+  </header>
+  <main>
+    <section class="card preview" aria-label="白模预览">
+      <div class="stage-title"><span id="source-name">坐姿白模</span><span id="source-tag">模板预览</span></div>
+      <div class="stage">
+        <div class="plinth"></div>
+        <canvas id="scene" aria-label="可旋转的玩偶模型"></canvas>
+        <p id="graphics-error" hidden>当前浏览器未启用 WebGL。仍可检查皮肤和导出白模。</p>
+      </div>
+      <div class="stage-controls">
+        <div class="views" aria-label="观察角度">
+          <button data-view="angled" aria-pressed="true">斜视</button>
+          <button data-view="front" aria-pressed="false">正面</button>
+          <button data-view="left" aria-pressed="false">左侧</button>
+          <button data-view="back" aria-pressed="false">背面</button>
+          <button data-view="right" aria-pressed="false">右侧</button>
+        </div>
+        <small>拖动旋转</small>
+      </div>
+    </section>
+
+    <section class="card options" aria-label="皮肤和图层">
+      <h2>皮肤与图层</h2>
+      <label id="drop-zone" for="skin-file">导入或拖入皮肤 PNG<input id="skin-file" type="file" accept=".png,image/png"></label>
+      <div class="samples"><button id="blank">白模</button><button data-skin="chengran">成然示例</button><button data-skin="yule">余乐示例</button></div>
+      <p id="file-error" role="alert" hidden></p>
+      <label class="field" for="arm-model"><span>手臂布局</span><select id="arm-model"><option value="slim">Alex · 细臂</option><option value="wide">Steve · 粗臂</option></select></label>
+      <p class="hint">单独的 64 × 64 PNG 没有手臂类型标记。按原模型选择，来源不明时可切换核对袖口。</p>
+      <div class="checks"><label><input id="show-base" type="checkbox" checked> 底层</label><label><input id="show-outer" type="checkbox" checked> 衣物外层</label><label><input id="flat-light" type="checkbox"> 原色核对</label></div>
+      <div class="downloads"><button id="save-model">导出白模 JSON</button><button id="save-texture">导出白模 PNG</button></div>
+      <p class="hint">白模文件按当前手臂 UV 导出。原皮肤留在本机，预览直接按原像素贴图。</p>
+    </section>
+
+    <section class="card atlas-card" aria-label="UV 图检查">
+      <div class="inspection-title"><h2>UV 图检查</h2><label><input id="show-padding" type="checkbox" checked> 标记未映射区域</label></div>
+      <div class="atlas-wrap"><canvas id="atlas" width="64" height="64" aria-label="皮肤 UV 图"></canvas></div>
+      <p class="hint" id="padding-report"></p>
+      <p class="hint">紫色区域没有模型面使用。有效 UV 内的不透明黑白色块按原图保留，整片纯黑或纯白只提示核对。</p>
+    </section>
+
+    <section class="card report" aria-label="图层检查">
+      <h2>图层检查 <span id="layer-summary"></span></h2>
+      <table><thead><tr><th>部位</th><th>底层</th><th>衣物外层</th></tr></thead><tbody id="layers"></tbody></table>
+      <p class="hint">标准皮肤 PNG 每个部位最多两层。第三层及以上需要对应的自定义模型和 UV 定义。</p>
+    </section>
+  </main>
+  <footer>原版 Minecraft 64 × 64 PNG · UV 以项目现有成然坐姿模型为准</footer>
+  <script id="model-data" type="application/json">{"boxes":[{"part":"head","layer":0,"element":{"name":"头","from":[4.5,9,6.5],"to":[11.5,15.8,13.5],"faces":{"west":{"uv":[0,2,2,4],"texture":"#skin"},"north":{"uv":[2,2,4,4],"texture":"#skin"},"east":{"uv":[4,2,6,4],"texture":"#skin"},"south":{"uv":[6,2,8,4],"texture":"#skin"},"up":{"uv":[2,0,4,2],"texture":"#skin"},"down":{"uv":[4,0,6,2],"texture":"#skin"}}}},{"part":"head","layer":1,"element":{"name":"头发外层","from":[4.3,8.8,6.3],"to":[11.7,16,13.7],"faces":{"west":{"uv":[8,2,10,4],"texture":"#skin"},"east":{"uv":[12,2,14,4],"texture":"#skin"},"south":{"uv":[14,2,16,4],"texture":"#skin"},"up":{"uv":[10,0,12,2],"texture":"#skin"},"down":{"uv":[12,0,14,2],"texture":"#skin"},"north":{"uv":[10,2,12,4],"texture":"#skin"}}}},{"part":"body","layer":0,"element":{"name":"身体","from":[5,3,8.5],"to":[11,9,11.5],"faces":{"west":{"uv":[4,5,5,8],"texture":"#skin"},"north":{"uv":[5,5,7,8],"texture":"#skin"},"east":{"uv":[7,5,8,8],"texture":"#skin"},"south":{"uv":[8,5,10,8],"texture":"#skin"},"up":{"uv":[5,4,7,5],"texture":"#skin"},"down":{"uv":[7,4,9,5],"texture":"#skin"}}}},{"part":"rightLeg","layer":0,"element":{"name":"右腿","from":[4.85,0,3],"to":[7.85,3,10.5],"faces":{"west":{"uv":[0,5,1,8],"texture":"#skin","rotation":90},"north":{"uv":[2.0,4.0,3.0,5.0],"texture":"#skin","rotation":180},"east":{"uv":[2,5,3,8],"texture":"#skin","rotation":270},"south":{"uv":[1.0,4.0,2.0,5.0],"texture":"#skin"},"up":{"uv":[1,5,2,8],"texture":"#skin","rotation":180},"down":{"uv":[3.0,5.0,4.0,8.0],"texture":"#skin"}},"rotation":{"origin":[6.35,1.5,10.5],"axis":"y","angle":22.5,"rescale":false}}},{"part":"leftLeg","layer":0,"element":{"name":"左腿","from":[8.15,0,3],"to":[11.15,3,10.5],"faces":{"west":{"uv":[4,13,5,16],"texture":"#skin","rotation":90},"north":{"uv":[6.0,12.0,7.0,13.0],"texture":"#skin","rotation":180},"east":{"uv":[6,13,7,16],"texture":"#skin","rotation":270},"south":{"uv":[5.0,12.0,6.0,13.0],"texture":"#skin"},"up":{"uv":[5,13,6,16],"texture":"#skin","rotation":180},"down":{"uv":[7.0,13.0,8.0,16.0],"texture":"#skin"}},"rotation":{"origin":[9.65,1.5,10.5],"axis":"y","angle":-22.5,"rescale":false}}},{"part":"body","layer":1,"element":{"name":"身体服饰外层","from":[4.88,2.88,8.38],"to":[11.12,9.12,11.62],"faces":{"west":{"uv":[4,9,5,12],"texture":"#skin"},"north":{"uv":[5,9,7,12],"texture":"#skin"},"east":{"uv":[7,9,8,12],"texture":"#skin"},"south":{"uv":[8,9,10,12],"texture":"#skin"},"up":{"uv":[5,8,7,9],"texture":"#skin"},"down":{"uv":[7,8,9,9],"texture":"#skin"}}}},{"part":"rightLeg","layer":1,"element":{"name":"右腿服装外层","from":[4.73,-0.12,2.88],"to":[7.97,3.12,10.62],"faces":{"west":{"uv":[0,9,1,12],"texture":"#skin","rotation":90},"north":{"uv":[2.0,8.0,3.0,9.0],"texture":"#skin","rotation":180},"east":{"uv":[2,9,3,12],"texture":"#skin","rotation":270},"south":{"uv":[1.0,8.0,2.0,9.0],"texture":"#skin"},"up":{"uv":[1,9,2,12],"texture":"#skin","rotation":180},"down":{"uv":[3.0,9.0,4.0,12.0],"texture":"#skin"}},"rotation":{"origin":[6.35,1.5,10.5],"axis":"y","angle":22.5,"rescale":false}}},{"part":"leftLeg","layer":1,"element":{"name":"左腿服装外层","from":[8.03,-0.12,2.88],"to":[11.27,3.12,10.62],"faces":{"west":{"uv":[0,13,1,16],"texture":"#skin","rotation":90},"north":{"uv":[2.0,12.0,3.0,13.0],"texture":"#skin","rotation":180},"east":{"uv":[2,13,3,16],"texture":"#skin","rotation":270},"south":{"uv":[1.0,12.0,2.0,13.0],"texture":"#skin"},"up":{"uv":[1,13,2,16],"texture":"#skin","rotation":180},"down":{"uv":[3.0,13.0,4.0,16.0],"texture":"#skin"}},"rotation":{"origin":[9.65,1.5,10.5],"axis":"y","angle":-22.5,"rescale":false}}},{"part":"rightArm","layer":0,"element":{"name":"右臂","from":[2,3,8.5],"to":[5,9,11.5],"faces":{"west":{"uv":[10.0,5.0,11.0,8.0],"texture":"#skin"},"north":{"uv":[11.0,5.0,11.75,8.0],"texture":"#skin"},"east":{"uv":[11.75,5.0,12.75,8.0],"texture":"#skin"},"south":{"uv":[12.75,5.0,13.5,8.0],"texture":"#skin"},"up":{"uv":[11.0,4.0,11.75,5.0],"texture":"#skin"},"down":{"uv":[11.75,4.0,12.5,5.0],"texture":"#skin"}},"rotation":{"origin":[3.5,9,10],"axis":"x","angle":22.5,"rescale":false}}},{"part":"rightArm","layer":1,"element":{"name":"右臂服饰外层","from":[1.88,2.88,8.38],"to":[5.12,9.12,11.62],"faces":{"west":{"uv":[10.0,9.0,11.0,12.0],"texture":"#skin"},"north":{"uv":[11.0,9.0,11.75,12.0],"texture":"#skin"},"east":{"uv":[11.75,9.0,12.75,12.0],"texture":"#skin"},"south":{"uv":[12.75,9.0,13.5,12.0],"texture":"#skin"},"up":{"uv":[11.0,8.0,11.75,9.0],"texture":"#skin"},"down":{"uv":[11.75,8.0,12.5,9.0],"texture":"#skin"}},"rotation":{"origin":[3.5,9,10],"axis":"x","angle":22.5,"rescale":false}}},{"part":"leftArm","layer":0,"element":{"name":"左臂","from":[11,3,8.5],"to":[14,9,11.5],"faces":{"west":{"uv":[8.0,13.0,9.0,16.0],"texture":"#skin"},"north":{"uv":[9.0,13.0,9.75,16.0],"texture":"#skin"},"east":{"uv":[9.75,13.0,10.75,16.0],"texture":"#skin"},"south":{"uv":[10.75,13.0,11.5,16.0],"texture":"#skin"},"up":{"uv":[9.0,12.0,9.75,13.0],"texture":"#skin"},"down":{"uv":[9.75,12.0,10.5,13.0],"texture":"#skin"}},"rotation":{"origin":[12.5,9,10],"axis":"x","angle":22.5,"rescale":false}}},{"part":"leftArm","layer":1,"element":{"name":"左臂服饰外层","from":[10.88,2.88,8.38],"to":[14.12,9.12,11.62],"faces":{"west":{"uv":[12.0,13.0,13.0,16.0],"texture":"#skin"},"north":{"uv":[13.0,13.0,13.75,16.0],"texture":"#skin"},"east":{"uv":[13.75,13.0,14.75,16.0],"texture":"#skin"},"south":{"uv":[14.75,13.0,15.5,16.0],"texture":"#skin"},"up":{"uv":[13.0,12.0,13.75,13.0],"texture":"#skin"},"down":{"uv":[13.75,12.0,14.5,13.0],"texture":"#skin"}},"rotation":{"origin":[12.5,9,10],"axis":"x","angle":22.5,"rescale":false}}}],"samples":{"chengran":"data:image/png;base64,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","yule":"data:image/png;base64,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"}}</script>
+  <script>'use strict';
+
+const $ = (selector) => document.querySelector(selector);
+const data = JSON.parse($('#model-data').textContent);
+const parts = {
+  head: '头部', body: '躯干', rightArm: '右臂', leftArm: '左臂', rightLeg: '右腿', leftLeg: '左腿'
+};
+const views = { angled: [-28, 18], front: [0, 0], left: [90, 0], back: [180, 0], right: [-90, 0] };
+const faceCorners = {
+  down: [[0,0,1], [0,0,0], [1,0,0], [1,0,1]],
+  up: [[0,1,0], [0,1,1], [1,1,1], [1,1,0]],
+  north: [[1,1,0], [1,0,0], [0,0,0], [0,1,0]],
+  south: [[0,1,1], [0,0,1], [1,0,1], [1,1,1]],
+  west: [[0,1,0], [0,0,0], [0,0,1], [0,1,1]],
+  east: [[1,1,1], [1,0,1], [1,0,0], [1,1,0]]
+};
+const armFaces = {
+  west: [0, 0, 0], east: [7, 1, 0], north: [4, 0, 1], up: [4, 0, 1],
+  down: [7, 1, 1], south: [11, 1, 1]
+};
+const DEG_TO_RAD = Math.PI / 180;
+
+function rotate(point, rotation) {
+  if (!rotation) return point;
+  const axis = 'xyz'.indexOf(rotation.axis);
+  const first = (axis + 1) % 3, second = (axis + 2) % 3;
+  const origin = rotation.origin, angle = rotation.angle * DEG_TO_RAD;
+  const result = [...point];
+  const a = point[first] - origin[first], b = point[second] - origin[second];
+  result[first] = origin[first] + a * Math.cos(angle) - b * Math.sin(angle);
+  result[second] = origin[second] + a * Math.sin(angle) + b * Math.cos(angle);
+  return result;
+}
+
+function armUV(uv, face, part, layer) {
+  const origin = part === 'rightArm' ? 40 : layer ? 48 : 32;
+  const [start, shift, grows] = armFaces[face];
+  const remap = (u) => Math.round((u + shift + grows * (u - origin - start) / 3) * 1e6) / 1e6;
+  return [remap(uv[0]), uv[1], remap(uv[2]), uv[3]];
+}
+
+function makeTemplate(wide) {
+  const used = new Uint8Array(4096);
+  const regions = Object.fromEntries(Object.keys(parts).map((part) => [part, [new Set(), new Set()]]));
+  const elements = [], faces = [], vertices = [];
+  for (const {part, layer, element} of data.boxes) {
+    const box = {...element, faces: {}};
+    for (const [side, face] of Object.entries(element.faces)) {
+      const original = face.uv.map((value) => value * 4);
+      const uv = wide && part.endsWith('Arm') ? armUV(original, side, part, layer) : original;
+      const [u0, v0, u1, v1] = uv;
+      box.faces[side] = {...face, uv: uv.map((value) => value / 4)};
+      for (let y = Math.min(v0, v1); y < Math.max(v0, v1); y++) {
+        for (let x = Math.min(u0, u1); x < Math.max(u0, u1); x++) {
+          const index = y * 64 + x;
+          regions[part][layer].add(index);
+          used[index] |= 1 << layer;
+        }
+      }
+      const corners = faceCorners[side].map((corner) => {
+        const point = corner.map((end, axis) => end ? element.to[axis] : element.from[axis]);
+        return rotate(point, element.rotation).map((value) => value - 8);
+      });
+      const normal = unitCross(corners[0], corners[1], corners[2]);
+      const center = corners[0].map((value, axis) => (value + corners[2][axis]) / 2);
+      const uvCorners = [[u0,v0], [u0,v1], [u1,v1], [u1,v0]];
+      const turn = (face.rotation || 0) / 90;
+      faces.push({offset: vertices.length / 8, layer, center});
+      for (const index of [0, 1, 2, 0, 2, 3]) {
+        const coord = uvCorners[(index + turn) % 4].map((value) => value / 64);
+        vertices.push(...corners[index], ...coord, ...normal);
+      }
+    }
+    elements.push(box);
+  }
+  return {used, regions, elements, faces, vertices: new Float32Array(vertices)};
+}
+
+function unitCross(origin, first, second) {
+  const [ax, ay, az] = first.map((value, axis) => value - origin[axis]);
+  const [bx, by, bz] = second.map((value, axis) => value - origin[axis]);
+  const normal = [ay * bz - az * by, az * bx - ax * bz, ax * by - ay * bx];
+  const size = Math.hypot(...normal);
+  return normal.map((value) => value / size);
+}
+
+const templates = {slim: makeTemplate(false), wide: makeTemplate(true)};
+const atlas = $('#atlas').getContext('2d');
+const skinCanvas = document.createElement('canvas');
+skinCanvas.width = skinCanvas.height = 64;
+const skinContext = skinCanvas.getContext('2d', {willReadFrequently: true});
+let template = templates.slim;
+let skin = null;
+let revision = 0;
+let angles = [...views.angled];
+
+function whitePixels(mold) {
+  const rgba = new Uint8ClampedArray(64 * 64 * 4);
+  mold.used.forEach((layers, index) => {
+    if (!layers) return;
+    const base = Boolean(layers & 1);
+    rgba.set(base ? [245, 246, 252, 255] : [201, 206, 225, 255], index * 4);
+  });
+  return rgba;
+}
+
+function stats(indices, rgba) {
+  const counts = {visible: 0, black: 0, white: 0, partial: 0, total: 0};
+  for (const index of indices) {
+    counts.total++;
+    const offset = index * 4;
+    const [r, g, b, alpha] = rgba.subarray(offset, offset + 4);
+    if (!alpha) continue;
+    counts.visible++;
+    if (alpha < 255) counts.partial++;
+    if (r === 0 && g === 0 && b === 0) counts.black++;
+    if (r === 255 && g === 255 && b === 255) counts.white++;
+  }
+  return counts;
+}
+
+function reportLayer(cell, counts) {
+  if (counts.visible === 0) {
+    cell.className = 'empty';
+    cell.textContent = '全透明';
+  } else if (!counts.partial && (counts.black === counts.total || counts.white === counts.total)) {
+    cell.className = 'warning';
+    cell.textContent = counts.black ? '整片纯黑 · 核对' : '整片纯白 · 核对';
+  } else {
+    cell.textContent = `${counts.visible}/${counts.total} 像素${counts.partial ? ' · 含半透明' : ''}`;
+  }
+}
+
+function inspect(rgba) {
+  atlas.putImageData(new ImageData(rgba, 64, 64), 0, 0);
+  const unmapped = [];
+  template.used.forEach((used, index) => {
+    if (used) return;
+    unmapped.push(index);
+    if (!$('#show-padding').checked) return;
+    const x = index % 64, y = index >> 6;
+    atlas.fillStyle = (x + y) % 2 ? '#a581f08c' : '#9772d44d';
+    atlas.fillRect(x, y, 1, 1);
+  });
+  const padding = stats(unmapped, rgba);
+  $('#padding-report').textContent = `未映射 ${padding.total} 像素，其中可见纯黑 ${padding.black}、纯白 ${padding.white}。`;
+  const table = $('#layers');
+  table.replaceChildren();
+  let outerCount = 0;
+  for (const [part, label] of Object.entries(parts)) {
+    const row = table.insertRow();
+    row.insertCell().textContent = label;
+    const [base, outer] = template.regions[part].map((indices) => stats(indices, rgba));
+    reportLayer(row.insertCell(), base);
+    reportLayer(row.insertCell(), outer);
+    if (outer.visible) outerCount++;
+  }
+  $('#layer-summary').textContent = skin ? `${outerCount}/6 部位有外层像素` : '白模 · 六部位双层';
+}
+
+function download(blob, name) {
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = name;
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+}
+
+async function loadSkin(blob, name, layout) {
+  const current = ++revision;
+  const error = $('#file-error');
+  error.hidden = true;
+  try {
+    const header = new DataView(await blob.slice(0, 24).arrayBuffer());
+    if (header.byteLength !== 24 || header.getUint32(0) !== 0x89504e47 || header.getUint32(4) !== 0x0d0a1a0a) {
+      throw new Error('请选择 PNG 皮肤文件。');
+    }
+    if (header.getUint32(16) !== 64 || header.getUint32(20) !== 64) {
+      throw new Error('当前白模使用 64 × 64 原版皮肤布局。请选用该尺寸的原始 PNG。');
+    }
+    const bitmap = await createImageBitmap(blob, {colorSpaceConversion: 'none', premultiplyAlpha: 'none'});
+    if (current !== revision) { bitmap.close(); return; }
+    skinContext.clearRect(0, 0, 64, 64);
+    skinContext.drawImage(bitmap, 0, 0);
+    skin?.bitmap.close();
+    skin = {bitmap, rgba: skinContext.getImageData(0, 0, 64, 64).data, name};
+    if (layout) $('#arm-model').value = layout;
+    update();
+  } catch (reason) {
+    if (current !== revision) return;
+    error.textContent = reason instanceof DOMException ? '无法解码这张 PNG，请检查文件是否完整。' : reason.message;
+    error.hidden = false;
+  }
+}
+
+function showWhite() {
+  ++revision;
+  skin?.bitmap.close();
+  skin = null;
+  $('#skin-file').value = '';
+  $('#file-error').hidden = true;
+  update();
+}
+
+function makeRenderer(canvas) {
+  const gl = canvas.getContext('webgl', {alpha: true, antialias: true, preserveDrawingBuffer: true});
+  if (!gl) return null;
+  const compile = (type, source) => {
+    const shader = gl.createShader(type);
+    gl.shaderSource(shader, source);
+    gl.compileShader(shader);
+    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(shader));
+    return shader;
+  };
+  const program = gl.createProgram();
+  gl.attachShader(program, compile(gl.VERTEX_SHADER, `
+    attribute vec3 position, normal;
+    attribute vec2 uv;
+    uniform vec2 yaw, pitch, size;
+    varying vec2 texel;
+    varying float light;
+    void main() {
+      float x = yaw.x * position.x + yaw.y * position.z;
+      float z = -yaw.y * position.x + yaw.x * position.z;
+      float y = pitch.x * position.y + pitch.y * z;
+      float depth = -pitch.y * position.y + pitch.x * z;
+      gl_Position = vec4(-x * size.x, y * size.y + .02, depth / 32., 1.);
+      light = .72 + .28 * max(0., dot(normal, vec3(-.36, .80, -.48)));
+      texel = uv;
+    }`));
+  gl.attachShader(program, compile(gl.FRAGMENT_SHADER, `
+    precision mediump float;
+    uniform sampler2D textureMap;
+    uniform float opacity, alphaPass, flatLight;
+    varying vec2 texel;
+    varying float light;
+    void main() {
+      vec4 color = texture2D(textureMap, texel);
+      color.a *= opacity;
+      if (color.a <= 0. || (alphaPass == 0. && color.a < .999) || (alphaPass == 1. && color.a >= .999)) discard;
+      gl_FragColor = vec4(color.rgb * mix(light, 1., flatLight), color.a);
+    }`));
+  gl.linkProgram(program);
+  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(program));
+  gl.useProgram(program);
+  const uniforms = Object.fromEntries(['yaw', 'pitch', 'size', 'opacity', 'alphaPass', 'flatLight'].map((name) => [name, gl.getUniformLocation(program, name)]));
+  const buffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+  for (const [name, size, offset] of [['position', 3, 0], ['uv', 2, 12], ['normal', 3, 20]]) {
+    const location = gl.getAttribLocation(program, name);
+    gl.enableVertexAttribArray(location);
+    gl.vertexAttribPointer(location, size, gl.FLOAT, false, 32, offset);
+  }
+  const texture = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D, texture);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  gl.enable(gl.DEPTH_TEST);
+  gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA, gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+
+  return {
+    upload(rgba) {
+      gl.bufferData(gl.ARRAY_BUFFER, template.vertices, gl.STATIC_DRAW);
+      if (skin) gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, skin.bitmap);
+      else gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 64, 64, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array(rgba));
+    },
+    draw() {
+      const {width, height} = canvas.getBoundingClientRect();
+      const pixelRatio = Math.min(devicePixelRatio, 2);
+      canvas.width = Math.round(width * pixelRatio);
+      canvas.height = Math.round(height * pixelRatio);
+      gl.viewport(0, 0, canvas.width, canvas.height);
+      gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+      const [yaw, pitch] = angles.map((angle) => angle * DEG_TO_RAD);
+      const [cy, sy, cp, sp] = [Math.cos(yaw), Math.sin(yaw), Math.cos(pitch), Math.sin(pitch)];
+      const size = Math.min(.085, .095 * width / height);
+      gl.uniform2f(uniforms.yaw, cy, sy);
+      gl.uniform2f(uniforms.pitch, cp, sp);
+      gl.uniform2f(uniforms.size, size * height / width, size);
+      gl.uniform1f(uniforms.flatLight, Number($('#flat-light').checked));
+      const visible = [$('#show-base').checked, $('#show-outer').checked];
+      const drawFace = (face) => {
+        if (!visible[face.layer]) return;
+        gl.uniform1f(uniforms.opacity, !skin && face.layer && visible[0] ? .53 : 1);
+        gl.drawArrays(gl.TRIANGLES, face.offset, 6);
+      };
+      gl.disable(gl.BLEND);
+      gl.uniform1f(uniforms.alphaPass, 0);
+      template.faces.forEach(drawFace);
+      const depth = ({center: [x, y, z]}) => (-sy * x + cy * z) * cp - y * sp;
+      gl.enable(gl.BLEND);
+      gl.depthMask(false);
+      gl.uniform1f(uniforms.alphaPass, 1);
+      [...template.faces].sort((a, b) => depth(b) - depth(a)).forEach(drawFace);
+      gl.depthMask(true);
+    }
+  };
+}
+
+const canvas = $('#scene');
+let renderer;
+try { renderer = makeRenderer(canvas); }
+catch (reason) { console.error(reason); }
+$('#graphics-error').hidden = Boolean(renderer);
+
+function update() {
+  template = templates[$('#arm-model').value];
+  const rgba = skin?.rgba || whitePixels(template);
+  $('#source-name').textContent = skin?.name || '坐姿白模';
+  $('#source-tag').textContent = skin ? '原皮肤 UV' : '模板预览';
+  inspect(rgba);
+  renderer?.upload(rgba);
+  renderer?.draw();
+}
+
+for (const button of document.querySelectorAll('[data-view]')) {
+  button.addEventListener('click', () => {
+    angles = [...views[button.dataset.view]];
+    document.querySelectorAll('[data-view]').forEach((view) => view.setAttribute('aria-pressed', view === button));
+    renderer?.draw();
+  });
+}
+let drag;
+canvas.addEventListener('pointerdown', (event) => {
+  drag = [event.clientX, event.clientY, ...angles];
+  canvas.setPointerCapture(event.pointerId);
+});
+canvas.addEventListener('pointermove', (event) => {
+  if (!drag) return;
+  angles = [drag[2] - (event.clientX - drag[0]) * .45, Math.max(-75, Math.min(75, drag[3] + (event.clientY - drag[1]) * .4))];
+  document.querySelectorAll('[data-view]').forEach((view) => view.setAttribute('aria-pressed', 'false'));
+  renderer?.draw();
+});
+canvas.addEventListener('lostpointercapture', () => { drag = null; });
+
+const fileInput = $('#skin-file');
+fileInput.addEventListener('change', () => {
+  const file = fileInput.files[0];
+  if (file) loadSkin(file, file.name);
+});
+const dropZone = $('#drop-zone');
+dropZone.addEventListener('dragover', (event) => { event.preventDefault(); dropZone.classList.add('over'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('over'));
+dropZone.addEventListener('drop', (event) => {
+  event.preventDefault();
+  dropZone.classList.remove('over');
+  const file = event.dataTransfer.files[0];
+  if (file) loadSkin(file, file.name);
+});
+$('#blank').addEventListener('click', showWhite);
+for (const button of document.querySelectorAll('[data-skin]')) {
+  button.addEventListener('click', async () => {
+    const blob = await (await fetch(data.samples[button.dataset.skin])).blob();
+    fileInput.value = '';
+    loadSkin(blob, button.textContent, 'slim');
+  });
+}
+$('#arm-model').addEventListener('change', update);
+$('#show-padding').addEventListener('change', () => inspect(skin?.rgba || whitePixels(template)));
+for (const id of ['show-base', 'show-outer', 'flat-light']) $(`#${id}`).addEventListener('change', () => renderer?.draw());
+$('#save-model').addEventListener('click', () => {
+  const model = {ambientocclusion: false, textures: {skin: 'starcrowndoll:block/doll_template', particle: '#skin'}, elements: template.elements};
+  download(new Blob([JSON.stringify(model, null, 2) + '\n'], {type: 'application/json'}), `doll_template_${$('#arm-model').value}.json`);
+});
+$('#save-texture').addEventListener('click', () => {
+  const exported = document.createElement('canvas');
+  exported.width = exported.height = 64;
+  exported.getContext('2d').putImageData(new ImageData(whitePixels(template), 64, 64), 0, 0);
+  exported.toBlob((blob) => download(blob, 'doll_template.png'));
+});
+new ResizeObserver(() => renderer?.draw()).observe(canvas);
+update();
+</script>
+</body>
+</html>

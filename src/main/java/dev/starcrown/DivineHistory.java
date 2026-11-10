@@ -21,13 +21,45 @@ public final class DivineHistory extends SavedData {
  public void defeat(UUID id){if(victories.size()<65536&&victories.add(id))setDirty();}
  public boolean defeated(UUID id){return victories.contains(id);}
  private static boolean natural(BlockState s){return s.is(BlockTags.BASE_STONE_OVERWORLD)||s.is(BlockTags.BASE_STONE_NETHER)||s.is(BlockTags.DIRT)||s.is(BlockTags.SAND)||s.is(BlockTags.LOGS)||s.is(BlockTags.LEAVES)||s.is(BlockTags.FLOWERS)||s.is(Blocks.GRASS)||s.is(Blocks.TALL_GRASS)||s.is(Blocks.SNOW)||s.is(Blocks.SNOW_BLOCK)||s.is(Blocks.GRAVEL)||s.is(Blocks.WATER)||s.is(Blocks.LAVA);}
+ private static final net.minecraft.tags.TagKey<Block> CALM_NATURAL=net.minecraft.tags.TagKey.create(net.minecraft.core.registries.Registries.BLOCK,new net.minecraft.resources.ResourceLocation(StarcrownDoll.ID,"calm_natural_blocks"));
+ @SubscribeEvent(priority=EventPriority.LOWEST) public static void placed(BlockEvent.EntityPlaceEvent event){
+  if(!(event.getEntity() instanceof ServerPlayer)||!(event.getLevel() instanceof ServerLevel level))return;
+  var journal=get(level);
+  if(event instanceof BlockEvent.EntityMultiPlaceEvent multi){
+   for(var snapshot:multi.getReplacedBlockSnapshots())if(calmNatural(level.getBlockState(snapshot.getPos()))&&journal.placed.add(snapshot.getPos().asLong()))journal.setDirty();
+  }else if(calmNatural(event.getPlacedBlock())&&journal.placed.add(event.getPos().asLong()))journal.setDirty();
+ }
+ public static boolean removedNatural(ServerLevel level,BlockPos pos,BlockState before){
+  var journal=get(level);
+  if(journal.placed.remove(pos.asLong())){journal.setDirty();return false;}
+  return calmNatural(before);
+ }
+ private static boolean calmNatural(BlockState state){return state.is(CALM_NATURAL)||state.getFluidState().isEmpty()&&natural(state);}
  public void capture(ServerPlayer p,BlockPos pos){var level=p.serverLevel();var state=level.getBlockState(pos);if(p.distanceToSqr(net.minecraft.world.phys.Vec3.atCenterOf(pos))>4096||placed.contains(pos.asLong())||level.getBlockEntity(pos)!=null||!natural(state))return;
   if(blocks.size()>=16384){var it=blocks.keySet().iterator();it.next();it.remove();}blocks.putIfAbsent(pos.asLong(),new Snapshot(p.getUUID(),state,level.getGameTime()));setDirty();
  }
- @SubscribeEvent(priority=EventPriority.LOWEST) public static void explosion(ExplosionEvent.Detonate e){if(!(e.getLevel() instanceof ServerLevel l))return;var journal=get(l);for(var p:l.players())if(DivineWill.wearing(p))for(var pos:e.getAffectedBlocks())journal.capture(p,pos);}
- @SubscribeEvent(priority=EventPriority.LOWEST) public static void place(BlockEvent.EntityPlaceEvent e){if(e.getLevel() instanceof ServerLevel l){var journal=get(l);journal.placed.add(e.getPos().asLong());journal.blocks.remove(e.getPos().asLong());if(e instanceof BlockEvent.EntityMultiPlaceEvent multi)for(var snapshot:multi.getReplacedBlockSnapshots()){journal.placed.add(snapshot.getPos().asLong());journal.blocks.remove(snapshot.getPos().asLong());}journal.setDirty();}}
- @SubscribeEvent(priority=EventPriority.LOWEST) public static void breakBlock(BlockEvent.BreakEvent e){if(!(e.getLevel() instanceof ServerLevel level))return;var journal=get(level);journal.blocks.remove(e.getPos().asLong());journal.setDirty();if(MINING.get()||!(e.getPlayer() instanceof ServerPlayer p)||!DivineWill.wearing(p)||!DivineSeven.settings(p).getBoolean("area_mine"))return;
+ @SubscribeEvent(priority=EventPriority.LOWEST) public static void breakBlock(BlockEvent.BreakEvent e){if(!(e.getLevel() instanceof ServerLevel level)||MINING.get()||!(e.getPlayer() instanceof ServerPlayer p)||!DivineWill.wearing(p)||!DivineSeven.settings(p).getBoolean("area_mine"))return;
   int radius=DivineSeven.miningRadius(p);MINING.set(true);try{for(int x=-radius;x<=radius;x++)for(int y=-radius;y<=radius;y++)for(int z=-radius;z<=radius;z++){var pos=e.getPos().offset(x,y,z);if(!level.hasChunkAt(pos)||!level.getWorldBorder().isWithinBounds(pos)||level.isOutsideBuildHeight(pos))continue;var state=level.getBlockState(pos);if(pos.equals(e.getPos())||state.isAir()||state.getDestroySpeed(level,pos)<0||state.getDestroySpeed(level,pos)>50||level.getBlockEntity(pos)!=null)continue;p.gameMode.destroyBlock(pos);}}finally{MINING.set(false);}
+ }
+ public static void twilightMine(ServerPlayer player,BlockPos center){
+  if(MINING.get()||!TwilightCrown.wearing(player))return;
+  var settings=TwilightCrown.settings(player);
+  if(!settings.getBoolean("area_mine"))return;
+  var level=player.serverLevel();
+  var tool=player.getMainHandItem();
+  if(tool.isEmpty()&&!player.isCreative())return;
+  int radius=settings.getInt("mining_range")==1?2:1;
+  MINING.set(true);
+  try{
+   for(var pos:BlockPos.betweenClosed(center.offset(-radius,-radius,-radius),center.offset(radius,radius,radius))){
+    if(!player.isCreative()&&(tool.isEmpty()||player.getMainHandItem()!=tool))break;
+    if(pos.equals(center)||level.isOutsideBuildHeight(pos)||!level.hasChunkAt(pos)||!level.getWorldBorder().isWithinBounds(pos)
+       ||!level.mayInteract(player,pos))continue;
+    var state=level.getBlockState(pos);
+    if(state.isAir()||state.getDestroySpeed(level,pos)<0||!player.isCreative()&&!player.hasCorrectToolForDrops(state))continue;
+    player.gameMode.destroyBlock(pos.immutable());
+   }
+  }finally{MINING.remove();}
  }
  public static int preview(ServerPlayer p){var journal=get(p.serverLevel());int count=0;for(var entry:journal.blocks.entrySet()){var pos=BlockPos.of(entry.getKey());if(entry.getValue().owner.equals(p.getUUID())&&p.distanceToSqr(net.minecraft.world.phys.Vec3.atCenterOf(pos))<=4096){count++;if(count<=256)p.serverLevel().sendParticles(net.minecraft.core.particles.ParticleTypes.END_ROD,pos.getX()+.5,pos.getY()+.5,pos.getZ()+.5,1,0,0,0,0);}}return count;}
  public static int restore(ServerPlayer p){var level=p.serverLevel();var journal=get(level);int count=0;var it=journal.blocks.entrySet().iterator();while(it.hasNext()){var entry=it.next();var snapshot=entry.getValue();var pos=BlockPos.of(entry.getKey());if(!snapshot.owner.equals(p.getUUID())||p.distanceToSqr(net.minecraft.world.phys.Vec3.atCenterOf(pos))>4096||!level.hasChunkAt(pos))continue;

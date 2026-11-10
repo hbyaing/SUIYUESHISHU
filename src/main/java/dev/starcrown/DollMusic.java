@@ -12,7 +12,7 @@ final class DollMusic extends AbstractTickableSoundInstance {
  private final StarcrownDoll.DollEntity doll;
 
  private DollMusic(StarcrownDoll.DollEntity doll){
-  super(doll.getBlockState().is(StarcrownDoll.YULE_DOLL.get())?StarcrownDoll.YULE_MUSIC.get():StarcrownDoll.MUSIC.get(),SoundSource.RECORDS,RandomSource.create());
+  super(StarcrownDoll.isYule(doll.getBlockState())?StarcrownDoll.YULE_MUSIC.get():StarcrownDoll.MUSIC.get(),SoundSource.RECORDS,RandomSource.create());
   this.doll=doll;var pos=doll.getBlockPos();x=pos.getX()+.5;y=pos.getY()+.5;z=pos.getZ()+.5;
   volume=2;pitch=1;looping=true;delay=0;relative=false;
  }

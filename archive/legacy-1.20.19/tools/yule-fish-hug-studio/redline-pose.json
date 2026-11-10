@@ -1,0 +1,5 @@
+{
+ "schema":"yule-fish-hug/1","previewOnly":true,"name":"原图方向 · 抱持校准",
+ "size":0.68,"height":7.1,"depth":3.6,"tilt":0,"upper":42,"inward":28,"asym":14,"yaw":0,"right":true,
+ "texture":"assets/fish.png","textureOrientation":"original"
+}

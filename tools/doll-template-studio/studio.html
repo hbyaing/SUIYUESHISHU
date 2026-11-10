@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>以神戴冠 · 玩偶白模工作台</title>
+  <style>/* STUDIO_CSS */</style>
+</head>
+<body>
+  <header class="hero">
+    <div class="eyebrow"><span></span> 以神戴冠 / 模型工坊</div>
+    <h1>玩偶白模工作台</h1>
+    <p>沿用成然的坐姿。导入原始皮肤，即可逐面核对贴图和衣物外层。</p>
+  </header>
+  <main>
+    <section class="card preview" aria-label="白模预览">
+      <div class="stage-title"><span id="source-name">坐姿白模</span><span id="source-tag">模板预览</span></div>
+      <div class="stage">
+        <div class="plinth"></div>
+        <canvas id="scene" aria-label="可旋转的玩偶模型"></canvas>
+        <p id="graphics-error" hidden>当前浏览器未启用 WebGL。仍可检查皮肤和导出白模。</p>
+      </div>
+      <div class="stage-controls">
+        <div class="views" aria-label="观察角度">
+          <button data-view="angled" aria-pressed="true">斜视</button>
+          <button data-view="front" aria-pressed="false">正面</button>
+          <button data-view="left" aria-pressed="false">左侧</button>
+          <button data-view="back" aria-pressed="false">背面</button>
+          <button data-view="right" aria-pressed="false">右侧</button>
+        </div>
+        <small>拖动旋转</small>
+      </div>
+    </section>
+
+    <section class="card options" aria-label="皮肤和图层">
+      <h2>皮肤与图层</h2>
+      <label id="drop-zone" for="skin-file">导入或拖入皮肤 PNG<input id="skin-file" type="file" accept=".png,image/png"></label>
+      <div class="samples"><button id="blank">白模</button><button data-skin="chengran">成然示例</button><button data-skin="yule">余乐示例</button></div>
+      <p id="file-error" role="alert" hidden></p>
+      <label class="field" for="arm-model"><span>手臂布局</span><select id="arm-model"><option value="slim">Alex · 细臂</option><option value="wide">Steve · 粗臂</option></select></label>
+      <p class="hint">单独的 64 × 64 PNG 没有手臂类型标记。按原模型选择，来源不明时可切换核对袖口。</p>
+      <div class="checks"><label><input id="show-base" type="checkbox" checked> 底层</label><label><input id="show-outer" type="checkbox" checked> 衣物外层</label><label><input id="flat-light" type="checkbox"> 原色核对</label></div>
+      <div class="downloads"><button id="save-model">导出白模 JSON</button><button id="save-texture">导出白模 PNG</button></div>
+      <p class="hint">白模文件按当前手臂 UV 导出。原皮肤留在本机，预览直接按原像素贴图。</p>
+    </section>
+
+    <section class="card atlas-card" aria-label="UV 图检查">
+      <div class="inspection-title"><h2>UV 图检查</h2><label><input id="show-padding" type="checkbox" checked> 标记未映射区域</label></div>
+      <div class="atlas-wrap"><canvas id="atlas" width="64" height="64" aria-label="皮肤 UV 图"></canvas></div>
+      <p class="hint" id="padding-report"></p>
+      <p class="hint">紫色区域没有模型面使用。有效 UV 内的不透明黑白色块按原图保留，整片纯黑或纯白只提示核对。</p>
+    </section>
+
+    <section class="card report" aria-label="图层检查">
+      <h2>图层检查 <span id="layer-summary"></span></h2>
+      <table><thead><tr><th>部位</th><th>底层</th><th>衣物外层</th></tr></thead><tbody id="layers"></tbody></table>
+      <p class="hint">标准皮肤 PNG 每个部位最多两层。第三层及以上需要对应的自定义模型和 UV 定义。</p>
+    </section>
+  </main>
+  <footer>原版 Minecraft 64 × 64 PNG · UV 以项目现有成然坐姿模型为准</footer>
+  <script id="model-data" type="application/json">/* MODEL_DATA */</script>
+  <script>/* STUDIO_JS */</script>
+</body>
+</html>

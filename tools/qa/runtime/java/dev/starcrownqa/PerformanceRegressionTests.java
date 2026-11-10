@@ -25,12 +25,12 @@ public final class PerformanceRegressionTests {
  @GameTest(template="empty",timeoutTicks=100) public static void movedStacksReleaseCachedOwnership(GameTestHelper h){
   var a=ChastityTests.player(h);var b=ChastityTests.player(h);
   try{
-   ChastityTests.equip(a);ChastityTests.equip(b);YuleTemperance.bind(a);YuleTemperance.bind(b);var stack=new ItemStack(Items.COBBLESTONE,12);
-   a.getInventory().items.set(0,stack);h.assertTrue(stack.getMaxStackSize()==16,"owned cap warms cache");
-   a.getInventory().items.set(0,ItemStack.EMPTY);h.assertTrue(stack.getMaxStackSize()==64,"removed stack immediately releases cap");
-   b.getInventory().items.set(3,stack);h.assertTrue(YuleTemperance.owner(stack)==b&&stack.getMaxStackSize()==16,"same-tick move to another player rebinds");
+   ChastityTests.equip(a);ChastityTests.equip(b);YuleTemperance.bind(a);YuleTemperance.bind(b);var stack=new ItemStack(Items.IRON_PICKAXE);
+   a.getInventory().items.set(0,stack);h.assertTrue(YuleTemperance.owner(stack)==a&&YuleTemperance.durable(stack),"held tool warms durability cache");
+   a.getInventory().items.set(0,ItemStack.EMPTY);h.assertTrue(!YuleTemperance.durable(stack),"removed tool releases durability protection");
+   b.getInventory().items.set(3,stack);h.assertTrue(YuleTemperance.owner(stack)==b&&!YuleTemperance.durable(stack),"stored tool rebinds without held protection");
    b.getInventory().items.set(3,ItemStack.EMPTY);b.containerMenu.setCarried(stack);h.assertTrue(YuleTemperance.owner(stack)==b,"cursor move rebinds");
-   b.setItemSlot(EquipmentSlot.HEAD,ItemStack.EMPTY);h.assertTrue(stack.getMaxStackSize()==64,"unequip invalidates warm cache");h.succeed();
+   b.setItemSlot(EquipmentSlot.HEAD,ItemStack.EMPTY);h.assertTrue(YuleTemperance.owner(stack)==null,"unequip invalidates warm cache");h.succeed();
   }finally{ChastityTests.close(a);ChastityTests.close(b);}
  }
  @GameTest(template="empty",timeoutTicks=100) public static void diligenceAvoidsDuplicateEffectUpdates(GameTestHelper h){

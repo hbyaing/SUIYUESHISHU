@@ -17,6 +17,7 @@ import net.minecraftforge.fml.common.Mod;
 public final class RiceFeast {
  private static final Map<LivingEntity,Integer> CHEW=new WeakHashMap<>();
  public static boolean active(LivingEntity entity){return entity.isAlive()&&!entity.isSpectator()&&DollDance.nearYule(entity.level(),entity.position());}
+ public static boolean calmVisual(LivingEntity entity){return entity.isAlive()&&!entity.isSpectator()&&DollDance.nearCalm(entity.level(),entity.position());}
  @SubscribeEvent public static void tick(TickEvent.LevelTickEvent event){
   if(event.phase!=TickEvent.Phase.END||!(event.level instanceof ServerLevel level))return;
   Set<LivingEntity> current=Collections.newSetFromMap(new IdentityHashMap<>());
@@ -41,5 +42,16 @@ public final class RiceFeast {
    CHEW.put(living,ticks);
   }
   CHEW.keySet().removeIf(e->e.level()==level&&!current.contains(e));
+  if(level.getGameTime()%20==0){
+   long now=TwilightCrown.now(level);
+   for(var target:DollDance.calmFeastTargets(level)){
+    var data=target.getPersistentData();
+    if(data.getLong("starcrown_calm_feast_ready")>now)continue;
+    data.putLong("starcrown_calm_feast_ready",now+1200);
+    target.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.REGENERATION,160,1));
+    level.sendParticles(new ItemParticleOption(ParticleTypes.ITEM,new ItemStack(StarcrownDoll.WHITE_RICE.get())),target.getX(),target.getEyeY()-.12,target.getZ(),4,.12,.08,.12,.025);
+    level.playSound(null,target.blockPosition(),SoundEvents.GENERIC_EAT,SoundSource.NEUTRAL,.35f,1);
+   }
+  }
  }
 }

@@ -19,6 +19,7 @@ import net.minecraftforge.fml.common.Mod;
 /** Server-authoritative rules, verdicts and ally rescue. */
 @Mod.EventBusSubscriber(modid=StarcrownDoll.ID)
 public final class DivineSeven {
+ public static final int POTION_LEVEL_ACTION=9, DISABLE_POTIONS_ACTION=14;
  public static final String ROOT="starcrown_seven",MARK="starcrown_verdict";
  public static CompoundTag settings(Player p){if(!p.getPersistentData().contains(ROOT))p.getPersistentData().put(ROOT,new CompoundTag());return p.getPersistentData().getCompound(ROOT);}
  public static int miningIndex(Player p){return Math.max(0,Math.min(3,settings(p).getInt("mining_range")));}
@@ -40,10 +41,11 @@ public final class DivineSeven {
   }return false;
  }
  @SubscribeEvent(priority=EventPriority.HIGHEST,receiveCanceled=true) public static void attacked(LivingAttackEvent e){
-  var victim=e.getEntity();var source=e.getSource().getEntity();if(source!=null)DollAuthority.onAttack(source,victim);if(victim instanceof ServerPlayer p&&DivineWill.wearing(p)&&source instanceof LivingEntity l){mark(p,l);if(owner(l)==p)l.getPersistentData().getCompound(MARK).putBoolean("retaliation",true);}
+  var victim=e.getEntity();var source=e.getSource().getEntity();attackAttempt(victim,source);
   if(victim.level() instanceof ServerLevel level&&victim.getPersistentData().getLong("starcrown_ally_invulnerable")>level.getGameTime())e.setCanceled(true);
   if(source!=null&&ruled(source))e.setCanceled(true);
  }
+ public static void attackAttempt(LivingEntity victim,Entity source){if(source!=null)DollAuthority.onAttack(source,victim);if(victim instanceof ServerPlayer p&&DivineWill.wearing(p)&&source instanceof LivingEntity l){mark(p,l);if(owner(l)==p)l.getPersistentData().getCompound(MARK).putBoolean("retaliation",true);}}
  @SubscribeEvent(priority=EventPriority.LOWEST) public static void damage(LivingDamageEvent e){
   var target=e.getEntity();if(DivineCost.pulsing())return;if(e.getSource().getEntity() instanceof ServerPlayer p&&DivineWill.wearing(p)&&!(target instanceof Player)&&!ally(p,target)){
    var tag=target.getPersistentData().getCompound(MARK);if(owner(target)==p&&tag.getBoolean("retaliation")){int hits=tag.getInt("hits")+1;tag.putInt("hits",hits);target.setAbsorptionAmount(0);target.stopUsingItem();float bonus=target.getMaxHealth()*.25f;e.setAmount(hits>=4?Math.max(e.getAmount(),target.getHealth()+target.getMaxHealth()):e.getAmount()+bonus);}
@@ -63,11 +65,10 @@ public final class DivineSeven {
   }
   for(var target:p.serverLevel().getEntitiesOfClass(LivingEntity.class,box))if(owner(target)==p){var tag=target.getPersistentData().getCompound(MARK);tag.putFloat("minimum",Math.min(tag.getFloat("minimum"),target.getHealth()));target.setAbsorptionAmount(0);}
   }
-  if(settings(p).getBoolean("restoring")&&p.tickCount%5==0){int n=DivineHistory.restore(p);settings(p).putInt("restored",settings(p).getInt("restored")+n);if(n==0){settings(p).putBoolean("restoring",false);p.displayClientMessage(Component.literal("战场修复完成："+settings(p).getInt("restored")+" 个方块"),true);}}
   DivineTravel.tick(p);
  }
  public static LivingEntity aimed(ServerPlayer p){var eye=p.getEyePosition();var end=eye.add(p.getLookAngle().scale(64));LivingEntity best=null;double nearest=4096;var wall=p.level().clip(new net.minecraft.world.level.ClipContext(eye,end,net.minecraft.world.level.ClipContext.Block.COLLIDER,net.minecraft.world.level.ClipContext.Fluid.NONE,p));nearest=eye.distanceToSqr(wall.getLocation());for(var e:p.serverLevel().getEntitiesOfClass(LivingEntity.class,p.getBoundingBox().expandTowards(p.getLookAngle().scale(64)).inflate(1))){if(e==p)continue;var hit=e.getBoundingBox().inflate(.2).clip(eye,end);if(hit.isPresent()&&eye.distanceToSqr(hit.get())<nearest){nearest=eye.distanceToSqr(hit.get());best=e;}}return best;}
- public static void action(ServerPlayer p,int action,int value){if(!DivineWill.wearing(p))return;var data=settings(p);String message="";switch(action){
+ public static void action(ServerPlayer p,int action,int value){if(action>=CalmYule.PEACE_ACTION){if(value==0)CalmYule.action(p,action);return;}if(TwilightCrown.wearing(p)){TwilightCrown.action(p,action,value);return;}if(!DivineWill.wearing(p))return;var data=settings(p);String message="";switch(action){
   case 0 -> {data.putBoolean("domain",!data.getBoolean("domain"));message="万象领域："+(data.getBoolean("domain")?"开启":"关闭");}
   case 1 -> {data.putInt("speed",Math.max(0,Math.min(4,value)));DivineWill.update(p,true);message="移动速度 ×"+speed(p);}
   case 2 -> {PotionFilter.set(p,net.minecraftforge.registries.ForgeRegistries.MOB_EFFECTS.getKey(net.minecraft.world.effect.MobEffects.NIGHT_VISION),!PotionFilter.enabled(p,net.minecraft.world.effect.MobEffects.NIGHT_VISION));message="夜视："+(PotionFilter.enabled(p,net.minecraft.world.effect.MobEffects.NIGHT_VISION)?"开启":"关闭");}
@@ -77,12 +78,11 @@ public final class DivineSeven {
   case 6 -> {message=DivineTravel.anchor(p,Math.max(0,Math.min(7,value)))?"已返回神性锚点":"锚点未记录或落点不安全";}
   case 7 -> {message=DivineTravel.back(p,false)?"已返回传送前位置":"没有安全的返回位置";}
   case 8 -> {message=DivineTravel.back(p,true)?"已返回死亡地点附近":"没有可用的死亡地点";}
-  case 9 -> {data.putBoolean("restoring",true);data.putInt("restored",0);message="已开始分批恢复战场";}
-  case 10 -> {message="记录中可恢复方块："+DivineHistory.preview(p);}
+  case POTION_LEVEL_ACTION -> {if(value<PotionFilter.MIN_LEVEL||value>PotionFilter.MAX_LEVEL)return;PotionFilter.setLevel(p,value);message="正面药水获取等级 "+value;}
   case 11 -> {data.putBoolean("players_off",!data.getBoolean("players_off"));message="玩家庇护："+(!data.getBoolean("players_off")?"开启":"关闭");}
   case 12 -> {var target=aimed(p);if(target!=null){var friends=data.getCompound("friends");String key=target.getUUID().toString();if(friends.contains(key)){friends.remove(key);message="已移出庇护名单";}else{friends.putBoolean(key,true);message="已加入庇护名单";}data.put("friends",friends);}else message="请瞄准64格内的生物或玩家";}
   case 13 -> {var target=aimed(p);if(target!=null&&owner(target)==p){target.setHealth(target.getPersistentData().getCompound(MARK).getFloat("minimum"));message="岁月已兑现战果";}else message="请瞄准已记录的敌人";}
-  case 14 -> {return;}
+  case DISABLE_POTIONS_ACTION -> {if(value!=0)return;PotionFilter.disableAll(p);message="所有正面药水效果已关闭";}
   case 18 -> {data.putInt("mining_range",Math.max(0,Math.min(3,value)));int size=miningRadius(p)*2+1;message="采掘范围："+size+"×"+size+"×"+size;}
   case 17 -> {var escrow=p.getPersistentData().getList("starcrown_confiscated_dolls",net.minecraft.nbt.Tag.TAG_COMPOUND);int count=0;for(int i=0;i<escrow.size();){var item=net.minecraft.world.item.ItemStack.of(escrow.getCompound(i).getCompound("item"));if(item.isEmpty()){escrow.remove(i);continue;}if(!p.getInventory().add(item)){escrow.getCompound(i).put("item",item.save(new net.minecraft.nbt.CompoundTag()));break;}escrow.remove(i);count++;}p.getPersistentData().put("starcrown_confiscated_dolls",escrow);message="已领取 "+count+" 个被没收的玩偶";}
   case 15 -> {int count=0;for(var target:p.serverLevel().getEntitiesOfClass(Mob.class,p.getBoundingBox().inflate(64)))if(p.distanceToSqr(target)<=4096&&hostile(p,target)){var direction=target.position().subtract(p.position());if(direction.lengthSqr()<.01)direction=new Vec3(1,0,0);var destination=p.position().add(direction.normalize().scale(68));if(DivineTravel.safe(target,p.serverLevel(),destination)){target.moveTo(destination.x,destination.y,destination.z);count++;}}message="已驱逐 "+count+" 个敌人";}

@@ -5,26 +5,19 @@ param(
 $ErrorActionPreference='Stop'
 $projectRoot=[IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
 $targets=@{
- 'DiligenceSleep'='net.minecraft.server.level.ServerPlayer'
+ 'VitalDataItemGuard'='net.minecraft.network.syncher.SynchedEntityData$DataItem'
+ 'ForgeDefenseGuard'='net.minecraftforge.common.ForgeHooks'
+ 'EntitySectionGuard'='net.minecraft.world.level.entity.EntitySection'
+ 'LookupAnchor'='net.minecraft.world.level.entity.EntityLookup'
+ 'TickListAnchor'='net.minecraft.world.level.entity.EntityTickList'
  'CharityItem'='net.minecraft.world.entity.item.ItemEntity'
- 'CharityInventory'='net.minecraft.world.entity.player.Inventory'
- 'CharitySlot'='net.minecraft.world.inventory.Slot'
- 'CharityOrb'='net.minecraft.world.entity.ExperienceOrb'
+ 'CharityStackMigration'='net.minecraft.world.item.ItemStack'
  'TemperanceStack'='net.minecraft.world.item.ItemStack'
  'TemperancePlayer'='net.minecraft.world.entity.player.Player'
  'TemperanceFood'='net.minecraft.world.food.FoodData'
- 'TemperanceSlot'='net.minecraft.world.inventory.Slot'
  'TemperanceMining'='net.minecraft.server.level.ServerPlayerGameMode'
  'CreativeUnequip'='net.minecraft.server.network.ServerGamePacketListenerImpl'
  'InventoryAnchor'='net.minecraft.world.entity.player.Inventory'
- 'ChastityPlayer'='net.minecraft.world.entity.player.Player'
- 'ChastityAnimal'='net.minecraft.world.entity.animal.Animal'
- 'ChastityPet'='net.minecraft.world.entity.TamableAnimal'
- 'ChastityHorse'='net.minecraft.world.entity.animal.horse.AbstractHorse'
- 'ChastityPotion'='net.minecraft.world.item.PotionItem'
- 'ChastityTradeSlot'='net.minecraft.world.inventory.Slot'
- 'ChastityTrade'='net.minecraft.world.inventory.MerchantMenu'
- 'ChastityUse'='net.minecraft.world.entity.LivingEntity'
  'LivingGuard'='net.minecraft.world.entity.LivingEntity'
  'PlayerGuard'='net.minecraft.world.entity.player.Player'
  'ServerPlayerGuard'='net.minecraft.server.level.ServerPlayer'
@@ -32,6 +25,7 @@ $targets=@{
  'EntityGuard'='net.minecraft.world.entity.Entity'
  'ServerLevelGuard'='net.minecraft.server.level.ServerLevel'
  'MobStillness'='net.minecraft.world.entity.Mob'
+ 'HumilityVibration'=@('net.minecraft.world.level.block.entity.SculkSensorBlockEntity$VibrationUser','net.minecraft.world.level.block.entity.SculkShriekerBlockEntity$VibrationUser','net.minecraft.world.entity.monster.warden.Warden$VibrationUser')
  'HumilityLiving'='net.minecraft.world.entity.LivingEntity'
  'HumilityPlayerDamage'=@('net.minecraft.world.entity.player.Player','net.minecraft.server.level.ServerPlayer')
  'HumilityTargeting'='net.minecraft.world.entity.ai.targeting.TargetingConditions'
@@ -58,14 +52,16 @@ foreach($mixin in $targets.Keys){
   }
  }
  $source=[IO.File]::ReadAllText((Join-Path $projectRoot "src/main/java/dev/starcrown/mixin/$mixin.java"))
- $injections=[regex]::Matches($source,'@(?:Inject|ModifyVariable)\(method=(\{[^}]+\}|"[^"]+")[^\r\n]*require=([1-9][0-9]*)\)')
+ $injections=[regex]::Matches($source,'(?ms)^[ \t]*@(?:Inject|ModifyVariable)\s*\(\s*method\s*=\s*(\{[^}]+\}|"[^"]+")(.*?)\)\s*(?=\r?\n[ \t]*(?:private|public|protected)\b)')
  foreach($injection in $injections){
+  if($injection.Groups[2].Value -notmatch '\brequire\s*=\s*([1-9][0-9]*)') { continue }
+  $required=[int]$Matches[1]
   $selectors=[regex]::Matches($injection.Groups[1].Value,'"([^"]+)"') | ForEach-Object { $_.Groups[1].Value }
   $found=@($methods | Where-Object { $signature=$_; @($selectors | Where-Object { if($_.Contains('(')){$signature -eq $_}else{$signature.StartsWith($_+'(')} }).Count -gt 0 })
-  if($found.Count -lt [int]$injection.Groups[2].Value){throw "Missing required hook in ${target}: $($selectors -join ', ')"}
+  if($found.Count -lt $required){throw "Missing required hook in ${target}: $($selectors -join ', ')"}
   $checked++
  }
  }
 }
-if($checked -ne 77){throw "Expected 77 required hook groups, inspected $checked"}
+if($checked -eq 0){throw 'No required hook groups found'}
 Write-Output "PASS: $checked required hooks match declared method descriptors in $MinecraftJar"

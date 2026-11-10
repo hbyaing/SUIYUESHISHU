@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SAS",
+    "WHW",
+    " D "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:nautilus_shell"
+    },
+    "A": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "W": {
+      "item": "minecraft:pink_wool"
+    },
+    "H": {
+      "item": "minecraft:heart_of_the_sea"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "item": "starcrowndoll:calm_doll"
+  }
+}

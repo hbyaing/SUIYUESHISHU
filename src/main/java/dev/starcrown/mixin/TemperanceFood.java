@@ -15,6 +15,8 @@ public abstract class TemperanceFood {
  private float saturation(float n){return YuleTemperance.locked((FoodData)(Object)this)?20:n;}
  @ModifyVariable(method={"setExhaustion(F)V","m_150378_(F)V"},at=@At("HEAD"),argsOnly=true,remap=false,require=1)
  private float exhaustion(float n){return YuleTemperance.locked((FoodData)(Object)this)?0:n;}
+ @ModifyVariable(method={"addExhaustion(F)V","m_38703_(F)V"},at=@At("HEAD"),argsOnly=true,remap=false,require=1)
+ private float calmExhaustion(float n){return YuleTemperance.exhaustion((FoodData)(Object)this,n);}
  @Inject(method={"addExhaustion(F)V","m_38703_(F)V"},at=@At("HEAD"),cancellable=true,remap=false,require=1)
  private void exhaust(float n,CallbackInfo c){if(YuleTemperance.locked((FoodData)(Object)this))c.cancel();}
 }

@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.Mod;
 public final class RiceFeastVisuals {
  @SubscribeEvent(priority=EventPriority.LOWEST)
  public static void living(RenderLivingEvent.Post<?,?> event){
-  var entity=event.getEntity();if(!RiceFeast.active(entity)||entity.isInvisible())return;
+  var entity=event.getEntity();if(!(RiceFeast.active(entity)||RiceFeast.calmVisual(entity))||entity.isInvisible())return;
   var pose=event.getPoseStack();double time=entity.level().getGameTime()+event.getPartialTick();
   pose.pushPose();
   if(entity instanceof net.minecraft.world.entity.Mob)DanceVisuals.animateMob(pose,time);
@@ -29,8 +29,11 @@ public final class RiceFeastVisuals {
  }
  @SubscribeEvent(priority=EventPriority.LOWEST,receiveCanceled=true)
  public static void hand(RenderHandEvent event){
-  var mc=Minecraft.getInstance();if(mc.player==null||!RiceFeast.active(mc.player))return;
-  event.setCanceled(true);if(event.getHand()!=InteractionHand.MAIN_HAND)return;
+  var mc=Minecraft.getInstance();if(mc.player==null)return;
+  boolean original=RiceFeast.active(mc.player);
+  if(!original&&!RiceFeast.calmVisual(mc.player))return;
+  if(original)event.setCanceled(true);
+  if(event.getHand()!=InteractionHand.MAIN_HAND)return;
   var pose=event.getPoseStack();double time=mc.level.getGameTime()+event.getPartialTick();
   pose.pushPose();pose.translate(.12,-.22+Math.abs(Math.sin(time*1.5))*.035,-.48);pose.mulPose(Axis.XP.rotationDegrees(12));pose.scale(.6f,.6f,.6f);
   if(DivineWill.wearing(mc.player)&&mc.getEntityRenderDispatcher().getRenderer(mc.player) instanceof net.minecraft.client.renderer.entity.player.PlayerRenderer renderer){

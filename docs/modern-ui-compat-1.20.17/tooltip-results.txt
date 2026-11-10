@@ -1,0 +1,1 @@
+PASS Chengran + Yule production tooltip compact/expanded, continuous sway and pose cycle

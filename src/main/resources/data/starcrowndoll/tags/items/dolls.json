@@ -2,6 +2,9 @@
   "replace": false,
   "values": [
     "starcrowndoll:doll",
-    "starcrowndoll:yule_doll"
+    "starcrowndoll:twilight_doll",
+    "starcrowndoll:yule_doll",
+    "starcrowndoll:calm_doll",
+    "starcrowndoll:self_doll"
   ]
 }

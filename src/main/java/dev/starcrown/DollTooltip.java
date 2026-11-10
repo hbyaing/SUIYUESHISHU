@@ -13,6 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderTooltipEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -23,38 +24,46 @@ public final class DollTooltip {
  private static final long EPOCH=System.nanoTime();
  private static final int[] STARS={0x78dcff,0xb59aff,0xff91d7,0x91c9ff},NEON={0x64ffff,0x87b0ff,0xff71df,0xcc91ff},GOD={0xffe18b,0xfffaf0,0xff969c};
  public static final String[] KEYS={"skill1","skill1.effect","skill1.protect","skill2","skill2.travel","skill2.build","skill2.immune","skill2.benefits","skill3","skill3.effect","skill4","skill4.effect","skill4.authority","skill5","skill5.effect","skill5.domain","skill6","skill6.effect","skill7","skill7.effect","skill7.verdict","anchor","controls","wear","music","place"};
+ private static final String[] TWILIGHT_KEYS={"skill1","skill1.effect","skill2","skill2.effect","skill3","skill3.effect","skill4","skill4.effect","skill5","skill5.effect","skill6","skill6.effect","skill7","skill7.effect","controls","wear","music","place"};
+ static String[] keys(boolean twilight){return twilight?TWILIGHT_KEYS:KEYS;}
+ static String translation(String key,boolean twilight){return "tooltip.starcrowndoll."+(twilight&&(key.endsWith(".effect")||key.equals("divinity"))?"twilight.":"")+key;}
  private record Line(FormattedCharSequence text,int palette){}
- @SubscribeEvent public static void render(RenderTooltipEvent.Pre event){
-  if(!event.getItemStack().is(StarcrownDoll.ITEM.get()))return;
+ @SubscribeEvent(priority=EventPriority.HIGHEST) public static void render(RenderTooltipEvent.Pre event){
+  if(!StarcrownDoll.isChengran(event.getItemStack()))return;
   event.setCanceled(true);
   if(TooltipReading.pinned())return;
-  draw(event.getGraphics(),event.getX(),event.getY(),event.getScreenWidth(),event.getScreenHeight(),false,event.getItemStack().getHoverName());
+  draw(event.getGraphics(),event.getX(),event.getY(),event.getScreenWidth(),event.getScreenHeight(),false,event.getItemStack().getHoverName(),event.getItemStack().is(StarcrownDoll.TWILIGHT_ITEM.get()));
  }
  public static double sway(double seconds){return (1-Math.cos(seconds*Math.PI*2/2.8))*.5;}
  public static void draw(GuiGraphics g,int mouseX,int mouseY,int screenW,int screenH,boolean expanded,Component name){
+  draw(g,mouseX,mouseY,screenW,screenH,expanded,name,false);
+ }
+ static void draw(GuiGraphics g,int mouseX,int mouseY,int screenW,int screenH,boolean expanded,Component name,boolean twilight){
   TooltipReading.track(mouseX,mouseY,name);
   var font=Minecraft.getInstance().font;
   int maxWidth=Math.max(90,Math.min(expanded?330:230,screenW-24));
-  var layout=TooltipLayouts.get("chengran",maxWidth,expanded,name,()->{
+  String variant=twilight?"twilight":"chengran";
+  String[] keys=keys(twilight);
+  var layout=TooltipLayouts.get(variant,maxWidth,expanded,name,()->{
   List<Line> lines=new ArrayList<>();
   add(lines,name.getString(),false,0,maxWidth);
   if(expanded)add(lines,"以神戴冠",false,0,maxWidth);
-  add(lines,tr("divinity"),false,2,maxWidth);
+  add(lines,Component.translatable(translation("divinity",twilight)).getString(),false,2,maxWidth);
   add(lines,tr("lore"),expanded,1,maxWidth);
   int headerLines=lines.size();
-  if(expanded)for(int i=0;i<KEYS.length;){
-   String key=KEYS[i++];boolean heading=key.matches("skill[1-7]");
+  if(expanded)for(int i=0;i<keys.length;){
+   String key=keys[i++];boolean heading=key.matches("skill[1-7]");
    add(lines,tr(key),heading,heading?1:0,maxWidth);
    if(heading){
     StringBuilder paragraph=new StringBuilder();
-    while(i<KEYS.length&&KEYS[i].startsWith(key+".")){if(paragraph.length()>0)paragraph.append(' ');paragraph.append(tr(KEYS[i++]));}
+    while(i<keys.length&&keys[i].startsWith(key+".")){if(paragraph.length()>0)paragraph.append(' ');paragraph.append(Component.translatable(translation(keys[i++],twilight)).getString());}
     if(paragraph.length()>0)add(lines,paragraph.toString(),false,0,maxWidth);
    }
   }
   else add(lines,tr("shift"),false,0,maxWidth);
   return new TooltipLayouts.Layout<>(List.copyOf(lines),headerLines);
   });
-  var reading=TooltipReading.select(layout.lines(),layout.header(),screenH,"chengran",expanded);var lines=reading.lines();
+  var reading=TooltipReading.select(layout.lines(),layout.header(),screenH,variant,expanded);var lines=reading.lines();
   int textW=1;for(Line line:lines)textW=Math.max(textW,font.width(line.text));
   int rowHeight=TooltipReading.ROW_HEIGHT;
   int panelW=textW+14,panelH=lines.size()*rowHeight+12+(expanded?15:0);
@@ -98,7 +107,7 @@ public final class DollTooltip {
   g.pose().pushPose();g.pose().translate(x+w/2,y+h/2,0);g.pose().mulPose(Axis.ZP.rotation(rotation));g.pose().scale(w/512,h/768,1);
   RenderSystem.enableBlend();RenderSystem.defaultBlendFunc();g.setColor(1,1,1,alpha);g.blit(PORTRAIT,-256,-384,0,0,512,768,512,768);g.flush();g.setColor(1,1,1,1);g.pose().popPose();
  }
- private static void frame(GuiGraphics g,int w,int h,double t){
+ static void frame(GuiGraphics g,int w,int h,double t){
   g.fillGradient(-2,-2,w+2,0,0xff50478e,0xff9853ba);g.fillGradient(-2,h,w+2,h+2,0xff50478e,0xff9853ba);
   g.fillGradient(-2,0,0,h,0xff50478e,0xff9853ba);g.fillGradient(w,0,w+2,h,0xff50478e,0xff9853ba);
   int perimeter=2*(w+h);

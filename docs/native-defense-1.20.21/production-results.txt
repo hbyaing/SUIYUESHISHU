@@ -1,0 +1,2 @@
+PASS native hurt/nonfinite amounts, internal damage, death tick, retaliation, raw deletion, menu unequip, ordinary player, lifecycle exemptions
+ALL_PASS

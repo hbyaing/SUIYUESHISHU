@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "starcrowndoll:block/yule_doll",
+      "y": 0
+    },
+    "facing=east": {
+      "model": "starcrowndoll:block/yule_doll",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "starcrowndoll:block/yule_doll",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "starcrowndoll:block/yule_doll",
+      "y": 270
+    }
+  }
+}

@@ -10,6 +10,7 @@ import net.minecraft.util.FormattedCharSequence;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.client.event.RenderTooltipEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -29,13 +30,13 @@ public final class TooltipReading {
   if(screen!=Minecraft.getInstance().screen){locked=false;shiftHeld=false;page=0;}
   return locked;
  }
- @SubscribeEvent public static void hideHover(RenderTooltipEvent.Pre event){if(pinned()&&!drawingPinned)event.setCanceled(true);}
+ @SubscribeEvent(priority=EventPriority.HIGHEST) public static void hideHover(RenderTooltipEvent.Pre event){if(pinned()&&!drawingPinned)event.setCanceled(true);}
  @SubscribeEvent public static void pinnedRender(ScreenEvent.Render.Post event){
   if(!pinned())return;
   var mc=Minecraft.getInstance();drawingPinned=true;
   try{
-   if(owner.equals("yule"))YuleItemTooltip.draw(event.getGuiGraphics(),anchorX,anchorY,mc.getWindow().getGuiScaledWidth(),mc.getWindow().getGuiScaledHeight(),true,name);
-   else DollTooltip.draw(event.getGuiGraphics(),anchorX,anchorY,mc.getWindow().getGuiScaledWidth(),mc.getWindow().getGuiScaledHeight(),true,name);
+   if(owner.equals("yule")||owner.equals("calm"))YuleItemTooltip.draw(event.getGuiGraphics(),anchorX,anchorY,mc.getWindow().getGuiScaledWidth(),mc.getWindow().getGuiScaledHeight(),true,name,owner.equals("calm"));
+   else DollTooltip.draw(event.getGuiGraphics(),anchorX,anchorY,mc.getWindow().getGuiScaledWidth(),mc.getWindow().getGuiScaledHeight(),true,name,owner.equals("twilight"));
   }finally{drawingPinned=false;}
  }
  public record Reading<T>(List<T> lines,int page,int pages){}

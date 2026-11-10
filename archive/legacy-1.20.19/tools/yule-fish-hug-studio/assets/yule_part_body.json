@@ -1,0 +1,357 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "skin": "starcrowndoll:block/yule_skin",
+    "particle": "starcrowndoll:block/yule_skin",
+    "gold": "starcrowndoll:block/gold",
+    "gem": "starcrowndoll:block/gem"
+  },
+  "elements": [
+    {
+      "name": "身体",
+      "from": [
+        5,
+        3,
+        8.5
+      ],
+      "to": [
+        11,
+        9,
+        11.5
+      ],
+      "faces": {
+        "west": {
+          "uv": [
+            4,
+            5,
+            5,
+            8
+          ],
+          "texture": "#skin"
+        },
+        "north": {
+          "uv": [
+            5,
+            5,
+            7,
+            8
+          ],
+          "texture": "#skin"
+        },
+        "east": {
+          "uv": [
+            7,
+            5,
+            8,
+            8
+          ],
+          "texture": "#skin"
+        },
+        "south": {
+          "uv": [
+            8,
+            5,
+            10,
+            8
+          ],
+          "texture": "#skin"
+        },
+        "up": {
+          "uv": [
+            5,
+            4,
+            7,
+            5
+          ],
+          "texture": "#skin"
+        },
+        "down": {
+          "uv": [
+            7,
+            4,
+            9,
+            5
+          ],
+          "texture": "#skin"
+        }
+      }
+    },
+    {
+      "name": "右腿",
+      "from": [
+        4.85,
+        0,
+        3
+      ],
+      "to": [
+        7.85,
+        3,
+        10.5
+      ],
+      "faces": {
+        "west": {
+          "uv": [
+            0,
+            5,
+            1,
+            8
+          ],
+          "texture": "#skin",
+          "rotation": 90
+        },
+        "north": {
+          "uv": [
+            2.0,
+            4.0,
+            3.0,
+            5.0
+          ],
+          "texture": "#skin"
+        },
+        "east": {
+          "uv": [
+            2,
+            5,
+            3,
+            8
+          ],
+          "texture": "#skin",
+          "rotation": 90
+        },
+        "south": {
+          "uv": [
+            1.0,
+            4.0,
+            2.0,
+            5.0
+          ],
+          "texture": "#skin"
+        },
+        "up": {
+          "uv": [
+            1,
+            5,
+            2,
+            8
+          ],
+          "texture": "#skin"
+        },
+        "down": {
+          "uv": [
+            3.0,
+            5.0,
+            4.0,
+            8.0
+          ],
+          "texture": "#skin"
+        }
+      },
+      "rotation": {
+        "origin": [
+          6.35,
+          1.5,
+          10.5
+        ],
+        "axis": "y",
+        "angle": 22.5,
+        "rescale": false
+      }
+    },
+    {
+      "name": "左腿",
+      "from": [
+        8.15,
+        0,
+        3
+      ],
+      "to": [
+        11.15,
+        3,
+        10.5
+      ],
+      "faces": {
+        "west": {
+          "uv": [
+            4,
+            13,
+            5,
+            16
+          ],
+          "texture": "#skin",
+          "rotation": 90
+        },
+        "north": {
+          "uv": [
+            6.0,
+            12.0,
+            7.0,
+            13.0
+          ],
+          "texture": "#skin"
+        },
+        "east": {
+          "uv": [
+            6,
+            13,
+            7,
+            16
+          ],
+          "texture": "#skin",
+          "rotation": 90
+        },
+        "south": {
+          "uv": [
+            5.0,
+            12.0,
+            6.0,
+            13.0
+          ],
+          "texture": "#skin"
+        },
+        "up": {
+          "uv": [
+            5,
+            13,
+            6,
+            16
+          ],
+          "texture": "#skin"
+        },
+        "down": {
+          "uv": [
+            7.0,
+            13.0,
+            8.0,
+            16.0
+          ],
+          "texture": "#skin"
+        }
+      },
+      "rotation": {
+        "origin": [
+          9.65,
+          1.5,
+          10.5
+        ],
+        "axis": "y",
+        "angle": -22.5,
+        "rescale": false
+      }
+    },
+    {
+      "name": "身体服饰外层",
+      "from": [
+        4.88,
+        2.88,
+        8.38
+      ],
+      "to": [
+        11.12,
+        9.12,
+        11.62
+      ],
+      "faces": {
+        "west": {
+          "uv": [
+            4,
+            9,
+            5,
+            12
+          ],
+          "texture": "#skin"
+        },
+        "north": {
+          "uv": [
+            5,
+            9,
+            7,
+            12
+          ],
+          "texture": "#skin"
+        },
+        "east": {
+          "uv": [
+            7,
+            9,
+            8,
+            12
+          ],
+          "texture": "#skin"
+        },
+        "south": {
+          "uv": [
+            8,
+            9,
+            10,
+            12
+          ],
+          "texture": "#skin"
+        },
+        "up": {
+          "uv": [
+            5,
+            8,
+            7,
+            9
+          ],
+          "texture": "#skin"
+        },
+        "down": {
+          "uv": [
+            7,
+            8,
+            9,
+            9
+          ],
+          "texture": "#skin"
+        }
+      }
+    }
+  ],
+  "display": {
+    "gui": {
+      "rotation": [
+        25,
+        225,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.8,
+        0.8,
+        0.8
+      ]
+    },
+    "ground": {
+      "translation": [
+        0,
+        3,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "fixed": {
+      "scale": [
+        0.7,
+        0.7,
+        0.7
+      ]
+    },
+    "head": {
+      "scale": [
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "render_type": "minecraft:cutout"
+}

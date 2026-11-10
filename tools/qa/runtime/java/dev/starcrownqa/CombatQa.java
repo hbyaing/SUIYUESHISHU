@@ -8,7 +8,7 @@ public class CombatQa {
  public static final net.minecraftforge.registries.DeferredRegister<net.minecraft.world.effect.MobEffect> EFFECTS=net.minecraftforge.registries.DeferredRegister.create(net.minecraftforge.registries.ForgeRegistries.MOB_EFFECTS,"starcrownqa");
  public static final net.minecraftforge.registries.RegistryObject<net.minecraft.world.effect.MobEffect> FUTURE=EFFECTS.register("future_benefit",()->new Probe());
  private static class Probe extends net.minecraft.world.effect.MobEffect { Probe(){super(net.minecraft.world.effect.MobEffectCategory.BENEFICIAL,0xaaddff);} }
- public CombatQa(){EFFECTS.register(net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext.get().getModEventBus());}
+ public CombatQa(){EFFECTS.register(net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext.get().getModEventBus());net.minecraftforge.common.MinecraftForge.EVENT_BUS.addListener(GenericDefenseTests.Production::serverTick);}
 
  static java.util.UUID liveId;static int liveTicks;
  static java.lang.reflect.Field healthField()throws Exception{for(String name:new String[]{"DATA_HEALTH_ID","f_20961_"})try{var f=net.minecraft.world.entity.LivingEntity.class.getDeclaredField(name);f.setAccessible(true);return f;}catch(NoSuchFieldException ignored){}throw new NoSuchFieldException("Health");}

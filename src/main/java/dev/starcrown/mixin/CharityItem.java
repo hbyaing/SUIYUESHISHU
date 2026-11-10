@@ -8,5 +8,5 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 @Mixin(ItemEntity.class)
 public abstract class CharityItem {
  @Inject(method={"playerTouch(Lnet/minecraft/world/entity/player/Player;)V","m_6123_(Lnet/minecraft/world/entity/player/Player;)V"},at=@At("HEAD"),cancellable=true,remap=false,require=1)
- private void pickup(Player p,CallbackInfo c){if(YuleCharity.active(p)&&YuleCharity.deathLoot((ItemEntity)(Object)this))c.cancel();}
+ private void pickup(Player p,CallbackInfo c){if(!p.level().isClientSide)YuleCharity.clearLegacyMark(((ItemEntity)(Object)this).getItem());}
 }

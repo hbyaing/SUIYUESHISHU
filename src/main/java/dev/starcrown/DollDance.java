@@ -30,6 +30,12 @@ public final class DollDance {
   return nearSource(level,point,false);
  }
  public static boolean nearYule(Level level,Vec3 point){return nearSource(level,point,true);}
+ public static boolean nearCalm(Level level,Vec3 point){
+  for(var pos:sources(level))if(point.distanceToSqr(Vec3.atCenterOf(pos))<=144&&level.hasChunkAt(pos)
+   &&level.getBlockEntity(pos) instanceof StarcrownDoll.DollEntity doll&&doll.isPlaying()&&!doll.isRemoved()
+   &&doll.getBlockState().is(StarcrownDoll.CALM_DOLL.get()))return true;
+  return false;
+ }
  public static Set<net.minecraft.world.entity.LivingEntity> feastTargets(Level level){
   Set<net.minecraft.world.entity.LivingEntity> result=new HashSet<>();
   for(BlockPos pos:sources(level))if(level.hasChunkAt(pos)&&level.getBlockEntity(pos) instanceof StarcrownDoll.DollEntity doll&&doll.isPlaying()&&!doll.isRemoved()&&doll.getBlockState().is(StarcrownDoll.YULE_DOLL.get()))
@@ -39,7 +45,9 @@ public final class DollDance {
  private static boolean nearSource(Level level,Vec3 point,boolean yuleOnly){
   for(BlockPos pos:sources(level)) {
    if(!level.hasChunkAt(pos))continue;
-   if(level.getBlockEntity(pos) instanceof StarcrownDoll.DollEntity doll&&!doll.isRemoved()&&doll.isPlaying()&&(!yuleOnly||doll.getBlockState().is(StarcrownDoll.YULE_DOLL.get()))&&point.distanceToSqr(Vec3.atCenterOf(pos))<=256)return true;
+   if(level.getBlockEntity(pos) instanceof StarcrownDoll.DollEntity doll&&!doll.isRemoved()&&doll.isPlaying()
+    &&(yuleOnly?doll.getBlockState().is(StarcrownDoll.YULE_DOLL.get()):!doll.getBlockState().is(StarcrownDoll.CALM_DOLL.get()))
+    &&point.distanceToSqr(Vec3.atCenterOf(pos))<=256)return true;
   }
   return false;
  }
@@ -66,7 +74,19 @@ public final class DollDance {
   for(BlockPos pos:sources(level)){
    if(!level.hasChunkAt(pos))continue;
    if(!(level.getBlockEntity(pos) instanceof StarcrownDoll.DollEntity doll)||doll.isRemoved()||!doll.isPlaying()){SOURCES.get(level).remove(pos);SOURCE_LISTS.remove(level);continue;}
+   if(doll.getBlockState().is(StarcrownDoll.CALM_DOLL.get()))continue;
    for(Mob mob:level.getEntitiesOfClass(Mob.class,new AABB(pos).inflate(16)))if(seen.add(mob)&&controlled(mob))hold(mob);
   }
+ }
+ static Set<net.minecraft.world.entity.LivingEntity> calmFeastTargets(Level level){
+  Set<net.minecraft.world.entity.LivingEntity> result=new HashSet<>();
+  for(var pos:sources(level))if(level.hasChunkAt(pos)&&level.getBlockEntity(pos) instanceof StarcrownDoll.DollEntity doll
+   &&doll.isPlaying()&&!doll.isRemoved()&&doll.getBlockState().is(StarcrownDoll.CALM_DOLL.get())){
+   var center=Vec3.atCenterOf(pos);
+   result.addAll(level.getEntitiesOfClass(net.minecraft.world.entity.LivingEntity.class,new AABB(pos).inflate(12),
+    e->e.isAlive()&&!e.isSpectator()&&e.distanceToSqr(center)<=144&&(e instanceof net.minecraft.world.entity.player.Player
+      ||e instanceof net.minecraft.world.entity.OwnableEntity pet&&pet.getOwnerUUID()!=null)));
+  }
+  return result;
  }
 }

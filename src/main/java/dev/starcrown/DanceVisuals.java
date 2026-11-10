@@ -25,7 +25,7 @@ public final class DanceVisuals {
  }
  @SubscribeEvent(priority=net.minecraftforge.eventbus.api.EventPriority.LOWEST)
  public static void before(RenderLivingEvent.Pre<?,?> event){
-  if(event.getEntity() instanceof Mob mob&&DollDance.controlled(mob)){
+  if(event.getEntity() instanceof Mob mob&&(DollDance.controlled(mob)||DollDance.nearCalm(mob.level(),mob.position()))){
    PoseStack pose=event.getPoseStack();pose.pushPose();POSES.push(new RenderPose(mob,pose));
    animateMob(pose,mob.level().getGameTime()+event.getPartialTick());
   }

@@ -1,0 +1,215 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "skin": "starcrowndoll:block/yule_skin",
+    "particle": "starcrowndoll:block/yule_skin",
+    "gold": "starcrowndoll:block/gold",
+    "gem": "starcrowndoll:block/gem"
+  },
+  "elements": [
+    {
+      "name": "左臂",
+      "from": [
+        11,
+        3,
+        8.5
+      ],
+      "to": [
+        14,
+        9,
+        11.5
+      ],
+      "faces": {
+        "west": {
+          "uv": [
+            8.0,
+            13.0,
+            9.0,
+            16.0
+          ],
+          "texture": "#skin"
+        },
+        "north": {
+          "uv": [
+            9.0,
+            13.0,
+            9.75,
+            16.0
+          ],
+          "texture": "#skin"
+        },
+        "east": {
+          "uv": [
+            9.75,
+            13.0,
+            10.75,
+            16.0
+          ],
+          "texture": "#skin"
+        },
+        "south": {
+          "uv": [
+            10.75,
+            13.0,
+            11.5,
+            16.0
+          ],
+          "texture": "#skin"
+        },
+        "up": {
+          "uv": [
+            9.0,
+            12.0,
+            9.75,
+            13.0
+          ],
+          "texture": "#skin"
+        },
+        "down": {
+          "uv": [
+            9.75,
+            12.0,
+            10.5,
+            13.0
+          ],
+          "texture": "#skin"
+        }
+      },
+      "rotation": {
+        "origin": [
+          12.5,
+          9,
+          10
+        ],
+        "axis": "x",
+        "angle": 22.5,
+        "rescale": false
+      }
+    },
+    {
+      "name": "左臂服饰外层",
+      "from": [
+        10.88,
+        2.88,
+        8.38
+      ],
+      "to": [
+        14.12,
+        9.12,
+        11.62
+      ],
+      "faces": {
+        "west": {
+          "uv": [
+            12.0,
+            13.0,
+            13.0,
+            16.0
+          ],
+          "texture": "#skin"
+        },
+        "north": {
+          "uv": [
+            13.0,
+            13.0,
+            13.75,
+            16.0
+          ],
+          "texture": "#skin"
+        },
+        "east": {
+          "uv": [
+            13.75,
+            13.0,
+            14.75,
+            16.0
+          ],
+          "texture": "#skin"
+        },
+        "south": {
+          "uv": [
+            14.75,
+            13.0,
+            15.5,
+            16.0
+          ],
+          "texture": "#skin"
+        },
+        "up": {
+          "uv": [
+            13.0,
+            12.0,
+            13.75,
+            13.0
+          ],
+          "texture": "#skin"
+        },
+        "down": {
+          "uv": [
+            13.75,
+            12.0,
+            14.5,
+            13.0
+          ],
+          "texture": "#skin"
+        }
+      },
+      "rotation": {
+        "origin": [
+          12.5,
+          9,
+          10
+        ],
+        "axis": "x",
+        "angle": 22.5,
+        "rescale": false
+      }
+    }
+  ],
+  "display": {
+    "gui": {
+      "rotation": [
+        25,
+        225,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.8,
+        0.8,
+        0.8
+      ]
+    },
+    "ground": {
+      "translation": [
+        0,
+        3,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "fixed": {
+      "scale": [
+        0.7,
+        0.7,
+        0.7
+      ]
+    },
+    "head": {
+      "scale": [
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "render_type": "minecraft:cutout"
+}

@@ -12,6 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderTooltipEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -21,33 +22,36 @@ public final class YuleItemTooltip {
  static final int[] COLORS={0xffc4de,0xffdeaa,0xffffff,0xffd1e5,0xeac387,0xffffff};
  static final int[] TEXT_COLORS={0xff90c9,0xffd078,0xc6a5ff,0xffa3cb,0xf4cc86};
  private static final ResourceLocation ART=new ResourceLocation(StarcrownDoll.ID,"textures/gui/yule_poses.png");
- private static final ResourceLocation FISH=new ResourceLocation(StarcrownDoll.ID,"textures/item/fishing_god_fish.png");
  private static final long EPOCH=System.nanoTime();
- @SubscribeEvent public static void render(RenderTooltipEvent.Pre event){
-  if(!event.getItemStack().is(StarcrownDoll.YULE_ITEM.get()))return;
+ @SubscribeEvent(priority=EventPriority.HIGHEST) public static void render(RenderTooltipEvent.Pre event){
+  if(!StarcrownDoll.isYule(event.getItemStack()))return;
   event.setCanceled(true);
   if(TooltipReading.pinned())return;
-  draw(event.getGraphics(),event.getX(),event.getY(),event.getScreenWidth(),event.getScreenHeight(),false,event.getItemStack().getHoverName());
+  draw(event.getGraphics(),event.getX(),event.getY(),event.getScreenWidth(),event.getScreenHeight(),false,event.getItemStack().getHoverName(),event.getItemStack().is(StarcrownDoll.CALM_ITEM.get()));
  }
  public static float raisedAlpha(double t){double phase=t%4.4;return (float)(phase<2.2?Math.max(0,1-phase/.45):Math.min(1,(phase-2.2)/.45));}
  public static void draw(GuiGraphics g,int mx,int my,int sw,int sh,boolean expanded,Component name){
+  draw(g,mx,my,sw,sh,expanded,name,false);
+ }
+ static void draw(GuiGraphics g,int mx,int my,int sw,int sh,boolean expanded,Component name,boolean calm){
   TooltipReading.track(mx,my,name);
+  String variant=calm?"calm":"yule";
   var font=Minecraft.getInstance().font;
   int width=Math.max(90,Math.min(expanded?340:226,sw-24));
-  var layout=TooltipLayouts.get("yule",width,expanded,name,()->{
+  var layout=TooltipLayouts.get(variant,width,expanded,name,()->{
   List<FormattedCharSequence> rows=new ArrayList<>();
   rows.addAll(font.split(name.copy().withStyle(s->s.withBold(false)),width));
-  rows.addAll(font.split(Component.translatable("tooltip.starcrowndoll.yule.divinity"),width));
+  rows.addAll(font.split(Component.translatable("tooltip.starcrowndoll."+variant+".divinity"),width));
   rows.addAll(font.split(Component.translatable("tooltip.starcrowndoll.yule.lore"),width));
   int headerLines=rows.size();
   if(expanded){
-   List<Component> descriptions=new ArrayList<>();DollClient.yuleTooltip(descriptions,true);
+   List<Component> descriptions=new ArrayList<>();DollClient.yuleTooltip(descriptions,true,calm);
    for(var c:descriptions){rows.addAll(font.split(c,width));}
   }
   rows.addAll(font.split(Component.translatable("tooltip.starcrowndoll.shift"),width));
   return new TooltipLayouts.Layout<>(List.copyOf(rows),headerLines);
   });
-  var reading=TooltipReading.select(layout.lines(),layout.header(),sh,"yule",expanded);var lines=reading.lines();
+  var reading=TooltipReading.select(layout.lines(),layout.header(),sh,variant,expanded);var lines=reading.lines();
   int rowHeight=TooltipReading.ROW_HEIGHT;
   int w=width+16,h=16+lines.size()*rowHeight+(expanded?15:0);
   float scale=1;
@@ -97,8 +101,9 @@ public final class YuleItemTooltip {
         g.pose().translate((pose == 0 ? 0.6 : 0.5) * 768.0, (pose == 0 ? 0.46 : 0.16) * 1024.0, 0.0);
         g.pose().mulPose(Axis.ZP.rotationDegrees(pose == 0 ? 53.0f : 45.0f));
         float fishWidth = (pose == 0 ? 0.58f : 0.56f) * 768.0f;
-        g.pose().scale(fishWidth / 1280.0f, fishWidth / 1280.0f, 1.0f);
-        g.blit(FISH, -640, -640, 0.0f, 0.0f, 1280, 1280, 1280, 1280);
+        g.pose().scale(fishWidth / YuleFishVisual.WIDTH, fishWidth / YuleFishVisual.WIDTH, 1.0f);
+        g.blit(YuleFishVisual.TEXTURE, -YuleFishVisual.WIDTH / 2, -YuleFishVisual.HEIGHT / 2, 0.0f, 0.0f,
+                YuleFishVisual.WIDTH, YuleFishVisual.HEIGHT, YuleFishVisual.WIDTH, YuleFishVisual.HEIGHT);
         g.pose().popPose();
         if (pose == 0) {
             YuleItemTooltip.hand(g, pose, 0.37f, 0.49f, 0.53f, 0.61f);

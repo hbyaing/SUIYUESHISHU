@@ -31,8 +31,13 @@ public final class DollHands {
    pose.popPose();
   }
   pose.pushPose();pose.mulPose(Axis.YP.rotationDegrees(side==1?155:205));pose.scale(.4f,.4f,.4f);pose.translate(-.5,0,-.5);
-  DollRenderer.renderBody(StarcrownDoll.dollState(event.getItemStack()),pose,buffers,light,OverlayTexture.NO_OVERLAY,DollAnimation.jumpAmount(player,event.getPartialTick()));
-  pose.translate(.5,0,.5);DollRenderer.renderEffects((player.level().getGameTime()+event.getPartialTick())/20.,pose,buffers,event.getItemStack().is(StarcrownDoll.ITEM.get()));
+  var stack=event.getItemStack();
+  if(stack.is(StarcrownDoll.SELF_ITEM.get())){
+   SelfDollRenderer.renderForPlayer(player,pose,buffers,light,OverlayTexture.NO_OVERLAY,DollAnimation.jumpAmount(player,event.getPartialTick()));
+  }else{
+   DollRenderer.renderBody(StarcrownDoll.dollState(stack),pose,buffers,light,OverlayTexture.NO_OVERLAY,DollAnimation.jumpAmount(player,event.getPartialTick()));
+   pose.translate(.5,0,.5);DollRenderer.renderEffects((player.level().getGameTime()+event.getPartialTick())/20.,pose,buffers,StarcrownDoll.isChengran(stack));
+  }
   pose.popPose();pose.popPose();
  }
 }

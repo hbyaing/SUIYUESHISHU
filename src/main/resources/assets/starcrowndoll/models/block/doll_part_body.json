@@ -106,7 +106,8 @@
             3.0,
             5.0
           ],
-          "texture": "#skin"
+          "texture": "#skin",
+          "rotation": 180
         },
         "east": {
           "uv": [
@@ -116,7 +117,7 @@
             8
           ],
           "texture": "#skin",
-          "rotation": 90
+          "rotation": 270
         },
         "south": {
           "uv": [
@@ -134,7 +135,8 @@
             2,
             8
           ],
-          "texture": "#skin"
+          "texture": "#skin",
+          "rotation": 180
         },
         "down": {
           "uv": [
@@ -187,7 +189,8 @@
             7.0,
             13.0
           ],
-          "texture": "#skin"
+          "texture": "#skin",
+          "rotation": 180
         },
         "east": {
           "uv": [
@@ -197,7 +200,7 @@
             16
           ],
           "texture": "#skin",
-          "rotation": 90
+          "rotation": 270
         },
         "south": {
           "uv": [
@@ -215,7 +218,8 @@
             6,
             16
           ],
-          "texture": "#skin"
+          "texture": "#skin",
+          "rotation": 180
         },
         "down": {
           "uv": [
@@ -305,6 +309,172 @@
           ],
           "texture": "#skin"
         }
+      }
+    },
+    {
+      "name": "右腿服装外层",
+      "from": [
+        4.73,
+        -0.12,
+        2.88
+      ],
+      "to": [
+        7.97,
+        3.12,
+        10.62
+      ],
+      "faces": {
+        "west": {
+          "uv": [
+            0,
+            9,
+            1,
+            12
+          ],
+          "texture": "#skin",
+          "rotation": 90
+        },
+        "north": {
+          "uv": [
+            2.0,
+            8.0,
+            3.0,
+            9.0
+          ],
+          "texture": "#skin",
+          "rotation": 180
+        },
+        "east": {
+          "uv": [
+            2,
+            9,
+            3,
+            12
+          ],
+          "texture": "#skin",
+          "rotation": 270
+        },
+        "south": {
+          "uv": [
+            1.0,
+            8.0,
+            2.0,
+            9.0
+          ],
+          "texture": "#skin"
+        },
+        "up": {
+          "uv": [
+            1,
+            9,
+            2,
+            12
+          ],
+          "texture": "#skin",
+          "rotation": 180
+        },
+        "down": {
+          "uv": [
+            3.0,
+            9.0,
+            4.0,
+            12.0
+          ],
+          "texture": "#skin"
+        }
+      },
+      "rotation": {
+        "origin": [
+          6.35,
+          1.5,
+          10.5
+        ],
+        "axis": "y",
+        "angle": 22.5,
+        "rescale": false
+      }
+    },
+    {
+      "name": "左腿服装外层",
+      "from": [
+        8.03,
+        -0.12,
+        2.88
+      ],
+      "to": [
+        11.27,
+        3.12,
+        10.62
+      ],
+      "faces": {
+        "west": {
+          "uv": [
+            0,
+            13,
+            1,
+            16
+          ],
+          "texture": "#skin",
+          "rotation": 90
+        },
+        "north": {
+          "uv": [
+            2.0,
+            12.0,
+            3.0,
+            13.0
+          ],
+          "texture": "#skin",
+          "rotation": 180
+        },
+        "east": {
+          "uv": [
+            2,
+            13,
+            3,
+            16
+          ],
+          "texture": "#skin",
+          "rotation": 270
+        },
+        "south": {
+          "uv": [
+            1.0,
+            12.0,
+            2.0,
+            13.0
+          ],
+          "texture": "#skin"
+        },
+        "up": {
+          "uv": [
+            1,
+            13,
+            2,
+            16
+          ],
+          "texture": "#skin",
+          "rotation": 180
+        },
+        "down": {
+          "uv": [
+            3.0,
+            13.0,
+            4.0,
+            16.0
+          ],
+          "texture": "#skin"
+        }
+      },
+      "rotation": {
+        "origin": [
+          9.65,
+          1.5,
+          10.5
+        ],
+        "axis": "y",
+        "angle": -22.5,
+        "rescale": false
       }
     }
   ],

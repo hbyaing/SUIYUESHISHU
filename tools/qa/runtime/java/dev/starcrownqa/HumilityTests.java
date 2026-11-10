@@ -36,7 +36,8 @@ public final class HumilityTests {
    p.kill();near(h,p.getHealth(),17,"kill becomes one-point strike");h.assertTrue(p.isAlive()&&!p.isRemoved(),"kill did not delete player");
    p.setHealth(0);near(h,p.getHealth(),16,"direct zero-health write capped");
    p.die(p.damageSources().genericKill());near(h,p.getHealth(),16,"forced die blocked while health remains");
-   var victim=h.spawn(EntityType.PIG,5,2,5);victim.hurt(p.damageSources().playerAttack(p),100);near(h,victim.getHealth(),victim.getMaxHealth(),"tolerance prevents outgoing attack");near(h,YuleHumility.damage(victim,p.damageSources().playerAttack(p),100),1,"humility damage cap retained");
+   var victim=h.spawn(EntityType.PIG,5,2,5);victim.hurt(p.damageSources().playerAttack(p),4);
+   near(h,victim.getHealth(),victim.getMaxHealth()-4,"outgoing attack remains at full strength");
    p.setItemSlot(EquipmentSlot.HEAD,ItemStack.EMPTY);p.setHealth(20);p.invulnerableTime=0;p.hurt(p.damageSources().genericKill(),4);near(h,p.getHealth(),16,"unequip releases cap");
    h.succeed();
   }finally{cleanup(p);}
@@ -47,14 +48,10 @@ public final class HumilityTests {
   try{
    for(var pose:new Pose[]{Pose.STANDING,Pose.CROUCHING,Pose.SWIMMING}){p.setPose(pose);p.refreshDimensions();near(h,p.getBbHeight(),p.getDimensions(pose).height,"normal pose height "+pose);}
    p.getPersistentData().putBoolean("starcrowndoll_humility_size",true);YuleHumility.updateSize(p);h.assertTrue(!p.getPersistentData().contains("starcrowndoll_humility_size"),"legacy size marker removed");
-   h.assertTrue(!YuleHumility.forbidden(new ItemStack(Items.IRON_SWORD)),"iron sword allowed");
-   h.assertTrue(!YuleHumility.forbidden(new ItemStack(Items.GOLDEN_HELMET)),"gold allowed");
-   h.assertTrue(YuleHumility.forbidden(new ItemStack(Items.DIAMOND_SWORD)),"diamond sword denied");
-   h.assertTrue(YuleHumility.forbidden(new ItemStack(Items.NETHERITE_CHESTPLATE)),"netherite armor denied");
    var sword=new ItemStack(Items.DIAMOND_SWORD);sword.setHoverName(net.minecraft.network.chat.Component.literal("kept-item"));
-   p.setItemSlot(EquipmentSlot.MAINHAND,sword);YuleHumility.enforceEquipment(p);
-   h.assertTrue(p.getMainHandItem().isEmpty(),"forbidden weapon removed from hand");
-   h.assertTrue(p.getInventory().items.stream().anyMatch(s->s.is(Items.DIAMOND_SWORD)&&s.hasCustomHoverName()),"weapon retained with metadata");
+   p.setItemSlot(EquipmentSlot.MAINHAND,sword);
+   p.setItemSlot(EquipmentSlot.CHEST,new ItemStack(Items.NETHERITE_CHESTPLATE));
+   h.assertTrue(p.getMainHandItem()==sword&&p.getItemBySlot(EquipmentSlot.CHEST).is(Items.NETHERITE_CHESTPLATE),"high-tier equipment remains usable");
    p.setPose(Pose.STANDING);p.setItemSlot(EquipmentSlot.HEAD,ItemStack.EMPTY);p.refreshDimensions();near(h,p.getBbHeight(),1.8f,"size restored on unequip");
    h.succeed();
   }finally{cleanup(p);}
@@ -83,18 +80,18 @@ public final class HumilityTests {
  public static void pressurePlates(GameTestHelper h){
   var p=wearer(h);var local=new BlockPos(2,2,2);var pos=h.absolutePos(local);var level=h.getLevel();
   try{
-   h.assertTrue(p.isIgnoringBlockTriggers(),"entity trigger exemption active");
+   h.assertTrue(!p.isIgnoringBlockTriggers(),"redstone triggers accept the wearer");
    level.setBlockAndUpdate(pos.below(),Blocks.STONE.defaultBlockState());
    for(var block:new Block[]{Blocks.STONE_PRESSURE_PLATE,Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE,Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE}){
     level.setBlockAndUpdate(pos,block.defaultBlockState());p.moveTo(pos.getX()+.5,pos.getY(),pos.getZ()+.5,0,0);
     block.entityInside(level.getBlockState(pos),level,pos,p);
     var state=level.getBlockState(pos);
     h.assertTrue(state.is(block),"plate remains placed");
-    h.assertTrue(!state.hasProperty(PressurePlateBlock.POWERED)||!state.getValue(PressurePlateBlock.POWERED),"ordinary plate stays off");
-    h.assertTrue(!state.hasProperty(WeightedPressurePlateBlock.POWER)||state.getValue(WeightedPressurePlateBlock.POWER)==0,"weighted plate stays off");
+    h.assertTrue(!state.hasProperty(PressurePlateBlock.POWERED)||state.getValue(PressurePlateBlock.POWERED),"ordinary plate activates");
+    h.assertTrue(!state.hasProperty(WeightedPressurePlateBlock.POWER)||state.getValue(WeightedPressurePlateBlock.POWER)>0,"weighted plate activates");
    }
    level.setBlockAndUpdate(pos,Blocks.TRIPWIRE.defaultBlockState());Blocks.TRIPWIRE.entityInside(level.getBlockState(pos),level,pos,p);
-   h.assertTrue(!level.getBlockState(pos).getValue(TripWireBlock.POWERED),"tripwire stays off");
+   h.assertTrue(level.getBlockState(pos).getValue(TripWireBlock.POWERED),"tripwire activates");
    p.setItemSlot(EquipmentSlot.HEAD,ItemStack.EMPTY);level.setBlockAndUpdate(pos,Blocks.STONE_PRESSURE_PLATE.defaultBlockState());
    Blocks.STONE_PRESSURE_PLATE.entityInside(level.getBlockState(pos),level,pos,p);
    h.assertTrue(level.getBlockState(pos).getValue(PressurePlateBlock.POWERED),"ordinary player activates plate");
@@ -112,10 +109,12 @@ public final class HumilityTests {
   var registry=level.getChunkAt(pos).getListenerRegistry(net.minecraft.core.SectionPos.blockToSectionCoord(pos.getY()));registry.register(listener);
   try{
    level.gameEvent(net.minecraft.world.level.gameevent.GameEvent.STEP,p.position(),net.minecraft.world.level.gameevent.GameEvent.Context.of(p));
-   h.assertTrue(heard[0]==0,"vibration listener hears no hidden footsteps");
+   h.assertTrue(heard[0]==1,"unrelated game-event listener still receives steps");
+   var sensor=new net.minecraft.world.level.block.entity.SculkSensorBlockEntity(pos.offset(1,0,0),Blocks.SCULK_SENSOR.defaultBlockState());
+   h.assertTrue(!sensor.getVibrationUser().canReceiveVibration(level,pos,net.minecraft.world.level.gameevent.GameEvent.STEP,net.minecraft.world.level.gameevent.GameEvent.Context.of(p)),"sculk vibration is suppressed");
    p.setItemSlot(EquipmentSlot.HEAD,ItemStack.EMPTY);
    level.gameEvent(net.minecraft.world.level.gameevent.GameEvent.STEP,p.position(),net.minecraft.world.level.gameevent.GameEvent.Context.of(p));
-   h.assertTrue(heard[0]==1,"vibration listener hears normal footsteps");h.succeed();
+   h.assertTrue(heard[0]==2,"vibration listener hears normal footsteps");h.succeed();
   }finally{registry.unregister(listener);cleanup(p);}
  }
  @GameTest(template="empty",timeoutTicks=100)

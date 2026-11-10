@@ -7,6 +7,12 @@ import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 @Mixin(net.minecraft.world.entity.player.Player.class)
 public abstract class PlayerGuard {
+ @Inject(method={"dropEquipment()V","m_5907_()V"},at=@At("HEAD"),cancellable=true,remap=false,require=1)
+ private void nativeDeathEquipment(CallbackInfo ci){if(DivineProtection.active((Entity)(Object)this)){DivineProtection.prevent((Entity)(Object)this,"Player.dropEquipment",0);ci.cancel();}}
+ @Inject(method={"hurt(Lnet/minecraft/world/damagesource/DamageSource;F)Z","m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z"},at=@At("HEAD"),cancellable=true,remap=false,require=1)
+ private void nativePlayerDamage(DamageSource source,float amount,CallbackInfoReturnable<Boolean> ci){if(DivineProtection.blockDamage((LivingEntity)(Object)this,source,amount,"Player.hurt"))ci.setReturnValue(false);}
+ @Inject(method={"actuallyHurt(Lnet/minecraft/world/damagesource/DamageSource;F)V","m_6475_(Lnet/minecraft/world/damagesource/DamageSource;F)V"},at=@At("HEAD"),cancellable=true,remap=false,require=1)
+ private void nativePlayerHealthLoss(DamageSource source,float amount,CallbackInfo ci){if(DivineProtection.blockDamage((LivingEntity)(Object)this,source,amount,"Player.actuallyHurt"))ci.cancel();}
  @Inject(method={"canBeSeenAsEnemy()Z","m_142066_()Z"},at=@At("HEAD"),cancellable=true,remap=false,require=1)
  private void humilitySeen(CallbackInfoReturnable<Boolean> ci){if(dev.starcrown.YuleHumility.active((Entity)(Object)this))ci.setReturnValue(false);}
  @Inject(method={"attack(Lnet/minecraft/world/entity/Entity;)V","m_5706_(Lnet/minecraft/world/entity/Entity;)V"},at=@At("HEAD"),cancellable=true,remap=false,require=1)
