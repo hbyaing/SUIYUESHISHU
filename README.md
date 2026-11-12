@@ -2,6 +2,8 @@
 
 [冥古龙「荒芜之噬」特效工作台与源码](tools/minggulong-huangwu-vfx/README.md)：独立 Forge 1.20.1 特效预览、4.32秒分段演出、正速/半速视频和可旋转逐帧工作台。此演示尚未接入主模组或绑定冥古龙动作。
 
+[冥古龙骨骼动画工程](models/minggulong/rigged/README.md)：含106段完整动作版、21段常用动作版、内嵌贴图和骨骼绑定清单，可在 Blockbench 中编辑。
+
 [下载 1.20.36 正式版](https://github.com/hbyaing/SUIYUESHISHU/releases/tag/v1.20.36)
 
 防御链改为原生/Forge通用入口，补同步生命数据、死亡掉落、停tick与实体分区保护，移除旧秘法类名拦截层。

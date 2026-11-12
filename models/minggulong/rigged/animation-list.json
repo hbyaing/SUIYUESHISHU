@@ -1,0 +1,956 @@
+[
+  {
+    "name": "Pos_LookBase",
+    "length": 0.1666667,
+    "fps": 30,
+    "frames": 6,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/BlendSpace_LookAt/Pos_LookBase.uasset",
+    "keys": 494
+  },
+  {
+    "name": "Pos_LookBase_Add",
+    "length": 0.1666667,
+    "fps": 30,
+    "frames": 6,
+    "additive": true,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/BlendSpace_LookAt/Pos_LookBase_Add.uasset",
+    "keys": 0
+  },
+  {
+    "name": "Pos_LookDown",
+    "length": 0.1666667,
+    "fps": 30,
+    "frames": 6,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/BlendSpace_LookAt/Pos_LookDown.uasset",
+    "keys": 650
+  },
+  {
+    "name": "Pos_LookLeft",
+    "length": 0.1666667,
+    "fps": 30,
+    "frames": 6,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/BlendSpace_LookAt/Pos_LookLeft.uasset",
+    "keys": 650
+  },
+  {
+    "name": "Pos_LookRight",
+    "length": 0.1666667,
+    "fps": 30,
+    "frames": 6,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/BlendSpace_LookAt/Pos_LookRight.uasset",
+    "keys": 650
+  },
+  {
+    "name": "Pos_LookUp",
+    "length": 0.1666667,
+    "fps": 30,
+    "frames": 6,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/BlendSpace_LookAt/Pos_LookUp.uasset",
+    "keys": 650
+  },
+  {
+    "name": "JQ11_CS03_010",
+    "length": 2.0666667,
+    "fps": 30,
+    "frames": 63,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/CG/JQ/JQ11/JQ11_CS03/JQ11_CS03_010/JQ11_CS03_010.uasset",
+    "keys": 11368
+  },
+  {
+    "name": "JQ11_CS03_040",
+    "length": 1.0,
+    "fps": 30,
+    "frames": 31,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/CG/JQ/JQ11/JQ11_CS03/JQ11_CS03_040/JQ11_CS03_040.uasset",
+    "keys": 5952
+  },
+  {
+    "name": "JQ11_CS03_080",
+    "length": 1.0666667,
+    "fps": 30,
+    "frames": 33,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/CG/JQ/JQ11/JQ11_CS03/JQ11_CS03_080/JQ11_CS03_080.uasset",
+    "keys": 5287
+  },
+  {
+    "name": "Attack_Fly",
+    "length": 3.9666667,
+    "fps": 30,
+    "frames": 120,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/CG/JQ/JQ11/JQ11_CS20/Attack_Fly.uasset",
+    "keys": 5671
+  },
+  {
+    "name": "JQ11_CS20_131",
+    "length": 2.0,
+    "fps": 30,
+    "frames": 61,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/CG/JQ/JQ11/JQ11_CS20/JQ11_CS20_131/JQ11_CS20_131.uasset",
+    "keys": 9490
+  },
+  {
+    "name": "JQ11_CS20_160",
+    "length": 2.5333333,
+    "fps": 30,
+    "frames": 77,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/CG/JQ/JQ11/JQ11_CS20/JQ11_CS20_160/JQ11_CS20_160.uasset",
+    "keys": 14691
+  },
+  {
+    "name": "JQ11_CS20_190",
+    "length": 2.0333333,
+    "fps": 30,
+    "frames": 62,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/CG/JQ/JQ11/JQ11_CS20/JQ11_CS20_190/JQ11_CS20_190.uasset",
+    "keys": 10283
+  },
+  {
+    "name": "JQ11_CS20_210",
+    "length": 0.4666667,
+    "fps": 30,
+    "frames": 15,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/CG/JQ/JQ11/JQ11_CS20/JQ11_CS20_210/JQ11_CS20_210.uasset",
+    "keys": 3240
+  },
+  {
+    "name": "JQ11_CS20_240",
+    "length": 0.2333333,
+    "fps": 30,
+    "frames": 8,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/CG/JQ/JQ11/JQ11_CS20/JQ11_CS20_240/JQ11_CS20_240.uasset",
+    "keys": 693
+  },
+  {
+    "name": "JQ11_CS20_250",
+    "length": 0.3,
+    "fps": 30,
+    "frames": 10,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/CG/JQ/JQ11/JQ11_CS20/JQ11_CS20_250/JQ11_CS20_250.uasset",
+    "keys": 426
+  },
+  {
+    "name": "JQ11_CS20_260",
+    "length": 2.6333333,
+    "fps": 30,
+    "frames": 80,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/CG/JQ/JQ11/JQ11_CS20/JQ11_CS20_260/JQ11_CS20_260.uasset",
+    "keys": 1166
+  },
+  {
+    "name": "JQ11_CS22_040",
+    "length": 2.0,
+    "fps": 30,
+    "frames": 61,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/CG/JQ/JQ11/JQ11_CS22/JQ11_CS22_040/JQ11_CS22_040.uasset",
+    "keys": 11066
+  },
+  {
+    "name": "JQ11_CS22_050",
+    "length": 2.0,
+    "fps": 30,
+    "frames": 61,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/CG/JQ/JQ11/JQ11_CS22/JQ11_CS22_050/JQ11_CS22_050.uasset",
+    "keys": 8452
+  },
+  {
+    "name": "JQ11_CS25_080",
+    "length": 6.0,
+    "fps": 30,
+    "frames": 181,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/CG/JQ/JQ11/JQ11_CS25/JQ11_CS25_080/JQ11_CS25_080.uasset",
+    "keys": 9442
+  },
+  {
+    "name": "JQ11_CS25_090",
+    "length": 4.0,
+    "fps": 30,
+    "frames": 121,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/CG/JQ/JQ11/JQ11_CS25/JQ11_CS25_090/JQ11_CS25_090.uasset",
+    "keys": 13339
+  },
+  {
+    "name": "JQ11_CS25_110",
+    "length": 3.1333333,
+    "fps": 30,
+    "frames": 95,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/CG/JQ/JQ11/JQ11_CS25/JQ11_CS25_110/JQ11_CS25_110.uasset",
+    "keys": 16616
+  },
+  {
+    "name": "JQ11_CS25_120",
+    "length": 4.4666667,
+    "fps": 30,
+    "frames": 135,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/CG/JQ/JQ11/JQ11_CS25/JQ11_CS25_120/JQ11_CS25_120.uasset",
+    "keys": 19784
+  },
+  {
+    "name": "JQ11_CS25_130",
+    "length": 2.9666667,
+    "fps": 30,
+    "frames": 90,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/CG/JQ/JQ11/JQ11_CS25/JQ11_CS25_130/JQ11_CS25_130.uasset",
+    "keys": 12544
+  },
+  {
+    "name": "JQ11_CS25_140",
+    "length": 3.1666667,
+    "fps": 30,
+    "frames": 96,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/CG/JQ/JQ11/JQ11_CS25/JQ11_CS25_140/JQ11_CS25_140.uasset",
+    "keys": 16274
+  },
+  {
+    "name": "JQ11_CS25_170",
+    "length": 6.5,
+    "fps": 30,
+    "frames": 196,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/CG/JQ/JQ11/JQ11_CS25/JQ11_CS25_170/JQ11_CS25_170.uasset",
+    "keys": 36358
+  },
+  {
+    "name": "JQ11_CS25_180",
+    "length": 1.5,
+    "fps": 30,
+    "frames": 46,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/CG/JQ/JQ11/JQ11_CS25/JQ11_CS25_180/JQ11_CS25_180.uasset",
+    "keys": 8792
+  },
+  {
+    "name": "JQ11_CS25_210",
+    "length": 0.8333333,
+    "fps": 30,
+    "frames": 26,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/CG/JQ/JQ11/JQ11_CS25/JQ11_CS25_210/JQ11_CS25_210.uasset",
+    "keys": 4838
+  },
+  {
+    "name": "JQ11_CS25_260",
+    "length": 1.0,
+    "fps": 30,
+    "frames": 31,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/CG/JQ/JQ11/JQ11_CS25/JQ11_CS25_260/JQ11_CS25_260.uasset",
+    "keys": 6074
+  },
+  {
+    "name": "Common_Alert",
+    "length": 4.6666667,
+    "fps": 30,
+    "frames": 141,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Common_Alert.uasset",
+    "keys": 27734
+  },
+  {
+    "name": "Common_Anger",
+    "length": 1.5,
+    "fps": 30,
+    "frames": 46,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Common_Anger.uasset",
+    "keys": 9636
+  },
+  {
+    "name": "Common_Fear",
+    "length": 1.5,
+    "fps": 30,
+    "frames": 46,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Common_Fear.uasset",
+    "keys": 7504
+  },
+  {
+    "name": "Common_Happy",
+    "length": 1.5,
+    "fps": 30,
+    "frames": 46,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Common_Happy.uasset",
+    "keys": 9769
+  },
+  {
+    "name": "Common_Move_L",
+    "length": 1.0333333,
+    "fps": 30,
+    "frames": 32,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Common_Move_L.uasset",
+    "keys": 6931
+  },
+  {
+    "name": "Common_Move_R",
+    "length": 1.0333333,
+    "fps": 30,
+    "frames": 32,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Common_Move_R.uasset",
+    "keys": 6997
+  },
+  {
+    "name": "Common_Relax",
+    "length": 8.5666667,
+    "fps": 30,
+    "frames": 258,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Common_Relax.uasset",
+    "keys": 46872
+  },
+  {
+    "name": "Common_Sad",
+    "length": 1.5,
+    "fps": 30,
+    "frames": 46,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Common_Sad.uasset",
+    "keys": 7676
+  },
+  {
+    "name": "Common_Shock",
+    "length": 1.5,
+    "fps": 30,
+    "frames": 46,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Common_Shock.uasset",
+    "keys": 8348
+  },
+  {
+    "name": "Common_Show",
+    "length": 1.5,
+    "fps": 30,
+    "frames": 46,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Common_Show.uasset",
+    "keys": 9266
+  },
+  {
+    "name": "Common_Sleep_Stand",
+    "length": 6.0,
+    "fps": 30,
+    "frames": 181,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Common_Sleep_Stand.uasset",
+    "keys": 5472
+  },
+  {
+    "name": "Common_Stun",
+    "length": 3.3333333,
+    "fps": 30,
+    "frames": 101,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Common_Stun.uasset",
+    "keys": 5386
+  },
+  {
+    "name": "Fight_Attack_1",
+    "length": 2.6666667,
+    "fps": 30,
+    "frames": 81,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fight_Attack_1.uasset",
+    "keys": 17161
+  },
+  {
+    "name": "Fight_Attack_1_1",
+    "length": 0.1333333,
+    "fps": 30,
+    "frames": 5,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fight_Attack_1_1.uasset",
+    "keys": 1161
+  },
+  {
+    "name": "Fight_Attack_1_End",
+    "length": 1.9666667,
+    "fps": 30,
+    "frames": 60,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fight_Attack_1_End.uasset",
+    "keys": 12572
+  },
+  {
+    "name": "Fight_Attack_1_Start",
+    "length": 0.7,
+    "fps": 30,
+    "frames": 22,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fight_Attack_1_Start.uasset",
+    "keys": 4836
+  },
+  {
+    "name": "Fight_Attack_2",
+    "length": 2.6666667,
+    "fps": 30,
+    "frames": 81,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fight_Attack_2.uasset",
+    "keys": 17516
+  },
+  {
+    "name": "Fight_CallOut",
+    "length": 1.5,
+    "fps": 30,
+    "frames": 46,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fight_CallOut.uasset",
+    "keys": 9870
+  },
+  {
+    "name": "Fight_Die",
+    "length": 2.9666667,
+    "fps": 30,
+    "frames": 90,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fight_Die.uasset",
+    "keys": 17230
+  },
+  {
+    "name": "Fight_Hit_1",
+    "length": 1.0,
+    "fps": 30,
+    "frames": 31,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fight_Hit_1.uasset",
+    "keys": 5979
+  },
+  {
+    "name": "Fight_Hit_2",
+    "length": 2.0,
+    "fps": 30,
+    "frames": 61,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fight_Hit_2.uasset",
+    "keys": 12448
+  },
+  {
+    "name": "Fight_Hit_3",
+    "length": 2.6666667,
+    "fps": 30,
+    "frames": 81,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fight_Hit_3.uasset",
+    "keys": 15721
+  },
+  {
+    "name": "Fight_Skill_1_End",
+    "length": 2.0,
+    "fps": 30,
+    "frames": 61,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fight_Skill_1_End.uasset",
+    "keys": 14299
+  },
+  {
+    "name": "Fight_Skill_1_Loop",
+    "length": 0.5,
+    "fps": 30,
+    "frames": 16,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fight_Skill_1_Loop.uasset",
+    "keys": 3244
+  },
+  {
+    "name": "Fight_Skill_1_Start",
+    "length": 0.5,
+    "fps": 30,
+    "frames": 16,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fight_Skill_1_Start.uasset",
+    "keys": 3538
+  },
+  {
+    "name": "Fight_Skill_2_End",
+    "length": 1.7333333,
+    "fps": 30,
+    "frames": 53,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fight_Skill_2_End.uasset",
+    "keys": 10887
+  },
+  {
+    "name": "Fight_Skill_2_Loop_1",
+    "length": 2.2666667,
+    "fps": 30,
+    "frames": 69,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fight_Skill_2_Loop_1.uasset",
+    "keys": 13409
+  },
+  {
+    "name": "Fight_Skill_2_Loop_2",
+    "length": 1.6333333,
+    "fps": 30,
+    "frames": 50,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fight_Skill_2_Loop_2.uasset",
+    "keys": 9012
+  },
+  {
+    "name": "Fight_Skill_2_Start",
+    "length": 0.4,
+    "fps": 30,
+    "frames": 13,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fight_Skill_2_Start.uasset",
+    "keys": 3025
+  },
+  {
+    "name": "Fight_Skill_2_Trans",
+    "length": 0.3333333,
+    "fps": 30,
+    "frames": 11,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fight_Skill_2_Trans.uasset",
+    "keys": 2621
+  },
+  {
+    "name": "Fight_Skill_3_End",
+    "length": 1.8,
+    "fps": 30,
+    "frames": 55,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fight_Skill_3_End.uasset",
+    "keys": 11050
+  },
+  {
+    "name": "Fight_Skill_3_Loop",
+    "length": 1.0,
+    "fps": 30,
+    "frames": 31,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fight_Skill_3_Loop.uasset",
+    "keys": 6008
+  },
+  {
+    "name": "Fight_Skill_3_Start",
+    "length": 0.9333333,
+    "fps": 30,
+    "frames": 29,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fight_Skill_3_Start.uasset",
+    "keys": 6282
+  },
+  {
+    "name": "Fly_Anger",
+    "length": 1.5,
+    "fps": 30,
+    "frames": 46,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Anger.uasset",
+    "keys": 9793
+  },
+  {
+    "name": "Fly_Attack_1",
+    "length": 2.6666667,
+    "fps": 30,
+    "frames": 81,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Attack_1.uasset",
+    "keys": 17926
+  },
+  {
+    "name": "Fly_Attack_1_1",
+    "length": 0.2666667,
+    "fps": 30,
+    "frames": 9,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Attack_1_1.uasset",
+    "keys": 2001
+  },
+  {
+    "name": "Fly_Attack_1_End",
+    "length": 1.7333333,
+    "fps": 30,
+    "frames": 53,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Attack_1_End.uasset",
+    "keys": 11604
+  },
+  {
+    "name": "Fly_Attack_1_Start",
+    "length": 0.9333333,
+    "fps": 30,
+    "frames": 29,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Attack_1_Start.uasset",
+    "keys": 6579
+  },
+  {
+    "name": "Fly_Attack_2",
+    "length": 2.6666667,
+    "fps": 30,
+    "frames": 81,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Attack_2.uasset",
+    "keys": 17668
+  },
+  {
+    "name": "Fly_Boss_Skill_1_Loop",
+    "length": 0.9,
+    "fps": 30,
+    "frames": 28,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Boss_Skill_1_Loop.uasset",
+    "keys": 4804
+  },
+  {
+    "name": "Fly_Boss_Skill_1_Start",
+    "length": 0.5,
+    "fps": 30,
+    "frames": 16,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Boss_Skill_1_Start.uasset",
+    "keys": 3651
+  },
+  {
+    "name": "Fly_Boss_Skill_2_End",
+    "length": 2.0,
+    "fps": 30,
+    "frames": 61,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Boss_Skill_2_End.uasset",
+    "keys": 13120
+  },
+  {
+    "name": "Fly_Boss_Skill_2_Loop_1",
+    "length": 1.3333333,
+    "fps": 30,
+    "frames": 41,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Boss_Skill_2_Loop_1.uasset",
+    "keys": 7557
+  },
+  {
+    "name": "Fly_Boss_Skill_2_Loop_2",
+    "length": 1.6,
+    "fps": 30,
+    "frames": 49,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Boss_Skill_2_Loop_2.uasset",
+    "keys": 8425
+  },
+  {
+    "name": "Fly_Boss_Skill_2_Start",
+    "length": 0.4,
+    "fps": 30,
+    "frames": 13,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Boss_Skill_2_Start.uasset",
+    "keys": 2955
+  },
+  {
+    "name": "Fly_Boss_Skill_2_Trans",
+    "length": 0.3333333,
+    "fps": 30,
+    "frames": 11,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Boss_Skill_2_Trans.uasset",
+    "keys": 2546
+  },
+  {
+    "name": "Fly_Boss_Skill_3_Loop",
+    "length": 1.0,
+    "fps": 30,
+    "frames": 31,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Boss_Skill_3_Loop.uasset",
+    "keys": 6223
+  },
+  {
+    "name": "Fly_Boss_Skill_3_Start",
+    "length": 0.9333333,
+    "fps": 30,
+    "frames": 29,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Boss_Skill_3_Start.uasset",
+    "keys": 5611
+  },
+  {
+    "name": "Fly_Boss_Skill_4_End",
+    "length": 2.3666667,
+    "fps": 30,
+    "frames": 72,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Boss_Skill_4_End.uasset",
+    "keys": 14551
+  },
+  {
+    "name": "Fly_Boss_Skill_4_Loop_1",
+    "length": 0.8,
+    "fps": 30,
+    "frames": 25,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Boss_Skill_4_Loop_1.uasset",
+    "keys": 2618
+  },
+  {
+    "name": "Fly_Boss_Skill_4_Loop_2",
+    "length": 1.3333333,
+    "fps": 30,
+    "frames": 41,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Boss_Skill_4_Loop_2.uasset",
+    "keys": 7373
+  },
+  {
+    "name": "Fly_Boss_Skill_4_Start",
+    "length": 0.7,
+    "fps": 30,
+    "frames": 22,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Boss_Skill_4_Start.uasset",
+    "keys": 4664
+  },
+  {
+    "name": "Fly_Boss_Skill_4_Trans",
+    "length": 0.4666667,
+    "fps": 30,
+    "frames": 15,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Boss_Skill_4_Trans.uasset",
+    "keys": 3508
+  },
+  {
+    "name": "Fly_Command",
+    "length": 1.7333333,
+    "fps": 30,
+    "frames": 53,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Command.uasset",
+    "keys": 10604
+  },
+  {
+    "name": "Fly_Happy",
+    "length": 1.6666667,
+    "fps": 30,
+    "frames": 51,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Happy.uasset",
+    "keys": 11632
+  },
+  {
+    "name": "Fly_Hit_1",
+    "length": 1.0,
+    "fps": 30,
+    "frames": 31,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Hit_1.uasset",
+    "keys": 6774
+  },
+  {
+    "name": "Fly_Hit_2",
+    "length": 2.0,
+    "fps": 30,
+    "frames": 61,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Hit_2.uasset",
+    "keys": 12984
+  },
+  {
+    "name": "Fly_Hit_3",
+    "length": 1.0,
+    "fps": 30,
+    "frames": 31,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Hit_3.uasset",
+    "keys": 6650
+  },
+  {
+    "name": "Fly_Hit_4_Loop",
+    "length": 3.6666667,
+    "fps": 30,
+    "frames": 111,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Hit_4_Loop.uasset",
+    "keys": 6543
+  },
+  {
+    "name": "Fly_Hit_4_Start",
+    "length": 1.5333333,
+    "fps": 30,
+    "frames": 47,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Hit_4_Start.uasset",
+    "keys": 9608
+  },
+  {
+    "name": "Fly_Idle",
+    "length": 1.6666667,
+    "fps": 30,
+    "frames": 51,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Idle.uasset",
+    "keys": 8209
+  },
+  {
+    "name": "Fly_Provoke",
+    "length": 1.5,
+    "fps": 30,
+    "frames": 46,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Provoke.uasset",
+    "keys": 10991
+  },
+  {
+    "name": "Fly_Release",
+    "length": 2.4333333,
+    "fps": 30,
+    "frames": 74,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Release.uasset",
+    "keys": 13035
+  },
+  {
+    "name": "Fly_Shock",
+    "length": 1.5,
+    "fps": 30,
+    "frames": 46,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Shock.uasset",
+    "keys": 10465
+  },
+  {
+    "name": "Fly_Show",
+    "length": 1.5,
+    "fps": 30,
+    "frames": 46,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_Show.uasset",
+    "keys": 9884
+  },
+  {
+    "name": "Fly_YingDui",
+    "length": 1.1666667,
+    "fps": 30,
+    "frames": 36,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Fly_YingDui.uasset",
+    "keys": 8563
+  },
+  {
+    "name": "Ride_Fly_Gliding",
+    "length": 6.0,
+    "fps": 30,
+    "frames": 181,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Ride_Fly_Gliding.uasset",
+    "keys": 19313
+  },
+  {
+    "name": "Ride_Fly_Hover",
+    "length": 1.4666667,
+    "fps": 30,
+    "frames": 45,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Ride_Fly_Hover.uasset",
+    "keys": 7736
+  },
+  {
+    "name": "Ride_Idle",
+    "length": 3.3333333,
+    "fps": 30,
+    "frames": 101,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Ride_Idle.uasset",
+    "keys": 7904
+  },
+  {
+    "name": "Ride_Run",
+    "length": 0.9333333,
+    "fps": 30,
+    "frames": 29,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/Ride_Run.uasset",
+    "keys": 5304
+  },
+  {
+    "name": "World_Fly_Gliding",
+    "length": 6.0,
+    "fps": 30,
+    "frames": 181,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/World_Fly_Gliding.uasset",
+    "keys": 19304
+  },
+  {
+    "name": "World_Fly_Hover",
+    "length": 1.4666667,
+    "fps": 30,
+    "frames": 45,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/World_Fly_Hover.uasset",
+    "keys": 7725
+  },
+  {
+    "name": "World_Fly_Landing",
+    "length": 1.5333333,
+    "fps": 30,
+    "frames": 47,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/World_Fly_Landing.uasset",
+    "keys": 9878
+  },
+  {
+    "name": "World_Fly_Start",
+    "length": 2.5333333,
+    "fps": 30,
+    "frames": 77,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/World_Fly_Start.uasset",
+    "keys": 15760
+  },
+  {
+    "name": "World_Idle",
+    "length": 3.3333333,
+    "fps": 30,
+    "frames": 101,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/World_Idle.uasset",
+    "keys": 7392
+  },
+  {
+    "name": "World_Run",
+    "length": 0.9333333,
+    "fps": 30,
+    "frames": 29,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/World_Run.uasset",
+    "keys": 5307
+  },
+  {
+    "name": "World_Walk",
+    "length": 1.3333333,
+    "fps": 30,
+    "frames": 41,
+    "additive": false,
+    "source": "/NRC/Content/ArtRes/AnimSequence/Pets/Gho_MingLong3_001/Animation/World_Walk.uasset",
+    "keys": 6175
+  }
+]
