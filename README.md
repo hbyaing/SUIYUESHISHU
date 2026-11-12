@@ -4,7 +4,7 @@
 
 [下载 1.20.36 正式版](https://github.com/hbyaing/SUIYUESHISHU/releases/tag/v1.20.36)
 
-防御链改为原生/Forge通用入口，补同步生命数据、死亡掉落、停tick与实体分区保护，移除旧秘法类名拦截层。研究依据、可选合作接口和验证边界见 [OP防御研究](docs/op-defense-research-1.20.22.md)。
+防御链改为原生/Forge通用入口，补同步生命数据、死亡掉落、停tick与实体分区保护，移除旧秘法类名拦截层。
 
 成然防御新增原生hurt、内部actuallyHurt、死亡计时和存活判定Mixin保护，保留反击标记、权柄没收与正常取下行为。验证范围及第三方边界见 [1.20.21说明](docs/native-defense-1.20.21.md)。
 

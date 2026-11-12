@@ -1,2 +1,0 @@
-PASS native defense regression; direct data-item/bulk health, raw death flag, death loot/equipment, Forge attack/death, tick-disable, entity section/lookup/tick-list, normal movement, public API and unequip negative controls
-ALL_PASS
