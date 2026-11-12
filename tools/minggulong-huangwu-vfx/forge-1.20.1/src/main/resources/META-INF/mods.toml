@@ -1,0 +1,20 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="Model source artwork belongs to its respective rights holders"
+[[mods]]
+modId="minggulong"
+version="1.1.0-vfx"
+displayName="MingGuLong Model & HuangWu VFX"
+description="Editable Minecraft Cube reconstruction, with a static model display entity and a client-side skill VFX preview."
+[[dependencies.minggulong]]
+modId="forge"
+mandatory=true
+versionRange="[47.4.0,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.minggulong]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20.1,1.20.2)"
+ordering="NONE"
+side="BOTH"

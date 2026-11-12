@@ -1,5 +1,7 @@
 # 以神戴冠 1.20.36
 
+[冥古龙「荒芜之噬」特效工作台与源码](tools/minggulong-huangwu-vfx/README.md)：独立 Forge 1.20.1 特效预览、4.32秒分段演出、正速/半速视频和可旋转逐帧工作台。此演示尚未接入主模组或绑定冥古龙动作。
+
 [下载 1.20.36 正式版](https://github.com/hbyaing/SUIYUESHISHU/releases/tag/v1.20.36)
 
 防御链改为原生/Forge通用入口，补同步生命数据、死亡掉落、停tick与实体分区保护，移除旧秘法类名拦截层。研究依据、可选合作接口和验证边界见 [OP防御研究](docs/op-defense-research-1.20.22.md)。

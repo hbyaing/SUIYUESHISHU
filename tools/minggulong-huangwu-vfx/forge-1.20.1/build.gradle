@@ -1,0 +1,9 @@
+plugins { id 'java'; id 'net.minecraftforge.gradle' version '6.0.54' }
+version = '1.1.0-vfx'
+group = 'dev.minggulong'
+base { archivesName='MingGuLong-Forge-1.20.1' }
+java.toolchain.languageVersion=JavaLanguageVersion.of(17)
+minecraft { mappings channel:'official',version:'1.20.1' }
+dependencies { minecraft 'net.minecraftforge:forge:1.20.1-47.4.0' }
+tasks.withType(JavaCompile).configureEach { options.encoding='UTF-8' }
+jar.finalizedBy('reobfJar')

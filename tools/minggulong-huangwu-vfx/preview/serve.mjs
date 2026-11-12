@@ -1,0 +1,4 @@
+import fs from 'node:fs';import path from 'node:path';import http from 'node:http';import {fileURLToPath} from 'node:url';import {spawn} from 'node:child_process';
+const root=path.dirname(fileURLToPath(import.meta.url));
+const server=http.createServer((req,res)=>{const f=path.resolve(root,'.'+(req.url==='/'?'/index.html':decodeURIComponent(req.url.split('?')[0])));if(!f.startsWith(root+path.sep)){res.writeHead(403);res.end();return;}res.setHeader('Content-Type',f.endsWith('.html')?'text/html; charset=utf-8':'application/octet-stream');fs.createReadStream(f).on('error',()=>{res.writeHead(404);res.end()}).pipe(res)});
+server.listen(0,'127.0.0.1',()=>{const url='http://127.0.0.1:'+server.address().port;console.log('荒芜之噬特效预览 '+url+'\n关闭此窗口以停止预览服务');if(process.argv.includes('--open'))spawn('explorer.exe',[url],{windowsHide:true,stdio:'ignore'}).unref()});
