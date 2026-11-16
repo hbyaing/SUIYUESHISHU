@@ -1,10 +1,18 @@
 plugins { id 'java'; id 'net.minecraftforge.gradle' version '[6.0,6.2)' }
-version='1.20.36'
+version='1.20.42'
 group='dev.starcrown'
 base { archivesName='YiShenDaiGuan-1.20.1' }
 java.toolchain.languageVersion=JavaLanguageVersion.of(17)
 minecraft { mappings channel:'official',version:'1.20.1'; runs { client { workingDirectory project.file('run'); property 'mixin.env.remapRefMap', 'true'; property 'mixin.env.refMapRemappingFile', project.file('build/createSrgToMcp/output.srg').absolutePath; args '--mixin', 'starcrowndoll.mixins.json';  mods { starcrowndoll { source sourceSets.main } } } } }
 dependencies { minecraft 'net.minecraftforge:forge:1.20.1-47.4.0' }
+repositories {
+    maven { url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
+    flatDir { dirs 'libs' }
+}
+// The project targets the supplied mesh.9 build, which is not published to Maven.
+dependencies { implementation fg.deobf('local:geckolib-forge-1.20.1:4.8.4-mesh.9') }
+// Compile against mesh.9's bundled math API; GeckoLib supplies it at runtime.
+dependencies { compileOnly files('libs/mclib-20.jar') }
 tasks.withType(JavaCompile).configureEach { options.encoding='UTF-8' }
 jar.finalizedBy('reobfJar')
 

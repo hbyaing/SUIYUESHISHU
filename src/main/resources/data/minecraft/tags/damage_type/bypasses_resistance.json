@@ -1,1 +1,8 @@
-{"replace":false,"values":["starcrowndoll:cost"]}
+{
+  "replace": false,
+  "values": [
+    "starcrowndoll:cost",
+    "starcrowndoll:eternal_dragon_true",
+    "starcrowndoll:eternal_dragon_void"
+  ]
+}

@@ -7,3 +7,4 @@ run-server*/
 *.iml
 *.log
 local.properties
+/work/

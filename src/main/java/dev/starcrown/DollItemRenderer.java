@@ -9,6 +9,7 @@ public class DollItemRenderer extends BlockEntityWithoutLevelRenderer {
  public static DollItemRenderer instance(){if(INSTANCE==null)INSTANCE=new DollItemRenderer();return INSTANCE;}
  DollItemRenderer(){super(Minecraft.getInstance().getBlockEntityRenderDispatcher(),Minecraft.getInstance().getEntityModels());}
  @Override public void renderByItem(ItemStack stack,ItemDisplayContext context,PoseStack p,MultiBufferSource b,int light,int overlay){
+  if(context==ItemDisplayContext.HEAD&&DollCameraVisibility.isFirstPersonBodyPass(DollAnimation.renderedPlayer()))return;
   var mc=Minecraft.getInstance();
   boolean thirdPersonHand=context==ItemDisplayContext.THIRD_PERSON_LEFT_HAND||context==ItemDisplayContext.THIRD_PERSON_RIGHT_HAND;
   float raised=thirdPersonHand?DollAnimation.jumpAmount(DollAnimation.renderedPlayer(),mc.getFrameTime()):0;

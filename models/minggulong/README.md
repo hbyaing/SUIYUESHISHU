@@ -1,8 +1,16 @@
 # 冥古龙最新模型
 
+## 当前游戏接入版（1.20.42）
+
+[下载可编辑工程与原生 JSON 整包](game-ready/Eternal-Dragon-Game-Ready.zip)：480 个 Cube、370 根骨骼、22 段动作，含原生 JSON 与配套贴图。主模组实时血条、战斗与荒芜之噬实现见 [1.20.42 说明](../../docs/eternal-dragon-1.20.42.md)。
+
+运行时最终模型、动画与贴图分别位于 `src/main/resources/assets/starcrowndoll/geo/`、`animations/` 和 `textures/entity/`。原生导出与运行时修正后的 JSON 分开保存；游戏使用 `src/main` 下的资源。
+
+## 早期完整动作骨骼版
+
 [下载最新模型整包](https://github.com/hbyaing/SUIYUESHISHU/raw/refs/heads/main/models/minggulong/MingGuLong-Latest.zip)
 
-最新交付版本为 2026-11-12 的原始动作骨骼版，基于手臂与手脚修订后的模型。整包约19 MiB，包含完整模型本体、内嵌贴图与动画，可直接在 Blockbench 打开，不需要另外寻找基础模型。
+此早期版本为 2026-11-12 的原始动作骨骼版，基于手臂与手脚修订后的模型。整包约19 MiB，包含完整模型本体、内嵌贴图与动画，可直接在 Blockbench 打开，不需要另外寻找基础模型。
 
 - `MingGuLong-Rigged-Core.bbmodel`：同一模型，21段常用动作，适合编辑。
 - `MingGuLong-Rigged.bbmodel`：同一模型，106段完整动作，包含技能分段及剧情动作。

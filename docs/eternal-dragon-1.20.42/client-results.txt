@@ -1,0 +1,20 @@
+GPU NVIDIA GeForce RTX 4060 Laptop GPU/PCIe/SSE2
+PASS full correct number of networked boss bars
+PASS full client progress=1.0
+GPU_CAPTURE full
+PASS half correct number of networked boss bars
+PASS half client progress=0.5
+GPU_CAPTURE half
+PASS quarter correct number of networked boss bars
+PASS quarter client progress=0.25
+GPU_CAPTURE quarter
+PASS healed correct number of networked boss bars
+PASS healed client progress=0.75
+GPU_CAPTURE healed
+PASS dead clears client bars
+GPU_CAPTURE dead
+PASS two-dragons correct number of networked boss bars
+GPU_CAPTURE two-dragons
+PASS removed clears client bars
+GPU_CAPTURE removed
+COMPLETE live full/half/quarter/heal/death/two dragons/removal

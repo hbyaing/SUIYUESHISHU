@@ -101,5 +101,10 @@
   "curios.identifier.starcrowndoll_divinity": "神格",
   "ui.starcrowndoll.hide_slots": "收起神格与饰品槽",
   "ui.starcrowndoll.show_slots": "展开神格与饰品槽",
-  "message.starcrowndoll.divinity_conflict": "只能装备一个神性，请先取下另一个玩偶。"
+  "message.starcrowndoll.divinity_conflict": "只能装备一个神性，请先取下另一个玩偶。",
+  "entity.starcrowndoll.minggulong": "永恒恶龙",
+  "boss.starcrowndoll.eternal_dragon": "%s",
+  "item.starcrowndoll.minggulong_spawn_egg": "永恒恶龙生成蛋",
+  "death.attack.eternal_dragon": "%1$s 被 %2$s 的真伤撕碎了",
+  "death.attack.eternal_dragon_void": "%1$s 被 %2$s 的荒芜之噬吞入虚空"
 }

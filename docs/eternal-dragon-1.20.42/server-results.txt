@@ -1,0 +1,2 @@
+[23:07:45] [Server thread/INFO] [minecraft/GameTestServer]: 1 tests are now running!
+[23:07:46] [Server thread/INFO] [minecraft/GameTestServer]: All 1 required tests passed :)

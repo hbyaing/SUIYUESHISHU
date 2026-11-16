@@ -47,6 +47,7 @@ public class DollClient {
  static class HeadLayer extends RenderLayer<AbstractClientPlayer,PlayerModel<AbstractClientPlayer>> {
   HeadLayer(net.minecraft.client.renderer.entity.RenderLayerParent<AbstractClientPlayer,PlayerModel<AbstractClientPlayer>> p){super(p);}
   public void render(PoseStack p,MultiBufferSource b,int light,AbstractClientPlayer player,float a,float c,float partial,float age,float yaw,float pitch){
+   if(DollCameraVisibility.isFirstPersonBodyPass(player)||!getParentModel().getHead().visible)return;
    var stack=DivinityInventory.equipped(player);
    if(stack==DivinityInventory.stack(player)&&!CuriosEquipment.visible(player))return;
    if(!StarcrownDoll.isDoll(stack)||(player.isInvisible()&&!DivineWill.wearing(player)))return;

@@ -101,5 +101,10 @@
   "curios.identifier.starcrowndoll_divinity": "Divinity",
   "ui.starcrowndoll.hide_slots": "Hide divinity and accessory slots",
   "ui.starcrowndoll.show_slots": "Show divinity and accessory slots",
-  "message.starcrowndoll.divinity_conflict": "Only one divinity can be equipped. Remove the other doll first."
+  "message.starcrowndoll.divinity_conflict": "Only one divinity can be equipped. Remove the other doll first.",
+  "entity.starcrowndoll.minggulong": "Eternal Evil Dragon",
+  "boss.starcrowndoll.eternal_dragon": "%s",
+  "item.starcrowndoll.minggulong_spawn_egg": "Eternal Evil Dragon Spawn Egg",
+  "death.attack.eternal_dragon": "%1$s was torn apart by %2$s",
+  "death.attack.eternal_dragon_void": "%1$s was consumed by %2$s's void"
 }

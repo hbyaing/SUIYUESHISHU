@@ -1,0 +1,17 @@
+{
+  "version": "1.20.42",
+  "jar_sha256": "e800105e1de5545483f71b7876f0d1c3eb1310e84ce58591eaeed60bf17904a3",
+  "tested_jar_matches_release": true,
+  "production_contains_qa": false,
+  "server_required_tests_passed": 1,
+  "client_assertions_passed": 11,
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU/PCIe/SSE2",
+  "cube_count": 480,
+  "bone_count": 370,
+  "animation_count": 22,
+  "prior_assets_changed": [
+    "assets/starcrowndoll/lang/en_us.json",
+    "assets/starcrowndoll/lang/zh_cn.json"
+  ],
+  "prior_combat_vfx_and_camera_classes_unchanged": true
+}

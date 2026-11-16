@@ -1,0 +1,43 @@
+GPU=NVIDIA GeForce RTX 4060 Laptop GPU/PCIe/SSE2
+PASS landing-only nominal density diameter=5 blocks; scale=1.8315018
+PASS charge/projectile scales unchanged
+PASS spawn egg tint is neutral; authored black/red pixels retained
+PASS scaled ground vortex stays at actual impact plane actual=0.0 expected=0.0
+PASS claw 9 health loss actual=982.0 expected=982.0
+PASS claw 9 heals 40 percent actual=107.2 expected=107.2
+PASS claw 10 health loss actual=982.0 expected=982.0
+PASS claw 10 heals 40 percent actual=107.2 expected=107.2
+PASS claw 11 health loss actual=982.0 expected=982.0
+PASS claw 11 heals 40 percent actual=107.2 expected=107.2
+PASS claw 12 health loss actual=982.0 expected=982.0
+PASS claw 12 heals 40 percent actual=107.2 expected=107.2
+PASS generic mob attack entry also grants life steal actual=107.2 expected=107.2
+PASS lethal overkill heals from 5 actual HP, not requested 200 actual=102.0 expected=102.0
+PASS immune target grants no healing actual=100.0 expected=100.0
+PASS Forge-canceled attack grants no healing actual=100.0 expected=100.0
+PASS absorption-only hit removes no health actual=1000.0 expected=1000.0
+PASS absorption-only hit grants no healing actual=100.0 expected=100.0
+PASS life steal capped at dragon maximum health actual=666.0 expected=666.0
+PASS void explosion still deals fixed 200 actual=800.0 expected=800.0
+PASS void explosion heals 80 for actual 200 damage actual=180.0 expected=180.0
+PASS multi-target impact heals 40 percent of each target actual damage actual=260.0 expected=260.0
+PASS same-species immunity retained actual=666.0 expected=666.0
+PASS dragon immunity cannot generate healing actual=100.0 expected=100.0
+PASS all 200 consecutive vortex ticks remove exactly 20 health and heal 8, through armor and Resistance V
+PASS no ongoing damage on tick 201 actual=980.0 expected=980.0
+PASS no ongoing healing on tick 201 actual=100.0 expected=100.0
+PASS collapse burst damage preserved actual=959.6 expected=959.6
+PASS collapse burst also heals 40 percent actual=108.16001 expected=108.16
+PASS registered dragon entity type is fire immune
+PASS fire-tagged damage blocked: inFire actual=500.0 expected=500.0
+PASS fire-tagged damage blocked: onFire actual=500.0 expected=500.0
+PASS fire-tagged damage blocked: lava actual=500.0 expected=500.0
+PASS fire-tagged damage blocked: hotFloor actual=500.0 expected=500.0
+PASS ignition does not burn or render flames
+PASS forced fire tick cannot cause damage actual=500.0 expected=500.0
+PASS forced fire state cleared even with NoAI
+PASS non-fire damage still applies
+GPU_CAPTURE landing_after.png landingScale=1.8315018
+GPU_CAPTURE landing_top_5blocks.png landingScale=1.8315018
+GPU_CAPTURE spawn_egg_ingame.png landingScale=1.8315018
+COMPLETE life steal, 200 ticks, fire immunity, landing GPU views, actual egg item renderer

@@ -1,10 +1,12 @@
-# 以神戴冠 1.20.36
+# 以神戴冠 1.20.42
 
-[冥古龙「荒芜之噬」特效工作台与源码](tools/minggulong-huangwu-vfx/README.md)：独立 Forge 1.20.1 特效预览、4.32秒分段演出、正速/半速视频和可旋转逐帧工作台。此演示尚未接入主模组或绑定冥古龙动作。
+[永恒恶龙实时血条与游戏接入说明](docs/eternal-dragon-1.20.42.md)：480 Cube 原生 JSON 模型、战斗与飞行、荒芜之噬、40% 实际伤害吸血、火焰免疫和黑红龙翼 Boss 血条均已接入主模组。血条按服务端实时生命值同步，包含正式 JAR 的 GPU 实机验证。
+
+[冥古龙「荒芜之噬」特效工作台与源码](tools/minggulong-huangwu-vfx/README.md)：保留独立 Forge 1.20.1 演示、视频和可旋转逐帧工作台；主模组当前实现以 `src/main` 和上方版本说明为准。
 
 [冥古龙最新模型整包](models/minggulong/README.md)：含模型本体、106段完整动作版、21段常用动作版、内嵌贴图和骨骼绑定清单，可在 Blockbench 中编辑。
 
-[下载 1.20.36 正式版](https://github.com/hbyaing/SUIYUESHISHU/releases/tag/v1.20.36)
+[下载 1.20.42 正式版](releases/1.20.42/YiShenDaiGuan-1.20.1-1.20.42.jar) · [版本说明与验证](docs/eternal-dragon-1.20.42.md)
 
 防御链改为原生/Forge通用入口，补同步生命数据、死亡掉落、停tick与实体分区保护，移除旧秘法类名拦截层。
 
