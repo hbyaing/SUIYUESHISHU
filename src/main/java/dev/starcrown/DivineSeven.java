@@ -33,7 +33,7 @@ public final class DivineSeven {
  public static ServerPlayer domain(Entity e){if(!(e.level() instanceof ServerLevel level))return null;for(var p:level.players())if(DivineWill.wearing(p)&&settings(p).getBoolean("domain")&&p.distanceToSqr(e)<=4096)return p;return null;}
  public static boolean ruled(Entity e){var p=domain(e);return p!=null&&hostile(p,e);}
  public static float healthWrite(LivingEntity e,float value){var p=owner(e);if(p!=null){var tag=e.getPersistentData().getCompound(MARK);if(tag.getBoolean("defeated"))return 0;float cap=tag.getFloat("minimum");if(tag.getBoolean("retaliation")&&Float.isFinite(value))return Math.min(value,cap);}if(e.isAddedToWorld()&&ruled(e)&&Float.isFinite(value))return Math.min(value,e.getHealth());return value;}
- public static boolean rescue(LivingEntity e){if(!(e.level() instanceof ServerLevel level))return false;
+ public static boolean rescue(LivingEntity e){if(EternalReturn.causalLocked(e))return false;if(!(e.level() instanceof ServerLevel level))return false;
   for(var p:level.players())if(p!=e&&DivineWill.wearing(p)&&p.distanceToSqr(e)<=4096&&ally(p,e)&&(!(e instanceof Player)||!settings(p).getBoolean("players_off"))){
    e.getPersistentData().putLong("starcrown_ally_invulnerable",level.getGameTime()+60);e.setHealth(Math.max(1,Math.min(6,e.getMaxHealth())));e.deathTime=0;e.clearFire();e.setTicksFrozen(0);
    for(var effect:new ArrayList<>(e.getActiveEffects()))if(effect.getEffect().getCategory()!=MobEffectCategory.BENEFICIAL)e.removeEffect(effect.getEffect());

@@ -198,6 +198,7 @@ public final class TwilightCrown {
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void rescue(LivingDeathEvent event) {
         var target = event.getEntity();
+        if (EternalReturn.causalLocked(target)) return;
         if (!(target.level() instanceof ServerLevel level) || !ordinary(event.getSource())) return;
         long time = now(level);
         var data = target.getPersistentData();

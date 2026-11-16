@@ -106,5 +106,7 @@
   "boss.starcrowndoll.eternal_dragon": "%s",
   "item.starcrowndoll.minggulong_spawn_egg": "永恒恶龙生成蛋",
   "death.attack.eternal_dragon": "%1$s 被 %2$s 的真伤撕碎了",
-  "death.attack.eternal_dragon_void": "%1$s 被 %2$s 的荒芜之噬吞入虚空"
+  "death.attack.eternal_dragon_void": "%1$s 被 %2$s 的荒芜之噬吞入虚空",
+  "item.starcrowndoll.eternal_return": "永劫回归·三千万转",
+  "key.starcrowndoll.eternal_return": "永劫回归：开启 / 终结"
 }

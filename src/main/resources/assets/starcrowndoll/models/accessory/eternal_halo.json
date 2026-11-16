@@ -1,0 +1,19 @@
+{
+  "format": "ERH1; big-endian count, xyz/normal/uv float32 triangles",
+  "triangles": 2620,
+  "parts": [
+    {
+      "name": "Inner_Gold_Halo",
+      "triangles": 920,
+      "vertices": 1085
+    },
+    {
+      "name": "Outer_Gold_Thorn_Ring",
+      "triangles": 1700,
+      "vertices": 1782
+    }
+  ],
+  "source": "User-supplied extracted Phainon transformed halo",
+  "axes": "source(x,y,z) -> head(x,-z,-y)",
+  "texture": "4096x2048 RGB; packed alpha is not opacity"
+}

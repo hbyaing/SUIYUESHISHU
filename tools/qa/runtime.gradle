@@ -6,6 +6,8 @@ tasks.named('qaJar').configure { finalizedBy 'reobfQaJar' }
 
 minecraft.runs {
  gameTestServer {
+  property 'mixin.env.remapRefMap', 'true'
+  property 'mixin.env.refMapRemappingFile', project.file('build/createSrgToMcp/output.srg').absolutePath
   workingDirectory project.file(project.findProperty('qaGameDir') ?: '../work/humility-gametest')
   property 'forge.enabledGameTestNamespaces', project.findProperty('qaGameTestNamespace') ?: 'starcrownqa'
   args '--mixin', 'starcrowndoll.mixins.json'

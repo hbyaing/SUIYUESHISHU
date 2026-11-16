@@ -1,0 +1,26 @@
+{
+  "version": "1.20.44",
+  "jar_sha256": "e76a8eeed53b5a1cafa575afe1879a26ac2cbc400008bf28cc92850653138e5f",
+  "tested_jar_matches_release": true,
+  "required_gametests_passed": 10,
+  "client_assertions_passed": 9,
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU/PCIe/SSE2",
+  "mesh_triangles": 2620,
+  "inner_triangles": 920,
+  "outer_triangles": 1700,
+  "hd_texture_size": [
+    4096,
+    2048
+  ],
+  "source_rgb_pixels_preserved": true,
+  "inventory_icon_size": [
+    64,
+    64
+  ],
+  "wearing_includes_outer_ring": true,
+  "rewind_inner_only": true,
+  "rewind_uses_vanilla_item_activation": true,
+  "required_curios": true,
+  "production_contains_qa": false,
+  "unrelated_existing_assets_unchanged": true
+}

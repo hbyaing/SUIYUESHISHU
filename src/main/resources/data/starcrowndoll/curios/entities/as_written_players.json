@@ -3,6 +3,7 @@
     "minecraft:player"
   ],
   "slots": [
+    "head",
     "starcrowndoll_divinity",
     "starcrowndoll_as_written"
   ]

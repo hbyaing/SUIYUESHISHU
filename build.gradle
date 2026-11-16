@@ -1,5 +1,5 @@
 plugins { id 'java'; id 'net.minecraftforge.gradle' version '[6.0,6.2)' }
-version='1.20.43'
+version='1.20.44'
 group='dev.starcrown'
 base { archivesName='YiShenDaiGuan-1.20.1' }
 java.toolchain.languageVersion=JavaLanguageVersion.of(17)
@@ -11,6 +11,7 @@ repositories {
 }
 // The project targets the supplied mesh.9 build, which is not published to Maven.
 dependencies { implementation fg.deobf('local:geckolib-forge-1.20.1:4.8.4-mesh.9') }
+dependencies { implementation fg.deobf('local:curios-forge:5.14.1+1.20.1') }
 // Compile against mesh.9's bundled math API; GeckoLib supplies it at runtime.
 dependencies { compileOnly files('libs/mclib-20.jar') }
 tasks.withType(JavaCompile).configureEach { options.encoding='UTF-8' }
@@ -26,3 +27,7 @@ tasks.withType(JavaCompile).configureEach { options.compilerArgs += ["-proc:none
 if (project.hasProperty('qa')) { apply from: 'tools/qa/runtime.gradle' }
 
 minecraft.runs { server { workingDirectory project.file('run-server'); args '--mixin', 'starcrowndoll.mixins.json', '--nogui'; mods { starcrowndoll { source sourceSets.main } } } }
+minecraft.runs.server {
+ property 'mixin.env.remapRefMap', 'true'
+ property 'mixin.env.refMapRemappingFile', project.file('build/createSrgToMcp/output.srg').absolutePath
+}

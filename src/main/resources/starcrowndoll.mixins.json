@@ -47,7 +47,9 @@
     "CharityStackMigration",
     "ForgeDefenseGuard",
     "EntitySectionGuard",
-    "InventoryEquipment"
+    "InventoryEquipment",
+    "EternalLife",
+    "EternalNaturalHealing"
   ],
   "injectors": {
     "defaultRequire": 0

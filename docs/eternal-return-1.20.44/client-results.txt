@@ -1,0 +1,16 @@
+GPU NVIDIA GeForce RTX 4060 Laptop GPU/PCIe/SSE2
+PASS production Curios head slot equips original model
+PASS Curios equipment synchronizes to client
+PASS inventory retains 64 pixel icon
+PASS rewind selects HD 3D inner-ring renderer
+GPU_CAPTURE eternal-worn-three-views.png
+PASS production fatal damage triggers rewind mixin
+PASS vanilla totem animation receives inner-ring stack
+GPU_CAPTURE eternal-rewind-begin.png
+GPU_CAPTURE eternal-rewind-middle.png
+GPU_CAPTURE eternal-rewind-end.png
+GPU_CAPTURE eternal-rewind-cleared.png
+PASS captured original totem animation begin/middle/end and disappearance
+PASS vanilla activation clears its temporary icon
+PASS animation never changes equipped/inventory stack
+COMPLETE HD worn halo and inner-only vanilla rewind animation

@@ -106,5 +106,7 @@
   "boss.starcrowndoll.eternal_dragon": "%s",
   "item.starcrowndoll.minggulong_spawn_egg": "Eternal Evil Dragon Spawn Egg",
   "death.attack.eternal_dragon": "%1$s was torn apart by %2$s",
-  "death.attack.eternal_dragon_void": "%1$s was consumed by %2$s's void"
+  "death.attack.eternal_dragon_void": "%1$s was consumed by %2$s's void",
+  "item.starcrowndoll.eternal_return": "Eternal Return: Thirty Million Revolutions",
+  "key.starcrowndoll.eternal_return": "Eternal Return: Activate / Finish"
 }

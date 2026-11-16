@@ -1,0 +1,5 @@
+{
+  "parent":"minecraft:item/generated",
+  "textures":{"layer0":"starcrowndoll:item/eternal_return"},
+  "overrides":[{"predicate":{"starcrowndoll:rewind":1},"model":"starcrowndoll:item/eternal_return_rewind"}]
+}
