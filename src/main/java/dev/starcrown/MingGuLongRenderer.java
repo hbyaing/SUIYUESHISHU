@@ -8,4 +8,9 @@ public final class MingGuLongRenderer extends GeoEntityRenderer<MingGuLongEntity
         super(context, new MingGuLongModel());
         this.shadowRadius = 2.2F;
     }
+
+    @Override protected float getDeathMaxRotation(MingGuLongEntity entity) {
+        // Fight_Die already contains the authored collapse; do not add vanilla roll.
+        return 0.0F;
+    }
 }

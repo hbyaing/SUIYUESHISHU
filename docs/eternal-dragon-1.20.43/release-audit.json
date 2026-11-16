@@ -1,0 +1,13 @@
+{
+  "version": "1.20.43",
+  "sha256": "5ad858f95582221aa14676cbb670a0a42aa11f2407643c8921437c9f12b652dc",
+  "tested_jar_matches_release": true,
+  "animation_length_seconds": 2.9667,
+  "death_animation_ticks": 60,
+  "entity_removal_tick": 62,
+  "server_required_tests_passed": 3,
+  "client_assertions_passed": 13,
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU/PCIe/SSE2",
+  "production_contains_qa": false,
+  "all_1_20_42_assets_unchanged": true
+}

@@ -93,6 +93,9 @@ public final class MingGuLongEntity extends Monster implements GeoEntity {
     private static final double AIR_ATTACK_2_REACH = 5.2D;
     private static final int HUANGWU_RELEASE_TICK = 36;
     private static final int HUANGWU_LENGTH_TICKS = 106;
+    // Fight_Die ends at 2.9667 s: round up, then allow the last frame to arrive.
+    public static final int DEATH_ANIMATION_TICKS = 60;
+    public static final int DEATH_REMOVE_TICKS = DEATH_ANIMATION_TICKS + 2;
     private static final double TARGET_DETECTION_RANGE = 96.0D;
 
     private final AnimatableInstanceCache animationCache = GeckoLibUtil.createInstanceCache(this);
@@ -163,13 +166,13 @@ public final class MingGuLongEntity extends Monster implements GeoEntity {
         clearFire();
         super.tick();
         if (!level().isClientSide) updateBossBar();
-        if (level().isClientSide || isNoAi()) return;
+        if (level().isClientSide) return;
         if (isDeadOrDying()) {
+            startDeathAnimation();
             haltMovement();
-            setNoGravity(false);
-            playAnimation(DIE);
             return;
         }
+        if (isNoAi()) return;
         if (attackCooldown > 0) attackCooldown--;
         if (huangwuCooldown > 0) huangwuCooldown--;
         if (huangwuCooldown == 0 && !isHuangwuAnimation()) huangwuPending = true;
@@ -553,6 +556,35 @@ public final class MingGuLongEntity extends Monster implements GeoEntity {
         bossEvent.setVisible(isAlive() && !isRemoved());
     }
 
+    private void startDeathAnimation() {
+        if (getAnimationKey() != DIE) {
+            airborne = false;
+            setNoGravity(false);
+            setTarget(null);
+            haltMovement();
+            playAnimation(DIE);
+        }
+        bossEvent.setVisible(false);
+    }
+
+    @Override public void die(DamageSource source) {
+        // Keep vanilla/Forge kill credit, death hooks, loot and experience once.
+        super.die(source);
+        if (!level().isClientSide && isDeadOrDying() && !isRemoved()) startDeathAnimation();
+    }
+
+    @Override protected void tickDeath() {
+        ++deathTime;
+        if (!level().isClientSide) {
+            startDeathAnimation();
+            entityData.set(ANIMATION_AGE, deathTime);
+            if (deathTime >= DEATH_REMOVE_TICKS && !isRemoved()) {
+                level().broadcastEntityEvent(this, (byte)60);
+                remove(RemovalReason.KILLED);
+            }
+        }
+    }
+
     @Override public void startSeenByPlayer(ServerPlayer player) {
         super.startSeenByPlayer(player);
         updateBossBar();
@@ -578,7 +610,7 @@ public final class MingGuLongEntity extends Monster implements GeoEntity {
     @Override public void setSecondsOnFire(int seconds) { clearFire(); }
 
     @Override public boolean doHurtTarget(net.minecraft.world.entity.Entity target) {
-        return target instanceof LivingEntity living
+        return isAlive() && target instanceof LivingEntity living
             && MingGuLongDamage.hurt(this, living, (float)getAttributeValue(Attributes.ATTACK_DAMAGE));
     }
 
@@ -594,6 +626,13 @@ public final class MingGuLongEntity extends Monster implements GeoEntity {
         entityData.set(ANIMATION, Mth.clamp(tag.getInt("MingGuLongAnimation"), 0, ANIMATIONS.length - 1));
         huangwuCooldown = Math.max(0, tag.getInt("MingGuLongSkillCooldown"));
         huangwuPending = huangwuCooldown == 0;
+        if (isDeadOrDying()) {
+            // A reloaded corpse gets a fresh complete clip, never a one-tick flash.
+            deathTime = 0;
+            entityData.set(ANIMATION, IDLE);
+            startDeathAnimation();
+            return;
+        }
         int animation = getAnimationKey();
         setFlightNavigation(tag.getBoolean("MingGuLongAirborne") || animation >= FLY_START && animation <= FLY_HOVER || animation == AIR_ATTACK_1 || animation == AIR_ATTACK_2);
         if (airborne && animation != FLY_START) selectFlightMode();
@@ -607,7 +646,9 @@ public final class MingGuLongEntity extends Monster implements GeoEntity {
     }
 
     private <E extends MingGuLongEntity> PlayState animationPredicate(AnimationState<E> state) {
-        state.getController().setAnimation(RawAnimation.begin().thenPlay(getAnimationName()));
+        state.getController().setAnimation(getAnimationKey() == DIE
+            ? RawAnimation.begin().thenPlayAndHold("Fight_Die")
+            : RawAnimation.begin().thenPlay(getAnimationName()));
         return PlayState.CONTINUE;
     }
 

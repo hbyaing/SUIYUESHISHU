@@ -1,0 +1,20 @@
+GPU NVIDIA GeForce RTX 4060 Laptop GPU/PCIe/SSE2
+PASS client entity present at stage 0
+GPU_CAPTURE alive serverDeathTime=0
+PASS fatal hit starts Fight_Die
+PASS client entity present at stage 1
+PASS client plays death stage 1
+GPU_CAPTURE death-start serverDeathTime=7
+PASS server retains corpse beyond vanilla 20 ticks
+PASS client entity present at stage 2
+PASS client plays death stage 2
+GPU_CAPTURE death-middle serverDeathTime=30
+PASS client entity present at stage 3
+PASS client plays death stage 3
+GPU_CAPTURE death-end serverDeathTime=55
+PASS server retains body through 60-tick clip
+PASS server removes corpse after clip
+PASS client removes corpse after completed clip
+GPU_CAPTURE removed serverDeathTime=62
+PASS all five GPU states captured
+COMPLETE GPU death clip and delayed removal
