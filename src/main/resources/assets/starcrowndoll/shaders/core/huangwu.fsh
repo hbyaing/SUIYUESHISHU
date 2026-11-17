@@ -14,30 +14,30 @@ uniform float uBound;
 uniform float uHasMap;
 uniform vec3 uTint;
 uniform sampler2D Sampler0;
-float hash(vec3 p){p=fract(p*.1031);p+=dot(p,p.yzx+33.33);return fract((p.x+p.y)*p.z);}
-float noise3(vec3 p){
+float scHwHash(vec3 p){p=fract(p*.1031);p+=dot(p,p.yzx+33.33);return fract((p.x+p.y)*p.z);}
+float scHwNoise3D(vec3 p){
  vec3 i=floor(p),f=fract(p);f=f*f*(3.0-2.0*f);
- return mix(mix(mix(hash(i),hash(i+vec3(1,0,0)),f.x),mix(hash(i+vec3(0,1,0)),hash(i+vec3(1,1,0)),f.x),f.y),mix(mix(hash(i+vec3(0,0,1)),hash(i+vec3(1,0,1)),f.x),mix(hash(i+vec3(0,1,1)),hash(i+vec3(1,1,1)),f.x),f.y),f.z);
+ return mix(mix(mix(scHwHash(i),scHwHash(i+vec3(1,0,0)),f.x),mix(scHwHash(i+vec3(0,1,0)),scHwHash(i+vec3(1,1,0)),f.x),f.y),mix(mix(scHwHash(i+vec3(0,0,1)),scHwHash(i+vec3(1,0,1)),f.x),mix(scHwHash(i+vec3(0,1,1)),scHwHash(i+vec3(1,1,1)),f.x),f.y),f.z);
 }
-float fbm(vec3 p){return .58*noise3(p)+.28*noise3(p*2.03+7.4)+.14*noise3(p*4.13+18.3);}
-float triplanar(vec3 p){return dot(texture(Sampler0,p.xy*.46).rgb+texture(Sampler0,p.yz*.46).rgb+texture(Sampler0,p.zx*.46).rgb,vec3(.333333))*.333333;}
-vec4 field(vec3 p){
+float scHwFbm(vec3 p){return .58*scHwNoise3D(p)+.28*scHwNoise3D(p*2.03+7.4)+.14*scHwNoise3D(p*4.13+18.3);}
+float scHwTriplanar(vec3 p){return dot(texture(Sampler0,p.xy*.46).rgb+texture(Sampler0,p.yz*.46).rgb+texture(Sampler0,p.zx*.46).rgb,vec3(.333333))*.333333;}
+vec4 scHwField(vec3 p){
  float r=length(p.xy),a=r*2.8-uTime*2.3;
  // Reject provably empty field regions before the expensive density noise.
  if(uKind<1.5){if(abs(p.z)>=.45||r<.38||r>1.50)return vec4(0.0);}
  else if(length(p/max(uBound,.001))>=1.0)return vec4(0.0);
  mat2 rm=mat2(cos(a),-sin(a),sin(a),cos(a));
  vec3 q=vec3(rm*p.xy,p.z);
- float n=fbm(q*4.7+vec3(uTime*.18,uTime*.08,uTime*.55));
+ float n=scHwFbm(q*4.7+vec3(uTime*.18,uTime*.08,uTime*.55));
  float envelope=1.0;
  if(uKind<1.5){
   float rw=r+(n-.5)*.26;
   envelope=pow(max(1.0-length(vec2((rw-.94)/.43,p.z/.45)),0.0),1.05);
   if(envelope<=0.0)return vec4(0.0);
  }
- q+=vec3(noise3(q*3.1+1.0),noise3(q*3.1+12.0),noise3(q*3.1+27.0))*.4-.2;
- float fine=fbm(q*16.0+vec3(uTime*.7,0.0,uTime));
- float bill=pow(max((n-.43)*5.1,0.0),1.5)*(.45+fine*.90)*(.72+.8*triplanar(q));
+ q+=vec3(scHwNoise3D(q*3.1+1.0),scHwNoise3D(q*3.1+12.0),scHwNoise3D(q*3.1+27.0))*.4-.2;
+ float fine=scHwFbm(q*16.0+vec3(uTime*.7,0.0,uTime));
+ float bill=pow(max((n-.43)*5.1,0.0),1.5)*(.45+fine*.90)*(.72+.8*scHwTriplanar(q));
  if(uKind<1.5){
   float rw=r+(n-.5)*.26;
   float phase=atan(p.y,p.x)*3.0-r*7.0-uTime*4.5;
@@ -87,7 +87,7 @@ void main(){
   float dt=(t1-t0)/48.0;
   vec3 rgb=vec3(0.0);float trans=1.0;
   for(int i=0;i<48;i++){
-   vec4 d=field(ro+rd*(t0+(float(i)+.5)*dt));
+   vec4 d=scHwField(ro+rd*(t0+(float(i)+.5)*dt));
    float alpha=1.0-exp(-max(d.a,0.0)*dt);
    rgb+=trans*alpha*d.rgb;trans*=1.0-alpha;
    if(trans<.015)break;

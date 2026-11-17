@@ -1,0 +1,14 @@
+{
+  "version": "1.20.47",
+  "zipIntegrity": "passed",
+  "qaClasses": false,
+  "shaderAlgorithmUnchanged": true,
+  "builtInNoiseCollisionRemoved": true,
+  "vanillaGeometryFallbackIncluded": true,
+  "sha256": "7687708b47d913e15e4c000930c57da7e6734a6ceb39ecd3134cfccf9472d00f",
+  "intelHardwareRetest": false,
+  "productionJarGpuTest": "passed",
+  "injectedCompileFailureFallback": "passed",
+  "shaderRecovery": "passed",
+  "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU"
+}

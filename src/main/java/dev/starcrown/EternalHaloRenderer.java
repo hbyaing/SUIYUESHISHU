@@ -37,8 +37,9 @@ public final class EternalHaloRenderer implements ICurioRenderer {
         pose.pushPose();
         try {
             headed.getHead().translateAndRotate(pose);
-            // Source origin is the inner-ring centre. Model coordinates are already converted to head axes.
-            pose.translate(0,-.56,.22);pose.scale(.72f,.72f,.72f);
+            // Preserve the existing height and size; head-local +Z moves the mesh behind the head.
+            // Its nearest surface is now beyond the outer hair layer (Z=0.28125), with an air gap.
+            pose.translate(0,-.56,.55);pose.scale(.72f,.72f,.72f);
             draw(pose,buffers,light);
         } finally {pose.popPose();}
     }

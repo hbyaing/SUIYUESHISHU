@@ -1,0 +1,7 @@
+{
+  "compiler": "Khronos glslangValidator",
+  "glslVersion": 150,
+  "oldShaderExitCode": 2,
+  "oldError": "noise3: overloaded functions must have the same return type",
+  "fixedLinkExitCode": 0
+}

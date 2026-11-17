@@ -43,11 +43,15 @@ public final class MingGuLongHuangwuVfx {
     private static float landingGroundLift(float scale){return (.88F-.72F/16F)*scale;}
     private static ResourceLocation id(String path){return new ResourceLocation(StarcrownDoll.ID,path);}
 
-    public static void registerShaders(RegisterShadersEvent event) throws IOException {
-        event.registerShader(new ShaderInstance(event.getResourceProvider(),id("huangwu"),DefaultVertexFormat.POSITION_TEX_COLOR_NORMAL),value->{
-            shader=value;for(var part:parts)part.buffer.close();parts.clear();loaded=false;
-            if(depthCopy!=null){depthCopy.destroyBuffers();depthCopy=null;}
-        });
+    public static void registerShaders(RegisterShadersEvent event) {
+        // Reload must not keep a program or buffers belonging to the previous resource set.
+        shader=null;for(var part:parts)part.buffer.close();parts.clear();loaded=false;
+        if(depthCopy!=null){depthCopy.destroyBuffers();depthCopy=null;}
+        try {
+            event.registerShader(new ShaderInstance(event.getResourceProvider(),id("huangwu"),DefaultVertexFormat.POSITION_TEX_COLOR_NORMAL),value->shader=value);
+        } catch(IOException | RuntimeException error) {
+            com.mojang.logging.LogUtils.getLogger().warn("Huangwu shader unavailable; using vanilla geometry VFX. Gameplay remains enabled.",error);
+        }
     }
 
     private record Part(int stage,int kind,boolean volume,float bound,ResourceLocation texture,
@@ -92,7 +96,8 @@ public final class MingGuLongHuangwuVfx {
     private record Draw(Part part,Matrix4f matrix,float time,float fieldTime,float distance) {}
 
     @SubscribeEvent public static void render(RenderLevelStageEvent event) {
-        if(event.getStage()!=RenderLevelStageEvent.Stage.AFTER_PARTICLES||shader==null)return;
+        if(event.getStage()!=RenderLevelStageEvent.Stage.AFTER_PARTICLES)return;
+        if(shader==null){MingGuLongHuangwuFallback.render(event);return;}
         var mc=Minecraft.getInstance();if(mc.level==null)return;
         Vec3 camera=event.getCamera().getPosition();float partial=event.getPartialTick();
         List<Draw> draws=new ArrayList<>();

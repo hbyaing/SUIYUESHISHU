@@ -43,8 +43,11 @@ public final class MingGuLongBossBarQa {
         ((Mob)d).setNoAi(true);((Entity)d).setNoGravity(true);((Entity)d).moveTo(x,101,0,180,0);level.addFreshEntity(d);return d;
     }
     @SubscribeEvent public static void client(TickEvent.ClientTickEvent event){
-        if(event.phase!=TickEvent.Phase.END||!enabled()||started||failed)return;
-        var mc=Minecraft.getInstance();if(mc.level==null||mc.player==null||mc.getSingleplayerServer()==null||mc.screen!=null)return;
+        if(event.phase!=TickEvent.Phase.END||!enabled())return;
+        var mc=Minecraft.getInstance();
+        // Only the opt-in acceptance client hides its own GLFW window; framebuffer rendering stays active.
+        if(Files.exists(root().resolve("hide-qa-window")))org.lwjgl.glfw.GLFW.glfwHideWindow(mc.getWindow().getWindow());
+        if(started||failed||mc.level==null||mc.player==null||mc.getSingleplayerServer()==null||mc.screen!=null)return;
         started=true;log("GPU "+GL11.glGetString(GL11.GL_RENDERER));
         mc.getSingleplayerServer().execute(()->{try{
             var server=mc.getSingleplayerServer();var l=server.overworld();var p=server.getPlayerList().getPlayers().get(0);

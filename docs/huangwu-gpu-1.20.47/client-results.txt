@@ -1,0 +1,12 @@
+GPU NVIDIA GeForce RTX 5060 Laptop GPU/PCIe/SSE2
+PASS fixed GLSL compiles during real production-JAR startup
+PASS phase 0 renders without GL errors
+GPU_CAPTURE phase 0
+PASS compiler failure is caught; basic geometry mode selected
+PASS phase 1 renders without GL errors
+GPU_CAPTURE phase 1
+PASS world and player continue running with compiler failure
+PASS shader registration recovers after a previous failure
+PASS phase 2 renders without GL errors
+GPU_CAPTURE phase 2
+COMPLETE advanced shader, injected compile failure, vanilla fallback and recovery

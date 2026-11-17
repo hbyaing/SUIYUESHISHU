@@ -18,6 +18,7 @@ public final class MingGuLongBossBar {
     private static final ResourceLocation FILL = texture("fill");
     private static final ResourceLocation DECORATION = texture("decoration");
     private static final int TEXTURE_WIDTH = 960, TEXTURE_HEIGHT = 240;
+    private static final float DISPLAY_WIDTH = 272.0F;
     private static final int FILL_X = 92, FILL_Y = 124, FILL_WIDTH = 776, FILL_HEIGHT = 20;
 
     private MingGuLongBossBar() {}
@@ -33,7 +34,7 @@ public final class MingGuLongBossBar {
 
         event.setCanceled(true);
         GuiGraphics graphics = event.getGuiGraphics();
-        float scale = Math.min(320.0F, graphics.guiWidth() - 8.0F) / TEXTURE_WIDTH;
+        float scale = Math.min(DISPLAY_WIDTH, graphics.guiWidth() - 8.0F) / TEXTURE_WIDTH;
         if (scale <= 0.0F) return;
         float left = (graphics.guiWidth() - TEXTURE_WIDTH * scale) / 2.0F;
         int top = event.getY() - 10;
