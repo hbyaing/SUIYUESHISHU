@@ -1,0 +1,56 @@
+{
+  "version": "1.20.48",
+  "sha256": "575b75a2a18d04b154f503dc29751dc98589ba49d819f7209ef9d5ae671b8382",
+  "tested_production_jar_matches_release": true,
+  "qa_classes_in_production": false,
+  "all_previous_assets_and_data_unchanged_except_line_endings": true,
+  "hd_halo_mesh_and_texture_byte_identical": true,
+  "rewind_item_renderer_byte_identical": true,
+  "worn_scale": 1.5,
+  "previous_scale": 0.72,
+  "enlargement": 2.0833333333333335,
+  "body_local_back_offset": 0.67,
+  "hover_amplitude": 0.018,
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU/PCIe/SSE2",
+  "client_assertions_passed": 32,
+  "bloom_on_off": {
+    "changed_pixels_gt_2": 13923,
+    "maximum_channel_delta": 204,
+    "difference_bounds": [
+      528,
+      306,
+      706,
+      539
+    ]
+  },
+  "bloom_pixels_expanded_into_dark_background": 9602,
+  "wall_occlusion_on_off": {
+    "changed_pixels_gt_2": 0,
+    "maximum_channel_delta": 0,
+    "difference_bounds": null
+  },
+  "forge_client": "47.4.26",
+  "build_forge": "47.4.0",
+  "minecraft": "1.20.1",
+  "java": 17,
+  "tested": [
+    "actual worn world renderer",
+    "head yaw/pitch independence",
+    "body pose attachment",
+    "front and side views",
+    "bloom A/B",
+    "opaque wall A/B",
+    "resize",
+    "resource reload",
+    "unequip",
+    "Curios render visibility",
+    "entity invisibility",
+    "GPU target release/recreation"
+  ],
+  "untested": [
+    "Oculus/Iris shader packs",
+    "Fabulous bloom",
+    "multiplayer rendering",
+    "unrelated gameplay regression"
+  ]
+}

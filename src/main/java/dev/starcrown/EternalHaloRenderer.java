@@ -18,6 +18,8 @@ public final class EternalHaloRenderer implements ICurioRenderer {
     private static final ResourceLocation MESH=new ResourceLocation(StarcrownDoll.ID,"models/accessory/eternal_halo.mesh");
     private static final ResourceLocation TEXTURE=new ResourceLocation(StarcrownDoll.ID,"textures/accessory/eternal_halo.png");
     private static volatile float[] vertices=new float[0];
+    public static final float WORN_SCALE=1.50f;
+    public static final float BACK_OFFSET=.67f;
     public static void reload(ResourceManager resources) {
         try(var input=new DataInputStream(new BufferedInputStream(resources.open(MESH)))) {
             if(input.readInt()!=0x45524831)throw new IOException("Invalid eternal halo mesh header");
@@ -36,13 +38,19 @@ public final class EternalHaloRenderer implements ICurioRenderer {
         if(!(parent.getModel() instanceof HeadedModel headed)||!headed.getHead().visible)return;
         pose.pushPose();
         try {
-            headed.getHead().translateAndRotate(pose);
-            // Preserve the existing height and size; head-local +Z moves the mesh behind the head.
-            // Its nearest surface is now beyond the outer hair layer (Z=0.28125), with an air gap.
-            pose.translate(0,-.56,.55);pose.scale(.72f,.72f,.72f);
-            draw(pose,buffers,light);
+            wornPose(parent.getModel(),pose,ageInTicks);
+            draw(pose,buffers,LightTexture.FULL_BRIGHT);
+            EternalHaloBloom.capture(pose);
         } finally {pose.popPose();}
     }
+    /** Root pose already follows body yaw. Head pitch/yaw must never enter the halo transform. */
+    public static void wornPose(EntityModel<?> model,PoseStack pose,float ageInTicks) {
+        if(model instanceof HumanoidModel<?> human)human.body.translateAndRotate(pose);
+        float hover=(float)Math.sin(ageInTicks*.065f)*.018f;
+        pose.translate(0,-.32+hover,BACK_OFFSET);pose.scale(WORN_SCALE,WORN_SCALE,WORN_SCALE);
+    }
+    static float[] mesh() {return vertices;}
+    static ResourceLocation texture() {return TEXTURE;}
     public static void draw(PoseStack pose,MultiBufferSource buffers,int light) {
         draw(pose,buffers,light,false);
     }

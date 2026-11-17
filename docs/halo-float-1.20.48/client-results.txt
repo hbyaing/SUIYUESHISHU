@@ -1,0 +1,60 @@
+GPU NVIDIA GeForce RTX 4060 Laptop GPU/PCIe/SSE2
+PASS production bloom shaders compile
+PASS actual worn transform ignores all three head rotations
+PASS worn halo enlarged 2.08 times
+PASS halo placed behind torso with free air gap
+PASS torso motion still carries the floating halo
+DIAGNOSTIC stage 0 calls=114, collecting=114, main=114, queued=1, failed=false equipped=1 eternal_return
+PASS stage 0 without OpenGL errors
+PASS stage 0 actual equipped halo emits screen bloom
+GPU_CAPTURE front
+DIAGNOSTIC stage 1 calls=247, collecting=247, main=247, queued=1, failed=false equipped=1 eternal_return
+PASS stage 1 without OpenGL errors
+PASS stage 1 actual equipped halo emits screen bloom
+GPU_CAPTURE head-turn
+DIAGNOSTIC stage 2 calls=381, collecting=381, main=381, queued=1, failed=false equipped=1 eternal_return
+PASS stage 2 without OpenGL errors
+PASS stage 2 actual equipped halo emits screen bloom
+GPU_CAPTURE side
+DIAGNOSTIC stage 3 calls=515, collecting=515, main=381, queued=0, failed=true equipped=1 eternal_return
+PASS stage 3 without OpenGL errors
+PASS stage 3 suppressed/unequipped/hidden halo has no bloom composites
+GPU_CAPTURE bloom-off
+DIAGNOSTIC stage 4 calls=649, collecting=649, main=515, queued=1, failed=false equipped=1 eternal_return
+PASS stage 4 without OpenGL errors
+PASS stage 4 actual equipped halo emits screen bloom
+GPU_CAPTURE bloom-on
+DIAGNOSTIC stage 5 calls=783, collecting=783, main=649, queued=1, failed=false equipped=1 eternal_return
+PASS stage 5 without OpenGL errors
+GPU_CAPTURE wall-on
+DIAGNOSTIC stage 6 calls=917, collecting=917, main=649, queued=0, failed=true equipped=1 eternal_return
+PASS stage 6 without OpenGL errors
+PASS stage 6 suppressed/unequipped/hidden halo has no bloom composites
+GPU_CAPTURE wall-off
+DIAGNOSTIC stage 7 calls=1050, collecting=1050, main=782, queued=1, failed=false equipped=1 eternal_return
+PASS stage 7 without OpenGL errors
+PASS stage 7 actual equipped halo emits screen bloom
+GPU_CAPTURE resized
+PASS resource reload restores shaders
+DIAGNOSTIC stage 8 calls=4801, collecting=4801, main=4533, queued=1, failed=false equipped=1 eternal_return
+PASS stage 8 without OpenGL errors
+PASS stage 8 actual equipped halo emits screen bloom
+GPU_CAPTURE reloaded
+DIAGNOSTIC stage 9 calls=4804, collecting=4804, main=4536, queued=0, failed=false equipped=0 air
+PASS stage 9 without OpenGL errors
+PASS stage 9 suppressed/unequipped/hidden halo has no bloom composites
+GPU_CAPTURE unequipped
+DIAGNOSTIC stage 10 calls=4804, collecting=4804, main=4536, queued=0, failed=false equipped=1 eternal_return
+PASS stage 10 without OpenGL errors
+PASS stage 10 suppressed/unequipped/hidden halo has no bloom composites
+GPU_CAPTURE hidden
+DIAGNOSTIC stage 11 calls=4805, collecting=4805, main=4537, queued=0, failed=false equipped=1 eternal_return
+PASS stage 11 without OpenGL errors
+PASS stage 11 suppressed/unequipped/hidden halo has no bloom composites
+GPU_CAPTURE invisible
+PASS bloom targets released
+DIAGNOSTIC stage 12 calls=4936, collecting=4936, main=4668, queued=1, failed=false equipped=1 eternal_return
+PASS stage 12 without OpenGL errors
+GPU_CAPTURE restored
+PASS bloom recreated after target release
+COMPLETE floating body halo, head independence, bloom, occlusion, reload, resize and visibility

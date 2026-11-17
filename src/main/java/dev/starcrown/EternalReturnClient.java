@@ -41,6 +41,7 @@ public final class EternalReturnClient {
     }
     @Mod.EventBusSubscriber(modid=StarcrownDoll.ID,value=Dist.CLIENT,bus=Mod.EventBusSubscriber.Bus.MOD)
     public static final class Setup {
+        @SubscribeEvent public static void shaders(RegisterShadersEvent e) {EternalHaloBloom.register(e);}
         @SubscribeEvent public static void keys(RegisterKeyMappingsEvent e) {e.register(ACTIVATE);}
         @SubscribeEvent public static void init(net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent e) {
             e.enqueueWork(()->{
@@ -51,7 +52,9 @@ public final class EternalReturnClient {
             });
         }
         @SubscribeEvent public static void reload(RegisterClientReloadListenersEvent e) {
-            e.registerReloadListener((net.minecraft.server.packs.resources.ResourceManagerReloadListener)EternalHaloRenderer::reload);
+            e.registerReloadListener((net.minecraft.server.packs.resources.ResourceManagerReloadListener)resources->{
+                EternalHaloBloom.release();EternalHaloRenderer.reload(resources);
+            });
         }
     }
 }
