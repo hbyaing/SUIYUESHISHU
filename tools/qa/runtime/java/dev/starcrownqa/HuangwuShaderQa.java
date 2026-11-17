@@ -87,7 +87,8 @@ public final class HuangwuShaderQa {
             log("GPU_CAPTURE phase "+phase);
             if(phase==0){phase=1;register(true);field();}
             else if(phase==1){check(mc.player.isAlive()&&mc.level!=null,"world and player continue running with compiler failure");phase=2;register(false);field();}
-            else {finished=true;log("COMPLETE advanced shader, injected compile failure, vanilla fallback and recovery");mc.stop();}
+            else {finished=true;log("COMPLETE advanced shader, injected compile failure, vanilla fallback and recovery");
+                if(Files.exists(root().resolve("enable-huangwu-lifecycle-qa")))HuangwuLifecycleQa.begin();else mc.stop();}
         }catch(Throwable e){fail(e);}
     }
 }

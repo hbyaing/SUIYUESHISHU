@@ -1,0 +1,13 @@
+BEGIN actual server effect after shader-fault/recovery test
+PASS actual server vortex uses reduced integration target
+PASS 65 frames with lateral movement, turning, low camera and near-plane crossing
+PASS odd-sized resize rebuilds both integration/depth targets
+PASS original dimensions restored
+PASS low-GPU 0.33 option changes actual attachment width
+PASS missing reconstruction program retains native advanced volume
+REQUESTED actual Minecraft resource-pack reload
+PASS resource reload closes every old immutable mesh buffer
+PASS resource reload preloads fresh meshes and both shaders
+PASS server-spawned effect resumes after resource reload
+PASS actual world disconnect releases both effect targets
+COMPLETE movement, resize, low-GPU config, reconstruction fallback, resource reload and disconnect

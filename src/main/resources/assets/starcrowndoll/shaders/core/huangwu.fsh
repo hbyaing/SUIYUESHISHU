@@ -58,7 +58,7 @@ uniform sampler2D SceneDepth;
 uniform float uUseDepth;
 uniform mat4 InverseModelViewMat;
 uniform mat4 InverseProjectionMat;
-uniform vec2 ScreenSize;
+uniform vec2 IntegrationSize;
 void main(){
  if(uKind>.5&&uKind<5.5){
   // Integrate the proxy once per pixel, through its back-facing surface.
@@ -74,7 +74,7 @@ void main(){
   if(h<0.0)discard;
   float t0=max(0.0,-b-sqrt(h)),t1=-b+sqrt(h);
   if(uUseDepth>.5){
-   vec2 screenUV=gl_FragCoord.xy/ScreenSize;
+   vec2 screenUV=gl_FragCoord.xy/IntegrationSize;
    float depth=texture(SceneDepth,screenUV).r;
    if(depth<.999999){
     vec4 view=InverseProjectionMat*vec4(screenUV*2.0-1.0,depth*2.0-1.0,1.0);view/=view.w;

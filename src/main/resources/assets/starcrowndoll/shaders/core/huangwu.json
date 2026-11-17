@@ -116,7 +116,7 @@
       ]
     },
     {
-      "name": "ScreenSize",
+      "name": "IntegrationSize",
       "type": "float",
       "count": 2,
       "values": [

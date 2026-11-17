@@ -1,0 +1,10 @@
+{
+  "density_field_and_48_steps_unchanged": true,
+  "unchanged_asset_files_compared_with_1_20_49": 123,
+  "no_qa_classes_or_gpu_queries_in_release_jar": true,
+  "final_tested_jar_sha256": "19ed9218e7ace7d66833cf655bb8186140a7645797ea5f652ac0dcb91cd85a25",
+  "paired_gpu_queries": 288,
+  "shader_fault_and_recovery": "passed",
+  "movement_resize_config_reload_disconnect": "passed",
+  "paired_screenshots": 12
+}

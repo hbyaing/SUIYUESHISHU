@@ -1,0 +1,53 @@
+{
+  "scope": "Actual production effect draws, native scene/core depth copy, meshes and reconstruction; RTX 4060 Laptop GPU; 1280x800; 12 warmup pairs, 24 measured pairs per scene; no external shaders.",
+  "results": [
+    {
+      "scene": "landing-close",
+      "native_ms": 1.7915,
+      "half_ms": 0.9252,
+      "reduction_percent": 48.36,
+      "mean_rgb_error_255": 0.14247851073741913,
+      "p99_max_channel_error_255": 4.0
+    },
+    {
+      "scene": "landing-far",
+      "native_ms": 1.2928,
+      "half_ms": 0.8387,
+      "reduction_percent": 35.13,
+      "mean_rgb_error_255": 0.04998176917433739,
+      "p99_max_channel_error_255": 0.0
+    },
+    {
+      "scene": "charge",
+      "native_ms": 2.5539,
+      "half_ms": 1.2754,
+      "reduction_percent": 50.06,
+      "mean_rgb_error_255": 0.005857096519321203,
+      "p99_max_channel_error_255": 0.0
+    },
+    {
+      "scene": "released",
+      "native_ms": 2.7428,
+      "half_ms": 1.2759,
+      "reduction_percent": 53.48,
+      "mean_rgb_error_255": 0.0024127603974193335,
+      "p99_max_channel_error_255": 0.0
+    },
+    {
+      "scene": "near-clip",
+      "native_ms": 10.6266,
+      "half_ms": 3.2379,
+      "reduction_percent": 69.53,
+      "mean_rgb_error_255": 0.1439114511013031,
+      "p99_max_channel_error_255": 2.0
+    },
+    {
+      "scene": "ground-silhouette",
+      "native_ms": 2.9455,
+      "half_ms": 1.6415,
+      "reduction_percent": 44.27,
+      "mean_rgb_error_255": 0.10072949528694153,
+      "p99_max_channel_error_255": 3.0
+    }
+  ]
+}
