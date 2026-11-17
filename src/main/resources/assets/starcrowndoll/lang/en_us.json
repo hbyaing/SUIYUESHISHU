@@ -111,5 +111,5 @@
   "key.starcrowndoll.eternal_return": "Eternal Return: Activate / Finish",
   "item.starcrowndoll.bab_ilu": "Bab-ilu · Key of the King's Law",
   "item.starcrowndoll.ea": "Ea · Sword of Rupture",
-  "tooltip.starcrowndoll.bab_ilu": "Hold use for 8 seconds to analyze the world and retrieve Ea. Release to cancel."
+  "tooltip.starcrowndoll.bab_ilu": "Hold use for 8 seconds to summon Ea. Successful retrieval consumes this key; release to cancel."
 }

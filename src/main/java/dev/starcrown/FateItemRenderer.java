@@ -39,17 +39,28 @@ public final class FateItemRenderer extends BlockEntityWithoutLevelRenderer {
     @Override public void renderByItem(ItemStack stack,ItemDisplayContext context,PoseStack pose,MultiBufferSource buffers,int light,int overlay){
         boolean sword=stack.is(StarcrownDoll.EA.get());
         var mc=Minecraft.getInstance();
-        if(!sword&&context.firstPerson()&&mc.player!=null){
+        var localCast=mc.player==null?null:FateClient.CASTS.get(mc.player.getUUID());
+        boolean activeFirst=localCast!=null&&((context==ItemDisplayContext.FIRST_PERSON_LEFT_HAND)==((mc.player.getMainArm()==net.minecraft.world.entity.HumanoidArm.LEFT)^localCast.offhand()));
+        if(!sword&&context.firstPerson()&&mc.player!=null&&activeFirst){
             float age=FateClient.localAge(mc.getFrameTime());
             if(age>=86&&age<143)return;
             if(age>=143&&age<=FateItems.DURATION)sword=true;
         }
-        if(!sword&&(context==ItemDisplayContext.THIRD_PERSON_LEFT_HAND||context==ItemDisplayContext.THIRD_PERSON_RIGHT_HAND)&&FateClient.renderedPlayer!=null){
-            var cast=FateClient.CASTS.get(FateClient.renderedPlayer);
-            if(cast!=null){float age=FateClient.age(cast,mc.getFrameTime());if(age>=86&&age<143)return;if(age>=143&&age<=160)sword=true;}
+        var cast=!sword&&FateClient.renderedPlayer!=null&&(context==ItemDisplayContext.THIRD_PERSON_LEFT_HAND||context==ItemDisplayContext.THIRD_PERSON_RIGHT_HAND)?FateClient.CASTS.get(FateClient.renderedPlayer):null;
+        if(cast!=null){
+            var owner=mc.level.getEntity(cast.entity());
+            boolean left=owner instanceof net.minecraft.world.entity.player.Player p&&(p.getMainArm()==net.minecraft.world.entity.HumanoidArm.LEFT)^cast.offhand();
+            if((context==ItemDisplayContext.THIRD_PERSON_LEFT_HAND)!=left)cast=null;
         }
         pose.pushPose();try{
             pose.translate(.5,.5,.5);
+            if(cast!=null){
+                float age=FateClient.age(cast,mc.getFrameTime());
+                var owner=mc.level.getEntity(cast.entity());
+                if(age<114)FateAnalysisPlacement.upright(pose,cast.owner(),owner==null?cast.yaw():owner.getViewYRot(mc.getFrameTime()));
+                if(age>=86&&age<143)return;
+                if(age>=143&&age<=160)sword=true;
+            }
             if(context==ItemDisplayContext.GUI){
                 pose.mulPose(Axis.ZP.rotationDegrees(-32));pose.mulPose(Axis.YP.rotationDegrees(75));
                 float scale=sword?.47f:1.175f;pose.scale(scale,scale,scale);pose.translate(0,sword?-.65:-.26,0);

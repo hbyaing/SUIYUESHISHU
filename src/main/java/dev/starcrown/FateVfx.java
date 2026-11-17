@@ -25,7 +25,7 @@ public final class FateVfx {
     private static final VertexFormat FORMAT=DefaultVertexFormat.POSITION_TEX_COLOR;
     /** Resource apply runs on the render executor; this listener owns and closes its program. */
     public static void reload(net.minecraft.server.packs.resources.ResourceManager resources){
-        if(shader!=null)shader.close();shader=null;release();
+        if(shader!=null)shader.close();shader=null;release();FateOrbBloom.reload(resources);
         try(VfxRenderState ignored=new VfxRenderState()){
             load(resources);shader=new ShaderInstance(resources,FateItemRenderer.id("fate_retrieval"),FORMAT);
             com.mojang.logging.LogUtils.getLogger().info("Fate retrieval shader and geometry loaded");
@@ -95,6 +95,7 @@ public final class FateVfx {
         }
     }
     @SubscribeEvent public static void render(RenderLevelStageEvent event){
+        if(event.getStage()==RenderLevelStageEvent.Stage.AFTER_CUTOUT_BLOCKS){FateAnalysisPlacement.begin(event.getPoseStack().last().pose(),event.getCamera().getPosition());return;}
         boolean worldPass=event.getStage()==RenderLevelStageEvent.Stage.AFTER_PARTICLES;
         boolean maskPass=event.getStage()==RenderLevelStageEvent.Stage.AFTER_LEVEL;
         if((!worldPass&&!maskPass)||shader==null||FateClient.CASTS.isEmpty())return;
@@ -105,18 +106,26 @@ public final class FateVfx {
             uniform("Aspect",(float)mc.getWindow().getWidth()/mc.getWindow().getHeight());
             for(var cast:FateClient.CASTS.values()){
                 float age=FateClient.age(cast,partial);if(age<0||age>=160)continue;
-                if(cast.origin().distanceToSqr(camera)>128*128)continue;
-                var entity=mc.level.getEntity(cast.entity());if(!(entity instanceof Player player))continue;
-                Vec3 anchor=cast.origin().add(0,.6,0);
-                Matrix4f base=new Matrix4f(event.getPoseStack().last().pose()).translate((float)(anchor.x-camera.x),(float)(anchor.y-camera.y),(float)(anchor.z-camera.z)).rotateY((180-cast.yaw())*Mth.DEG_TO_RAD);
-                if(worldPass&&age<114){
-                    RenderSystem.disableBlend();RenderSystem.depthMask(true);draw(analysis,base,event.getProjectionMatrix(),0,age);
+                var entity=mc.level.getEntity(cast.entity());if(!(entity instanceof Player player)||player.position().distanceToSqr(camera)>128*128)continue;
+                boolean local=player==mc.player&&mc.options.getCameraType().isFirstPerson();
+                if(maskPass&&local&&age<114){
+                    FateAnalysisPlacement.local(player,partial,age);
+                    if(age<80)drawLocalKey(player,partial,age);
+                }
+                Vec3 tip=FateAnalysisPlacement.tip(cast.owner());
+                Vec3 anchor=tip==null?player.position():tip.add(0,-FateAnalysisPlacement.COLUMN_BOTTOM*FateAnalysisPlacement.SCALE,0);
+                Matrix4f base=FateAnalysisPlacement.view().translate((float)(anchor.x-camera.x),(float)(anchor.y-camera.y),(float)(anchor.z-camera.z))
+                        .rotateY(FateAnalysisPlacement.rotation(player.getViewYRot(partial))).scale(FateAnalysisPlacement.SCALE);
+                if(maskPass&&age<114&&tip!=null){
+                    RenderSystem.enableDepthTest();RenderSystem.disableCull();RenderSystem.disableBlend();RenderSystem.depthMask(true);draw(analysis,base,event.getProjectionMatrix(),0,age);
                     RenderSystem.enableBlend();RenderSystem.depthMask(false);draw(cube,base,event.getProjectionMatrix(),1,age);
+                    Matrix4f orb=FateAnalysisPlacement.view().translate((float)(tip.x-camera.x),(float)(tip.y-camera.y),(float)(tip.z-camera.z)).rotate(event.getCamera().rotation()).scale(.19f);
+                    FateOrbBloom.draw(orb,event.getProjectionMatrix(),age);
+
                 }
                 Vec3 forward=player.getLookAngle();Vec3 right=new Vec3(-forward.z,0,forward.x).normalize();
                 boolean left=(player.getMainArm()==net.minecraft.world.entity.HumanoidArm.LEFT)^cast.offhand();
                 Vec3 hand=player.getEyePosition(partial).add(forward.scale(.85)).add(right.scale(left?-.28:.28)).add(0,-.25,0);
-                boolean local=player==mc.player&&mc.options.getCameraType().isFirstPerson();
                 if(maskPass&&local&&age>=80&&age<114){
                     RenderSystem.disableDepthTest();float side=left?-1:1;
                     draw(gate,new Matrix4f().translate(side*.35f,-.16f,0).scale(.83f*mc.getWindow().getHeight()/mc.getWindow().getWidth(),.83f,1),new Matrix4f(),2,age);
@@ -141,6 +150,22 @@ public final class FateVfx {
                     draw(shards,billboard,event.getProjectionMatrix(),4,age);
                 }
             }
+            if(maskPass){FateOrbBloom.finish();FateAnalysisPlacement.end();}
         }
+    }
+    private static void drawLocalKey(Player player,float partial,float age){
+        var mc=Minecraft.getInstance();var buffers=mc.renderBuffers().bufferSource();
+        Vec3 grip=FateAnalysisPlacement.localGrip(player,partial,age);
+        var pose=new PoseStack();pose.last().pose().set(FateAnalysisPlacement.model(grip,player.getViewYRot(partial)));
+        pose.last().normal().set(new org.joml.Matrix3f(pose.last().pose()).invert().transpose());
+        RenderSystem.depthMask(true);
+        FateItemRenderer.draw(false,pose,buffers,net.minecraft.client.renderer.LightTexture.FULL_BRIGHT);
+        boolean left=(player.getMainArm()==net.minecraft.world.entity.HumanoidArm.LEFT)^FateClient.CASTS.get(player.getUUID()).offhand();
+        pose.mulPose(com.mojang.math.Axis.YP.rotationDegrees(-90));
+        pose.translate((left?-1:1)*.3125,-.68,0);
+        var renderer=(net.minecraft.client.renderer.entity.player.PlayerRenderer)mc.getEntityRenderDispatcher().getRenderer((net.minecraft.client.player.AbstractClientPlayer)player);
+        if(left)renderer.renderLeftHand(pose,buffers,net.minecraft.client.renderer.LightTexture.FULL_BRIGHT,(net.minecraft.client.player.AbstractClientPlayer)player);
+        else renderer.renderRightHand(pose,buffers,net.minecraft.client.renderer.LightTexture.FULL_BRIGHT,(net.minecraft.client.player.AbstractClientPlayer)player);
+        buffers.endBatch();RenderSystem.depthMask(false);
     }
 }

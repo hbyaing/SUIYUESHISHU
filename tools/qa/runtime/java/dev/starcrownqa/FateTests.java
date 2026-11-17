@@ -18,12 +18,12 @@ public final class FateTests {
         int total=0;for(int i=0;i<p.getInventory().getContainerSize();i++)if(p.getInventory().getItem(i).is(item))total+=p.getInventory().getItem(i).getCount();return total;
     }
     @GameTest(template="empty",timeoutTicks=200)
-    public static void completeAndPreserveKey(GameTestHelper h){
+    public static void completeAndConsumeKey(GameTestHelper h){
         var p=player(h);var key=new ItemStack(StarcrownDoll.BAB_ILU.get());p.setItemInHand(InteractionHand.MAIN_HAND,key);
         key.use(p.level(),p,InteractionHand.MAIN_HAND);
         h.runAtTickTime(170,()->{try{
             h.assertTrue(p.getMainHandItem().is(StarcrownDoll.EA.get()),"completed retrieval replaces the key in the active hand");
-            h.assertTrue(count(p,StarcrownDoll.EA.get())==1&&count(p,StarcrownDoll.BAB_ILU.get())==1,"one sword and exactly one retained key");
+            h.assertTrue(count(p,StarcrownDoll.EA.get())==1&&count(p,StarcrownDoll.BAB_ILU.get())==0,"one sword and no retained key");
             h.assertTrue(p.getCooldowns().isOnCooldown(StarcrownDoll.BAB_ILU.get()),"completion applies key cooldown");
             p.setItemInHand(InteractionHand.OFF_HAND,new ItemStack(StarcrownDoll.BAB_ILU.get()));
             var result=StarcrownDoll.BAB_ILU.get().use(p.level(),p,InteractionHand.OFF_HAND);
@@ -41,13 +41,13 @@ public final class FateTests {
         }finally{ChastityTests.close(p);}});
     }
     @GameTest(template="empty",timeoutTicks=200)
-    public static void fullInventoryStillPreservesKey(GameTestHelper h){
+    public static void fullInventoryConsumesKeyWithoutDrop(GameTestHelper h){
         var p=player(h);for(int i=0;i<36;i++)p.getInventory().setItem(i,new ItemStack(Items.STONE,64));
         var key=new ItemStack(StarcrownDoll.BAB_ILU.get());p.setItemInHand(InteractionHand.MAIN_HAND,key);key.use(p.level(),p,InteractionHand.MAIN_HAND);
         h.runAtTickTime(170,()->{try{
             h.assertTrue(p.getMainHandItem().is(StarcrownDoll.EA.get()),"full inventory still receives sword in used hand");
             var drops=p.level().getEntitiesOfClass(net.minecraft.world.entity.item.ItemEntity.class,p.getBoundingBox().inflate(6),e->e.getItem().is(StarcrownDoll.BAB_ILU.get()));
-            h.assertTrue(drops.size()==1&&drops.get(0).getItem().getCount()==1,"full inventory drops exactly one retained key");
+            h.assertTrue(drops.isEmpty()&&count(p,StarcrownDoll.BAB_ILU.get())==0,"full inventory consumes the key without dropping another");
             drops.forEach(net.minecraft.world.entity.Entity::discard);h.succeed();
         }finally{ChastityTests.close(p);}});
     }
@@ -66,7 +66,7 @@ public final class FateTests {
         p.setItemInHand(InteractionHand.MAIN_HAND,main);p.setItemInHand(InteractionHand.OFF_HAND,key);key.use(p.level(),p,InteractionHand.OFF_HAND);
         h.runAtTickTime(170,()->{try{
             h.assertTrue(p.getOffhandItem().is(StarcrownDoll.EA.get())&&p.getMainHandItem()==main,"offhand retrieval replaces only the used hand");
-            h.assertTrue(count(p,StarcrownDoll.BAB_ILU.get())==1&&count(p,StarcrownDoll.EA.get())==1,"offhand completion retains exactly one key");h.succeed();
+            h.assertTrue(count(p,StarcrownDoll.BAB_ILU.get())==0&&count(p,StarcrownDoll.EA.get())==1,"offhand completion consumes exactly the used key");h.succeed();
         }finally{ChastityTests.close(p);}});
     }
     @GameTest(template="empty",timeoutTicks=200)

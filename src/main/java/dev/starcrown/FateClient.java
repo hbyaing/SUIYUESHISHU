@@ -38,11 +38,11 @@ public final class FateClient {
     static float localAge(float partial){var p=Minecraft.getInstance().player;if(p==null)return -1;var s=CASTS.get(p.getUUID());return s==null?-1:age(s,partial);}
     @SubscribeEvent public static void tick(TickEvent.ClientTickEvent event){
         if(event.phase!=TickEvent.Phase.END)return;
-        var mc=Minecraft.getInstance();if(mc.level==null){CASTS.clear();return;}
+        var mc=Minecraft.getInstance();if(mc.level==null){CASTS.clear();FateAnalysisPlacement.clear();FateOrbBloom.release();return;}
         CASTS.values().removeIf(s->{var e=mc.level.getEntity(s.entity());return !mc.level.dimension().location().equals(s.dimension())
                 ||age(s,0)>FateItems.DURATION+1||e==null||!e.isAlive()||!e.getUUID().equals(s.owner());});
     }
-    @SubscribeEvent public static void logout(ClientPlayerNetworkEvent.LoggingOut e){CASTS.clear();}
+    @SubscribeEvent public static void logout(ClientPlayerNetworkEvent.LoggingOut e){CASTS.clear();FateAnalysisPlacement.clear();FateOrbBloom.release();}
     public static boolean handPose(PoseStack pose,LocalPlayer player,HumanoidArm arm,ItemStack stack,float partial){
         if(!stack.is(StarcrownDoll.BAB_ILU.get())||!player.isUsingItem()||player.getUseItem()!=stack)return false;
         float t=localAge(partial);if(t<0)t=player.getTicksUsingItem()+partial;
@@ -58,7 +58,8 @@ public final class FateClient {
         var mc=Minecraft.getInstance();var p=mc.player;if(p==null)return;
         var cast=CASTS.get(p.getUUID());if(cast==null)return;
         if((event.getHand()==net.minecraft.world.InteractionHand.OFF_HAND)!=cast.offhand())return;
-        float age=age(cast,event.getPartialTick());if(age<80||age>=160)return;
+        float age=age(cast,event.getPartialTick());if(age>=160)return;
+        if(age<80){event.setCanceled(true);return;}
         event.setCanceled(true);
         HumanoidArm arm=cast.offhand()?p.getMainArm().getOpposite():p.getMainArm();float side=arm==HumanoidArm.RIGHT?1:-1;
         var pose=event.getPoseStack();var buffers=event.getMultiBufferSource();

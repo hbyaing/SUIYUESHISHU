@@ -52,9 +52,8 @@ public final class FateItems {
                     ||!cast.dimension().equals(level.dimension().location())||!player.isAlive()
                     ||level.getGameTime()-cast.start()<DURATION-1||hasEa(player)){cancel(player);return stack;}
             ACTIVE.remove(player.getUUID());send(cast,2);
-            // The returned sword replaces the used key in the same hand. Preserve exactly one key.
-            ItemStack retained=stack.copy();
-            if(!player.getInventory().add(retained))player.drop(retained,false);
+            // Vanilla replaces the active stack with the return value, including in creative mode.
+            // Do not copy or drop the key: successful retrieval consumes that specific key.
             player.getCooldowns().addCooldown(this,COOLDOWN);
             return new ItemStack(StarcrownDoll.EA.get());
         }

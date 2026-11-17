@@ -44,8 +44,20 @@ public final class FateVisualQa {
                 mc.options.keyUse.setDown(true);mc.gameMode.useItem(mc.player,usedHand);started=true;tick=0;log("START actual client item use phase="+phase);
             }
             if(started)mc.options.keyUse.setDown(tick<165);
+            if(started&&phase==1&&tick<80){
+                if(tick==20||tick==40||tick==60){mc.player.setYRot((tick/20-1)*90);mc.player.setYHeadRot(mc.player.getYRot());}
+            }
+            if(started&&tick==53)FateOrbBloom.enabled=false;
+            if(started&&tick==55)FateOrbBloom.enabled=true;
             if(started&&tick==180){
                 if(!mc.player.getItemInHand(usedHand).is(StarcrownDoll.EA.get()))throw new AssertionError("actual server completion not synchronized to held sword");
+                for(int i=0;i<mc.player.getInventory().getContainerSize();i++)if(mc.player.getInventory().getItem(i).is(StarcrownDoll.BAB_ILU.get()))throw new AssertionError("summoned sword retained a key");
+                if(FateOrbBloom.composites==0)throw new AssertionError("orb bloom never composited");
+                net.minecraft.world.item.CreativeModeTabs.tryRebuildTabContents(mc.level.enabledFeatures(),true,mc.level.registryAccess());
+                for(var tab:net.minecraft.world.item.CreativeModeTabs.allTabs()){
+                    if(tab.getDisplayItems().stream().anyMatch(i->i.is(StarcrownDoll.EA.get()))||tab.getSearchTabDisplayItems().stream().anyMatch(i->i.is(StarcrownDoll.EA.get())))throw new AssertionError("Ea visible in creative tab/search");
+                }
+                log("PASS key consumed, Ea absent from all creative tabs/search, orb bloom ran phase="+phase);
                 log("PASS actual eight-second use grants held sword phase="+phase);
                 if(phase==0)mc.setScreen(new net.minecraft.client.gui.screens.inventory.InventoryScreen(mc.player));
             }
@@ -61,10 +73,15 @@ public final class FateVisualQa {
             }
         }catch(Throwable e){log("FAIL "+e);e.printStackTrace();finished=true;mc.stop();}
     }
+    @SubscribeEvent public static void camera(net.minecraftforge.client.event.ViewportEvent.ComputeCameraAngles event){
+        if(!started||phase!=1||tick<65||tick>=80)return;
+        try{var method=net.minecraft.client.Camera.class.getDeclaredMethod("move",double.class,double.class,double.class);method.setAccessible(true);method.invoke(event.getCamera(),-24d,9d,0d);}
+        catch(Exception error){throw new RuntimeException(error);}
+    }
     @SubscribeEvent public static void gui(net.minecraftforge.client.event.RenderGuiEvent.Pre event){if(setup&&!finished)event.setCanceled(true);}
     @SubscribeEvent public static void render(TickEvent.RenderTickEvent event){
         if(event.phase!=TickEvent.Phase.END||!started||finished||tick==lastShot)return;
-        if(!Set.of(5,55,95,120,136,144,149,158,175,190).contains(tick))return;
+        if(!Set.of(5,35,54,55,70,95,120,136,144,149,158,175,190).contains(tick))return;
         lastShot=tick;var mc=Minecraft.getInstance();int error=GL11.glGetError();log("CAPTURE "+tick+" GL="+error);
         Screenshot.grab(mc.gameDirectory,(phase==0?"fate-":"fate-third-")+tick+".png",mc.getMainRenderTarget(),m->{});
     }
