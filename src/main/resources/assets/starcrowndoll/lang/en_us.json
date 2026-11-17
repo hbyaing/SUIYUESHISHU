@@ -108,5 +108,8 @@
   "death.attack.eternal_dragon": "%1$s was torn apart by %2$s",
   "death.attack.eternal_dragon_void": "%1$s was consumed by %2$s's void",
   "item.starcrowndoll.eternal_return": "Eternal Return: Thirty Million Revolutions",
-  "key.starcrowndoll.eternal_return": "Eternal Return: Activate / Finish"
+  "key.starcrowndoll.eternal_return": "Eternal Return: Activate / Finish",
+  "item.starcrowndoll.bab_ilu": "Bab-ilu · Key of the King's Law",
+  "item.starcrowndoll.ea": "Ea · Sword of Rupture",
+  "tooltip.starcrowndoll.bab_ilu": "Hold use for 8 seconds to analyze the world and retrieve Ea. Release to cancel."
 }

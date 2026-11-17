@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G ",
+    "GNG",
+    " H "
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "N": {
+      "item": "minecraft:nether_star"
+    },
+    "H": {
+      "item": "minecraft:tripwire_hook"
+    }
+  },
+  "result": {
+    "item": "starcrowndoll:bab_ilu"
+  }
+}

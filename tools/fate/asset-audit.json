@@ -1,0 +1,14 @@
+{
+  "bab_ilu": {
+    "triangles": 50384,
+    "parts": 3
+  },
+  "ea": {
+    "triangles": 10474,
+    "parts": 8
+  },
+  "analysis": {
+    "curves": 485,
+    "source": "approved three radial sheets; wind excluded"
+  }
+}
