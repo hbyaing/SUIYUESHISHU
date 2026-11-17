@@ -1,0 +1,87 @@
+{
+  "gpu": "GPU NVIDIA GeForce RTX 4060 Laptop GPU/PCIe/SSE2; GL 3.2.0 NVIDIA 610.47",
+  "resolution": [
+    1280,
+    800
+  ],
+  "scope": "New LITE effect only, including depth copy / core / fog / rays / composition; not total game FPS and not old-mode comparison",
+  "results": [
+    {
+      "scene": "landing-close",
+      "native_ms": 0.6426,
+      "half_ms": 0.4413,
+      "reduction_percent": 31.31,
+      "pairs": 24
+    },
+    {
+      "scene": "landing-far",
+      "native_ms": 0.2079,
+      "half_ms": 0.2007,
+      "reduction_percent": 3.45,
+      "pairs": 24
+    },
+    {
+      "scene": "charge",
+      "native_ms": 0.3748,
+      "half_ms": 0.4234,
+      "reduction_percent": -12.98,
+      "pairs": 24
+    },
+    {
+      "scene": "released",
+      "native_ms": 0.254,
+      "half_ms": 0.2662,
+      "reduction_percent": -4.84,
+      "pairs": 24
+    },
+    {
+      "scene": "near-clip",
+      "native_ms": 1.6799,
+      "half_ms": 0.8817,
+      "reduction_percent": 47.52,
+      "pairs": 24
+    },
+    {
+      "scene": "ground-silhouette",
+      "native_ms": 0.4086,
+      "half_ms": 0.2811,
+      "reduction_percent": 31.2,
+      "pairs": 24
+    },
+    {
+      "scene": "side",
+      "native_ms": 0.5222,
+      "half_ms": 0.3983,
+      "reduction_percent": 23.73,
+      "pairs": 24
+    },
+    {
+      "scene": "above",
+      "native_ms": 1.451,
+      "half_ms": 0.8233,
+      "reduction_percent": 43.26,
+      "pairs": 24
+    },
+    {
+      "scene": "behind",
+      "native_ms": 0.5473,
+      "half_ms": 0.3763,
+      "reduction_percent": 31.24,
+      "pairs": 24
+    },
+    {
+      "scene": "collapse",
+      "native_ms": 0.2376,
+      "half_ms": 0.1874,
+      "reduction_percent": 21.12,
+      "pairs": 24
+    },
+    {
+      "scene": "burst",
+      "native_ms": 0.2161,
+      "half_ms": 0.2068,
+      "reduction_percent": 4.27,
+      "pairs": 24
+    }
+  ]
+}

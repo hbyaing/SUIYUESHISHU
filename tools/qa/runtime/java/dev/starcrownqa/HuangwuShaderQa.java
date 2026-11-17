@@ -34,7 +34,7 @@ public final class HuangwuShaderQa {
     static void log(String s){try{Files.writeString(root().resolve("shader-results.txt"),s+"\n",StandardOpenOption.CREATE,StandardOpenOption.APPEND);}catch(Exception e){throw new RuntimeException(e);}}
     static void check(boolean b,String s){if(!b)throw new AssertionError(s);log("PASS "+s);}
     static void fail(Throwable t){t.printStackTrace();log("FAIL "+t);finished=true;Minecraft.getInstance().stop();}
-    static ShaderInstance shader()throws Exception {var f=MingGuLongHuangwuVfx.class.getDeclaredField("shader");f.setAccessible(true);return (ShaderInstance)f.get(null);}
+    static ShaderInstance shader()throws Exception {var f=(VfxClientConfig.HUANGWU_MODE.get()==VfxClientConfig.HuangwuMode.LITE?HuangwuLiteRenderer.class:MingGuLongHuangwuVfx.class).getDeclaredField("shader");f.setAccessible(true);return (ShaderInstance)f.get(null);}
     static void field(){
         ready=false;Minecraft.getInstance().getSingleplayerServer().execute(()->{try {
             var mc=Minecraft.getInstance();var l=mc.getSingleplayerServer().overworld();
@@ -45,12 +45,13 @@ public final class HuangwuShaderQa {
     }
     static void register(boolean broken)throws Exception {
         var resources=Minecraft.getInstance().getResourceManager();ResourceProvider provider=resources;
+        String spec=VfxClientConfig.HUANGWU_MODE.get()==VfxClientConfig.HuangwuMode.LITE?"shaders/core/huangwu_lite.json":"shaders/core/huangwu.json";
         if(broken){
-            var base=resources.getResourceOrThrow(new ResourceLocation(StarcrownDoll.ID,"shaders/core/huangwu.json"));
+            var base=resources.getResourceOrThrow(new ResourceLocation(StarcrownDoll.ID,spec));
             String json;try(var reader=base.openAsReader()){var object=JsonParser.parseReader(reader).getAsJsonObject();object.addProperty("fragment","starcrowndoll:huangwu_qa_broken");json=object.toString();}
             String changed=json;
             provider=id->{
-                String value=id.getPath().equals("shaders/core/huangwu.json")?changed:
+                String value=id.getPath().equals(spec)?changed:
                     id.getPath().equals("shaders/core/huangwu_qa_broken.fsh")?"#version 150\nout vec4 fragColor;\nvoid main(){ this_is_a_deliberate_shader_fault; }\n":null;
                 if(value!=null&&id.getNamespace().equals(StarcrownDoll.ID))return Optional.of(new Resource(base.source(),()->new ByteArrayInputStream(value.getBytes(StandardCharsets.UTF_8))));
                 return resources.getResource(id);
