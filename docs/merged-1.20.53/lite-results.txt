@@ -1,0 +1,76 @@
+GPU NVIDIA GeForce RTX 4060 Laptop GPU/PCIe/SSE2; GL 3.2.0 NVIDIA 610.47
+native window 960x600; steps=12; pair modes=1.0,0.5; warmup=12; samples=24 each; timer includes core/depth copy/fog/reconstruction; fixture ages fixed
+PASS both production shaders compile on actual GPU
+PASS default LITE loads zero legacy meshes
+PASS offscreen box culled
+PASS box entirely behind camera culled
+PASS near-plane crossing box retained
+PASS camera inside proxy retained
+PASS ordinary bound does not fall back to fullscreen
+PASS landing-close mode 1 restores all checked GL states
+PASS landing-close mode 0 restores all checked GL states
+CAPTURED landing-close
+PASS landing-far mode 1 restores all checked GL states
+PASS landing-far mode 0 restores all checked GL states
+CAPTURED landing-far
+PASS charge mode 1 restores all checked GL states
+PASS charge mode 0 restores all checked GL states
+CAPTURED charge
+PASS released mode 1 restores all checked GL states
+PASS released mode 0 restores all checked GL states
+CAPTURED released
+PASS near-clip mode 1 restores all checked GL states
+PASS near-clip mode 0 restores all checked GL states
+CAPTURED near-clip
+PASS ground-silhouette mode 1 restores all checked GL states
+PASS ground-silhouette mode 0 restores all checked GL states
+CAPTURED ground-silhouette
+PASS side mode 1 restores all checked GL states
+PASS side mode 0 restores all checked GL states
+CAPTURED side
+PASS above mode 1 restores all checked GL states
+PASS above mode 0 restores all checked GL states
+CAPTURED above
+PASS behind mode 1 restores all checked GL states
+PASS behind mode 0 restores all checked GL states
+CAPTURED behind
+PASS collapse mode 1 restores all checked GL states
+PASS collapse mode 0 restores all checked GL states
+CAPTURED collapse
+PASS burst mode 1 restores all checked GL states
+PASS burst mode 0 restores all checked GL states
+CAPTURED burst
+PASS landing-close mode 0 has 24 actual GPU queries
+PASS landing-close mode 1 has 24 actual GPU queries
+RESULT landing-close native=0.8494 ms half=0.5750 ms reduction=32.31% nativeSamples=[0.80896, 0.813056, 0.817152, 0.818176, 0.8192, 0.8192, 0.822272, 0.826368, 0.831488, 0.83968, 0.840704, 0.847872, 0.850944, 0.852992, 0.861184, 0.864256, 0.868352, 0.869376, 0.8704, 0.871424, 0.87552, 0.87552, 0.904192, 0.910336] halfSamples=[0.553984, 0.555008, 0.556032, 0.55808, 0.562176, 0.56832, 0.569344, 0.569344, 0.569344, 0.570368, 0.571392, 0.57344, 0.576512, 0.577536, 0.57856, 0.57856, 0.579584, 0.584704, 0.590848, 0.591872, 0.592896, 0.59392, 0.603136, 4.272128]
+PASS landing-far mode 0 has 24 actual GPU queries
+PASS landing-far mode 1 has 24 actual GPU queries
+RESULT landing-far native=0.2857 ms half=0.2621 ms reduction=8.24% nativeSamples=[0.283648, 0.283648, 0.283648, 0.284672, 0.284672, 0.284672, 0.284672, 0.284672, 0.284672, 0.285696, 0.285696, 0.285696, 0.285696, 0.285696, 0.285696, 0.285696, 0.28672, 0.28672, 0.28672, 0.28672, 0.288768, 0.289792, 0.293888, 0.295936] halfSamples=[0.249856, 0.25088, 0.25088, 0.25088, 0.25088, 0.252928, 0.252928, 0.256, 0.257024, 0.257024, 0.260096, 0.262144, 0.262144, 0.263168, 0.263168, 0.263168, 0.263168, 0.264192, 0.264192, 0.264192, 0.264192, 0.264192, 0.270336, 0.43008]
+PASS charge mode 0 has 24 actual GPU queries
+PASS charge mode 1 has 24 actual GPU queries
+RESULT charge native=0.5908 ms half=0.6707 ms reduction=-13.52% nativeSamples=[0.571392, 0.576512, 0.579584, 0.581632, 0.584704, 0.585728, 0.585728, 0.586752, 0.587776, 0.587776, 0.589824, 0.590848, 0.590848, 0.59392, 0.602112, 0.605184, 0.607232, 0.607232, 0.608256, 0.613376, 0.620544, 0.65536, 0.6912, 0.812032] halfSamples=[0.656384, 0.656384, 0.659456, 0.661504, 0.6656, 0.6656, 0.666624, 0.668672, 0.668672, 0.668672, 0.669696, 0.669696, 0.671744, 0.671744, 0.674816, 0.674816, 0.690176, 0.692224, 0.695296, 0.70144, 0.702464, 1.765376, 1.77152, 1.96608]
+PASS released mode 0 has 24 actual GPU queries
+PASS released mode 1 has 24 actual GPU queries
+RESULT released native=0.3635 ms half=0.3558 ms reduction=2.11% nativeSamples=[0.329728, 0.330752, 0.330752, 0.330752, 0.330752, 0.3328, 0.333824, 0.33792, 0.347136, 0.36352, 0.36352, 0.36352, 0.36352, 0.36352, 0.364544, 0.366592, 0.36864, 0.370688, 0.375808, 0.375808, 0.382976, 0.39424, 0.396288, 0.43008] halfSamples=[0.34304, 0.34304, 0.344064, 0.345088, 0.345088, 0.346112, 0.347136, 0.347136, 0.352256, 0.354304, 0.355328, 0.355328, 0.356352, 0.357376, 0.357376, 0.3584, 0.359424, 0.359424, 0.360448, 0.361472, 0.365568, 0.37376, 0.456704, 1.287168]
+PASS near-clip mode 0 has 24 actual GPU queries
+PASS near-clip mode 1 has 24 actual GPU queries
+RESULT near-clip native=2.5923 ms half=1.0122 ms reduction=60.95% nativeSamples=[2.388992, 2.400256, 2.40128, 2.402304, 2.409472, 2.410496, 2.415616, 2.423808, 2.42688, 2.43712, 2.5856, 2.591744, 2.592768, 2.604032, 2.614272, 2.615296, 2.617344, 2.624512, 2.627584, 2.630656, 2.640896, 2.655232, 3.360768, 3.667968] halfSamples=[0.93184, 0.93184, 0.932864, 0.944128, 0.95232, 0.95232, 0.953344, 0.955392, 0.958464, 0.960512, 0.9984, 1.011712, 1.012736, 1.016832, 1.017856, 1.025024, 1.027072, 1.027072, 1.027072, 1.028096, 1.03424, 1.053696, 1.775616, 2.006016]
+PASS ground-silhouette mode 0 has 24 actual GPU queries
+PASS ground-silhouette mode 1 has 24 actual GPU queries
+RESULT ground-silhouette native=0.5586 ms half=0.5156 ms reduction=7.70% nativeSamples=[0.514048, 0.51712, 0.521216, 0.521216, 0.52736, 0.533504, 0.536576, 0.5376, 0.5376, 0.541696, 0.543744, 0.546816, 0.570368, 0.690176, 0.697344, 0.707584, 0.71168, 0.718848, 0.720896, 0.72704, 0.761856, 0.796672, 0.838656, 1.64864] halfSamples=[0.371712, 0.379904, 0.380928, 0.381952, 0.382976, 0.385024, 0.393216, 0.398336, 0.403456, 0.403456, 0.488448, 0.505856, 0.525312, 0.52736, 0.543744, 0.54784, 0.571392, 1.210368, 1.467392, 1.486848, 1.534976, 1.975296, 1.978368, 2.251776]
+PASS side mode 0 has 24 actual GPU queries
+PASS side mode 1 has 24 actual GPU queries
+RESULT side native=0.6764 ms half=0.5478 ms reduction=19.00% nativeSamples=[0.65536, 0.661504, 0.6656, 0.666624, 0.669696, 0.67072, 0.671744, 0.671744, 0.671744, 0.671744, 0.674816, 0.67584, 0.676864, 0.683008, 0.685056, 0.685056, 0.68608, 0.6912, 0.704512, 0.709632, 0.71168, 0.7168, 0.717824, 0.729088] halfSamples=[0.515072, 0.516096, 0.51712, 0.528384, 0.529408, 0.530432, 0.5376, 0.541696, 0.541696, 0.544768, 0.546816, 0.54784, 0.54784, 0.54784, 0.549888, 0.550912, 0.551936, 0.553984, 0.557056, 0.564224, 0.572416, 0.585728, 0.620544, 0.698368]
+PASS above mode 0 has 24 actual GPU queries
+PASS above mode 1 has 24 actual GPU queries
+RESULT above native=1.5391 ms half=0.8822 ms reduction=42.68% nativeSamples=[1.521664, 1.523712, 1.528832, 1.528832, 1.529856, 1.53088, 1.533952, 1.534976, 1.534976, 1.534976, 1.536, 1.539072, 1.539072, 1.540096, 1.540096, 1.540096, 1.544192, 1.548288, 1.550336, 1.552384, 1.88416, 1.893376, 1.922048, 3.075072] halfSamples=[0.86016, 0.861184, 0.864256, 0.86528, 0.871424, 0.871424, 0.87552, 0.878592, 0.879616, 0.88064, 0.88064, 0.881664, 0.882688, 0.882688, 0.884736, 0.884736, 0.884736, 0.89088, 1.05984, 1.068032, 1.084416, 2.285568, 2.425856, 3.018752]
+PASS behind mode 0 has 24 actual GPU queries
+PASS behind mode 1 has 24 actual GPU queries
+RESULT behind native=0.7859 ms half=0.5110 ms reduction=34.98% nativeSamples=[0.746496, 0.74752, 0.748544, 0.75776, 0.769024, 0.774144, 0.775168, 0.779264, 0.782336, 0.784384, 0.784384, 0.784384, 0.787456, 0.789504, 0.790528, 0.791552, 0.792576, 0.794624, 0.79872, 0.802816, 0.805888, 0.82432, 2.618368, 2.73408] halfSamples=[0.492544, 0.492544, 0.49664, 0.49664, 0.500736, 0.500736, 0.50176, 0.502784, 0.503808, 0.508928, 0.509952, 0.510976, 0.510976, 0.510976, 0.512, 0.513024, 0.518144, 0.523264, 0.534528, 0.544768, 0.567296, 0.598016, 1.685504, 1.861632]
+PASS collapse mode 0 has 24 actual GPU queries
+PASS collapse mode 1 has 24 actual GPU queries
+RESULT collapse native=0.3543 ms half=0.2683 ms reduction=24.28% nativeSamples=[0.323584, 0.325632, 0.330752, 0.350208, 0.352256, 0.352256, 0.35328, 0.35328, 0.35328, 0.35328, 0.35328, 0.354304, 0.354304, 0.354304, 0.354304, 0.355328, 0.355328, 0.357376, 0.357376, 0.3584, 0.359424, 0.361472, 0.362496, 0.36352] halfSamples=[0.253952, 0.256, 0.256, 0.257024, 0.259072, 0.26112, 0.263168, 0.26624, 0.267264, 0.267264, 0.267264, 0.268288, 0.268288, 0.268288, 0.268288, 0.268288, 0.275456, 0.287744, 0.288768, 0.288768, 0.293888, 0.299008, 0.30208, 1.383424]
+PASS burst mode 0 has 24 actual GPU queries
+PASS burst mode 1 has 24 actual GPU queries
+RESULT burst native=0.2499 ms half=0.2406 ms reduction=3.69% nativeSamples=[0.21504, 0.216064, 0.216064, 0.216064, 0.222208, 0.244736, 0.247808, 0.248832, 0.248832, 0.248832, 0.249856, 0.249856, 0.249856, 0.249856, 0.249856, 0.25088, 0.252928, 0.253952, 0.254976, 0.254976, 0.254976, 0.254976, 0.26112, 0.321536] halfSamples=[0.227328, 0.228352, 0.228352, 0.228352, 0.228352, 0.229376, 0.231424, 0.234496, 0.234496, 0.23552, 0.236544, 0.24064, 0.24064, 0.241664, 0.24576, 0.246784, 0.247808, 0.247808, 0.25088, 0.251904, 0.259072, 0.259072, 0.260096, 1.547264]
+COMPLETE paired GPU timing; screenshot native vs half; no production timer hooks

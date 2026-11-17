@@ -1,0 +1,106 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.8/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :downloadMcpConfig
+> Task :extractSrg UP-TO-DATE
+> Task :createSrgToMcp UP-TO-DATE
+> Task :downloadMCMeta UP-TO-DATE
+> Task :downloadAssets UP-TO-DATE
+> Task :extractNatives UP-TO-DATE
+> Task :makeSrcDirs
+> Task :prepareRuns
+> Task :prepareRunGameTestServer
+> Task :compileQaModJava UP-TO-DATE
+> Task :processQaModResources UP-TO-DATE
+> Task :qaModClasses UP-TO-DATE
+> Task :prepareRunGameTestServerCompile UP-TO-DATE
+
+> Task :runGameTestServer
+2026-11-18 01:43:33,420 main WARN Advanced terminal features are not available in this environment
+[01:43:33] [main/INFO] [cp.mo.mo.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgegametestserveruserdev, --gameDir, ., --fml.forgeVersion, 47.4.0, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mixin, starcrowndoll.mixins.json]
+[01:43:33] [main/INFO] [cp.mo.mo.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.15 by Microsoft; OS Windows 11 arch amd64 version 10.0
+[01:43:33] [main/INFO] [ne.mi.fm.lo.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgegametestserveruserdev
+[01:43:33] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/Lenovo/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=SERVER
+[01:43:34] [main/WARN] [ne.mi.fm.lo.mo.ModFileParser/LOADING]: Mod file C:\Users\Lenovo\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.4.0\f0c0b352173d0a378cbdcec9cfc4ba65899a721\javafmllanguage-1.20.1-47.4.0.jar is missing mods.toml file
+[01:43:34] [main/WARN] [ne.mi.fm.lo.mo.ModFileParser/LOADING]: Mod file C:\Users\Lenovo\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.4.0\e862740d8c84d08dbfedea412bef88fe42e727c5\lowcodelanguage-1.20.1-47.4.0.jar is missing mods.toml file
+[01:43:34] [main/WARN] [ne.mi.fm.lo.mo.ModFileParser/LOADING]: Mod file C:\Users\Lenovo\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.4.0\5719b3a297a33f877ed5dde4cb4bd75c859096af\mclanguage-1.20.1-47.4.0.jar is missing mods.toml file
+[01:43:34] [main/WARN] [ne.mi.fm.lo.mo.ModFileParser/LOADING]: Mod file C:\Users\Lenovo\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.4.0\235975dafa4309945b59c56b53f31dc5b65a6051\fmlcore-1.20.1-47.4.0.jar is missing mods.toml file
+[01:43:34] [main/INFO] [ne.mi.fm.lo.mo.JarInJarDependencyLocator/]: Found 1 dependencies adding them to mods collection
+[01:43:35] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
+[01:43:35] [main/INFO] [cp.mo.mo.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgegametestserveruserdev' with arguments [--gameDir, .]
+[01:43:35] [main/INFO] [mixin/]: Remapping refMap curios.refmap.json using C:\Users\Lenovo\.codex\worktrees\fate-key-ea\SUIYUESHISHU\build\createSrgToMcp\output.srg
+[01:43:35] [main/INFO] [mixin/]: Remapping refMap geckolib.refmap.json using C:\Users\Lenovo\.codex\worktrees\fate-key-ea\SUIYUESHISHU\build\createSrgToMcp\output.srg
+[01:43:36] [main/WARN] [mixin/]: Error loading class: com/Polarice3/Goety/common/entities/boss/Apostle (java.lang.ClassNotFoundException: com.Polarice3.Goety.common.entities.boss.Apostle)
+[01:43:40] [main/WARN] [minecraft/SynchedEntityData]: defineId called for: class net.minecraft.world.entity.LivingEntity from class dev.starcrown.GenerosityData
+[01:43:41] [modloading-worker-0/INFO] [ne.mi.co.ForgeMod/FORGEMOD]: Forge mod loading, version 47.4.0, for MC 1.20.1 with MCP 20230612.114412
+[01:43:41] [modloading-worker-0/INFO] [ne.mi.co.MinecraftForge/FORGE]: MinecraftForge v47.4.0 Initialized
+[01:43:42] [Forge Version Check/INFO] [ne.mi.fm.VersionChecker/]: [forge] Starting version check at https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json
+[01:43:43] [Forge Version Check/INFO] [ne.mi.fm.VersionChecker/]: [forge] Found status: OUTDATED Current: 47.4.0 Target: 47.4.28
+[01:43:43] [main/INFO] [mojang/YggdrasilAuthenticationService]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
+[01:43:43] [main/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/C:/Users/Lenovo/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.4.0_mapped_official_1.20.1/forge-1.20.1-47.4.0_mapped_official_1.20.1.jar%23191!/assets/.mcassetsroot' uses unexpected schema
+[01:43:43] [main/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/C:/Users/Lenovo/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.4.0_mapped_official_1.20.1/forge-1.20.1-47.4.0_mapped_official_1.20.1.jar%23191!/data/.mcassetsroot' uses unexpected schema
+[01:43:44] [main/INFO] [minecraft/RecipeManager]: Loaded 7 recipes
+[01:43:44] [main/INFO] [minecraft/AdvancementList]: Loaded 1271 advancements
+[01:43:44] [main/INFO] [to.th.cu.Curios/]: Loaded 12 curio slots
+[01:43:44] [main/INFO] [to.th.cu.Curios/]: Loaded 1 curio entities
+[01:43:45] [main/INFO] [ne.mi.ga.ForgeGameTestHooks/]: Enabled Gametest Namespaces: [fateqa]
+[01:43:45] [Server thread/INFO] [minecraft/MinecraftServer]: Preparing start region for dimension minecraft:overworld
+[01:43:47] [Worker-Main-24/INFO] [minecraft/LoggerChunkProgressListener]: Preparing spawn area: 0%
+[01:43:47] [Worker-Main-24/INFO] [minecraft/LoggerChunkProgressListener]: Preparing spawn area: 0%
+[01:43:47] [Worker-Main-19/INFO] [minecraft/LoggerChunkProgressListener]: Preparing spawn area: 0%
+[01:43:47] [Worker-Main-11/INFO] [minecraft/LoggerChunkProgressListener]: Preparing spawn area: 0%
+[01:43:47] [Server thread/INFO] [minecraft/LoggerChunkProgressListener]: Time elapsed: 1985 ms
+[01:43:47] [Server thread/INFO] [minecraft/GameTestServer]: Started game test server
+[01:43:47] [Server thread/INFO] [ne.mi.se.pe.PermissionAPI/]: Successfully initialized permission handler forge:default_handler
+[01:43:48] [Server thread/INFO] [minecraft/GameTestBatchRunner]: Running test batch 'defaultBatch:1' (6 tests)...
+[01:43:48] [Server thread/INFO] [minecraft/GameTestServer]: 6 tests are now running!
+[01:43:49] [Server thread/INFO] [minecraft/GameTestServer]: [+_____]
+[01:43:49] [Server thread/INFO] [minecraft/GameTestServer]: [+_____]
+[01:43:49] [Server thread/INFO] [minecraft/GameTestServer]: [+_____]
+[01:43:50] [Server thread/INFO] [minecraft/GameTestServer]: [+_____]
+[01:43:50] [Server thread/INFO] [minecraft/GameTestServer]: [+_____]
+[01:43:50] [Server thread/INFO] [minecraft/GameTestServer]: [+_____]
+[01:43:51] [Server thread/INFO] [minecraft/GameTestServer]: [+_____]
+[01:43:51] [Server thread/INFO] [minecraft/GameTestServer]: [+_____]
+[01:43:51] [Server thread/INFO] [minecraft/GameTestServer]: [+_____]
+[01:43:51] [Server thread/INFO] [minecraft/GameTestServer]: [++++++]
+[01:43:51] [Server thread/INFO] [minecraft/GameTestServer]: ========= 6 GAME TESTS COMPLETE ======================
+[01:43:51] [Server thread/INFO] [minecraft/GameTestServer]: All 6 required tests passed :)
+[01:43:51] [Server thread/INFO] [minecraft/GameTestServer]: ====================================================
+[01:43:51] [Server thread/INFO] [minecraft/MinecraftServer]: Stopping server
+[01:43:51] [Server thread/INFO] [minecraft/MinecraftServer]: Saving players
+[01:43:51] [Server thread/INFO] [minecraft/MinecraftServer]: Saving worlds
+[01:43:51] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+[01:43:52] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_end
+[01:43:52] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_nether
+[01:43:52] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[01:43:52] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[01:43:52] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[01:43:52] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage: All dimensions are saved
+[01:43:52] [Server thread/INFO] [minecraft/GameTestServer]: Game test server shutting down
+
+> Task :jar
+> Task :createMcpToSrg UP-TO-DATE
+> Task :reobfJar
+> Task :jarJar SKIPPED
+> Task :reobfJarJar SKIPPED
+> Task :qaJar
+> Task :reobfQaJar
+> Task :assemble
+> Task :compileTestJava NO-SOURCE
+> Task :processTestResources NO-SOURCE
+> Task :testClasses UP-TO-DATE
+> Task :test NO-SOURCE
+> Task :check UP-TO-DATE
+> Task :build
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.8/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 40s
+17 actionable tasks: 7 executed, 10 up-to-date

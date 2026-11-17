@@ -81,6 +81,9 @@ public final class HuangwuLiteQa {
     @SubscribeEvent public static void tick(TickEvent.ClientTickEvent event){
         if(event.phase!=TickEvent.Phase.END||!enabled()||finished)return;
         var mc=Minecraft.getInstance();
+        if(mc.getOverlay()==null&&mc.screen instanceof net.minecraft.client.gui.screens.ConfirmScreen){
+            mc.screen.children().stream().filter(w->w instanceof net.minecraft.client.gui.components.Button).map(w->(net.minecraft.client.gui.components.Button)w).filter(b->b.getMessage().getString().equals("Proceed")).findFirst().ifPresent(b->b.onPress());return;
+        }
         try{
             if(mc.level==null||mc.player==null||mc.getSingleplayerServer()==null||mc.getOverlay()!=null||mc.screen!=null)return;
             if(!started){

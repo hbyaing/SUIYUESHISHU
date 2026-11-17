@@ -49,3 +49,11 @@ if (project.hasProperty('fishHugVisual')) {
   mods { starcrownqa { source sourceSets.qaMod } }
  }
 }
+
+if (project.hasProperty('fateVisual')) {
+ minecraft.runs.client {
+  workingDirectory project.file(project.property('fateGameDir'))
+  args '--username', 'FateQA', '--width', '960', '--height', '600', '--quickPlaySingleplayer', 'FateQA', '--mixin', 'starcrownqa-fate.mixins.json'
+  mods { starcrownqa { source sourceSets.qaMod } }
+ }
+}

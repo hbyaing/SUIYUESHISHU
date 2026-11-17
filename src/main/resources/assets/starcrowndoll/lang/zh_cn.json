@@ -108,5 +108,8 @@
   "death.attack.eternal_dragon": "%1$s 被 %2$s 的真伤撕碎了",
   "death.attack.eternal_dragon_void": "%1$s 被 %2$s 的荒芜之噬吞入虚空",
   "item.starcrowndoll.eternal_return": "永劫回归·三千万转",
-  "key.starcrowndoll.eternal_return": "永劫回归：开启 / 终结"
+  "key.starcrowndoll.eternal_return": "永劫回归：开启 / 终结",
+  "item.starcrowndoll.bab_ilu": "王律之键",
+  "item.starcrowndoll.ea": "乖离剑 · Ea",
+  "tooltip.starcrowndoll.bab_ilu": "长按右键 8 秒：解析世界并召唤乖离剑。成功后王律之键消失；松开取消。"
 }

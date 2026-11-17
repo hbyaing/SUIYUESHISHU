@@ -1,0 +1,29 @@
+GPU NVIDIA GeForce RTX 4060 Laptop GPU/PCIe/SSE2
+PASS production shader registered
+PASS both production meshes loaded
+START actual client item use phase=0
+CAPTURE 5 GL=0
+CAPTURE 55 GL=0
+CAPTURE 95 GL=0
+CAPTURE 120 GL=0
+CAPTURE 136 GL=0
+CAPTURE 144 GL=0
+CAPTURE 149 GL=0
+CAPTURE 158 GL=0
+CAPTURE 175 GL=0
+PASS actual eight-second use grants held sword phase=0
+CAPTURE 190 GL=0
+PASS actual resource reload retains production shader
+START actual client item use phase=1
+CAPTURE 5 GL=0
+CAPTURE 55 GL=0
+CAPTURE 95 GL=0
+CAPTURE 120 GL=0
+CAPTURE 136 GL=0
+CAPTURE 144 GL=0
+CAPTURE 149 GL=0
+CAPTURE 158 GL=0
+CAPTURE 175 GL=0
+PASS actual eight-second use grants held sword phase=1
+CAPTURE 190 GL=0
+COMPLETE actual renderer, reload, main-hand and offhand network use
