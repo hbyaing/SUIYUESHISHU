@@ -1,0 +1,70 @@
+{
+  "version": "1.20.49",
+  "jar_sha256": "8ca78d1d019c7f8422038f3a9321173318ce8a81db76653f04d42fe90d6993bc",
+  "tested_production_jar_matches_release": true,
+  "production_contains_qa": false,
+  "uniform_assembly_scale": 1.083,
+  "halo_and_wings_relative_scale": 1.0,
+  "anchor_y": -0.46520718529999994,
+  "anchor_z": 0.33623505705,
+  "original_source_vertices": 8350,
+  "original_source_triangles": 8741,
+  "halo_triangles": 2620,
+  "wings_triangles": 6121,
+  "source_triangle_position_and_uv_validation": {
+    "source": "Avatar_Phainon_10_Model_Others/Body_wings",
+    "source_triangles": 8741,
+    "runtime_triangles": 8741,
+    "all_source_triangle_positions_and_uvs_preserved_to_1e_5": true,
+    "maximum_position_or_uv_error": 5.960464477539063e-08,
+    "parts": [
+      {
+        "name": "eternal_halo",
+        "triangles": 2620
+      },
+      {
+        "name": "eternal_wings",
+        "triangles": 6121
+      }
+    ],
+    "source_halo_to_right_wing_nearest_vertex_distance": 0.053241126239299774,
+    "calibration": "one uniform 1.083 scale; original body-space rear axis and shared halo-origin translation",
+    "halo_and_wings_relative_scale": 1.0,
+    "original_bind_pose": true
+  },
+  "original_texture_and_unrelated_assets_preserved": true,
+  "gameplay_class_byte_identical": true,
+  "rewind_renderer_class_byte_identical": true,
+  "bloom_implementation_byte_identical": true,
+  "bloom_on_off": {
+    "changed_pixels_gt_2": 10251,
+    "maximum_delta": 234
+  },
+  "wall_on_off": {
+    "changed_pixels_gt_2": 0,
+    "maximum_delta": 0
+  },
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU/PCIe/SSE2",
+  "client_assertions_passed": 52,
+  "tested": [
+    "world front/side/back",
+    "head independence",
+    "body anchor",
+    "crouch",
+    "item activation overlay",
+    "reference camera",
+    "bloom A/B",
+    "opaque wall A/B",
+    "resize",
+    "resource reload",
+    "unequip",
+    "Curios hidden",
+    "entity invisible",
+    "GPU target recreation"
+  ],
+  "limits": [
+    "static original bind pose; no extracted wing animation clips",
+    "Oculus/Iris and third-party player models untested",
+    "unrelated gameplay not retested"
+  ]
+}

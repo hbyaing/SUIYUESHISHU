@@ -1,0 +1,6 @@
+> Task :compileJava
+> Task :reobfJar
+> Task :reobfJarJar SKIPPED
+> Task :build
+BUILD SUCCESSFUL in 21s
+11 actionable tasks: 8 executed, 3 up-to-date

@@ -1,0 +1,18 @@
+GPU NVIDIA GeForce RTX 4060 Laptop GPU/PCIe/SSE2
+PASS production bloom shaders compile
+PASS actual worn transform ignores all three head rotations
+PASS original assembly uniformly scaled to match source body and player height
+PASS source halo position remains behind the head outer layer
+PASS torso motion still carries the floating halo
+PASS source-aligned halo anchor raised over 0.14 block from 1.20.48
+PASS halo and wings preserve the source relative scale
+PASS both original source wings loaded: 6121 mesh triangles
+PASS wings ignore independent head rotation
+PASS halo and original wings share the same body anchor
+DIAGNOSTIC stage 15 calls=9, collecting=9, main=9, queued=1, failed=false equipped=1 eternal_return
+PASS stage 15 without OpenGL errors
+GPU_CAPTURE rewind-inner-only
+DIAGNOSTIC stage 16 calls=142, collecting=142, main=142, queued=1, failed=false equipped=1 eternal_return
+PASS stage 16 without OpenGL errors
+GPU_CAPTURE reference-view
+COMPLETE inner-only rewind overlay and source-reference camera comparison

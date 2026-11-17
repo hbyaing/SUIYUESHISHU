@@ -1,0 +1,74 @@
+GPU NVIDIA GeForce RTX 4060 Laptop GPU/PCIe/SSE2
+PASS production bloom shaders compile
+PASS actual worn transform ignores all three head rotations
+PASS original assembly uniformly scaled to match source body and player height
+PASS source halo position remains behind the head outer layer
+PASS torso motion still carries the floating halo
+PASS source-aligned halo anchor raised over 0.14 block from 1.20.48
+PASS halo and wings preserve the source relative scale
+PASS both original source wings loaded: 6121 mesh triangles
+PASS wings ignore independent head rotation
+PASS halo and original wings share the same body anchor
+DIAGNOSTIC stage 0 calls=115, collecting=115, main=115, queued=1, failed=false equipped=1 eternal_return
+PASS stage 0 without OpenGL errors
+PASS stage 0 actual equipped halo emits screen bloom
+GPU_CAPTURE front
+DIAGNOSTIC stage 1 calls=248, collecting=248, main=248, queued=1, failed=false equipped=1 eternal_return
+PASS stage 1 without OpenGL errors
+PASS stage 1 actual equipped halo emits screen bloom
+GPU_CAPTURE head-turn
+DIAGNOSTIC stage 2 calls=381, collecting=381, main=381, queued=1, failed=false equipped=1 eternal_return
+PASS stage 2 without OpenGL errors
+PASS stage 2 actual equipped halo emits screen bloom
+GPU_CAPTURE side
+DIAGNOSTIC stage 3 calls=516, collecting=516, main=381, queued=0, failed=true equipped=1 eternal_return
+PASS stage 3 without OpenGL errors
+PASS stage 3 suppressed/unequipped/hidden halo has no bloom composites
+GPU_CAPTURE bloom-off
+DIAGNOSTIC stage 4 calls=649, collecting=649, main=514, queued=1, failed=false equipped=1 eternal_return
+PASS stage 4 without OpenGL errors
+PASS stage 4 actual equipped halo emits screen bloom
+GPU_CAPTURE bloom-on
+DIAGNOSTIC stage 5 calls=783, collecting=783, main=648, queued=1, failed=false equipped=1 eternal_return
+PASS stage 5 without OpenGL errors
+GPU_CAPTURE wall-on
+DIAGNOSTIC stage 6 calls=918, collecting=918, main=648, queued=0, failed=true equipped=1 eternal_return
+PASS stage 6 without OpenGL errors
+PASS stage 6 suppressed/unequipped/hidden halo has no bloom composites
+GPU_CAPTURE wall-off
+DIAGNOSTIC stage 7 calls=1051, collecting=1051, main=781, queued=1, failed=false equipped=1 eternal_return
+PASS stage 7 without OpenGL errors
+PASS stage 7 actual equipped halo emits screen bloom
+GPU_CAPTURE resized
+PASS resource reload restores shaders
+DIAGNOSTIC stage 8 calls=4549, collecting=4549, main=4279, queued=1, failed=false equipped=1 eternal_return
+PASS stage 8 without OpenGL errors
+PASS stage 8 actual equipped halo emits screen bloom
+GPU_CAPTURE reloaded
+DIAGNOSTIC stage 9 calls=4550, collecting=4550, main=4280, queued=0, failed=false equipped=0 air
+PASS stage 9 without OpenGL errors
+PASS stage 9 suppressed/unequipped/hidden halo has no bloom composites
+GPU_CAPTURE unequipped
+DIAGNOSTIC stage 10 calls=4550, collecting=4550, main=4280, queued=0, failed=false equipped=1 eternal_return
+PASS stage 10 without OpenGL errors
+PASS stage 10 suppressed/unequipped/hidden halo has no bloom composites
+GPU_CAPTURE hidden
+DIAGNOSTIC stage 11 calls=4551, collecting=4551, main=4281, queued=0, failed=false equipped=1 eternal_return
+PASS stage 11 without OpenGL errors
+PASS stage 11 suppressed/unequipped/hidden halo has no bloom composites
+GPU_CAPTURE invisible
+PASS bloom targets released
+DIAGNOSTIC stage 12 calls=4682, collecting=4682, main=4412, queued=1, failed=false equipped=1 eternal_return
+PASS stage 12 without OpenGL errors
+GPU_CAPTURE restored
+PASS bloom recreated after target release
+DIAGNOSTIC stage 13 calls=4815, collecting=4815, main=4545, queued=1, failed=false equipped=1 eternal_return
+PASS stage 13 without OpenGL errors
+GPU_CAPTURE back
+DIAGNOSTIC stage 14 calls=4949, collecting=4949, main=4679, queued=1, failed=false equipped=1 eternal_return
+PASS stage 14 without OpenGL errors
+GPU_CAPTURE crouch
+DIAGNOSTIC stage 15 calls=4979, collecting=4979, main=4709, queued=1, failed=false equipped=1 eternal_return
+PASS stage 15 without OpenGL errors
+GPU_CAPTURE rewind-inner-only
+COMPLETE raised halo and original 6121-triangle double wings, head independence, front/side/back/crouch, bloom, occlusion, reload, resize, visibility and inner-only rewind
