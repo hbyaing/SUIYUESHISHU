@@ -1,0 +1,23 @@
+{
+  "version": "1.20.51",
+  "jar_sha256": "c8b089f869d65e22eaa9b4d1a7ae30ced2eda273fa4dc4209876857d162067e0",
+  "tested_jar_matches_release": true,
+  "qa_in_release": false,
+  "gpu": "GPU NVIDIA GeForce RTX 4060 Laptop GPU/PCIe/SSE2; GL 3.2.0 NVIDIA 610.47",
+  "checks_passed": 63,
+  "source_kernel_sha256": "e5745cb5e17bcda4c9e84adb63ce078ab79b5492837ad003f996f39e4fb725bb",
+  "default_mode": "LITE",
+  "volume_samples": 12,
+  "noise_octaves": 2,
+  "legacy_meshes_loaded_by_default": 0,
+  "default_resolution": 0.5,
+  "total_pixel_budget": 360000,
+  "gameplay_class_bytes_unchanged": true,
+  "existing_assets_unchanged": true,
+  "limitations": [
+    "Intel UHD not tested",
+    "No external shaderpacks or Fabulous acceptance",
+    "Complex overlapping transparent fields not visually certified",
+    "GPU queries measure effect pass, not game FPS"
+  ]
+}

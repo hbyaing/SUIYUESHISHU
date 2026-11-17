@@ -1,0 +1,15 @@
+{
+  "version": "1.20.53",
+  "sha256": "7a624eaa11cd3dff97abc5187e3637baf89ea96d07a94dc25b0d4a6dfdbc0aab",
+  "runtime_checks_passed": 63,
+  "scenes": 11,
+  "gpu": "RTX 4060 Laptop GPU",
+  "window": [
+    960,
+    600
+  ],
+  "client": "development client with merged production sources",
+  "release": "reobfuscated build inspected, QA excluded",
+  "merged_main": "a48e3d4",
+  "fate_branch": "aa381f4"
+}

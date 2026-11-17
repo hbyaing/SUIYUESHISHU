@@ -50,6 +50,9 @@ public final class MingGuLongHuangwuVfx {
         // Reload must not keep a program or buffers belonging to the previous resource set.
         shader=composite=null;for(var part:parts)part.buffer.close();parts.clear();loaded=false;
         releaseTargets();offscreenFailed=false;
+        HuangwuLiteRenderer.registerShaders(event);
+        // The default path never parses/uploads the 72 legacy meshes or their textures.
+        if(VfxClientConfig.HUANGWU_MODE.get()!=VfxClientConfig.HuangwuMode.LEGACY)return;
         try {
             event.registerShader(new ShaderInstance(event.getResourceProvider(),id("huangwu"),DefaultVertexFormat.POSITION_TEX_COLOR_NORMAL),value->{
                 // Resource reload pays parsing, VBO upload and texture upload once, before a skill can appear.
@@ -129,7 +132,10 @@ public final class MingGuLongHuangwuVfx {
     private record Draw(Part part,Matrix4f matrix,float time,float fieldTime,float distance) {}
 
     @SubscribeEvent public static void render(RenderLevelStageEvent event) {
+        if(VfxClientConfig.HUANGWU_MODE.get()==VfxClientConfig.HuangwuMode.LITE){HuangwuLiteRenderer.render(event);return;}
         if(event.getStage()!=RenderLevelStageEvent.Stage.AFTER_PARTICLES)return;
+        if(VfxClientConfig.HUANGWU_MODE.get()==VfxClientConfig.HuangwuMode.OFF)return;
+        if(VfxClientConfig.HUANGWU_MODE.get()==VfxClientConfig.HuangwuMode.BASIC){MingGuLongHuangwuFallback.render(event);return;}
         if(shader==null){MingGuLongHuangwuFallback.render(event);return;}
         var mc=Minecraft.getInstance();if(mc.level==null)return;
         Vec3 camera=event.getCamera().getPosition();float partial=event.getPartialTick();

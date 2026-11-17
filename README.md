@@ -1,10 +1,12 @@
-# 以神戴冠 1.20.52
+# 以神戴冠 1.20.53
 
-[下载 1.20.52 正式版](releases/1.20.52/YiShenDaiGuan-1.20.1-1.20.52.jar) · [校验和](releases/1.20.52/SHA256SUMS.txt) · [王律之键修正与实机验证](docs/fate-key-ea-1.20.52.md)
+[下载 1.20.53 合并版](releases/1.20.53/YiShenDaiGuan-1.20.1-1.20.53.jar) · [校验和](releases/1.20.53/SHA256SUMS.txt) · [王律之键修正与实机验证](docs/fate-key-ea-1.20.52.md)
 
 王律之键长板保持平行直边，并恢复根部斜肩。举起钥匙时，从尖端红色泛光团向上展开三面解析塔。长按 8 秒完成取剑后消耗钥匙，EA 替换到当前手；EA 从创造分类和搜索隐藏。保留伸手、交叉白光、黑面碎裂的取剑过程和基础近战。
 
-[1.20.51 历史版本说明](docs/fate-key-ea-1.20.51.md)
+本版同时合入主分支的新荒芜之噬：默认 12 次采样三维浓雾旋涡，包含黑核、红黑雾圈及两侧白线，覆盖蓄力、飞行、落点、收缩与爆发。[荒芜之噬说明与配置](docs/huangwu-lite-1.20.51/README.md) · [本次合并实机检查](docs/merged-1.20.53/README.md)。
+
+[王律分支 1.20.51 历史说明](docs/fate-key-ea-1.20.51.md)
 
 [下载 1.20.50 正式版](releases/1.20.50/YiShenDaiGuan-1.20.1-1.20.50.jar) · [校验和](releases/1.20.50/SHA256SUMS.txt) · [荒芜之噬性能优化与 GPU 实测](docs/huangwu-performance-1.20.50/README.md)
 

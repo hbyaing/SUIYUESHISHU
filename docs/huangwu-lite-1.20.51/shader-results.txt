@@ -1,0 +1,2 @@
+PASS compiler failure is caught; basic geometry mode selected
+PASS shader registration recovers after a previous failure

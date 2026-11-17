@@ -1,0 +1,14 @@
+BEGIN real server vortex lifecycle
+PASS actual server vortex uses reduced integration target
+PASS 65 frames with lateral movement, turning, low camera and near-plane crossing
+PASS odd-sized resize rebuilds both targets
+PASS low-GPU 0.33 option changes actual target
+PASS integration respects configured pixel budget
+PASS missing compositor retains native lite rendering
+PASS real resource-pack reload compiles fresh lite programs
+PASS server effect resumes after reload
+PASS fault injection selects basic fallback
+PASS shader recovers after injected compiler fault
+PASS OFF mode keeps world and gameplay running
+PASS actual disconnect releases both targets
+COMPLETE lite movement resize budget reload fallback recovery off disconnect
