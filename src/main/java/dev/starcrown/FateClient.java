@@ -152,9 +152,8 @@ public final class FateClient {
         float x=side*(.50f-.60f*reach+.50f*pull),y=-.21f+.21f*reach-.16f*pull,z=-.86f-.16f*reach-.10f*pull;
         var screen=new org.joml.Matrix4f(com.mojang.blaze3d.systems.RenderSystem.getProjectionMatrix())
                 .mul(com.mojang.blaze3d.systems.RenderSystem.getModelViewMatrix()).mul(pose.last().pose());
-        var fist=screen.transformProject(x,y,z,new org.joml.Vector3f());
+        var fist=new org.joml.Vector3f();
         var aperture=screen.transformProject(-side*.10f,0,-1.03f,new org.joml.Vector3f());
-        FateVfx.handSurface(age,side,aperture.x,aperture.y,fist.x,fist.y,false);
         pose.pushPose();try{
             pose.translate(x,y,z);
             pose.mulPose(Axis.ZP.rotationDegrees(side*(46+38*reach-24*pull)));
@@ -174,6 +173,11 @@ public final class FateClient {
             }
             pose.translate(side*.3125,-.68,0);
             var renderer=(net.minecraft.client.renderer.entity.player.PlayerRenderer)mc.getEntityRenderDispatcher().getRenderer(p);
+            // Project the knuckles inside the rendered arm cuboid after its final stretch, on either skin width.
+            var palmClip=new org.joml.Matrix4f(com.mojang.blaze3d.systems.RenderSystem.getProjectionMatrix())
+                    .mul(com.mojang.blaze3d.systems.RenderSystem.getModelViewMatrix()).mul(pose.last().pose());
+            palmClip.transformProject(-side*6.15f/16,10.6f/16,-1.1f/16,fist);
+            FateVfx.handSurface(age,side,aperture.x,aperture.y,fist.x,fist.y,false);
             FateDrawHand.draw(renderer,p,arm==HumanoidArm.LEFT,pose,DRAW_BUFFER,event.getPackedLight(),age);
         }finally{pose.popPose();}
         if(age>=143){

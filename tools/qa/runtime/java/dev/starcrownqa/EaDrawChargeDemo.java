@@ -44,12 +44,13 @@ import org.lwjgl.glfw.GLFWNativeWin32;
 @Mod.EventBusSubscriber(modid="starcrownqa", value=Dist.CLIENT)
 public final class EaDrawChargeDemo {
     private static final Set<String> EXPECTED = Set.of("ea_draw_open", "ea_draw_void", "ea_draw_flash",
-            "ea_draw_break", "ea_spin", "ea_chant");
-    private static final int[] DRAW_STILLS = {5, 65, 95, 115, 124, 137, 144, 154, 158};
+            "ea_draw_break", "ea_spin", "ea_chant", "ea_blast");
+    private static final int[] DRAW_STILLS = {5, 65, 83, 89, 95, 102, 109, 115, 124, 132, 134, 136, 137, 138, 139, 140, 141, 142, 144, 154, 158};
     private static final int[] SWORD_STILLS = {4, 18, 34};
     private static final int[] CHARGE_STILLS = {20, 54, 125, 300, 490};
     private static final Map<String, SoundInstance> sounds = new HashMap<>();
     private static final Map<String, Integer> plays = new HashMap<>();
+    private static final Map<String, Long> soundTicks = new HashMap<>();
     private static final Set<String> sources=ConcurrentHashMap.newKeySet();
     private static final Method CAMERA = Arrays.stream(Camera.class.getDeclaredMethods())
             .filter(m -> m.getReturnType()==void.class && Arrays.equals(m.getParameterTypes(),new Class<?>[]{Vec3.class}))
@@ -62,7 +63,7 @@ public final class EaDrawChargeDemo {
     private enum Stage { IDLE, SETUP, READY, DRAW, SWORD, CHARGE, TAIL, DONE }
     private static Stage stage=Stage.IDLE;
     private static Path root;
-    private static boolean enabled, checked, held;
+    private static boolean enabled, checked, held, aimed;
     private static volatile boolean recording;
     private static volatile boolean equipped;
     private static int ticks, drawStill, swordStill, chargeStill, frameInterval=187;
@@ -188,19 +189,29 @@ public final class EaDrawChargeDemo {
                 case CHARGE -> {
                     float age=EaClient.ageFor(mc.player);
                     if(age>=32 && mc.options.getCameraType().isFirstPerson())mc.options.setCameraType(CameraType.THIRD_PERSON_FRONT);
-                    if(age>=520){
-                        note("CHARGE_RELEASE\t"+age);
-                        input(mc,false);enter(Stage.TAIL);
-                    }else if(ticks>590)finish(mc,"FAIL charge did not reach the final phase");
+                    if(age>=526 && !aimed){
+                        aimed=true;
+                        mc.player.setXRot(-84);
+                        note("AIM_AT_SKY\t"+age);
+                    }
+                    if(plays.containsKey("ea_blast")){
+                        if(held)input(mc,false);
+                        enter(Stage.TAIL);
+                    }else if(ticks>620)finish(mc,"FAIL full chant did not release");
                 }
                 case TAIL -> {
-                    if(ticks==18)mc.options.setCameraType(CameraType.FIRST_PERSON);
-                    if(ticks>=34){
+                    if(ticks>=200){
+                        mc.player.setXRot(-12);
                         boolean stopped=sounds.values().stream().noneMatch(mc.getSoundManager()::isActive);
-                        boolean once=EXPECTED.stream().allMatch(id->plays.getOrDefault(id,0)==1) && !plays.containsKey("ea_blast");
+                        boolean once=EXPECTED.equals(plays.keySet()) && EXPECTED.equals(sources)
+                                && plays.values().stream().allMatch(count->count==1);
+                        long prelude=soundTicks.getOrDefault("ea_chant",-9999L)-soundTicks.getOrDefault("ea_spin",9999L);
+                        long verse=soundTicks.getOrDefault("ea_blast",-9999L)-soundTicks.getOrDefault("ea_chant",9999L);
+                        boolean timed=Math.abs(prelude-40)<=4 && Math.abs(verse-521)<=4;
                         boolean sword=mc.player.getMainHandItem().is(StarcrownDoll.EA.get()) && !mc.player.isUsingItem();
+                        note("CHANT_TIMING\tpreludeTicks="+prelude+"\tverseTicks="+verse);
                         note("HANDOFF\tEa="+sword+"\tsoundsStopped="+stopped+"\tevents="+plays+"\tchannels="+sources);
-                        finish(mc,once && stopped && sword ? "PASS" : "FAIL handoff or sound events");
+                        finish(mc,once && stopped && sword && timed ? "PASS" : "FAIL handoff or sound timeline");
                     }
                 }
                 default -> {}
@@ -212,7 +223,10 @@ public final class EaDrawChargeDemo {
         var sound=e.getSound(); var id=sound.getLocation();
         if(!id.getNamespace().equals("starcrowndoll") || !id.getPath().startsWith("ea_"))return;
         sounds.put(id.getPath(),sound);plays.merge(id.getPath(),1,Integer::sum);
-        note("SOUND\t"+id.getPath());
+        var mc=Minecraft.getInstance();
+        soundTicks.put(id.getPath(),mc.level.getGameTime());
+        if(id.getPath().equals("ea_blast") && held)input(mc,false);
+        note("SOUND\t"+id.getPath()+"\tgameTime="+mc.level.getGameTime());
     }
     @SubscribeEvent public static void source(net.minecraftforge.client.event.sound.PlaySoundSourceEvent e){source(e.getSound());}
     @SubscribeEvent public static void stream(net.minecraftforge.client.event.sound.PlayStreamingSourceEvent e){source(e.getSound());}
@@ -230,7 +244,7 @@ public final class EaDrawChargeDemo {
     @SubscribeEvent public static void camera(ViewportEvent.ComputeCameraAngles e) {
         var mc=Minecraft.getInstance();
         if(!recording || mc.options.getCameraType().isFirstPerson() || mc.player==null)return;
-        double age=stage==Stage.TAIL?520:EaClient.ageFor(mc.player);
+        double age=stage==Stage.TAIL?560:EaClient.ageFor(mc.player);
         double wide=smooth((age-70)/60);
         double close=smooth((age-350)/85);
         double distance=6.1+9.0*wide-4.6*close;
@@ -238,6 +252,11 @@ public final class EaDrawChargeDemo {
         var base=mc.player.position();
         var eye=base.add(-Math.sin(azimuth)*distance,2.6+3.1*wide-1.9*close,Math.cos(azimuth)*distance);
         var aim=base.add(0,1.8+2.0*wide-1.2*close,0);
+        if(stage==Stage.TAIL){
+            double fly=smooth(ticks/20.);
+            eye=eye.lerp(base.add(-12,5.6,16),fly);
+            aim=aim.lerp(base.add(0,7,.6),fly);
+        }
         var d=aim.subtract(eye);
         try{CAMERA.invoke(e.getCamera(),eye);}catch(ReflectiveOperationException ex){throw new IllegalStateException(ex);}
         e.setYaw((float)Math.toDegrees(Math.atan2(-d.x,d.z)));

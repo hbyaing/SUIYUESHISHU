@@ -19,7 +19,7 @@ import net.minecraftforge.client.event.RegisterShadersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-/** Renders the player's own sleeve and arm through the light of the aperture. */
+/** The aperture shows vanilla skin and sleeve lighting. The negative image starts at the cut to black. */
 @Mod.EventBusSubscriber(modid=StarcrownDoll.ID,value=Dist.CLIENT,bus=Mod.EventBusSubscriber.Bus.MOD)
 public final class FateDrawHand extends RenderType {
     private static ShaderInstance shader;
@@ -36,14 +36,13 @@ public final class FateDrawHand extends RenderType {
     }
     static void draw(PlayerRenderer renderer,AbstractClientPlayer player,boolean left,PoseStack pose,
                      MultiBufferSource original,int light,float age){
-        float warm=FateClient.step(age,86,99)*(1-FateClient.step(age,111,115));
-        float cold=FateClient.step(age,112,115)*(1-FateClient.step(age,141,147));
-        boolean tinted=shader!=null&&(warm>.001f||cold>.001f);
+        float cold=FateClient.step(age,114,115)*(1-FateClient.step(age,141,147));
+        boolean tinted=shader!=null&&cold>0;
         RenderType skin=tinted?SKIN.apply(player.getSkinTextureLocation()):null;
         MultiBufferSource source=original;
         if(tinted){
             float invert=FateClient.step(age,112,114)*(1-FateClient.step(age,116,119));
-            shader.safeGetUniform("Tint").set(warm,cold,invert);
+            shader.safeGetUniform("Tint").set(cold,invert);
             source=ignored->BUFFER.getBuffer(skin);
             light=LightTexture.FULL_BRIGHT;
         }

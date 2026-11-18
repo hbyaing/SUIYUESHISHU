@@ -14,8 +14,8 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
 WORK = REPO.parent
-GAME = WORK / "ea-draw-charge-1.20.70"
-VERSION = "1.20.70"
+VERSION = "1.20.72"
+GAME = WORK / f"ea-draw-charge-{VERSION}"
 FORGE = "1.20.1-Forge_47.4.28"
 WORLD = "Enuma QA"
 GAME_DATA = Path("D:/我的世界/.minecraft")

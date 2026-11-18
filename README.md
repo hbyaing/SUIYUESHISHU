@@ -1,4 +1,8 @@
-# 以神戴冠 1.20.71
+# 以神戴冠 1.20.72
+
+[下载 1.20.72 模组（Minecraft 1.20.1 Forge）](releases/1.20.72/YiShenDaiGuan-1.20.1-1.20.72.jar) · [SHA-256 校验和](releases/1.20.72/SHA256SUMS.txt)
+
+拔出 Ea 时，伸入金球的手保留玩家皮肤和袖子的颜色。黑场里的白芒从指节亮起，光核、宽晕和四束白光一起展开。Ea 蓄力使用 1.20.58 的日语《叙说原初》，起转两秒后开始吟唱。
 
 [下载 1.20.71 模组（Minecraft 1.20.1 Forge）](releases/1.20.71/YiShenDaiGuan-1.20.1-1.20.71.jar) · [SHA-256 校验和](releases/1.20.71/SHA256SUMS.txt) · [运行前置与安装方法](docs/EXCALIBUR.md#安装与获取)
 

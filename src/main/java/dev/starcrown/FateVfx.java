@@ -103,7 +103,7 @@ public final class FateVfx {
             }else if((!foreground&&age>=114&&age<141)||(foreground&&age>=141)){
                 draw(shards,identity,identity,3,age);
             }
-            if(foreground&&age>=111&&age<143)draw(gate,identity,identity,5,age);
+            if(foreground&&age>=114&&age<144)draw(gate,identity,identity,5,age);
         }
     }
     @SubscribeEvent public static void render(RenderLevelStageEvent event){
@@ -153,6 +153,14 @@ public final class FateVfx {
                             .rotate(event.getCamera().rotation()).scale(.65f);
                     var center=shader.getUniform("MaskCenter");if(center!=null)center.set(0f,0f);
                     draw(shards,billboard,event.getProjectionMatrix(),4,age);
+                    if(age>=125&&age<144){
+                        // The black plane sits behind the grip. Put the flash on its camera-facing skin surface.
+                        Vec3 knuckles=hand.add(camera.subtract(hand).normalize().scale(.24));
+                        Matrix4f flare=new Matrix4f(event.getPoseStack().last().pose())
+                                .translate((float)(knuckles.x-camera.x),(float)(knuckles.y-camera.y),(float)(knuckles.z-camera.z))
+                                .rotate(event.getCamera().rotation()).scale(.98f);
+                        draw(gate,flare,event.getProjectionMatrix(),6,age);
+                    }
                 }
             }
             if(maskPass){FateOrbBloom.finish();FateAnalysisPlacement.end();}

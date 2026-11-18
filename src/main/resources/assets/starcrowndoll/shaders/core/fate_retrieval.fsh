@@ -95,24 +95,31 @@ void main(){
         col=mix(col,vec3(.66,.04,.94),violet);
         if(localLight)alpha=impulse*(Age<114.?.76:.15+.62*max(cyan,violet));else col*=impulse;
     }
-    if(Age>=131.&&Age<144.){
-        float ignition=smoothstep(131.,136.,Age)*(1.-smoothstep(140.,144.,Age));
-        // Unequal rays converge in the fist; opposed beams have different thickness.
-        float lines=0.;
+    if(localLight&&Age>=125.&&Age<144.){
+        float ignition=smoothstep(125.,130.,Age)*(1.-smoothstep(141.,144.,Age));
+        float core=exp(-r*r/.0038);
+        float halo=.77*exp(-r*r/.022);
+        float lines=0.,fringe=0.;
         vec2 directions[4]=vec2[4](normalize(vec2(-.30,.96)),normalize(vec2(-.60,-.80)),
                                      normalize(vec2(.46,-.89)),normalize(vec2(1.,-.29)));
         for(int i=0;i<4;i++){
             vec2 beam=directions[i];
-            float axial=dot(q,beam),width=(i==3?.004:.010)+max(axial,0.)*(i==0?.034:.008);
+            float axial=dot(q,beam);
+            float width=(i==3?.012:.022)+max(axial,0.)*(i==0?.027:.006);
             float distance=abs(q.x*beam.y-q.y*beam.x)/width;
-            lines=max(lines,smoothstep(-.015,.04,axial)*exp(-distance*distance));
+            float outward=smoothstep(-.02,.025,axial);
+            lines=max(lines,outward*exp(-distance*distance));
+            fringe=max(fringe,.56*outward*exp(-distance*distance*.14));
         }
-        float white=ignition*max(lines,exp(-r*r*220.));
-        col=mix(col,vec3(.985,.986,1.),white);
-        if(localLight)alpha=max(alpha,white);
+        float edge=max(abs(q.x),abs(q.y));
+        float falloff=Mode>5.5?1.-smoothstep(1.05,1.6,edge):1.;
+        float white=max(core,lines);
+        // Straight-alpha foreground: the energy envelope is applied once by the blend state.
+        col=mix(vec3(.76,.82,1.),vec3(1.),smoothstep(.02,.83,white));
+        alpha=clamp(white+max(fringe,halo),0.,1.)*ignition*falloff;
         float sweep=smoothstep(139.5,140.4,Age)*(1.-smoothstep(141.,143.5,Age));
-        float slash=exp(-pow((q.y-.56*q.x-(Age-141.)*.6)/.29,2.))*sweep;
-        col=mix(col,vec3(1.),slash);if(localLight)alpha=max(alpha,slash);
+        float slash=exp(-pow((q.y-.56*q.x-(Age-141.)*.6)/.29,2.))*sweep*falloff;
+        col=mix(col,vec3(1.),slash);alpha=max(alpha,slash);
     }
     if(!localLight&&Age>140.){
         float seed=fract(sin(dot(texCoord,vec2(127.1,311.7)))*43758.5453);

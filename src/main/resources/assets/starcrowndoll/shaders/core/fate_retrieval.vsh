@@ -15,7 +15,8 @@ float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
 void main(){
     localPos=Position;texCoord=UV0;vertexColor=Color;
     vec3 p=Position;
-    if(Mode>4.5){p.xy*=vec2(Aspect+2.0,2.5);localPos.xy=p.xy;p.xy=p.xy/vec2(Aspect,1.0)+MaskCenter;}
+    if(Mode>5.5){localPos.xy*=1.6;}
+    else if(Mode>4.5){p.xy*=vec2(Aspect+2.0,2.5);localPos.xy=p.xy;p.xy=p.xy/vec2(Aspect,1.0)+MaskCenter;}
     else if(Mode>2.5){
         float seed=hash(UV0),t=clamp((Age-140.0-seed*1.5)/15.0,0.0,1.0);
         vec2 offset=p.xy-UV0;
