@@ -1,0 +1,16 @@
+{
+  "parent": "starcrowndoll:item/excalibur_mesh",
+  "loader": "forge:obj",
+  "model": "starcrowndoll:models/item/excalibur_wind_pressure.obj",
+  "render_type": "minecraft:translucent",
+  "visibility": {
+    "swing_wakes": false
+  },
+  "textures": {
+    "particle": "starcrowndoll:item/excalibur_wind_pressure"
+  },
+  "flip_v": true,
+  "emissive_ambient": true,
+  "shade_quads": false,
+  "automatic_culling": false
+}

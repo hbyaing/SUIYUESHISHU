@@ -1,0 +1,9 @@
+newmtl avalon_enamel
+Kd 1 1 1
+Ka 0 0 0
+map_Kd starcrowndoll:item/avalon_enamel
+
+newmtl excalibur_sword_atlas
+Kd 1 1 1
+Ka 0 0 0
+map_Kd starcrowndoll:item/excalibur_sword_atlas

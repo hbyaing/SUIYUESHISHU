@@ -55,6 +55,9 @@
     "defaultRequire": 0
   },
   "client": [
+    "ExcaliburAirHand",
+    "ExcaliburPlayerGrip",
+    "ExcaliburSupportItem",
     "HumilityPlayerRenderer",
     "DivineSkinRenderer",
     "DivineHands",

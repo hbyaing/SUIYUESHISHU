@@ -1,0 +1,18 @@
+{
+  "parent": "starcrowndoll:item/excalibur_mesh",
+  "overrides": [
+    {
+      "predicate": {
+        "starcrowndoll:concealed": 1
+      },
+      "model": "starcrowndoll:item/excalibur_concealed"
+    },
+    {
+      "predicate": {
+        "starcrowndoll:concealed": 1,
+        "starcrowndoll:wind_swing": 1
+      },
+      "model": "starcrowndoll:item/excalibur_concealed_swing"
+    }
+  ]
+}

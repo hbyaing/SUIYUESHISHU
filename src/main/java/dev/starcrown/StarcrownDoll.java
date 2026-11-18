@@ -22,6 +22,7 @@ import net.minecraft.world.phys.shapes.*;
 public class StarcrownDoll {
  public static final String ID="starcrowndoll";
  static final DeferredRegister<net.minecraft.sounds.SoundEvent> SOUNDS=DeferredRegister.create(ForgeRegistries.SOUND_EVENTS,ID);
+ static final RegistryObject<net.minecraft.sounds.SoundEvent> EXCALIBUR_CHANT=SOUNDS.register("excalibur_chant",()->net.minecraft.sounds.SoundEvent.createVariableRangeEvent(new net.minecraft.resources.ResourceLocation(ID,"excalibur_chant")));
  public static final RegistryObject<net.minecraft.sounds.SoundEvent> MUSIC=SOUNDS.register("doll_music",()->net.minecraft.sounds.SoundEvent.createVariableRangeEvent(new net.minecraft.resources.ResourceLocation(ID,"doll_music")));
  public static final RegistryObject<net.minecraft.sounds.SoundEvent> YULE_MUSIC=SOUNDS.register("yule_music",()->net.minecraft.sounds.SoundEvent.createVariableRangeEvent(new net.minecraft.resources.ResourceLocation(ID,"yule_music")));
  public static java.util.function.BiConsumer<DollEntity,Boolean> musicListener=(doll,playing)->{};
@@ -43,6 +44,8 @@ public class StarcrownDoll {
  public static final RegistryObject<Item> ETERNAL_RETURN=ITEMS.register("eternal_return",EternalReturnItem::new);
  public static final RegistryObject<Item> BAB_ILU=ITEMS.register("bab_ilu",FateItems.Key::new);
  public static final RegistryObject<Item> EA=ITEMS.register("ea",FateItems.Ea::new);
+ public static final RegistryObject<Item> EXCALIBUR=ITEMS.register("excalibur",ExcaliburItem::new);
+ public static final RegistryObject<Item> AVALON=ITEMS.register("avalon",AvalonItem::new);
  public static final RegistryObject<Item> FISHING_GOD_FISH=ITEMS.register("fishing_god_fish",()->new Item(new Item.Properties()));
  public static final RegistryObject<net.minecraft.world.entity.EntityType<MingGuLongEntity>> MINGGULONG=ENTITIES.register("minggulong",()->net.minecraft.world.entity.EntityType.Builder.of(MingGuLongEntity::new,net.minecraft.world.entity.MobCategory.MONSTER).sized(2.8F,4.8F).fireImmune().clientTrackingRange(12).updateInterval(2).build("minggulong"));
  public static final RegistryObject<net.minecraft.world.entity.EntityType<MingGuLongProjectile>> MINGGULONG_PROJECTILE=ENTITIES.register("minggulong_projectile",()->net.minecraft.world.entity.EntityType.Builder.<MingGuLongProjectile>of((type,level)->new MingGuLongProjectile(type,level),net.minecraft.world.entity.MobCategory.MISC).sized(.35F,.35F).clientTrackingRange(8).updateInterval(1).build("minggulong_projectile"));
@@ -56,7 +59,7 @@ public class StarcrownDoll {
  public static boolean isYule(ItemStack stack){return stack.is(YULE_ITEM.get())||stack.is(CALM_ITEM.get());}
  public static boolean isYule(BlockState state){return state.is(YULE_DOLL.get())||state.is(CALM_DOLL.get());}
  public static BlockState dollState(ItemStack stack){return (stack.is(CALM_ITEM.get())?CALM_DOLL:stack.is(YULE_ITEM.get())?YULE_DOLL:stack.is(TWILIGHT_ITEM.get())?TWILIGHT_DOLL:DOLL).get().defaultBlockState();}
- public static final RegistryObject<CreativeModeTab> TAB=TABS.register("yishen_daiguan",()->CreativeModeTab.builder().title(net.minecraft.network.chat.Component.translatable("itemGroup.starcrowndoll")).icon(()->new ItemStack(ITEM.get())).displayItems((parameters,output)->{output.accept(ITEM.get());output.accept(TWILIGHT_ITEM.get());output.accept(YULE_ITEM.get());output.accept(CALM_ITEM.get());output.accept(SELF_ITEM.get());output.accept(WHITE_RICE.get());output.accept(ETERNAL_RETURN.get());output.accept(BAB_ILU.get());output.accept(FISHING_GOD_FISH.get());output.accept(MINGGULONG_SPAWN_EGG.get());}).build());
+ public static final RegistryObject<CreativeModeTab> TAB=TABS.register("yishen_daiguan",()->CreativeModeTab.builder().title(net.minecraft.network.chat.Component.translatable("itemGroup.starcrowndoll")).icon(()->new ItemStack(ITEM.get())).displayItems((parameters,output)->{output.accept(ITEM.get());output.accept(TWILIGHT_ITEM.get());output.accept(YULE_ITEM.get());output.accept(CALM_ITEM.get());output.accept(SELF_ITEM.get());output.accept(WHITE_RICE.get());output.accept(ETERNAL_RETURN.get());output.accept(BAB_ILU.get());output.accept(EXCALIBUR.get());output.accept(AVALON.get());output.accept(FISHING_GOD_FISH.get());output.accept(MINGGULONG_SPAWN_EGG.get());}).build());
  public static final RegistryObject<BlockEntityType<DollEntity>> TYPE=TYPES.register("doll",()->BlockEntityType.Builder.of(DollEntity::new,DOLL.get(),TWILIGHT_DOLL.get(),YULE_DOLL.get(),CALM_DOLL.get(),SELF_DOLL.get()).build(null));
  static final DeferredRegister<net.minecraft.core.particles.ParticleType<?>> PARTICLES=DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES,ID);
  public static final RegistryObject<net.minecraft.core.particles.SimpleParticleType> STAR=PARTICLES.register("star",()->new net.minecraft.core.particles.SimpleParticleType(false));

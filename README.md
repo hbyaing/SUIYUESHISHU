@@ -1,4 +1,12 @@
-# 以神戴冠 1.20.53
+# 以神戴冠 1.20.56
+
+新增《Fate/stay night》Saber 的誓约胜利之剑与阿瓦隆。风王结界以流动的白色风压包住隐形剑身，可偏转来箭，也能释放风王铁槌。阿瓦隆能收纳圣剑、治愈持有者，并展开「遥远的理想乡」。
+
+显形圣剑平时在第一人称单手竖持。按住使用键半秒，两手转到画面中央握柄，脚下七格半径内浮起金色光点。第一段蓄力声将尽时，双手举剑过顶，金白光柱沿剑尖冲天。短暂停顿两秒，第二段音效响起，圣剑随下劈释放光束。从蓄力音效开始到发射共 11.60 秒。
+
+公开版与实机演示均使用 Kenney 的无人声蓄力音效。持有两段获准使用的日语 WAV 时，可在本机制作单独的 Minecraft 资源包，切换为 Saber 的日语吟唱与呼名。[个人日语资源包制作方法](docs/EXCALIBUR_ASSETS.md#个人日语资源包)
+
+[下载 1.20.56 JAR](releases/1.20.56/YiShenDaiGuan-1.20.1-1.20.56.jar) · [SHA-256 校验和](releases/1.20.56/SHA256SUMS.txt) · [实机演示](docs/excalibur/excalibur-invocation.mp4) · [安装、操作与合成](docs/EXCALIBUR.md) · [可编辑 Blender 模型](models/excalibur/Excalibur_and_Avalon.blend) · [特效与声音来源](docs/EXCALIBUR_ASSETS.md)
 
 [下载 1.20.53 合并版](releases/1.20.53/YiShenDaiGuan-1.20.1-1.20.53.jar) · [校验和](releases/1.20.53/SHA256SUMS.txt) · [王律之键修正与实机验证](docs/fate-key-ea-1.20.52.md)
 
