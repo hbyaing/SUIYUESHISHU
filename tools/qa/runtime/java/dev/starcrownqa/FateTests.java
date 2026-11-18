@@ -8,6 +8,38 @@ import net.minecraftforge.gametest.*;
 
 @GameTestHolder("fateqa") @PrefixGameTestTemplate(false)
 public final class FateTests {
+    @GameTest(template="empty",timeoutTicks=215)
+    public static void enkiduSummonsFollowsAndRetracts(GameTestHelper h){
+        var p=player(h);
+        var start=p.blockPosition().above(25);
+        p.moveTo(start,0,0);
+        for(int x=-3;x<=23;x++)for(int z=-3;z<=3;z++)
+            h.getLevel().setBlockAndUpdate(start.offset(x,-1,z),net.minecraft.world.level.block.Blocks.STONE.defaultBlockState());
+        var hand=InteractionHand.MAIN_HAND;
+        var key=new ItemStack(StarcrownDoll.BAB_ILU.get());
+        p.setItemInHand(hand,key);
+        key.use(p.level(),p,hand);
+        h.runAtTickTime(170,()->{
+            h.assertTrue(p.getMainHandItem().is(StarcrownDoll.EA.get()),"retrieval grants Ea");
+            var pets=h.getLevel().getEntitiesOfClass(EnkiduCompanion.class,p.getBoundingBox().inflate(5));
+            h.assertTrue(pets.size()==1,"retrieval summons one companion; found "+pets.size());
+            var pet=pets.get(0);
+            float health=pet.getHealth();
+            h.assertTrue(!pet.isPickable()&&!pet.isAttackable()
+                    &&!pet.hurt(p.damageSources().playerAttack(p),12)&&pet.getHealth()==health,"companion is not attackable");
+            p.moveTo(start.offset(20,0,0),0,0);
+            h.runAtTickTime(185,()->{try{
+                h.assertTrue(pet.distanceTo(p)<5,"companion catches up after its owner moves far away");
+                var sword=p.getMainHandItem();
+                h.assertTrue(sword.use(p.level(),p,hand).getObject()==sword,"normal use keeps Ea while starting the cast");
+                p.releaseUsingItem();
+                p.setShiftKeyDown(true);
+                var result=sword.use(p.level(),p,hand);
+                h.assertTrue(result.getObject().is(StarcrownDoll.BAB_ILU.get())&&pet.isRemoved(),"sneak-use restores one key and dismisses the companion");
+                h.succeed();
+            }finally{ChastityTests.close(p);}});
+        });
+    }
     private static net.minecraft.server.level.ServerPlayer player(GameTestHelper h){
         var p=ChastityTests.player(h);p.getAbilities().invulnerable=true;p.setNoGravity(true);
         // Synthetic GameTest players have no connection-list tick; drive the actual vanilla use timer.

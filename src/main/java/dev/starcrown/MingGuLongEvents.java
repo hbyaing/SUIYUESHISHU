@@ -11,5 +11,6 @@ public final class MingGuLongEvents {
     @SubscribeEvent
     public static void attributes(EntityAttributeCreationEvent event) {
         event.put(StarcrownDoll.MINGGULONG.get(), MingGuLongEntity.createAttributes().build());
+        EnkiduCompanion.attributes(event);
     }
 }

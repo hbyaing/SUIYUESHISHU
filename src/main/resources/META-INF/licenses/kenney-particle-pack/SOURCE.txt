@@ -1,0 +1,9 @@
+Kenney Particle Pack
+https://kenney.nl/assets/particle-pack
+
+The downloaded archive identifies itself as Particle Pack (1.1).
+PNG (Transparent)/star_07.png is included unchanged as
+assets/starcrowndoll/textures/treasury/impact_star.png.
+
+Author and license details are included in the accompanying original License.txt.
+https://creativecommons.org/publicdomain/zero/1.0/

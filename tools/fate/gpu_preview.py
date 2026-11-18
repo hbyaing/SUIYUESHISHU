@@ -43,7 +43,9 @@ rng=Random(81742);rings=[]
 for r in range(5):
     ring=[]
     for i in range(20):
-        a=i*math.pi*2/20;radius=0 if r==0 else 5 if r==4 else r*.45*(.8+rng.double()*.4);ring.append(np.array([math.cos(a)*radius,math.sin(a)*radius,0]))
+        a=(i+(r%2)*.38+(rng.double()-.5)*.32)*math.pi*2/20
+        radius=0 if r==0 else 5 if r==4 else r*.45*(.78+rng.double()*.44)
+        ring.append(np.array([math.cos(a)*radius,math.sin(a)*radius,0]))
     rings.append(ring)
 shardrows=[]
 for r in range(4):
@@ -51,9 +53,10 @@ for r in range(4):
         j=(i+1)%20;tris=[[rings[r][i],rings[r+1][i],rings[r+1][j]]]
         if r>0:tris.append([rings[r][i],rings[r+1][j],rings[r][j]])
         for tri in tris:
-            center=sum(tri)/3;shardrows += [row(v,center[:2]) for v in tri]
+            center=sum(tri)/3
+            shardrows += [row(v,center[:2],bary) for v,bary in zip(tri,np.eye(3))]
 shards=vao(shardrows)
-shader['Aspect'].value=W/H;shader['MaskCenter'].value=(.35,-.16)
+shader['Aspect'].value=W/H;shader['MaskCenter'].value=(.35,-.16);shader['HandSide'].value=1
 def draw(v,mode,age,model,proj):
     matrix('ModelViewMat',model);matrix('ProjMat',proj);shader['Mode'].value=mode;shader['Age'].value=age
     eye=np.linalg.inv(model)@np.array([0,0,0,1]);shader['CameraLocal'].value=tuple(eye[:3]);v.render(gl.TRIANGLES)
@@ -63,7 +66,8 @@ ctx.enable(gl.DEPTH_TEST|gl.BLEND);ctx.blend_func=gl.SRC_ALPHA,gl.ONE_MINUS_SRC_
 fbo.clear(.009,.012,.028,1);view=look([24,13,42],[0,16,0]);proj=perspective(46,W/H,.05,300)
 draw(analysis,0,76,view,proj);ctx.depth_mask=False;draw(cube,1,76,view,proj);capture('analysis-gpu.png')
 ctx.disable(gl.DEPTH_TEST);matrix('ModelViewMat',I);matrix('ProjMat',I)
-fbo.clear(.015,.012,.04,1);draw(gate,2,96,I,I);capture('gold-aperture-gpu.png')
+fbo.clear(.015,.012,.04,1);aperture=I.copy();aperture[0,0]=H/W
+draw(gate,2,96,aperture,I);capture('gold-aperture-gpu.png')
 # Draw a simple blue checker background solely to expose mask coverage and separation.
 bg=Image.new('RGB',(W,H),(18,27,55));d=ImageDraw.Draw(bg)
 for y in range(0,H,60):
@@ -75,7 +79,8 @@ bgvao=ctx.vertex_array(bgshader,[(ctx.buffer(np.array([[-1,-1],[1,-1],[1,1],[-1,
 frames=[];coverage=[]
 for age in list(range(114,161)):
     fbo.clear(0,0,0,1);bgtex.use();bgvao.render();
-    if age<160:draw(shards,3,age,I,I)
+    if age<158:draw(shards,3,age,I,I)
+    if age<143:draw(gate,5,age,I,I)
     im=capture(f'fracture-{age:03}.png');frames.append(im)
     a=np.array(im);coverage.append({'tick':age,'black_fraction':float(np.all(a<8,axis=2).mean()),'white_fraction':float(np.all(a>220,axis=2).mean())})
 frames[0].save(args.output/'fracture-gpu.gif',save_all=True,append_images=frames[1:],duration=70,loop=0)

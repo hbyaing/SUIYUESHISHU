@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    { "id": "#forge:weapons", "required": false },
+    { "id": "#forge:tools/bows", "required": false },
+    { "id": "#forge:tools/crossbows", "required": false },
+    { "id": "#forge:tools/tridents", "required": false },
+    { "id": "#c:melee_weapon_tools", "required": false },
+    { "id": "#c:ranged_weapon_tools", "required": false },
+    { "id": "#c:tools/melee_weapon", "required": false },
+    { "id": "#c:tools/ranged_weapon", "required": false }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "blend": {"func": "add", "srcrgb": "srcalpha", "dstrgb": "1-srcalpha"},
+  "vertex": "starcrowndoll:treasury_gate",
+  "fragment": "starcrowndoll:treasury_gate",
+  "attributes": ["Position", "Color", "UV0"],
+  "samplers": [{"name": "Sampler0"}],
+  "uniforms": [
+    {"name": "Time", "type": "float", "count": 1, "values": [0]},
+    {"name": "ChainGate", "type": "int", "count": 1, "values": [0]},
+    {"name": "CloseWindow", "type": "float", "count": 2, "values": [1, 8]},
+    {"name": "SolidPass", "type": "int", "count": 1, "values": [0]},
+    {"name": "Opening", "type": "float", "count": 1, "values": [1]},
+    {"name": "TreasuryAmber", "type": "float", "count": 3, "values": [1.0, 0.54, 0.055]},
+    {"name": "TreasuryLemon", "type": "float", "count": 3, "values": [1.0, 0.92, 0.30]},
+    {"name": "TreasuryPearl", "type": "float", "count": 3, "values": [1.0, 0.986, 0.81]},
+    {"name": "ModelViewMat", "type": "matrix4x4", "count": 16, "values": [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]},
+    {"name": "ProjMat", "type": "matrix4x4", "count": 16, "values": [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]}
+  ]
+}

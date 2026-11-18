@@ -1,4 +1,31 @@
 {
+  "ea_draw_open": {
+    "subtitle": "subtitles.starcrowndoll.ea_draw_open",
+    "sounds": ["starcrowndoll:ea_draw_open"]
+  },
+  "ea_draw_void": {
+    "subtitle": "subtitles.starcrowndoll.ea_draw_void",
+    "sounds": ["starcrowndoll:ea_draw_void"]
+  },
+  "ea_draw_flash": {
+    "subtitle": "subtitles.starcrowndoll.ea_draw_flash",
+    "sounds": ["starcrowndoll:ea_draw_flash"]
+  },
+  "ea_draw_break": {
+    "subtitle": "subtitles.starcrowndoll.ea_draw_break",
+    "sounds": ["starcrowndoll:ea_draw_break"]
+  },
+  "ea_spin": {
+    "sounds": ["starcrowndoll:ea_spin"]
+  },
+  "ea_chant": {
+    "sounds": [{"name":"starcrowndoll:ea_chant","stream":true}]
+  },
+  "ea_blast": {
+    "sounds": [
+      {"name":"starcrowndoll:ea_blast"}
+    ]
+  },
   "doll_music": {
     "subtitle": "subtitles.starcrowndoll.doll_music",
     "sounds": [

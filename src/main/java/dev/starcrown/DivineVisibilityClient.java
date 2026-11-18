@@ -8,7 +8,8 @@ public final class DivineVisibilityClient {
  @SubscribeEvent(priority=net.minecraftforge.eventbus.api.EventPriority.LOWEST,receiveCanceled=true)
  public static void hand(net.minecraftforge.client.event.RenderHandEvent event){
   var player=net.minecraft.client.Minecraft.getInstance().player;
-  if(player!=null&&DivineWill.wearing(player)&&!StarcrownDoll.isDoll(event.getItemStack())&&!RiceFeast.active(player))event.setCanceled(false);
+  if(player!=null&&DivineWill.wearing(player)&&!StarcrownDoll.isDoll(event.getItemStack())&&!RiceFeast.active(player)
+          &&!FateClient.controlsHand(player,event.getHand(),event.getPartialTick()))event.setCanceled(false);
  }
  @SubscribeEvent(priority=net.minecraftforge.eventbus.api.EventPriority.LOWEST,receiveCanceled=true)
  public static void player(net.minecraftforge.client.event.RenderPlayerEvent.Pre event){

@@ -1,0 +1,25 @@
+Ea VFX 0.2.0 — Forge 1.20.1 crimson cylinder beam prototype
+
+Original effect implementation for this project. Vanilla iron-sword appearance is
+referenced from Minecraft assets; no Minecraft texture or model binary is bundled.
+The original beam prototype uses Fate / Ea as a visual reference.
+
+Version 1.20.70 draw audio sources: the key and low descending tone were
+synthesized for the mod. The flash and fracture use filtered transients
+from the referenced Chinese dub of Fate/strange Fake: Whispers of Dawn,
+with synthesized tails. The selections start at 42:34.490 (0.255 s) and
+42:35.634 (0.320 s) in the reference video.
+https://www.bilibili.com/video/BV1BkZiBkETv/
+
+beam_flow.png is original, procedurally authored packed noise/filament/pulse data.
+Its deterministic generator is included in verification/generate_beam_texture.py.
+
+Framebuffer/state handling is adapted from the local Energy VFX Workbench
+reference (MIT, Copyright 2026 Energy VFX Workbench contributors).
+See LICENSE for its retained notice. Any included noise shader retains its own
+copyright and license header.
+
+The source distribution includes the Gradle wrapper and launcher scripts.
+Those components retain their original copyright headers and are provided under
+the Apache License, Version 2.0. Its full text is in gradle/LICENSE-APACHE-2.0.txt
+within the source directory. This does not replace the MIT license of the mod.

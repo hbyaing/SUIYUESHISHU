@@ -3,6 +3,9 @@ import com.mojang.authlib.GameProfile;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.nbt.Tag;
+import dev.starcrown.treasury.TreasuryItems;
+import dev.starcrown.treasury.TreasuryNetwork;
+import dev.starcrown.treasury.TreasuryVolleyNetwork;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -22,6 +25,16 @@ import net.minecraft.world.phys.shapes.*;
 public class StarcrownDoll {
  public static final String ID="starcrowndoll";
  static final DeferredRegister<net.minecraft.sounds.SoundEvent> SOUNDS=DeferredRegister.create(ForgeRegistries.SOUND_EVENTS,ID);
+ static final RegistryObject<net.minecraft.sounds.SoundEvent> EA_DRAW_OPEN=drawSound("ea_draw_open");
+ static final RegistryObject<net.minecraft.sounds.SoundEvent> EA_DRAW_VOID=drawSound("ea_draw_void");
+ static final RegistryObject<net.minecraft.sounds.SoundEvent> EA_DRAW_FLASH=drawSound("ea_draw_flash");
+ static final RegistryObject<net.minecraft.sounds.SoundEvent> EA_DRAW_BREAK=drawSound("ea_draw_break");
+ private static RegistryObject<net.minecraft.sounds.SoundEvent> drawSound(String name) {
+  return SOUNDS.register(name, () -> net.minecraft.sounds.SoundEvent.createVariableRangeEvent(new net.minecraft.resources.ResourceLocation(ID, name)));
+ }
+ public static final RegistryObject<net.minecraft.sounds.SoundEvent> EA_CHANT=SOUNDS.register("ea_chant",()->net.minecraft.sounds.SoundEvent.createVariableRangeEvent(new net.minecraft.resources.ResourceLocation(ID,"ea_chant")));
+ public static final RegistryObject<net.minecraft.sounds.SoundEvent> EA_SPIN=SOUNDS.register("ea_spin",()->net.minecraft.sounds.SoundEvent.createVariableRangeEvent(new net.minecraft.resources.ResourceLocation(ID,"ea_spin")));
+ public static final RegistryObject<net.minecraft.sounds.SoundEvent> EA_BLAST=SOUNDS.register("ea_blast",()->net.minecraft.sounds.SoundEvent.createVariableRangeEvent(new net.minecraft.resources.ResourceLocation(ID,"ea_blast")));
  public static final RegistryObject<net.minecraft.sounds.SoundEvent> MUSIC=SOUNDS.register("doll_music",()->net.minecraft.sounds.SoundEvent.createVariableRangeEvent(new net.minecraft.resources.ResourceLocation(ID,"doll_music")));
  public static final RegistryObject<net.minecraft.sounds.SoundEvent> YULE_MUSIC=SOUNDS.register("yule_music",()->net.minecraft.sounds.SoundEvent.createVariableRangeEvent(new net.minecraft.resources.ResourceLocation(ID,"yule_music")));
  public static java.util.function.BiConsumer<DollEntity,Boolean> musicListener=(doll,playing)->{};
@@ -30,6 +43,7 @@ public class StarcrownDoll {
  static final DeferredRegister<CreativeModeTab> TABS=DeferredRegister.create(net.minecraft.core.registries.Registries.CREATIVE_MODE_TAB,ID);
  static final DeferredRegister<Item> ITEMS=DeferredRegister.create(ForgeRegistries.ITEMS,ID);
  public static final DeferredRegister<net.minecraft.world.entity.EntityType<?>> ENTITIES=DeferredRegister.create(ForgeRegistries.ENTITY_TYPES,ID);
+ public static final RegistryObject<net.minecraft.world.entity.EntityType<EnkiduCompanion>> ENKIDU=ENTITIES.register("enkidu",()->net.minecraft.world.entity.EntityType.Builder.of(EnkiduCompanion::new,net.minecraft.world.entity.MobCategory.MISC).sized(.7F,.85F).noSave().fireImmune().clientTrackingRange(8).updateInterval(2).build("enkidu"));
  static final DeferredRegister<BlockEntityType<?>> TYPES=DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES,ID);
  public static final RegistryObject<Block> DOLL=BLOCKS.register("doll",()->new DollBlock());
  public static final RegistryObject<Item> ITEM=ITEMS.register("doll",()->new WearableDoll());
@@ -43,6 +57,8 @@ public class StarcrownDoll {
  public static final RegistryObject<Item> ETERNAL_RETURN=ITEMS.register("eternal_return",EternalReturnItem::new);
  public static final RegistryObject<Item> BAB_ILU=ITEMS.register("bab_ilu",FateItems.Key::new);
  public static final RegistryObject<Item> EA=ITEMS.register("ea",FateItems.Ea::new);
+ public static final RegistryObject<Item> GATE_OF_BABYLON=ITEMS.register("gate_of_babylon",TreasuryItems.GateOfBabylon::new);
+ public static final RegistryObject<Item> CHAINS_OF_HEAVEN=ITEMS.register("chains_of_heaven",TreasuryItems.ChainsOfHeaven::new);
  public static final RegistryObject<Item> FISHING_GOD_FISH=ITEMS.register("fishing_god_fish",()->new Item(new Item.Properties()));
  public static final RegistryObject<net.minecraft.world.entity.EntityType<MingGuLongEntity>> MINGGULONG=ENTITIES.register("minggulong",()->net.minecraft.world.entity.EntityType.Builder.of(MingGuLongEntity::new,net.minecraft.world.entity.MobCategory.MONSTER).sized(2.8F,4.8F).fireImmune().clientTrackingRange(12).updateInterval(2).build("minggulong"));
  public static final RegistryObject<net.minecraft.world.entity.EntityType<MingGuLongProjectile>> MINGGULONG_PROJECTILE=ENTITIES.register("minggulong_projectile",()->net.minecraft.world.entity.EntityType.Builder.<MingGuLongProjectile>of((type,level)->new MingGuLongProjectile(type,level),net.minecraft.world.entity.MobCategory.MISC).sized(.35F,.35F).clientTrackingRange(8).updateInterval(1).build("minggulong_projectile"));
@@ -56,11 +72,11 @@ public class StarcrownDoll {
  public static boolean isYule(ItemStack stack){return stack.is(YULE_ITEM.get())||stack.is(CALM_ITEM.get());}
  public static boolean isYule(BlockState state){return state.is(YULE_DOLL.get())||state.is(CALM_DOLL.get());}
  public static BlockState dollState(ItemStack stack){return (stack.is(CALM_ITEM.get())?CALM_DOLL:stack.is(YULE_ITEM.get())?YULE_DOLL:stack.is(TWILIGHT_ITEM.get())?TWILIGHT_DOLL:DOLL).get().defaultBlockState();}
- public static final RegistryObject<CreativeModeTab> TAB=TABS.register("yishen_daiguan",()->CreativeModeTab.builder().title(net.minecraft.network.chat.Component.translatable("itemGroup.starcrowndoll")).icon(()->new ItemStack(ITEM.get())).displayItems((parameters,output)->{output.accept(ITEM.get());output.accept(TWILIGHT_ITEM.get());output.accept(YULE_ITEM.get());output.accept(CALM_ITEM.get());output.accept(SELF_ITEM.get());output.accept(WHITE_RICE.get());output.accept(ETERNAL_RETURN.get());output.accept(BAB_ILU.get());output.accept(FISHING_GOD_FISH.get());output.accept(MINGGULONG_SPAWN_EGG.get());}).build());
+ public static final RegistryObject<CreativeModeTab> TAB=TABS.register("yishen_daiguan",()->CreativeModeTab.builder().title(net.minecraft.network.chat.Component.translatable("itemGroup.starcrowndoll")).icon(()->new ItemStack(ITEM.get())).displayItems((parameters,output)->{output.accept(ITEM.get());output.accept(TWILIGHT_ITEM.get());output.accept(YULE_ITEM.get());output.accept(CALM_ITEM.get());output.accept(SELF_ITEM.get());output.accept(WHITE_RICE.get());output.accept(ETERNAL_RETURN.get());output.accept(BAB_ILU.get());output.accept(GATE_OF_BABYLON.get());output.accept(CHAINS_OF_HEAVEN.get());output.accept(FISHING_GOD_FISH.get());output.accept(MINGGULONG_SPAWN_EGG.get());}).build());
  public static final RegistryObject<BlockEntityType<DollEntity>> TYPE=TYPES.register("doll",()->BlockEntityType.Builder.of(DollEntity::new,DOLL.get(),TWILIGHT_DOLL.get(),YULE_DOLL.get(),CALM_DOLL.get(),SELF_DOLL.get()).build(null));
  static final DeferredRegister<net.minecraft.core.particles.ParticleType<?>> PARTICLES=DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES,ID);
  public static final RegistryObject<net.minecraft.core.particles.SimpleParticleType> STAR=PARTICLES.register("star",()->new net.minecraft.core.particles.SimpleParticleType(false));
- public StarcrownDoll(){VfxClientConfig.register();MingGuLongAnimationCompatibility.init();SevenNetwork.init();IEventBus bus=FMLJavaModLoadingContext.get().getModEventBus();net.minecraftforge.fml.DistExecutor.unsafeRunWhenOn(net.minecraftforge.api.distmarker.Dist.CLIENT,()->()->FateClient.Setup.register(bus));AsWrittenInventory.init(bus);DivinityInventory.init(bus);TABS.register(bus);SOUNDS.register(bus);PARTICLES.register(bus);BLOCKS.register(bus);ITEMS.register(bus);TYPES.register(bus);ENTITIES.register(bus);DivineEffects.EFFECTS.register(bus);}
+ public StarcrownDoll(){VfxClientConfig.register();dev.eavfx.EaAudioConfig.register();MingGuLongAnimationCompatibility.init();SevenNetwork.init();dev.eavfx.EaNetwork.register();EaSkillNetwork.register();TreasuryNetwork.register();TreasuryVolleyNetwork.register();IEventBus bus=FMLJavaModLoadingContext.get().getModEventBus();net.minecraftforge.fml.DistExecutor.unsafeRunWhenOn(net.minecraftforge.api.distmarker.Dist.CLIENT,()->()->FateClient.Setup.register(bus));AsWrittenInventory.init(bus);DivinityInventory.init(bus);TABS.register(bus);SOUNDS.register(bus);PARTICLES.register(bus);BLOCKS.register(bus);ITEMS.register(bus);TYPES.register(bus);ENTITIES.register(bus);DivineEffects.EFFECTS.register(bus);}
  public static class WearableDoll extends BlockItem {
   @Override public void appendHoverText(ItemStack stack,Level level,java.util.List<net.minecraft.network.chat.Component> lines,TooltipFlag flag){super.appendHoverText(stack,level,lines,flag);if(stack.is(SELF_ITEM.get()))return;String theme=stack.is(CALM_ITEM.get())?"calm.":stack.is(YULE_ITEM.get())?"yule.":stack.is(TWILIGHT_ITEM.get())?"twilight.":"";lines.add(net.minecraft.network.chat.Component.translatable("tooltip.starcrowndoll."+theme+"divinity").withStyle(net.minecraft.ChatFormatting.LIGHT_PURPLE));if(!isYule(stack))lines.add(net.minecraft.network.chat.Component.translatable("tooltip.starcrowndoll.lore").withStyle(net.minecraft.ChatFormatting.WHITE));}
   @Override public void initializeClient(java.util.function.Consumer<net.minecraftforge.client.extensions.common.IClientItemExtensions> c){c.accept(new net.minecraftforge.client.extensions.common.IClientItemExtensions(){public net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer getCustomRenderer(){return DollItemRenderer.instance();}});}

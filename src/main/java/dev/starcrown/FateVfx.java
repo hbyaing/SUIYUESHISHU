@@ -65,7 +65,8 @@ public final class FateVfx {
         java.util.Random random=new java.util.Random(81742);int sectors=20;
         Vector3f[][] rings=new Vector3f[5][sectors];
         for(int r=0;r<5;r++)for(int i=0;i<sectors;i++){
-            double angle=i*Math.PI*2/sectors;float radius=r==0?0:r==4?5:(float)(r*.45*(.8+random.nextDouble()*.4));
+            double angle=(i+(r%2)*.38+(random.nextDouble()-.5)*.32)*Math.PI*2/sectors;
+            float radius=r==0?0:r==4?5:(float)(r*.45*(.78+random.nextDouble()*.44));
             rings[r][i]=new Vector3f((float)Math.cos(angle)*radius,(float)Math.sin(angle)*radius,0);
         }
         for(int r=0;r<4;r++)for(int i=0;i<sectors;i++){
@@ -76,22 +77,33 @@ public final class FateVfx {
         shards=upload(b);
     }
     private static Vector3f point(JsonElement v){var a=v.getAsJsonArray();return new Vector3f(a.get(0).getAsFloat(),a.get(1).getAsFloat(),a.get(2).getAsFloat());}
-    private static void shard(BufferBuilder b,Vector3f a,Vector3f c,Vector3f d){Vector3f center=new Vector3f(a).add(c).add(d).div(3);for(var p:new Vector3f[]{a,c,d})vertex(b,p,center.x,center.y,1,1,1);}
+    private static void shard(BufferBuilder b,Vector3f a,Vector3f c,Vector3f d){
+        Vector3f center=new Vector3f(a).add(c).add(d).div(3);
+        vertex(b,a,center.x,center.y,1,0,0);vertex(b,c,center.x,center.y,0,1,0);vertex(b,d,center.x,center.y,0,0,1);
+    }
     private static void uniform(String name,float value){var u=shader.getUniform(name);if(u!=null)u.set(value);}
     private static void draw(VertexBuffer buffer,Matrix4f model,Matrix4f projection,int mode,float age){
         uniform("Mode",mode);uniform("Age",age);
         Vector3f camera=new Matrix4f(model).invert().transformPosition(new Vector3f());var u=shader.getUniform("CameraLocal");if(u!=null)u.set(camera.x,camera.y,camera.z);
         buffer.bind();try{buffer.drawWithShader(model,projection,shader);}finally{VertexBuffer.unbind();}
     }
-    /** Composite the ignition over the lit skin, rather than hiding its bright center behind the fist. */
-    static void handLight(float age,float side){
-        if(shader==null||age<134||age>=143)return;
+    /** Use the projected fist from the actual hand camera, including bob, hand FOV and handedness. */
+    static void handSurface(float age,float side,float targetX,float targetY,float fistX,float fistY,boolean foreground){
+        if(shader==null||age<80||age>=158)return;
+        if(foreground&&age<111)return;
         var mc=Minecraft.getInstance();
         try(VfxRenderState ignored=new VfxRenderState()){
             RenderSystem.disableDepthTest();RenderSystem.depthMask(false);RenderSystem.disableCull();RenderSystem.enableBlend();RenderSystem.defaultBlendFunc();
-            uniform("Aspect",(float)mc.getWindow().getWidth()/mc.getWindow().getHeight());
-            var center=shader.getUniform("MaskCenter");if(center!=null)center.set(side*.35f,-.16f);
-            draw(gate,new Matrix4f(),new Matrix4f(),5,age);
+            float aspect=(float)mc.getWindow().getWidth()/mc.getWindow().getHeight();
+            uniform("Aspect",aspect);uniform("HandSide",side);
+            shader.safeGetUniform("MaskCenter").set(fistX,fistY);
+            Matrix4f identity=new Matrix4f();
+            if(!foreground&&age<114){
+                draw(gate,new Matrix4f().translate(targetX,targetY,0).scale(.89f/aspect,.89f,1),identity,2,age);
+            }else if((!foreground&&age>=114&&age<141)||(foreground&&age>=141)){
+                draw(shards,identity,identity,3,age);
+            }
+            if(foreground&&age>=111&&age<143)draw(gate,identity,identity,5,age);
         }
     }
     @SubscribeEvent public static void render(RenderLevelStageEvent event){
@@ -125,25 +137,18 @@ public final class FateVfx {
                 }
                 Vec3 forward=player.getLookAngle();Vec3 right=new Vec3(-forward.z,0,forward.x).normalize();
                 boolean left=(player.getMainArm()==net.minecraft.world.entity.HumanoidArm.LEFT)^cast.offhand();
-                Vec3 hand=player.getEyePosition(partial).add(forward.scale(.85)).add(right.scale(left?-.28:.28)).add(0,-.25,0);
-                if(maskPass&&local&&age>=80&&age<114){
-                    RenderSystem.disableDepthTest();float side=left?-1:1;
-                    draw(gate,new Matrix4f().translate(side*.35f,-.16f,0).scale(.83f*mc.getWindow().getHeight()/mc.getWindow().getWidth(),.83f,1),new Matrix4f(),2,age);
-                    RenderSystem.enableDepthTest();
-                }
+                Vec3 hand=FateAnalysisPlacement.grip(cast.owner());
+                if(hand==null)hand=player.getEyePosition(partial).add(forward.scale(.85)).add(right.scale(left?-.28:.28)).add(0,-.25,0);
+                uniform("HandSide",left?-1:1);
                 if(worldPass&&!local&&age>=80&&age<114){
-                    Matrix4f billboard=new Matrix4f(event.getPoseStack().last().pose()).translate((float)(hand.x-camera.x),(float)(hand.y-camera.y),(float)(hand.z-camera.z))
+                    Vec3 target=hand.add(forward.scale(.16*(1-FateClient.step(age,80,100))));
+                    Matrix4f billboard=new Matrix4f(event.getPoseStack().last().pose()).translate((float)(target.x-camera.x),(float)(target.y-camera.y),(float)(target.z-camera.z))
                             .rotate(event.getCamera().rotation()).scale(.48f);
                     draw(gate,billboard,event.getProjectionMatrix(),2,age);
                 }
-                if(maskPass&&age>=114&&local){
-                    RenderSystem.disableDepthTest();
-                    float side=left?-1:1;var center=shader.getUniform("MaskCenter");if(center!=null)center.set(side*.35f,-.16f);
-                    draw(shards,new Matrix4f(),new Matrix4f(),3,age);RenderSystem.enableDepthTest();
-                }
                 // Other players see the same black surface break locally around the active hand.
                 if(worldPass&&age>=114&&!local){
-                    Vec3 surface=hand.subtract(forward.scale(.6));
+                    Vec3 surface=hand.add(hand.subtract(camera).normalize().scale(.105));
                     Matrix4f billboard=new Matrix4f(event.getPoseStack().last().pose()).translate((float)(surface.x-camera.x),(float)(surface.y-camera.y),(float)(surface.z-camera.z))
                             .rotate(event.getCamera().rotation()).scale(.65f);
                     var center=shader.getUniform("MaskCenter");if(center!=null)center.set(0f,0f);

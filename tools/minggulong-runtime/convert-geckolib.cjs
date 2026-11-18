@@ -2,14 +2,25 @@ const crypto = require("node:crypto");
 const fs = require("node:fs");
 const path = require("node:path");
 
-const [inputPath, geoPath, animationPath] = process.argv.slice(2);
+const [inputPath, geoPath, animationPath, profile = "minggulong"] = process.argv.slice(2);
+const enkidu = profile === "enkidu";
 if (!inputPath || !geoPath || !animationPath) {
   throw new Error("Usage: node convert-geckolib.cjs <character-only.bbmodel> <minggulong.geo.json> <minggulong.animation.json>");
 }
 
 const sourceBytes = fs.readFileSync(inputPath);
 const source = JSON.parse(sourceBytes.toString("utf8"));
-const groupByUuid = new Map((source.groups || []).map(group => [group.uuid, group]));
+const groups = [...(source.groups || [])];
+function collectInline(entries) {
+  for (const entry of entries || []) {
+    if (typeof entry === "object") {
+      if (!groups.some(group => group.uuid === entry.uuid)) groups.push(entry);
+      collectInline(entry.children);
+    }
+  }
+}
+if (enkidu) collectInline(source.outliner);
+const groupByUuid = new Map(groups.map(group => [group.uuid, group]));
 const elementByUuid = new Map((source.elements || []).map(element => [element.uuid, element]));
 const bonesByUuid = new Map();
 const bones = [];
@@ -55,6 +66,11 @@ function cubeFaces(element) {
   for (const [side, face] of Object.entries(element.faces || {})) {
     if (!face || face.texture === null || !Array.isArray(face.uv) || face.uv.length < 4) continue;
     const uv = face.uv.map(number);
+    if (enkidu) {
+      if (!Number.isInteger(face.texture) || !source.textures[face.texture]) throw new Error("Missing face texture");
+      uv[0] += face.texture * 256;
+      uv[2] += face.texture * 256;
+    }
     result[side] = {
       uv: [uv[0], uv[1]],
       uv_size: [uv[2] - uv[0], uv[3] - uv[1]]
@@ -119,9 +135,9 @@ function appendOutliner(entries, parent = null) {
 }
 
 appendOutliner(source.outliner || []);
-if (bones.length !== 370) throw new Error(`Expected 370 bones, got ${bones.length}`);
+if (!enkidu && bones.length !== 370) throw new Error(`Expected 370 bones, got ${bones.length}`);
 const cubes = bones.reduce((sum, bone) => sum + bone.cubes.length, 0);
-if (cubes !== 480) throw new Error(`Expected 480 cubes, got ${cubes}`);
+if (cubes !== (enkidu ? source.elements.length : 480)) throw new Error(`Unexpected cube count: ${cubes}`);
 
 const bounds = (source.elements || []).reduce((result, element) => {
   if (element.type !== "cube") return result;
@@ -136,8 +152,8 @@ const geo = {
   format_version: "1.12.0",
   "minecraft:geometry": [{
       description: {
-        identifier: "geometry.minggulong",
-        texture_width: source.resolution.width,
+        identifier: "geometry." + profile,
+        texture_width: enkidu ? source.textures.length * 256 : source.resolution.width,
         texture_height: source.resolution.height,
         visible_bounds_width: (bounds[3] - bounds[0]) / 16 + 1,
         visible_bounds_height: (bounds[4] - bounds[1]) / 16 + 1,
@@ -149,16 +165,16 @@ const geo = {
     source_sha256: crypto.createHash("sha256").update(sourceBytes).digest("hex"),
     cube_count: cubes,
     bone_count: bones.length,
-    charge_anchor: [5.11132431, 6.826404572, -19.981182098]
+    ...(!enkidu ? {charge_anchor: [5.11132431, 6.826404572, -19.981182098]} : {})
   }
 };
 
 const boneNames = new Map();
-for (const group of source.groups || []) boneNames.set(group.uuid, group.name);
+for (const group of groups) boneNames.set(group.uuid, group.name);
 const animations = {};
 let preservedMolangValues = 0;
 for (const animation of source.animations || []) {
-  const animationName = `animation.minggulong.${animation.name.toLowerCase()}`;
+  const animationName = `animation.${profile}.${animation.name.toLowerCase()}`;
   const animationBones = {};
   for (const [uuid, animator] of Object.entries(animation.animators || {})) {
     const boneName = boneNames.get(uuid);
