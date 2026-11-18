@@ -4,6 +4,7 @@ import dev.starcrown.*;
 import net.minecraft.gametest.framework.*;
 import net.minecraft.world.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.gametest.*;
 
 @GameTestHolder("fateqa") @PrefixGameTestTemplate(false)
@@ -13,8 +14,12 @@ public final class FateTests {
         var p=player(h);
         var start=p.blockPosition().above(25);
         p.moveTo(start,0,0);
-        for(int x=-3;x<=23;x++)for(int z=-3;z<=3;z++)
-            h.getLevel().setBlockAndUpdate(start.offset(x,-1,z),net.minecraft.world.level.block.Blocks.STONE.defaultBlockState());
+        // The synthetic player's platform can be inside a mountain on a normal-world seed.
+        for(int x=-3;x<=23;x++)for(int z=-3;z<=3;z++){
+            var feet=start.offset(x,0,z);
+            h.getLevel().setBlockAndUpdate(feet.below(),Blocks.STONE.defaultBlockState());
+            for(int y=0;y<4;y++)h.getLevel().setBlockAndUpdate(feet.above(y),Blocks.AIR.defaultBlockState());
+        }
         var hand=InteractionHand.MAIN_HAND;
         var key=new ItemStack(StarcrownDoll.BAB_ILU.get());
         p.setItemInHand(hand,key);
