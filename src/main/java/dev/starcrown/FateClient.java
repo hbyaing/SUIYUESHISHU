@@ -134,6 +134,18 @@ public final class FateClient {
             pose.mulPose(Axis.ZP.rotationDegrees(side*(46+38*reach-24*pull)));
             pose.mulPose(Axis.XP.rotationDegrees(-32-10*clench-19*pull));
             pose.mulPose(Axis.YP.rotationDegrees(side*(11-21*clench)));
+            // Keep the fist at the aperture and continue the shoulder beyond the active screen edge.
+            // Solve in homogeneous coordinates so both hands track bob, FOV and window aspect.
+            var armClip=new org.joml.Matrix4f(com.mojang.blaze3d.systems.RenderSystem.getProjectionMatrix())
+                    .mul(com.mojang.blaze3d.systems.RenderSystem.getModelViewMatrix()).mul(pose.last().pose());
+            var gripClip=armClip.getColumn(3,new org.joml.Vector4f());
+            var shoulderDelta=armClip.getColumn(1,new org.joml.Vector4f()).mul(-.68f);
+            float margin=1.24f;
+            float outward=side*shoulderDelta.x-margin*shoulderDelta.w;
+            if(outward>.001f){
+                float length=(margin*gripClip.w-side*gripClip.x)/outward;
+                pose.scale(1,net.minecraft.util.Mth.clamp(length,1,4),1);
+            }
             pose.translate(side*.3125,-.68,0);
             var renderer=(net.minecraft.client.renderer.entity.player.PlayerRenderer)mc.getEntityRenderDispatcher().getRenderer(p);
             FateDrawHand.draw(renderer,p,arm==HumanoidArm.LEFT,pose,DRAW_BUFFER,event.getPackedLight(),age);
