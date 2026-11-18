@@ -2,6 +2,8 @@
 
 [下载 1.20.70 模组（Minecraft 1.20.1 Forge）](releases/1.20.70/YiShenDaiGuan-1.20.1-1.20.70.jar) · [SHA-256 校验和](releases/1.20.70/SHA256SUMS.txt)
 
+[拔剑与蓄力实机录像](docs/ea-1.20.70/draw-and-charge.mp4) · [伸手入金球](docs/ea-1.20.70/draw.png) · [蓄力风眼](docs/ea-1.20.70/charge.png)。两段实录均保留游戏原声。录像约 8.9 秒处能看到一帧旧钥匙。发布包随后调整了等待物品栏同步时的持剑显示。
+
 ### Ea 拔剑与蓄力
 
 手持王律之键，长按右键 8 秒取出 Ea。伸手入金球时有开钥音，黑场伴随下滑低鸣，白闪和破面各有一次独立的冲击声。白闪和碎裂音保留了参考视频里两个很短的起音，回响为重新合成。出剑后，红纹从护手依次亮到剑尖。[参考片段 42:29](https://www.bilibili.com/video/BV1BkZiBkETv/?t=2549)

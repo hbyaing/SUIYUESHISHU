@@ -94,14 +94,17 @@ public final class FateItemRenderer extends BlockEntityWithoutLevelRenderer {
         return List.copyOf(parts);
     }
     @Override public void renderByItem(ItemStack stack,ItemDisplayContext context,PoseStack pose,MultiBufferSource buffers,int light,int overlay){
-        boolean sword=stack.is(StarcrownDoll.EA.get());
         var mc=Minecraft.getInstance();
+        if(context.firstPerson())stack=FateClient.resolveFirstPersonStack(mc.player,
+                context==ItemDisplayContext.FIRST_PERSON_LEFT_HAND,stack,mc.getFrameTime());
+        boolean previewBlade=context.firstPerson()&&FateClient.showingDrawnBlade(mc.player,
+                context==ItemDisplayContext.FIRST_PERSON_LEFT_HAND,stack,mc.getFrameTime());
+        boolean sword=previewBlade||stack.is(StarcrownDoll.EA.get());
         var localCast=mc.player==null?null:FateClient.CASTS.get(mc.player.getUUID());
         boolean activeFirst=localCast!=null&&((context==ItemDisplayContext.FIRST_PERSON_LEFT_HAND)==((mc.player.getMainArm()==net.minecraft.world.entity.HumanoidArm.LEFT)^localCast.offhand()));
         if(!sword&&context.firstPerson()&&mc.player!=null&&activeFirst){
             float age=FateClient.localAge(mc.getFrameTime());
             if(age>=86&&age<143)return;
-            if(age>=143&&age<=FateItems.DURATION)sword=true;
         }
         var cast=!sword&&FateClient.renderedPlayer!=null&&(context==ItemDisplayContext.THIRD_PERSON_LEFT_HAND||context==ItemDisplayContext.THIRD_PERSON_RIGHT_HAND)?FateClient.CASTS.get(FateClient.renderedPlayer):null;
         if(cast!=null){
@@ -137,7 +140,7 @@ public final class FateItemRenderer extends BlockEntityWithoutLevelRenderer {
                     // The raised arm carries the grip; turn the blade upward in that hand.
                     pose.mulPose(Axis.XP.rotationDegrees(-90*FateClient.eaRaise(castAge)));
                 }
-                float ignition=cast!=null?0:FateClient.runeProgress(owner,stack,left,mc.getFrameTime());
+                float ignition=cast!=null||previewBlade?0:FateClient.runeProgress(owner,stack,left,mc.getFrameTime());
                 drawHeldEa(pose,buffers,light,castAge,ignition);
                 if(castAge>=0 && eaTip!=null){
                     pose.pushPose();
