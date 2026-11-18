@@ -39,7 +39,9 @@ public final class TreasuryVolleyClient {
     private static final Map<UUID,Volley> ACTIVE=new LinkedHashMap<>();
     private static final Vec3 UP=new Vec3(0,1,0);
     private static final int LIGHT=LightTexture.pack(13,15);
-    private static final MultiBufferSource.BufferSource BUFFERS=makeBuffers();
+    // Forge subscribes this class before Sheets can resolve registry-backed materials.
+    // Only the render thread creates or uses these batches, starting with the first visible weapon.
+    private static MultiBufferSource.BufferSource buffers;
     private static ClientLevel world;
 
     private static MultiBufferSource.BufferSource makeBuffers(){
@@ -241,7 +243,8 @@ public final class TreasuryVolleyClient {
                     matrices.mulPose(shape.toForward());
                     matrices.translate(-shape.tip().x,-shape.tip().y,-shape.tip().z);
                     // NONE retains the real item model and permits BEWLR rendering without invoking a held-use pose.
-                    renderer.render(shot.stack,ItemDisplayContext.NONE,false,matrices,BUFFERS,LIGHT,
+                    if(buffers==null)buffers=makeBuffers();
+                    renderer.render(shot.stack,ItemDisplayContext.NONE,false,matrices,buffers,LIGHT,
                             OverlayTexture.NO_OVERLAY,model);
                 }finally{matrices.popPose();}
                 if(fired){
@@ -259,7 +262,7 @@ public final class TreasuryVolleyClient {
                 }
             }
         }
-        BUFFERS.endBatch();
+        if(buffers!=null)buffers.endBatch();
     }
 
     private static double smooth(double x){x=Mth.clamp(x,0,1);return x*x*(3-2*x);}
@@ -274,7 +277,7 @@ public final class TreasuryVolleyClient {
         double halfWidth=.021-.005*acceleration+.017*launchFade;
         double opacity=visibility*(dense?.72:1);
         int segments=dense?2:3;
-        VertexConsumer out=BUFFERS.getBuffer(RenderType.lightning());
+        VertexConsumer out=buffers.getBuffer(RenderType.lightning());
         Vec3 a=motion.position().subtract(motion.velocity().normalize().scale(shot.length)).subtract(eye);
         double walked=0;
         for(int i=1;i<=segments;i++){
@@ -307,7 +310,7 @@ public final class TreasuryVolleyClient {
 
     /** Short gold filings peel away from the departing hilt during the launch pulse. */
     private static void launchGlints(Matrix4f matrix,Vec3 tip,Vec3 axis,ShotView shot,double fade,boolean dense){
-        VertexConsumer out=BUFFERS.getBuffer(RenderType.lightning());
+        VertexConsumer out=buffers.getBuffer(RenderType.lightning());
         Vec3 hilt=tip.subtract(axis.scale(shot.length));
         Vec3 side=(Math.abs(axis.y)<.95?UP:new Vec3(1,0,0)).cross(axis).normalize();
         Vec3 up=axis.cross(side);

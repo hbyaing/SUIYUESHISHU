@@ -1,0 +1,9 @@
+Excalibur and Avalon audio credits
+
+Kenney Vleugels released the Sci-Fi Sounds and RPG Sounds samples under
+CC0 1.0. See Sci-Fi-Sounds.txt and RPG-Sounds.txt in this directory.
+
+The public build uses a two-part, non-vocal charging sound for Excalibur.
+The mix in assets/starcrowndoll/sounds/excalibur/chant.ogg is made from
+three effects in that directory: charge.ogg, sanctuary.ogg and reveal.ogg.
+The sample credits and reproduction instructions are in docs/EXCALIBUR_ASSETS.md.

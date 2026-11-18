@@ -1,0 +1,23 @@
+{
+  "loader": "forge:separate_transforms",
+  "textures": {
+    "particle": "starcrowndoll:item/excalibur_sword_atlas"
+  },
+  "base": {
+    "parent": "starcrowndoll:item/excalibur_mesh"
+  },
+  "perspectives": {
+    "firstperson_righthand": {
+      "parent": "starcrowndoll:item/excalibur_wind_pressure"
+    },
+    "firstperson_lefthand": {
+      "parent": "starcrowndoll:item/excalibur_wind_pressure"
+    },
+    "thirdperson_righthand": {
+      "parent": "starcrowndoll:item/excalibur_wind_pressure"
+    },
+    "thirdperson_lefthand": {
+      "parent": "starcrowndoll:item/excalibur_wind_pressure"
+    }
+  }
+}

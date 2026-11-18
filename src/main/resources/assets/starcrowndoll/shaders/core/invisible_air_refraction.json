@@ -1,0 +1,16 @@
+{
+  "vertex": "starcrowndoll:invisible_air_refraction",
+  "fragment": "starcrowndoll:invisible_air_refraction",
+  "attributes": ["Position"],
+  "samplers": [{"name": "ScenePatch"}],
+  "uniforms": [
+    {"name": "BladeBase", "type": "float", "count": 2, "values": [0, 0]},
+    {"name": "BladeTip", "type": "float", "count": 2, "values": [0, 1]},
+    {"name": "CropOrigin", "type": "float", "count": 2, "values": [0, 0]},
+    {"name": "PatchSize", "type": "float", "count": 2, "values": [1, 1]},
+    {"name": "CopiedSize", "type": "float", "count": 2, "values": [1, 1]},
+    {"name": "BladeRadius", "type": "float", "count": 1, "values": [1]},
+    {"name": "Time", "type": "float", "count": 1, "values": [0]},
+    {"name": "PixelScale", "type": "float", "count": 1, "values": [1]}
+  ]
+}

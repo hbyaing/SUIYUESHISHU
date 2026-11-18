@@ -1,0 +1,6 @@
+{
+  "parent": "starcrowndoll:item/excalibur_wind_pressure",
+  "visibility": {
+    "swing_wakes": true
+  }
+}

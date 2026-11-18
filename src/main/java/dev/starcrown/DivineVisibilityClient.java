@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.Mod;
 public final class DivineVisibilityClient {
  @SubscribeEvent(priority=net.minecraftforge.eventbus.api.EventPriority.LOWEST,receiveCanceled=true)
  public static void hand(net.minecraftforge.client.event.RenderHandEvent event){
+  if(ExcaliburChantHands.hidesSupport(event))return;
   var player=net.minecraft.client.Minecraft.getInstance().player;
   if(player!=null&&DivineWill.wearing(player)&&!StarcrownDoll.isDoll(event.getItemStack())&&!RiceFeast.active(player)
           &&!FateClient.controlsHand(player,event.getHand(),event.getPartialTick()))event.setCanceled(false);

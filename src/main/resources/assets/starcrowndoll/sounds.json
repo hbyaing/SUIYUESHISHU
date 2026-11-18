@@ -43,5 +43,74 @@
         "stream": true
       }
     ]
+  },
+  "excalibur_veil": {
+    "subtitle": "subtitles.starcrowndoll.excalibur_veil",
+    "sounds": [
+      "starcrowndoll:excalibur/veil"
+    ]
+  },
+  "excalibur_reveal": {
+    "subtitle": "subtitles.starcrowndoll.excalibur_reveal",
+    "sounds": [
+      "starcrowndoll:excalibur/reveal"
+    ]
+  },
+  "excalibur_wind_charge": {
+    "subtitle": "subtitles.starcrowndoll.excalibur_wind_charge",
+    "sounds": [
+      "starcrowndoll:excalibur/wind_charge"
+    ]
+  },
+  "excalibur_chant": {
+    "subtitle": "subtitles.starcrowndoll.excalibur_chant",
+    "sounds": [
+      {
+        "name": "starcrowndoll:excalibur/chant",
+        "stream": true
+      }
+    ]
+  },
+  "excalibur_charge": {
+    "subtitle": "subtitles.starcrowndoll.excalibur_charge",
+    "sounds": [
+      "starcrowndoll:excalibur/charge"
+    ]
+  },
+  "excalibur_wind": {
+    "subtitle": "subtitles.starcrowndoll.excalibur_wind",
+    "sounds": [
+      "starcrowndoll:excalibur/wind"
+    ]
+  },
+  "excalibur_beam": {
+    "subtitle": "subtitles.starcrowndoll.excalibur_beam",
+    "sounds": [
+      "starcrowndoll:excalibur/beam"
+    ]
+  },
+  "excalibur_impact": {
+    "subtitle": "subtitles.starcrowndoll.excalibur_impact",
+    "sounds": [
+      "starcrowndoll:excalibur/impact"
+    ]
+  },
+  "excalibur_slash": {
+    "subtitle": "subtitles.starcrowndoll.excalibur_slash",
+    "sounds": [
+      "starcrowndoll:excalibur/slash"
+    ]
+  },
+  "excalibur_sanctuary": {
+    "subtitle": "subtitles.starcrowndoll.excalibur_sanctuary",
+    "sounds": [
+      "starcrowndoll:excalibur/sanctuary"
+    ]
+  },
+  "excalibur_heal": {
+    "subtitle": "subtitles.starcrowndoll.excalibur_heal",
+    "sounds": [
+      "starcrowndoll:excalibur/heal"
+    ]
   }
 }
